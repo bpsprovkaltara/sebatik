@@ -1,0 +1,33 @@
+services:
+  sebatik:
+    build: .
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    volumes:
+      - sebatik_data:/app/data/processed
+      - sebatik_backup:/app/backup
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/api/v1/health')"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+
+  backup:
+    build: .
+    restart: unless-stopped
+    env_file:
+      - .env
+    command: ["python", "scripts/backup_sqlite.py", "--watch", "--interval", "86400", "--retention", "30"]
+    volumes:
+      - sebatik_data:/app/data/processed
+      - sebatik_backup:/app/backup
+    depends_on:
+      sebatik:
+        condition: service_healthy
+
+volumes:
+  sebatik_data:
+  sebatik_backup:

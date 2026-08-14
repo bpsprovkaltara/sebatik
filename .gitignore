@@ -1,0 +1,18 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+.venv-*/
+.runtime-packages/
+
+# Frontend
+node_modules/
+frontend/dist/
+.pnpm-store/
+
+# Local configuration and temporary files
+.env
+.claude/
+tmp/
+*.log

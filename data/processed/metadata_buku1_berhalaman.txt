@@ -1,0 +1,3033 @@
+===== HALAMAN PDF 47 =====
+2.3. Metadata 5 (Lima) Indikator Sasaran Visi dan 45 (Empat puluh lima)
+Indikator Utama Pembangunan dalam RPJPD Provinsi
+5 INDIKATOR SASARAN VISI DALAM RPJPD PROVINSI
+Peningkatan Pendapatan per Kapita
+1. Produk Domestik Regional Bruto per Kapita (Rp Juta)
+Nama Indikator Produk Domestik Regional Bruto per Kapita (Rp Juta)
+Definisi PDRB per kapita menunjukkan nilai PDRB per kepala atau per
+satu orang penduduk. PDRB per kapita dihitung dengan cara
+membagi total PDRB atas dasar harga berlaku dengan jumlah
+penduduk pertengahan tahun.
+Rumus 𝑃𝐷𝑅𝐵
+!"#$
+𝑃𝐷𝑅𝐵 𝑝𝑒𝑟 𝑘𝑎𝑝𝑖𝑡𝑎 =
+Perhitungan 𝑝𝑜𝑝𝑢𝑙𝑎𝑠𝑖
+Keterangan:
+PDRB = PDRB Atas Dasar Harga Berlaku
+ADHB
+populasi = jumlah penduduk regional
+t = periode
+Interpretasi Peningkatan PDRB per kapita biasanya dianggap sebagai tanda
+pertumbuhan ekonomi yang positif dan dapat meningkatkan
+standar hidup penduduk. Namun, penting untuk diingat bahwa
+PDRB per kapita tidak mencerminkan distribusi pendapatan
+yang merata di dalam wilayah tersebut, sehingga tidak
+memberikan gambaran lengkap tentang ketidaksetaraan
+ekonomi.
+Sumber Data Badan Pusat Statistik
+Frekuensi Tahunan
+4 3
+
+===== HALAMAN PDF 48 =====
+2. Indeks Ekonomi Biru Indonesia (IBEI)
+Nama Indikator Indeks Ekonomi Biru Indonesia (IBEI)
+Definisi Indeks Ekonomi Biru Indonesia menghitung kontribusi
+sektor ekonomi, sosial, dan lingkungan terhadap kemajuan
+ekonomi biru. Skor indeks akhir berkisar dari nol hingga
+seratus dan mengukur kondisi terkini ekonomi biru secara
+holistik. IBEI disusun dari beberapa indikator
+perekonomian makro, yang dapat mencerminkan
+perkembangan aspek ekonomi, sosial dan lingkungan yang
+terkait dengan sektor Ekonomi Biru. IBEI juga dapat
+digunakan untuk memprediksi kondisi ekonomi biru di
+masa depan, sesuai dengan asumsi-asumsi yang
+ditentukan.
+Indeks ekonomi biru diukur melalui beberapa komponen
+Rumus utama:
+Perhitungan
+1. Pilar Ekonomi: Terdiri dari tiga subsektor yaitu: (1)
+Perikanan tangkap dan budidaya, (2) Manufaktur
+berbasis kelautan, (3) Pariwisata berbasis kelautan.
+2. Pilar Sosial: Dibangun dari tiga subsektor yaitu: (1)
+Ketenagakerjaan, (2) Kesehatan, (3) R&D dan
+Pendidikan
+3. Pilar Lingkungan: Mencakup dua subsektor yaitu: (1)
+Kualitas sumber daya dan konservasi laut dan (2)
+Energi terbarukan
+Komponen-komponen ini diolah menggunakan multi-
+stages PCA untuk menghasilkan skor Indeks Ekonomi Biru
+Indonesia, yang berkisar dari 0 hingga 100. Perhitungan
+IBEI dilakukan di dua tingkat wilayah, yaitu ditingkat
+nasional dan di tingkat provinsi.
+Hasil perhitungan PCA terbagi menjadi dua bagian penting,
+sebagai berikut:
+1. Bobot – Menentukan peran dari masing-masing pilar
+dalam pembentukan indeks. Semakin tinggi bobot,
+semakin besar pula peran pilar tersebut dalam nilai
+index.
+2. Skor – Merupakan hasil perkalian antara bobot dengan
+kinerja masing-masing indikator. Skor pada tingkat
+provinsi menentukan posisi masing-masing provinsi
+dalam kuadran IBEI.
+44
+
+===== HALAMAN PDF 49 =====
+Interpretasi Secara umum, IBEI yang tinggi menunjukkan bahwa
+suatu wilayah telah berhasil dalam mengelola sumber
+daya lautnya dengan baik sehingga menghasilkan
+keuntungan ekonomi dan pemberdayaan manusia tanpa
+mengesampingkan kelestarian lingkungan hidup.
+Sumber Data Kementerian PPN/Bappenas
+Frekuensi Setiap tahun
+3. Kontribusi PDRB Industri Pengolahan (%)
+Nama Indikator Kontribusi PDRB Industri Pengolahan (%)
+Definisi Kontribusi Produk Domestik Regional Bruto (PDRB) yang
+bersumber dari sektor Industri Pengolahan yang
+mencerminkan proporsi nilai tambah sektor industri
+pengolahan terhadap PDB.
+Metode 𝑃𝑟𝑜𝑝𝑜𝑟𝑠𝑖 𝑃𝐷𝑅𝐵 𝑆𝑒𝑘𝑡𝑜𝑟 𝐼𝑛𝑑𝑢𝑠𝑡𝑟𝑖 𝑃𝑒𝑛𝑔𝑜𝑙𝑎h𝑎𝑛
+Perhitungan
+"#$%# &%'(%) *+,&-. /012*&.# 3+04-$%)%0
+= x 100%
+"#$%# 5678 5.-9#0*#
+Interpretasi Kontribusi sektor industri pengolahan terhadap PDRB yang
+mencerminkan rasio hasil nilai tambah sektor industri
+pengolahan dengan total nilai PDRB . Semakin besar nilai
+PDRB yang dihasilkan oleh sektor industri pengolahan,
+semakin tinggi proporsinya terhadap Produk Domestik
+Regional Bruto per daerah, ceteris paribus.
+Sumber Data Badan Pusat Statistik
+Frekuensi Triwulanan, Tahunan
+Pengentasan Kemiskinan dan Ketimpangan
+1. Tingkat Kemiskinan (%)
+Nama
+Tingkat Kemiskinan (%)
+Indikator
+Definisi Kemiskinan adalah kondisi seseorang yang tidak mampu
+memenuhi kebutuhan dasar makanan maupun bukan makanan
+yang diukur dari sisi pengeluaran. Penduduk dikategorikan
+miskin jika memiliki rata-rata pengeluaran per kapita per bulan
+di bawah garis kemiskinan. Sedangkan Garis Kemiskinan (GK)
+merupakan akumulasi dari Garis Kemiskinan Makanan (GKM)
+dan Garis Kemiskinan Non Makanan (GKNM).
+4 5
+
+===== HALAMAN PDF 50 =====
+Nama
+Tingkat Kemiskinan (%)
+Indikator
+Rumus
+Perhitungan
+Interpretasi Persentase penduduk miskin merupakan banyaknya penduduk
+yang memiliki rata-rata pengeluaran di bawah garis kemiskinan
+dibandingkan dengan total populasi penduduk Indonesia.
+Tingkat kemiskinan yang tinggi mengindikasikan masalah serius
+dalam mencapai kesejahteraan dasar masyarakat.
+Sumber Survei Sosial Ekonomi Nasional (Susenas)
+Data
+Frekuensi Dua kali per tahun (Maret dan September)
+2. Rasio Gini
+Nama Rasio Gini
+Indikator
+Definisi Rasio gini merupakan salah satu teknik statistik untuk
+mengukur ketimpangan pendapatan. Keistimewaan dari alat
+ukur ini adalah dapat ditampilkan secara geometris, sehingga
+mempunyai dua aspek sekaligus yaitu aspek visual melalui
+kurva yang disebut kurva Lorenz dan aspek matematis.
+Rumus Rasio Gini = 1−∑& (𝑝 −𝑝 )(𝑌 −𝑌 )
+%'( % %)( % %)(
+Penghitungan
+dimana: 𝑝 = Proporsi kumulatif dari penerima pendapatan i
+%
+𝑌 = Proporsi kumulatif pengeluaran perkapita i
+%
+𝑛 = jumlah observasi
+Interpretasi Angka rasio gini sebagai ukuran pemerataan mempunyai
+selang nilai antara 0 dan 1. Rasio Gini bernilai 0 menunjukan
+ketimpangan sebaran yang rendah (pemerataan sempurna).
+Sedangkan, nilai 1 menunjukan tingkat ketimpangan sebaran
+46
+
+===== HALAMAN PDF 51 =====
+yang tinggi (ketimpangan sempurna). Menurut Todaro (2006),
+klasifikasi nilai dari rasio gini adalah sebagai berikut:
+1. Nilai rasio gini terletak antara 0,50 – 0,70 menandakan
+pemerataan sangat timpang.
+2. Nilai rasio gini terletak antara 0,36 – 0,49 menunjukan
+ketimpangan sedang.
+3. Nilai rasio gini berada pada selang 0,20 – 0,35
+menunjukan pemerataan relatif baik.
+Secara visual, rasio gini dapat dijelaskan dengan
+menggunakan kurva Lorenz, yaitu kurva pengeluaran
+kumulatif yang membandingkan distribusi dari suatu variabel
+tertentu (misalnya pengeluaran) dengan distribusi seragam
+yang mewakili persentase kumulatif penduduk.
+Grafik persentase kumulatif penduduk yang diurut dari
+termiskin ke terkaya digambar pada sumbu horizontal dan
+persentase kumulatif pengeluaran digambar pada sumbu
+vertikal. Rasio gini merupakan formula yang menghitung rasio
+luas bidang antara garis diagonal (perfect equality) dan kurva
+Lorenz. Semakin jauh jarak kurva Lorenz dengan garis
+diagonal, maka tingkat ketimpangan semakin tinggi.
+Sumber Data Badan Pusat Statistik, Survei Sosial Ekonomi Nasional
+Frekuensi Dua kali setahun, bulan Maret dan September setiap
+tahunnya.
+3. Kontribusi PDRB Provinsi(%)
+Nama Indikator Kontribusi PDRB Provinsi (%)
+Definisi Kontribusi PDRB Provinsi adalah share PDRB Provinsi
+terhadap PDB Nasional.
+Rumus 𝑃𝐷𝑅𝐵
+*+,-%&.%
+𝐾𝑜𝑛𝑡𝑟𝑖𝑏𝑢𝑠𝑖 𝑃𝐷𝑅𝐵 = ×100%
+Perhitungan *+,-%&.% 𝑃𝐷𝐵
+/0.%,&01
+Interpretasi Sebagai upaya mengukur tingkat pemerataan dan
+pengurangan ketimpangan ekonomi antarwilayah yang
+saat ini masih didominasi KBI.
+Sumber Data Badan Pusat Statistik
+Frekuensi Triwulanan
+4 7
+
+===== HALAMAN PDF 52 =====
+Kepemimpinan dan Pengaruh di Dunia Internasional Meningkat
+Disesuaikan dengan Visi dan Karakteristik Daerah.
+Peningkatan Daya Saing Sumber Daya Manusia
+Indeks Modal Manusia
+Nama Indeks Modal Manusia
+Indikator
+Definisi Indeks Modal Manusia menghitung kontribusi kesehatan dan
+pendidikan terhadap produktivitas pekerja. Skor indeks akhir
+berkisar dari 0 hingga 1 dan mengukur produktivitas sebagai
+pekerja masa depan dari anak yang lahir hari ini relatif
+terhadap patokan kesehatan penuh dan pendidikan lengkap.
+Indeks Modal Manusia adalah pendekatan yang dilakukan oleh
+World Bank (Human Capital Index).
+Rumus Indeks modal manusia diukur melalui beberapa komponen
+Perhitungan utama:
+1. Probabilitas bertahan hidup (survival) hingga usia 5
+tahun: Probabilitas bahwa seorang anak yang baru lahir
+akan bertahan hingga usia 5 tahun. Data dihitung dari
+angka kematian balita.
+2. Pendidikan: Akses pendidikan diukur melalui harapan
+lama sekolah. Kualitas pendidikan diukur melalui
+harmonized test scores. Data akses dan kualitas
+pendidikan ditransformasikan menjadi pengukuran
+Learning-Adjusted Years of Schooling menggunakan
+metrik konversi.
+3. Kesehatan: Mencakup berbagai indikator kesehatan,
+termasuk stunting, yang merupakan kondisi di mana
+pertumbuhan anak terhambat karena malnutrisi kronis.
+2 proksi yang digunakan adalah (1) adult survival rate
+yang didefinisikan sebagai proporsi penduduk usia 15
+tahun yang hidup hingga 60 tahun; dan (2) prevalensi
+stunting.
+Komponen-komponen ini digabungkan untuk menghasilkan
+skor Indeks Modal Manusia, yang berkisar dari 0 hingga 1. Skor
+ini mengukur produktivitas tenaga kerja di masa depan dari
+anak yang dilahirkan saat ini, relatif terhadap patokan
+kesehatan penuh dan pendidikan lengkap.
+Komponen-komponen tersebut dapat dihitung dengan
+pendekatan sebagai berikut:
+1. Survival dihitung dari angka kematian balita (SUPAS dan
+LF SP)
+48
+
+===== HALAMAN PDF 53 =====
+2. Pendidikan: Akses pendidikan tetap diukur melalui
+harapan lama sekolah, namun untuk kualitas
+pendidikan, harmonized test scores diukur melalui
+proksi hasil asesmen pendidikan yang dilaksanakan di
+tingkat nasional dan daerah. Data akses dan kualitas
+pendidikan ditransformasikan menjadi pengukuran
+Learning-Adjusted Years of Schooling menggunakan
+metrik konversi.
+3. Kesehatan dihitung dari data adult survival rate (SUPAS
+dan LF SP) yang diagregasi pada usia 15-60 dan
+prevalensi stunting (SSGI dan SKI)
+4. Konversi ketiga komponen menjadi Indeks Modal
+Manusia dilakukan menggunakan pendekatan yang
+dilakukan World Bank.
+Catatan: Perlu penjajakan dengan Worldbank, Badan Pusat
+Statistik, Kementerian Kesehatan, Kementerian Pendidikan,
+Kebudayaan, Riset, dan Teknologi, dan pakar statistik
+membahas metode perhitungan Indeks Modal Manusia di
+tingkat nasional dan daerah.
+Interpretasi Secara umum, IMM yang tinggi menunjukkan bahwa suatu
+wilayah telah berhasil dalam memberikan akses pendidikan
+dan kesehatan yang baik kepada penduduknya, yang pada
+gilirannya akan mendukung produktivitas tenaga kerja di masa
+depan.
+Sumber Data SUPAS, SP, SSGI, SKI, BPS, AN Kementerian Pendidikan,
+Kebudayaan, Riset, dan Teknologi
+Frekuensi SSGI: tahunan
+SKI: 5 tahunan
+SUPAS dan SP: 10 tahunan Badan Pusat Statistik: tahunan
+AN Kementerian Pendidikan, Kebudayaan, Riset, dan
+Teknologi: tahunan
+Penurunan Emisi GRK menuju Net Zero Emission
+Penurunan Intensitas Emisi GRK (%)
+Nama Penurunan intensitas emisi GRK (%)
+Indikator
+Definisi Intensitas emisi gas rumah kaca (GRK) adalah perbandingan
+antara emisi gas rumah kaca yang terlepas ke atmosfer
+terhadap produk domestik regional bruto yang dihasilkan
+pada tahun tersebut.
+Penurunan intensitas emisi GRK untuk memperlihatkan
+4 9
+
+===== HALAMAN PDF 54 =====
+sinergitas antara upaya penurunan emisi dengan
+pertumbuhan ekonomi.
+Rumus Intensitas emisi GRK (ton CO2e/2010 IDR)
+Perhitungan
+IE = TE / PDRB
+t t t
+IE = Intensitas emisi GRK pada tahun t (ton CO2e/2010
+t
+IDR miliar)
+TE = Total tingkat emisi GRK pada tahun t (ton CO2e)
+t
+PDRB = Produk Domestik Regional Bruto tahun t (2010 IDR
+t
+miliar)
+t = titik tahun perhitungan
+Penurunan intensitas emisi GRK (%)
+%IE = (IE - IEB) / IEB
+t t t t
+%IE = Persentase intensitas emisi GRK pada tahun t
+t
+IE = Intensitas emisi GRK pada tahun t (ton CO2e/2010
+t
+IDR miliar)
+IEB = Intensitas emisi GRK baseline tahun t (ton
+t
+CO2e/2010 IDR miliar)
+t = titik tahun perhitungan
+Interpretasi Persentase penurunan intensitas emisi gas rumah kaca
+(GRK)
+Sumber Data 1. Penurunan Emisi Gas Rumah Kaca (GRK): Laporan
+AKSARA, Kementerian PPN/Bappenas;
+2. Produk Domestik Regional Bruto (Harga Konstan 2010):
+BPS.
+Frekuensi Tahunan
+50
+
+===== HALAMAN PDF 55 =====
+45 INDIKATOR UTAMA PEMBANGUNAN DALAM RPJPD PROVINSI
+Transformasi Sosial
+Kesehatan Untuk Semua
+1. Usia Harapan Hidup (UHH) (tahun)
+Nama Usia Harapan Hidup (UHH) (tahun)
+Indikator
+Definisi Rata-rata jumlah tahun hidup yang akan dijalani oleh bayi yang
+baru lahir pada suatu tahun tertentu.
+Rumus Idealnya dihitung berdasarkan Angka Kematian Menurut Umur
+Perhitungan (Age Specific Death Rate/ASDR) yang datanya diperoleh dari
+catatan registrasi kematian secara bertahun-tahun sehingga
+dimungkinkan dibuat tabel kematian. Namun, karena catatan
+registrasi tidak tersedia dengan baik, maka dihitung dengan
+cara tidak langsung dengan paket program Micro Computer
+Program for Demographic Analysis (MCPDA) atau Mortpack
+Interpretasi Semakin tinggi usia harapan hidup di suatu daerah,
+menandakan semakin baik pula derajat kesehatan dan
+kesejahteraan masyarakat di daerah tersebut. Ini menunjukkan
+adanya perbaikan status kesehatan masyarakat, termasuk
+peningkatan akses dan kualitas pelayanan kesehatan.
+Sumber Data Proyeksi dari SUPAS dan SP sebagai proksi/pendekatan
+Frekuensi SP: 10 tahunan
+SUPAS: 10 tahunan
+2. Kesehatan ibu dan anak
+2a. Angka Kematian Ibu (per 100.000 kelahiran hidup)
+Nama Angka Kematian Ibu (per 100.000 kelahiran hidup)
+Indikator
+Definisi Angka Kematian Ibu (AKI) adalah banyaknya perempuan yang
+meninggal dari suatu penyebab kematian terkait dengan
+gangguan kehamilan atau penanganannya (tidak termasuk
+kecelakaan, bunuh diri atau kasus insidentil) selama
+kehamilan, melahirkan, dan dalam masa nifas (42 hari setelah
+melahirkan) tanpa memperhitungkan lama kehamilan per
+100.000 kelahiran hidup.
+Rumus Jumlah kematian ibu yang berkaitan dengan kehamilan,
+Perhitungan persalinan, dan masa nifas yang tercatat atau hasil estimasi
+pada tahun tertentu dibagi jumlah kelahiran hidup pada periode
+yang sama dan dikali 100.000.
+5 1
+
+===== HALAMAN PDF 56 =====
+AKI = (JKI/JLH) x 100.000
+Keterangan:
+AKI : Angka kematian ibu
+JKI : Jumlah kematian ibu yang berkaitan dengan kehamilan,
+persalinan, dan masa nifas atau estimasi pada waktu
+tertentu
+JLH : Jumlah kelahiran hidup
+Interpretasi Indikator Angka Kematian Ibu (AKI) adalah ukuran yang
+digunakan untuk memantau jumlah kematian ibu yang terjadi
+sebagai akibat langsung dari komplikasi kehamilan, persalinan,
+dan masa nifas. AKI sangat penting karena memberikan
+gambaran tentang kualitas pelayanan kesehatan ibu dan anak
+di suatu negara atau wilayah.
+Angka Kematian Ibu (AKI) yang rendah di suatu wilayah
+mencerminkan beberapa hal penting:
+1. Kualitas Pelayanan Kesehatan: AKI yang rendah
+biasanya mencerminkan kualitas pelayanan kesehatan
+yang baik, termasuk pelayanan kesehatan ibu dan anak,
+pelayanan antenatal, persalinan, dan pascapersalinan.
+2. Akses Pelayanan Kesehatan: AKI yang rendah juga bisa
+mencerminkan akses yang baik ke pelayanan kesehatan.
+Ini bisa berarti bahwa fasilitas kesehatan mudah
+dijangkau dan terjangkau oleh masyarakat.
+3. Pendidikan Kesehatan: AKI yang rendah bisa
+mencerminkan tingkat pengetahuan dan kesadaran
+masyarakat tentang kesehatan reproduksi dan
+pentingnya pelayanan kesehatan selama kehamilan dan
+persalinan.
+4. Status Gizi: AKI yang rendah juga bisa mencerminkan
+status gizi ibu yang baik. Gizi yang baik selama
+kehamilan sangat penting untuk mencegah komplikasi
+yang bisa mengancam nyawa ibu.
+5. Kesadaran Masyarakat: AKI yang rendah juga bisa
+mencerminkan tingkat kesadaran masyarakat tentang
+pentingnya perawatan kesehatan selama kehamilan dan
+persalinan.
+Sumber Data Sensus Penduduk (SP) dan Survei Penduduk Antar Sensus
+(SUPAS)
+Frekuensi Sensus Penduduk (SP): 10 tahunan
+Survei Penduduk Antar Sensus (SUPAS): 10 tahunan
+52
+
+===== HALAMAN PDF 57 =====
+2b. Prevalensi Stunting (pendek dan sangat pendek) pada balita (%)
+Nama Prevalensi Stunting (pendek dan sangat pendek) pada balita (%)
+Indikator
+Definisi Stunting (pendek/sangat pendek) adalah kondisi kurang gizi
+kronis yang diukur berdasarkan indeks tinggi badan menurut
+umur (TB/U) dibandingkan dengan menggunakan standar WHO
+tahun 2005. Data tinggi badan pada menjadi analisis untuk
+status gizi dan tinggi badan setiap anak balita dikonversikan ke
+dalam nilai terstandar (Z-score) menggunakan baku
+antropometri anak balita WHO 2005. Klasifikasi berdasarkan
+indikator TB/U adalah sebagai berikut standar dari WHO dan
+Keputusan Menteri Kesehatan RI Nomor :
+1995/MENKES/SK/XII/2010.
+a. Sangat pendek: Zscore < -3,0
+b. Pendek: Zscore ≥ -3,0 s/d Zscore < -2,0
+Rumus Cara perhitungan (1)
+Perhitungan (1) Jumlah anak balita pendek pada waktu tertentu dibagi
+dengan jumlah anak balita pada waktu yang sama dan
+dinyatakan dalam satuan persen (%).
+Keterangan PAB(5) P : Prevalensi anak balita yang
+stunting menderita pendek (stunting)
+JAB(5 )P stunting : Jumlah anak balita pendek
+(stunting) pada waktu tertentu
+JAB(5) : Jumlah anak balita pada waktu
+yang sama
+Cara perhitungan (2)
+(2) Jumlah anak balita sangat pendek pada waktu tertentu
+dibagi dengan jumlah anak balita pada periode yang sama dan
+dinyatakan dalam satuan persen (%).
+Keterangan PAB(5) : Prevalensi anak balita yang
+SP stunting menderita sangat pendek (stunting)
+JAB(5) SP stunting : Jumlah anak balita sangat pendek
+(stunting) pada waktu tertentu
+JAB(5) : Jumlah anak balita pada waktu yang
+sama
+Cara perhitungan (3)
+Prevalensi stunting = PAB(5) P + PAB(5) SP
+Interpretasi Prevalensi stunting yang tinggi di suatu wilayah menggambarkan
+beberapa masalah serius, termasuk:
+1. Kekurangan Gizi: Stunting adalah indikator kekurangan
+gizi kronis. Prevalensi stunting yang tinggi menunjukkan
+5 3
+
+===== HALAMAN PDF 58 =====
+bahwa banyak anak di wilayah tersebut menderita
+kekurangan gizi dalam jangka waktu yang lama.
+2. Akses Pelayanan Kesehatan: Prevalensi stunting yang
+tinggi dapat mencerminkan akses yang terbatas ke
+pelayanan kesehatan berkualitas, termasuk pelayanan
+gizi dan kesehatan ibu dan anak.
+3. Kemiskinan: Stunting sering kali terkait dengan
+kemiskinan. Keluarga yang miskin mungkin tidak
+mampu menyediakan makanan bergizi untuk anak-anak
+mereka, yang pada gilirannya dapat menyebabkan
+stunting.
+4. Pendidikan: Tingkat pendidikan orang tua, khususnya
+ibu, juga berpengaruh terhadap prevalensi stunting.
+Orang tua yang berpendidikan cenderung lebih
+memahami pentingnya gizi dan kesehatan bagi
+pertumbuhan dan perkembangan anak.
+5. Faktor Lingkungan: Faktor lingkungan seperti sanitasi
+yang buruk dan akses terbatas ke air bersih juga dapat
+berkontribusi terhadap prevalensi stunting.
+Sumber Data SSGI
+Survei Kesehatan Indonesia perlu dieksplor penggunaan data
+program Kementerian Kesehatan (E-PPGBM) untuk penyediaan
+data tahunan
+Frekuensi SSGI: tahunan
+Survei Kesehatan Indonesia : 5 tahunan
+3. Penanganan Tuberkulosis
+3a. Cakupan penemuan dan pengobatan kasus tuberkulosis (treatment
+coverage) (%)
+Nama Cakupan penemuan dan pengobatan kasus tuberkulosis
+Indikator (treatment coverage) (%)
+Definisi Persentase kasus tuberkulosis yang berhasil ditemukan dan
+mendapatkan pengobatan di suatu wilayah dalam periode
+tertentu
+Rumus Cakupan penemuan dan pengobatan kasus tuberkulosis
+Perhitungan dihitung berdasarkan jumlah seluruh kasus tuberkulosis yang
+berhasil ditemukan dan mendapatkan pengobatan
+dibandingkan dengan perkiraan jumlah kasus tuberkulosis
+yang ada di suatu wilayah dalam periode tertentu.
+Interpretasi Indikator ini adalah ukuran penting dalam penanggulangan
+tuberkulosis, karena menunjukkan sejauh mana upaya
+penemuan dan pengobatan kasus tuberkulosis berhasil
+dilakukan. Indikator ini mencakup dua aspek penting:
+54
+
+===== HALAMAN PDF 59 =====
+1. Penemuan Kasus: Ini merujuk pada kemampuan sistem
+kesehatan untuk mengidentifikasi dan mendiagnosis
+individu yang menderita tuberkulosis.
+2. Pengobatan Kasus: Ini merujuk pada kemampuan
+sistem kesehatan untuk memberikan pengobatan yang
+tepat dan efektif kepada individu yang didiagnosis dengan
+tuberkulosis.
+Sumber Data Data Program Kementerian Kesehatan
+Frekuensi Tahunan
+3b. Angka keberhasilan pengobatan tuberkulosis (treatment success rate) (%)
+Nama Angka keberhasilan pengobatan tuberkulosis (treatment success
+Indikator rate) (%)
+Definisi Persentase pasien tuberkulosis yang sembuh dan
+menyelesaikan pengobatan lengkap
+Rumus Jumlah pasien tuberkulosis yang sembuh dan menyelesaikan
+Perhitungan pengobatan dibandingkan dengan semua kasus tuberkulosis
+yang diobati dan dilaporkan.
+Interpretasi Ini adalah indikator penting dalam evaluasi pengobatan
+tuberkulosis dan merupakan penjumlahan dari angka
+kesembuhan dan angka pengobatan lengkap. Angka ini dapat
+memberikan gambaran tentang efektivitas program pengobatan
+tuberkulosis di suatu wilayah.
+Sumber Data Data Program Kementerian Kesehatan
+Frekuensi Tahunan
+4. Cakupan kepesertaan jaminan kesehatan nasional (JKN) (%)
+Nama Cakupan kepesertaan jaminan kesehatan nasional (JKN) (%)
+Indikator
+Definisi Indikator ini menyatakan jumlah penduduk yang terdaftar sebagai
+kepesertaan jaminan kesehatan nasional (JKN) atau BPJS
+Kesehatan di mana bagi fakir miskin dan orang tidak mampu
+dibayarkan oleh pemerintah.
+Rumus Metode perhitungan yang digunakan adalah jumlah peserta
+Perhitungan jaminan kesehatan nasional dibagi dengan jumlah penduduk
+Indonesia dikali 100%.
+5 5
+
+===== HALAMAN PDF 60 =====
+Interpretasi Cakupan kepesertaan jaminan kesehatan nasional yang tinggi di
+suatu wilayah mencerminkan beberapa hal penting:
+1. Akses Pelayanan Kesehatan: Cakupan kepesertaan yang
+tinggi menunjukkan bahwa sebagian besar penduduk di
+wilayah tersebut memiliki akses ke pelayanan kesehatan.
+2. Kesadaran Masyarakat: Cakupan yang tinggi juga bisa
+mencerminkan tingkat kesadaran masyarakat tentang
+pentingnya asuransi kesehatan dalam mendapatkan
+pelayanan kesehatan yang berkualitas.
+3. Komitmen Pemerintah Daerah: Cakupan yang tinggi juga
+bisa mencerminkan komitmen pemerintah daerah dalam
+mendaftarkan penduduknya ke dalam program jaminan
+kesehatan nasional.
+4. Pencapaian Universal Health Coverage (UHC): Cakupan
+yang tinggi adalah langkah positif menuju pencapaian
+Universal Health Coverage (UHC), yaitu kondisi di mana
+semua orang dapat memperoleh layanan kesehatan yang
+mereka butuhkan tanpa mengalami kesulitan keuangan.
+Sumber Data BPJS
+DJSN
+Frekuensi Tahunan
+Pendidikan Berkualitas yang Merata
+5. Hasil Pembelajaran
+5a. Persentase kabupaten/kota yang mencapai standar kompetensi minimum
+pada asesmen tingkat nasional untuk Literasi membaca dan Numerasi
+Nama Persentase kabupaten/kota yang mencapai standar kompetensi
+Indikator minimum pada asesmen tingkat nasional untuk:
+i) Literasi membaca
+ii) Numerasi
+Definisi Jumlah kabupaten/kota di provinsi X yang memiliki capaian
+asesmen tingkat nasional mencapai standar kompetensi
+minimum dibagi jumlah kabupaten/kota di provinsi X. Asesmen
+Nasional adalah ukuran hasil asesmen peserta didik secara
+nasinal untuk aspek literasi membaca dan numerasi yang
+diselenggarakan oleh Kementerian Pendidikan, Kebudayaan,
+Riset, dan Teknologi. Asesmen Nasional diikuti oleh seluruh
+satuan pendidikan tingkat dasar dan menengah di bawah
+Kementerian Pendidikan, Kebudayaan, Riset, dan Teknologi dan
+Kementerian Agama, termasuk satuan pendidikan kesetaraan.
+Pada tiap satuan pendidikan, Asesmen Nasional akan diikuti
+oleh sebagian peserta didik kelas V, VIII, dan XI yang dipilih
+secara acak oleh Kementerian Pendidikan, Kebudayaan, Riset,
+56
+
+===== HALAMAN PDF 61 =====
+dan Teknologi. Hasil capaian Asesmen Nasional dibagi menjadi
+empat kategori, yaitu:
+1. Perlu intervensi khusus
+2. Dasar
+3. Cakap
+4. Mahir
+Dikategorikan sudah “mencapai kompetensi minimum” jika
+paling sedikit 75% peserta didik pada kabupaten/kota tersebut
+memiliki level hasil belajar minimal “cakap”.
+Rumus ∑0 𝑘𝑎𝑏𝑘𝑜𝑡 𝑚𝑖𝑛.𝑆𝐾𝑀
+#:;
+Perhitungan %𝑘𝑎𝑏𝑘𝑜𝑡 𝑚𝑖𝑛.𝑆𝐾𝑀 =
+𝑛
+Keterangan:
+𝑘𝑎𝑏𝑘𝑜𝑡 𝑚𝑖𝑛.𝑆𝐾𝑀 = Kabupaten/kota yang mencapai standar
+kompetensi minimum pada asesmen
+tingkat nasional untuk literasi membaca
+atau numerasi
+𝑛 = Jumlah kabupaten/kota
+Interpretasi Misal: Persentase kabupaten/kota yang mencapai standar
+kompetensi minimum pada asesmen tingkat nasional untuk
+literasi membaca tahun 2022 sebesar 11,67%. Artinya, ada
+11,67% kabupaten/kota di Indonesia atau sebanyak 60
+kabupaten/kota yang telah mencapai standar kompetensi
+minimum pada asesmen tingkat nasional untuk literasi
+membaca (paling sedikit 75% peserta didik pada
+kabupaten/kota tersebut memiliki level hasil belajar minimal
+“cakap”).
+Sumber Data Asesmen Nasional, Kementerian Pendidikan, Kebudayaan,
+Riset, dan Teknologi
+Frekuensi Tahunan
+5b. Persentase satuan pendidikan yang mencapai standar kompetensi
+minimum pada asesmen tingkat nasional untuk Literasi membaca dan
+Numerasi
+Nama Persentase satuan pendidikan yang mencapai standar
+Indikator kompetensi minimum pada asesmen tingkat nasional untuk:
+i) Literasi membaca
+ii) Numerasi
+Definisi
+Jumlah satuan pendidikan di provinsi X yang memiliki capaian
+asesmen tingkat nasional mencapai standar kompetensi
+minimum dibagi jumlah satuan pendidikan di provinsi X.
+Asesmen Nasional adalah ukuran hasil asesmen peserta didik
+5 7
+
+===== HALAMAN PDF 62 =====
+secara nasional untuk aspek literasi membaca dan numerasi
+yang diselenggarakan oleh Kementerian Pendidikan,
+Kebudayaan, Riset, dan Teknologi (Kemendikbudristek).
+Asesmen Nasional diikuti oleh seluruh satuan pendidikan
+tingkat dasar dan menengah, termasuk satuan pendidikan
+kesetaraan. Pada tiap satuan pendidikan, Asesmen Nasional
+akan diikuti oleh sebagian peserta didik kelas V, VIII, dan XI
+yang dipilih secara acak oleh Kemendikbudristek. Hasil capaian
+Asesmen Nasional dibagi menjadi empat kategori, yaitu:
+1. Perlu intervensi khusus
+2. Dasar
+3. Cakap
+4. Mahir
+Dikategorikan sudah “mencapai kompetensi minimum” jika
+paling sedikit 75% peserta didik pada satuan pendidikan
+tersebut memiliki level hasil belajar minimal “cakap”.
+Rumus ∑0 𝑠𝑎𝑡𝑑𝑖𝑘 𝑚𝑖𝑛.𝑆𝐾𝑀
+#:;
+Perhitungan %𝑠𝑎𝑡𝑑𝑖𝑘 𝑚𝑖𝑛.𝑆𝐾𝑀 =
+𝑛
+Keterangan:
+𝑠𝑎𝑡𝑑𝑖𝑘 𝑚𝑖𝑛.𝑆𝐾𝑀 = Satuan pendidikan yang mencapai
+standar kompetensi minimum pada
+asesmen tingkat nasional untuk literasi
+membaca atau numerasi
+𝑛 = Jumlah satuan pendidikan
+Interpretasi Misal: Persentase satuan pendidikan yang mencapai standar
+kompetensi minimum pada asesmen tingkat nasional untuk
+literasi membaca tahun 2022 sebesar 29,16%. Artinya, ada
+29,16% satuan pendidikan di Indonesia atau sebanyak 83.808
+satuan pendidikan yang telah mencapai standar kompetensi
+minimum pada asesmen tingkat nasional untuk literasi
+membaca (paling sedikit 75% peserta didik pada satuan
+pendidikan tersebut memiliki level hasil belajar minimal
+“cakap”).
+Sumber Data Asesmen Nasional, Kementerian Pendidikan, Kebudayaan,
+Riset, dan Teknologi
+Frekuensi Tahunan
+58
+
+===== HALAMAN PDF 63 =====
+5c. Rata-rata Lama Sekolah Penduduk Usia di Atas 15 Tahun (tahun)
+Nama Rata-rata Lama Sekolah Penduduk Usia di Atas 15 Tahun
+Indikator (tahun)
+Definisi Rerata waktu (dalam satuan tahun) yang ditempuh oleh
+penduduk usia 15 tahun ke atas dalam menyelesaikan semua
+jenjang pendidikan formal yang pernah dijalani. Rata-rata Lama
+Sekolah penduduk usia 15 tahun ke atas (RLS 15+) dihitung
+dengan cara mengkonversikan ijazah terakhir dan tingkat
+pendidikan yang sedang dijalani ke dalam satuan tahun dengan
+tidak memperhitungkan adanya kejadian pengulangan kelas.
+Ijazah yang dimiliki akan dikonversi ke dalam lama waktu
+bersekolah (satuan tahun) berdasarkan ketentuan berikut:
+a. Tidak punya ijazah = 0 tahun;
+b. SD = 6 tahun;
+c. SMP = 9 tahun;
+d. SMA = 12 tahun;
+e. D1/D2 = 14 tahun;
+f. D3 = 15 tahun;
+g. D4 = 16 tahun;
+h. S1 = 17 tahun;
+i. S2 = 19 tahun;
+j. S3 = 22 tahun.
+Konversi ijazah ke menjadi lamanya waktu bersekolah
+memenuhi perhitungan berikut ini:
+a. Tidak pernah sekolah = 0 tahun;
+2. Masih sekolah di SD sampai dengan S1= konversi ijazah
+terakhir + kelas terakhir – 1;
+3. Masih sekolah di S2/S3 = konversi ijazah terakhir + 1;
+4. Tidak bersekolah lagi dan tamat kelas terakhir = konversi
+ijazah terakhir;
+5. Tidak bersekolah lagi dan tidak tamat di kelas terakhir =
+konversi ijazah terakhir + kelas terakhir –1
+Rumus %!"#
+1
+Perhitungan
+𝑅𝑎𝑡𝑎−𝑟𝑎𝑡𝑎 𝐿𝑎𝑚𝑎 𝑆𝑒𝑘𝑜𝑙𝑎ℎ 15+ = 4𝑥
+𝑃 $
+!"#
+$&!
+Keterangan:
+𝑃 = Jumlah penduduk yang berusia 15 tahun ke atas
+(23
+𝑥 = Lama sekolah penduduk ke- 𝑖
+%
+Interpretasi Misal: RLS 15+ Indonesia tahun 2022 = 9,08 tahun, artinya
+secara rata-rata, penduduk Indonesia yang berusia 15 tahun ke
+atas telah menempuh pendidikan selama 9,08 tahun atau telah
+menamatkan kelas IX.
+Sumber Data Susenas, Badan Pusat Statistik
+Frekuensi Tahunan (hasil survei bulan Maret di setiap tahunnya)
+5 9
+
+===== HALAMAN PDF 64 =====
+5d. Harapan Lama Sekolah
+Nama Harapan Lama Sekolah
+Indikator
+Definisi Lamanya waktu bersekolah yang diharapkan dapat dirasakan
+oleh anak-anak usia tertentu pada jenjang pendidikan usia
+tersebut di masa mendatang.
+Rumus 0
+𝐸&
+Perhitungan 𝐻𝑎𝑟𝑎𝑝𝑎𝑛 𝐿𝑎𝑚𝑎 𝑆𝑒𝑘𝑜𝑙𝑎ℎ = 𝐹𝐾; #
+𝑃&
+#
+#:<
+Keterangan:
+𝐹𝐾 = Faktor koreksi pesantren
+𝐸4 = Jumlah penduduk usia 𝑖 yang berkolah pada tahun 𝑡
+%
+𝑃4 = Jumlah penduduk usia 𝑖 pada tahun 𝑡
+%
+𝑖 = Usia (7, 8, ..., 𝑛)
+Interpretasi Angka HLS menunjukkan peluang anak usia 7 tahun ke atas
+untuk menempuh pendidikan formal pada waktu tertentu.
+Misal: HLS Indonesia pada tahun 2022 sebesar 13,10 tahun.
+Artinya, secara rata-rata anak usia 7 tahun yang masuk jenjang
+pendidikan formal pada tahun 2022 memiliki peluang untuk
+bersekolah selama 13,10 tahun atau setara dengan Diploma I.
+Sumber Data Susenas, Badan Pusat Statistik
+Frekuensi Tahunan (hasil survei bulan Maret di setiap tahunnya)
+6. Proporsi Penduduk Berusia 15 Tahun ke Atas yang Berkualifikasi
+Pendidikan Tinggi (%)
+Nama Indikator Proporsi Penduduk Berusia 15 Tahun ke Atas yang
+Berkualifikasi Pendidikan Tinggi (%)
+Definisi • Proporsi penduduk berusia 15 Tahun ke atas yang
+berkualifikasi pendidikan tinggi adalah untuk memantau
+jumlah penduduk berusia 15 tahun ke atas yang berhasil
+menyelesaikan pendidikan hingga ke jenjang perguruan
+tinggi.
+• Nilai tertinggi dari indikator ini mencapai 100% (seluruh
+penduduk berusia 15 tahun ke atas di provinsi tersebut
+sudah menyelesaikan pendidikan tinggi).
+• Jenjang pendidikan tinggi mencakup:
+o Diploma I-IV
+o S1
+o S2
+60
+
+===== HALAMAN PDF 65 =====
+o S2 Terapan
+o S3
+Rumus Proporsi penduduk Jumlah penduduk 15 tahun ke atas, yang
+berusia 15 Tahun ke lulus/berijazah pendidikan tinggi di
+Perhitungan
+atas yang = Provinsi X X 100%
+berkualifikasi Jumlah penduduk 15 tahun ke atas di
+pendidikan tinggi Provinsi X
+Interpretasi • Positif
+• Tingginya proporsi penduduk Berusia 15 Tahun ke atas
+yang berkualifikasi pendidikan tinggi menggambarkan
+kualitas penduduk dari segi pendidikan semakin baik.
+Sumber Data Survei Sosial Ekonomi Nasional (Susenas) oleh Badan Pusat
+Statistik (BPS)
+Frekuensi Tahunan
+7. Persentase Pekerja Lulusan Pendidikan Menengah dan Tinggi yang Bekerja
+di Bidang Keahlian Menengah Tinggi (%)
+Nama Indikator Persentase Pekerja Lulusan Pendidikan Menengah dan Tinggi
+yang Bekerja di Bidang Keahlian Menengah Tinggi (%)
+Definisi • Pekerja lulusan pendidikan menengah dan tinggi
+merupakan penduduk usia 15 tahun ke atas lulusan
+pendidikan menengah atau pendidikan tinggi.
+Tingkat Pendidikan Tingkat Pendidikan Tingkat Pendidikan
+Rendah Menengah Tinggi
+• Tidak/belum • SMA/MA/SMLB/ • Diploma I/II/III
+tamat SD Paket C • Diploma IV
+• SD/MI/SDLB/ • SMK • S1
+Paket A • MAK • S2
+• SMP/MTs/ • S2 Terapan
+SMPLB/Paket B • S3
+• Bidang keahlian menengah (semi-skilled) adalah bidang
+kerja yang membutuhkan pekerja yang memiliki
+pengetahuan dan keterampilan dengan tingkat
+kompleksitas sedang untuk menyelesaikan tugas yang
+umumnya bersifat rutin dan tidak membutuhkan
+kemampuan mental tinggi.
+6 1
+
+===== HALAMAN PDF 66 =====
+• Bidang keahlian tinggi (skilled) adalah bidang kerja yang
+membutuhkan pekerja dengan pengetahuan dan
+keterampilan komprehensif atas pekerjaan yang
+dilakukannya sehingga mampu menyelesaikan tugas yang
+sifatnya kompleks dan membutuhkan kemampuan mental
+tinggi.
+• Indikator ini diperoleh dengan membagi jumlah penduduk
+15 tahun ke atas yang lulus pendidikan menengah atau
+pendidikan tinggi, dan sedang bekerja pada bidang
+keahlian menengah atau tinggi dengan jumlah penduduk
+15 tahun ke atas yang lulus pendidikan menengah atau
+pendidikan tinggi, dan sedang bekerja pada bidang
+keahlian rendah atau menengah atau tinggi.
+Rumus Jumlah penduduk 15 tahun ke atas, yang
+lulus pendidikan menengah atau pendidikan
+Perhitungan
+Persentase pekerja tinggi, dan sedang bekerja pada bidang
+lulusan pendidikan keahlian menengah atau tinggi, pada tahun
+menengah dan tinggi T di Provinsi X
+= X 100%
+yang bekerja di bidang
+Jumlah penduduk 15 tahun ke atas, yang
+keahlian menengah
+lulus pendidikan menengah atau pendidikan
+tinggi (Provinsi X)
+tinggi, dan sedang bekerja pada tahun T di
+Provinsi X
+Interpretasi • Positif
+• Meningkatnya persentase pekerja lulusan pendidikan
+menengah dan tinggi yang bekerja di bidang keahlian
+menengah dan tinggi menggambarkan peningkatan link
+and match tenaga kerja antara dunia pendidikan (supply)
+dan lapangan kerja (demand) dengan klasifikasi keahlian
+yang sesuai dengan tingkat pendidikan.
+Sumber Data Survei Angkatan Kerja Nasional (Sakernas) oleh Badan Pusat
+Statistik (BPS)
+Frekuensi Dua kali per tahun (Februari dan Agustus), namun yang
+digunakan adalah publikasi Agustus.
+Perlindungan Sosial yang Adaptif
+8. Tingkat Kemiskinan (%)
+Nama
+Tingkat Kemiskinan (%)
+Indikator
+Definisi Kemiskinan adalah kondisi seseorang yang tidak mampu
+memenuhi kebutuhan dasar makanan maupun bukan makanan
+yang diukur dari sisi pengeluaran. Penduduk dikategorikan miskin
+jika memiliki rata-rata pengeluaran per kapita per bulan di bawah
+62
+
+===== HALAMAN PDF 67 =====
+garis kemiskinan. Sedangkan Garis Kemiskinan (GK) merupakan
+akumulasi dari Garis Kemiskinan Makanan (GKM) dan Garis
+Kemiskinan Non Makanan (GKNM).
+Rumus
+Perhitungan
+Interpretasi Persentase penduduk miskin merupakan banyaknya penduduk
+yang memiliki rata-rata pengeluaran di bawah garis kemiskinan
+dibandingkan dengan total populasi penduduk regional.
+Sumber Data Survei Sosial Ekonomi Nasional (Susenas)
+Frekuensi Dua kali per tahun (Maret dan September)
+9. Cakupan Kepesertaan Jaminan Sosial Ketenagakerjaan (%)
+Nama Indikator Cakupan Kepesertaan Jaminan Sosial Ketenagakerjaan
+(%)
+Definisi Cakupan kepesertaan jaminan sosial ketenagakerjaan adalah
+proksi yang digunakan untuk mengukur perlindungan
+jaminan sosial nasional bagi pekerja di Indonesia. Definisinya
+adalah jumlah pekerja yang memiliki Program Jaminan
+Kecelakaan Kerja (JKK) dan Program Jaminan Kematian
+(JKM) BPJS Ketenagakerjaan terhadap semesta penduduk
+bekerja.
+Rumus 𝐶𝑎𝑘𝑢𝑝𝑎𝑛 𝐽𝑎𝑚𝑠𝑜𝑠 𝑁𝑎𝑘𝑒𝑟
+Penghitungan 𝐽𝑢𝑚𝑙𝑎ℎ 𝑝𝑒𝑠𝑒𝑟𝑡𝑎 𝐵𝑃𝐽𝑆 𝐾𝑒𝑡𝑒𝑛𝑎𝑔𝑎𝑘𝑒𝑟𝑗𝑎𝑎𝑛
+= ×100%
+𝐽𝑢𝑚𝑙𝑎ℎ 𝑠𝑒𝑚𝑒𝑠𝑡𝑎 𝑝𝑒𝑛𝑑𝑢𝑑𝑢𝑘 𝑏𝑒𝑘𝑒𝑟𝑗𝑎
+Dimana:
+𝑃𝑒𝑠𝑒𝑟𝑡𝑎= Pekerja Penerima Upah (PPU), Jasa Konstruksi, dan
+Pekerja Bukan Penerima Upah
+𝑆𝑒𝑚𝑒𝑠𝑡𝑎 𝑝𝑒𝑛𝑑𝑢𝑑𝑢𝑘 𝑏𝑒𝑘𝑒𝑟𝑗𝑎 = Penduduk Bekerja yang berusia
+15-65 tahun
+6 3
+
+===== HALAMAN PDF 68 =====
+Interpretasi Semakin tinggi Cakupan Kepesertaan Jaminan Sosial
+Ketenagakerjaan menunjukkan tingkat perlindungan
+jaminan sosial ketenagakerjaan yang semakin tinggi.
+Jaminan sosial ini mencakup perlindungan terhadap risiko-
+risiko seperti kecelakaan kerja, penyakit akibat kerja, dan
+kematian. Manfaat yang diperoleh peserta maupun keluarga
+meliputi santunan tunai, fasilitasi pengembalian ke pasar
+kerja, dan beasiswa bagi anak.
+Sumber Data BPJS Ketenagakerjaan dan BPS, Susenas.
+Frekuensi Setiap bulan dan survei dua kali setahun, bulan Maret dan
+September setiap tahunnya.
+10. Persentase Penyandang Disabilitas Bekerja di Sektor Formal (%)
+Persentase Penyandang Disabilitas Bekerja di Sektor
+Nama Indikator
+Formal (%)
+Definisi Pekerja penyandang disabilitas adalah penduduk
+penyandang disabilitas berusia 15 tahun ke atas yang bekerja
+dan mengalami satu atau lebih hambatan diantaranya:
+gangguan dalam penglihatan, pendengaran, mobilitas,
+menggunakan atau menggerakan jari atau tangan, gangguan
+berbicara atau memahami atau berkomunikasi dengan orang
+lain, gangguan mengingat, berkonsentrasi, dan gangguan
+emosional dengan tingkat keparahan rendah, sedang, sampai
+parah. Penyandang disabilitas yang bekerja di sektor formal
+adalah penyandang disabilitas yang bekerja pada status
+pekerjaan berusaha dibantu buruh tetap atau buruh dibayar
+(status pekerjaan 3) dan buruh/karyawan/pegawai (status
+pekerjaan 4). Persentase penyandang disabilitas bekerja di
+sektor formal adalah proporsi penyandang disabilitas yang
+bekerja di sektor formal (status pekerjaan 3 dan 4) terhadap
+total penyandang disabilitas pada angkatan kerja.
+Penyandang disabilitas yang dihitung dalam indikator ini
+adalah penyandang disabilitas kategori sedang dan berat.
+Rumus
+Perhitungan
+64
+
+===== HALAMAN PDF 69 =====
+Interpretasi Persentase penyandang disabilitas bekerja di sektor formal
+merupakan proporsi penyandang disabilitas yang bekerja
+pada status pekerjaan berusaha dibantu buruh tetap atau
+buruh dibayar dan bekerja sebagai buruh/karyawan/pegawai
+terhadap total angkatan kerja penyandang disabilitas.
+Penyandang disabilitas yang bekerja di sektor formal
+mendapatkan jobs security, penghasilan yang stabil, serta
+cakupan perlindungan sosial yang lebih baik untuk
+mendapatkan kehidupan yang layak dibandingkan mereka
+yang bekerja di sektor informal.
+Sumber Data Survei Angkatan Kerja Nasional (Sakernas)
+6 5
+
+===== HALAMAN PDF 70 =====
+Transformasi Ekonomi
+Iptek, Inovasi, dan Produktivitas Ekonomi
+11. Kontribusi PDRB Industri Pengolahan (%)
+Nama Indikator Kontribusi PDRB Industri Pengolahan (%)
+Definisi Kontribusi Produk Domestik Regional Bruto (PDRB) yang
+bersumber dari sektor Industri Pengolahan yang
+mencerminkan proporsi nilai tambah sektor industri
+pengolahan terhadap PDB.
+Metode 𝑃𝑟𝑜𝑝𝑜𝑟𝑠𝑖 𝑃𝐷𝑅𝐵 𝑆𝑒𝑘𝑡𝑜𝑟 𝐼𝑛𝑑𝑢𝑠𝑡𝑟𝑖 𝑃𝑒𝑛𝑔𝑜𝑙𝑎h𝑎𝑛
+Perhitungan
+"#$%# &%'(%) *+,&-. /012*&.# 3+04-$%)%0
+= x 100%
+"#$%# 5678 5.-9#0*#
+Interpretasi Kontribusi sektor industri pengolahan terhadap PDRB yang
+mencerminkan rasio hasil nilai tambah sektor industri
+pengolahan dengan total nilai PDRB . Semakin besar nilai
+PDRB yang dihasilkan oleh sektor industri pengolahan,
+semakin tinggi proporsinya terhadap Produk Domestik
+Regional Bruto per daerah, ceteris paribus.
+Sumber Data Badan Pusat Statistik
+Frekuensi Triwulanan, Tahunan
+12. Pengembangan Pariwisata
+12a. Rasio PDRB Penyediaan Akomodasi Makan dan Minum (%)
+Nama Indikator Rasio PDRB Penyediaan Akomodasi Makan dan Minum (%)
+Definisi Proporsi PDRB Penyediaan Akomodasi Makan dan Minum
+adalah persen bagian PDB regional yang dikontribusikan oleh
+aktivitas terkait pariwisata meliputi:
+1. Penyediaan Akomodasi bagi Wisatawan, dan
+2. Penyediaan Jasa Makan dan Minum.
+Metode 𝑅𝑎𝑠𝑖𝑜 𝑃𝐷𝑅B Penyediaan Akmamin = "#$%# &%'(%) *+,-+.#%%, /0'%'#, x 100%
+"#$%# *123 *456#,7#
+Perhitungan
+Interpretasi Semakin besar nilai PDB yang dihasilkan oleh aktivitas terkait
+pariwisata, semakin tinggi proporsinya terhadap PDB regional,
+ceteris paribus. Ke depan, perlu ada pemutakhiran dari
+aktivitas-aktivitas yang terkait pariwisata.
+Sumber Data Badan Pusat Statistik Daerah, Kementerian Pariwisata dan
+Ekonomi Kreatif
+Frekuensi Tahunan
+66
+
+===== HALAMAN PDF 71 =====
+12b. Jumlah Tamu Wisatawan Mancanegara (Hotel Berbintang) (Ribu Orang)
+Nama Indikator Jumlah Tamu Wisatawan Mancanegara (Hotel Berbintang)
+(Ribu Orang)
+Definisi Jumlah tamu wisatawan mancanegara yang menginap di hotel
+berbintang di daerah (Provinsi) tertentu.
+Metode 𝐷𝑎𝑡𝑎 𝐽𝑢𝑚𝑙𝑎h 𝑇𝑎𝑚𝑢 𝑊𝑖𝑠𝑎𝑡𝑎𝑤𝑎𝑛 𝑀𝑎𝑛𝑐𝑎𝑛𝑒𝑔𝑎𝑟𝑎
+Perhitungan (𝑑𝑖 𝑠𝑒𝑡𝑖𝑎𝑝 h𝑜𝑡𝑒𝑙 𝑏𝑒𝑟𝑏𝑖𝑛𝑡𝑎𝑛𝑔 𝑑𝑖 𝑑𝑎𝑒𝑟𝑎h (𝑃𝑟𝑜𝑣𝑖𝑛𝑠𝑖) 𝑡𝑒𝑟𝑡𝑒𝑛𝑡𝑢)
+Interpretasi Semakin tinggi jumlah tamu wisatawan mancanegara yang
+menginap di hotel berbintang di daerah (Provinsi) tertentu
+maka akan meningkatkan devisa dari sektor pariwisata secara
+nasional.
+Sumber Data Badan Pusat Statistik, Kementerian Pariwisata dan Ekonomi
+Kreatif
+Frekuensi Tahunan
+13. Proporsi PDRB Ekonomi Kreatif (%)
+Nama Indikator Proporsi PDRB Ekonomi Kreatif (%)
+Definisi PDRB pada definisi BPS merupakan jumlah nilai tambah yang
+dihasilkan oleh seluruh unit usaha dalam suatu negara
+tertentu, atau merupakan jumlah nilai barang dan jasa akhir
+yang dihasilkan oleh seluruh unit ekonomi pada satu daerah.
+Dengan demikian, Proporsi PDRB Ekonomi Kreatif adalah
+persen bagian PDB regional yang dikontribusikan oleh
+aktivitas ekonomi kreatif dari 17 subsektor yang termasuk:
+1. Fesyen
+2. Kuliner
+3. Kriya
+4. Film, Animasi dan Video
+5. Pengembang Permainan
+6. Aplikasi
+7. Musik
+8. Seni Pertunjukan
+9. Fotografi
+10. Desain Komunikasi Visual
+11. Televisi dan Radio
+12. Seni Rupa
+13. Desain Produk
+14. Periklanan
+15. Penerbitan
+16. Arsitektur
+17. Desain Interior
+Metode 𝑃𝑟𝑜𝑝𝑜𝑟𝑠𝑖 𝑃𝐷𝑅𝐵 𝐸𝑘𝑜𝑛𝑜𝑚𝑖 𝐾𝑟𝑒𝑎𝑡𝑖𝑓
+Perhitungan
+= 5678 ;< >2(*+,&-. ?,-0-'# @.+%&#A 7+4#-0%$
+= x 100%
+5678
+6 7
+
+===== HALAMAN PDF 72 =====
+Interpretasi Semakin besar nilai PDRB yang dihasilkan oleh subsektor
+ekonomi kreatif, semakin tinggi proporsinya terhadap PDB
+nasional, ceteris paribus. Namun dalam penerjemahannya ke
+depan, perlu diperhatikan nilai rupiah dari PDRB subsektor
+ekonomi kreatif untuk menghindari misinterpretasi.
+Sumber Data Badan Pusat Statistik daerah, Kementerian Pariwisata dan
+Ekonomi Kreatif
+Frekuensi Tahunan
+14. Produktivitas UMKM, Koperasi, dan BUMD
+14a-i) Proporsi Jumlah Usaha Kecil dan Menengah (UKM) Non Pertanian (%)
+Nama Proporsi Jumlah Usaha Kecil dan Menengah (UKM) Non
+Indikator Pertanian (%)
+Definisi Proporsi jumlah usaha kecil dan menengah non pertanian
+merupakan perbandingan jumlah unit usaha kecil dan
+menengah non pertanian terhadap seluruh unit usaha non
+pertanian pada tahun yang sama.
+Metode
+Perhitungan
+𝐽𝑢𝑚𝑙𝑎ℎ 𝑈𝑛𝑖𝑡 𝑈𝑠𝑎ℎ𝑎 𝐾𝑒𝑐𝑖𝑙 𝑑𝑎𝑛 𝑀𝑒𝑛𝑒𝑛𝑔𝑎ℎ 𝑁𝑜𝑛 𝑃𝑒𝑟𝑡𝑎𝑛𝑖𝑎𝑛
+𝑃𝑟𝑜𝑝𝑜𝑟𝑠𝑖 𝑈𝐾𝑀= ×100 (𝑝𝑒𝑟𝑠𝑒𝑛)
+𝑇𝑜𝑡𝑎𝑙 𝐽𝑢𝑚𝑙𝑎ℎ 𝑈𝑛𝑖𝑡 𝑈𝑠𝑎ℎ𝑎
+Interpretasi Usaha kecil dan menengah (UKM) merepresentasikan bagian dari
+UMKM yang cenderung sudah formal dan berorientasi untuk
+tumbuh. Meningkatnya proporsi UKM yang diiringi dengan
+menurunnya proporsi usaha mikro dapat mengindikasikan
+adanya kenaikan skala usaha dan peningkatan penyerapan
+tenaga kerja.
+Sumber Data • Sensus Ekonomi (10 tahun sekali).
+• Data Pendataan Lengkap UMKM, Kementerian Koperasi dan
+UKM (masih dalam tahap pengumpulan dan
+pengembangan)
+• Data UMKM yang dikumpulkan oleh daerah
+Frekuensi Tahunan
+14-ii) Proporsi Jumlah Industri Kecil dan Menengah (IKM) (%)
+Nama Proporsi Jumlah Industri Kecil dan Menengah (IKM) (%)
+Indikator
+Definisi Proporsi jumlah industri kecil dan menengah merupakan
+perbandingan jumlah unit industri kecil dan menengah terhadap
+seluruh unit industri pada tahun yang sama.
+68
+
+===== HALAMAN PDF 73 =====
+Metode
+Perhitungan
+𝐽𝑢𝑚𝑙𝑎ℎ 𝑈𝑛𝑖𝑡 𝐼𝑛𝑑𝑢𝑠𝑡𝑟𝑖 𝐾𝑒𝑐𝑖𝑙 𝑑𝑎𝑛 𝑀𝑒𝑛𝑒𝑛𝑔𝑎ℎ
+𝑃𝑟𝑜𝑝𝑜𝑟𝑠𝑖 𝐼𝐾𝑀=
+𝑇𝑜𝑡𝑎𝑙 𝐽𝑢𝑚𝑙𝑎ℎ 𝑈𝑛𝑖𝑡 𝐼𝑛𝑑𝑢𝑠𝑡𝑟𝑖
+Interpretasi Industri kecil dan menengah (UKM) merepresentasikan bagian
+dari industri mikro, kecil dan menengah yang cenderung sudah
+formal dan berorientasi untuk tumbuh. Meningkatnya proporsi
+IKM yang diiringi dengan menurunnnya proporsi industri mikro
+dapat mengindikasikan adanya kenaikan skala usaha dan
+peningkatan penyerapan tenaga kerja.
+Sumber Data • Survei Industri Kecil dan Menengah, Badan Pusat Statistik
+• Survei Industri Menengah dan Besar, Badan Pusat Statistik
+Frekuensi Tahunan
+14b. Rasio Kewirausahaan Daerah (%)
+Nama Rasio Kewirausahaan Daerah (%)
+Indikator
+Definisi Rasio kewirausahaan daerah merupakan perbandingan jumlah
+orang yang berusaha dibantu buruh tetap di masing-masing
+daerah dengan total angkatan kerja daerah pada tahun yang
+sama. Berusaha dibantu buruh tetap atau buruh dibayar adalah
+berusaha atas resiko sendiri dan mempekerjakan paling sedikit
+satu orang buruh atau pekerja tetap yang dibayar. Penduduk
+yang termasuk angkatan kerja adalah penduduk usia kerja (15
+tahun dan lebih) yang bekerja atau punya pekerjaan namun
+sementara tidak bekerja dan pengangguran.
+Metode 𝑅𝑢𝑚𝑢𝑠 𝑅𝑎𝑠𝑖𝑜 𝐾𝑒𝑤𝑖𝑟𝑎𝑢𝑠𝑎ℎ𝑎𝑎𝑛 𝐷𝑎𝑒𝑟𝑎ℎ= !"#$%&'& )*+&,-$ +$#$' -"-&. /&"#&' ×100 (𝑝𝑒𝑟𝑠𝑒𝑛)
+Perhitungan 01-&2 &,34&-&, 4"#5& /&"#&'
+Interpretasi Pengusaha yang berusaha dibantu buruh tetap mengindikasikan
+adanya orientasi untuk tumbuh dengan merekrut tenaga kerja
+tetap. Semakin besar pengusaha yang berusaha dibantu buruh
+tetap, semakin banyak penyerapan tenaga kerja tetap oleh para
+pengusaha.
+Sumber Data Survei Angkatan Kerja Nasional (Sakernas). Badan Pusat Statistik
+Frekuensi Sakernas dilaksanakan dua kali dalam setahun (Februari dan
+Agustus). Perhitungan untuk indikator merujuk pada Sakernas
+bulan Agustus.
+14c. Rasio Volume Usaha Koperasi terhadap PDRB (%)
+Nama Rasio Volume Usaha Koperasi terhadap PDRB (%)
+Indikator
+Definisi Rasio volume usaha koperasi terhadap PDRB merupakan
+perbandingan antara volume usaha koperasi terhadap PDRB
+6 9
+
+===== HALAMAN PDF 74 =====
+masing-masing daerah1. Volume usaha koperasi merupakan
+nilai penjualan atau penerimaan barang dan jasa serta
+penyaluran pinjaman dan pembiayaan dalam satu periode atau
+tahun buku tertentu. PDRB merupakan jumlah nilai tambah
+yang dihasilkan oleh seluruh unit usaha dalam suatu daerah
+tertentu atau merupakan jumlah nilai barang dan jasa akhir
+yang dihasilkan oleh seluruh unit ekonomi. PDRB atas dasar
+harga berlaku menggambarkan nilai tambah barang dan jasa
+yang dihitung menggunakan harga yang berlaku pada setiap
+tahun.
+Metode
+Perhitungan
+𝑉𝑜𝑙𝑢𝑚𝑒 𝑈𝑠𝑎ℎ𝑎 𝐾𝑜𝑝𝑒𝑟𝑎𝑠𝑖 𝐷𝑎𝑒𝑟𝑎ℎ
+𝑅𝑎𝑠𝑖𝑜 𝑉𝑜𝑙𝑢𝑚𝑒 𝑈𝑠𝑎ℎ𝑎 𝐾𝑜𝑝𝑒𝑟𝑎𝑠𝑖 𝑡𝑒𝑟ℎ𝑎𝑑𝑎𝑝 𝑃𝐷𝑅𝐵= ×100 (𝑝𝑒𝑟𝑠𝑒𝑛)
+𝑃𝐷𝑅𝐵 𝐴𝐷𝐻𝐵
+Interpretasi Semakin besar rasio volume usaha koperasi daerah terhadap
+PDRB, merepresentasikan semakin besar kontribusi koperasi
+terhadap perekonomian daerah tersebut.
+Sumber Data • Volume usaha koperasi daerah: ODS Koperasi.
+Kementerian Koperasi dan UKM.
+• PDRB: PDRB Seri 2010. Badan Pusat Statistik.
+Frekuensi Tahunan
+14d. Return on Asset (ROA) BUMD (%)
+Nama Return on Asset (ROA) BUMD (%)
+Indikator
+Definisi Return On Asset (ROA) adalah indikator untuk mengukur
+kemampuan aset perusahaan dalam menghasilkan laba bersih.
+Return On Asset (ROA) dihitung dengan membandingkan laba bersih
+dengan total aset yang dimiliki perusahaan.
+Metode
+Perhitungan
+𝐿𝑎𝑏𝑎 𝐵𝑒𝑟𝑠𝑖ℎ
+𝑅𝑒𝑡𝑢𝑟𝑛 𝑜𝑛 𝐴𝑠𝑠𝑒𝑡 ( 𝑅𝑂𝐴 )= ×100 %
+𝑇𝑜𝑡𝑎𝑙 𝐴𝑠𝑒𝑡
+Interpretasi Return On Asset (ROA) merupakan salah satu indikator yang dapat
+digunakan untuk mengukur produktivitas perusahaan melalui
+pemanfaatan asset yang dimiliki. Dengan mengetahui tingkat ROA
+perusahaan, maka dapat diketahui tingkat produktivitas
+perusahaan jika dibandingkan dengan perusahaan lain dalam sektor
+atau industri yang sama. Dengan demikian, data ROA dapat
+dimanfaatkan untuk perencanaan strategis dalam mencapai sasaran
+pembangunan daerah, yang pada akhirnya akan berdampak pada
+pencapaian sasaran pembangunan nasional secara keseluruhan.
+Sumber Data LKPD, BPS, Laporan keuangan BUMD. (*)
+*menyesuaikan ketersediaan data di daerah dan akan dikonfirmasi
+lebih lanjut
+Frekuensi Tahunan
+1 PDB Atas Dasar Harga Berlaku
+70
+
+===== HALAMAN PDF 75 =====
+15. Tingkat Pengangguran Terbuka (%)
+Nama Indikator Tingkat Pengangguran Terbuka (%)
+Definisi Tingkat pengangguran terbuka adalah persentase
+jumlah pengangguran terhadap jumlah angkatan kerja.
+Angkatan Kerja adalah penduduk usia kerja (15 tahun
+ke atas) yang bekerja atau punya pekerjaan namun
+sementara tidak bekerja, dan penggangguran.
+Pengangguran yaitu: (1) penduduk yang aktif mencari
+pekerjaan, (2) penduduk yang sedang mempersiapkan
+usaha/pekerjaan baru, (3) penduduk yang tidak mencari
+pekerjaan karena merasa tidak mungkin mendapat
+pekerjaan, serta (4) kelompok penduduk yang tidak aktif
+mencari pekerjaan dengan alasan sudah mempunyai
+pekerjaan tetapi belum mulai bekerja.
+Rumus
+Perhitungan
+**
+𝑇𝑃𝑇 = 𝑥 100%
+*!V
+Keterangan:
+TPT = Tingkat pengangguran terbuka (%)
+PP = Jumlah pengangguran (orang)
+PAK = Jumlah angkatan kerja (orang)
+Interpretasi Tingkat pengangguran terbuka menunjukkan
+kemampuan ekonomi untuk menciptakan lapangan kerja
+yang mampu
+menyerap persediaan (supply) tenaga kerja yang ada.
+Semakin tinggi nilai indikator ini, semakin banyak
+persediaan tenaga kerja yang tidak termanfaatkan.
+Indikator ini dapat memberikan sinyal tentang kinerja
+pasar kerja dan berlangsungnya kondisi ekonomi
+tertentu, seperti resesi dan perubahan siklus bisnis dan
+teknologi. Pembedaan menurut jenis kelamin, kelompok
+umur, dan tingkat pendidikan dapat menggambarkan
+kesenjangan keterserapan di lapangan kerja
+antarkelompok tersebut.
+7 1
+
+===== HALAMAN PDF 76 =====
+Sumber Data Badan Pusat Statistik: Survei Angkatan Kerja Nasional
+(Sakernas)
+Frekuensi Dua kali per tahun (Februari dan Agustus)
+16. Tingkat Partisipasi Angkatan Kerja Perempuan (%)
+Nama Indikator Tingkat Partisipasi Angkatan Kerja Perempuan (%)
+Definisi Tingkat Partisipasi Angkatan Kerja (TPAK) Perempuan
+adalah persentase jumlah angkatan kerja perempuan
+terhadap jumlah penduduk usia kerja perempuan.
+Angkatan kerja perempuan adalah penduduk usia kerja
+perempuan yang bekerja atau punya pekerjaan namun
+sementara tidak bekerja, dan penggangguran. Penduduk
+usia kerja perempuan adalah penduduk berjenis
+kelamin perempuan yang berusia 15 tahun ke atas.
+Rumus
+Perhitungan
+𝑃𝐴𝐾
+W
+𝑇𝑃𝐴𝐾 = ×100%
+W 𝑃
+((23,W)
+Keterangan:
+TPAK = Tingkat Partisipasi Angkatan Kerja
+p
+Perempuan (%)
+PAK = Jumlah angkatan kerja perempuan (orang)
+p
+P = Jumlah penduduk perempuan usia 15 tahun
+(15+,p)
+ke atas (orang)
+Interpretasi TPAK menunjukkan indikasi besarnya pasokan tenaga
+kerja (labor supply) yang tersedia untuk memproduksi
+barang dan jasa relatif terhadap penduduk usia kerja.
+Pembagian berdasarkan jenis kelamin (perempuan)
+menunjukkan ukuran dan komposisi penduduk
+perempuan yang aktif dalam pasar kerja.
+Kegunaan indikator ini antara lain untuk
+memproyeksikan pasokan tenaga kerja, menetapkan
+72
+
+===== HALAMAN PDF 77 =====
+kebijakan tenaga kerja, merancang kebijakan perawatan,
+menentukan kebutuhan pelatihan, dan merencanakan
+pembiayaan sistem perlindungan sosial.
+Sumber Data Badan Pusat Statistik: Survei Angkatan Kerja Nasional
+(Sakernas)
+Frekuensi Dua kali per tahun (Februari dan Agustus)
+17. Tingkat Penguasaan IPTEK
+Disesuaikan dengan karakteristik daerah, dalam rumpun Arah Pembangunan
+(IE) yang sama
+Penerapan Ekonomi Hijau
+18. Tingkat Penerapan Ekonomi Hijau
+18a. Indeks Ekonomi Hijau Daerah
+Nama Indeks Ekonomi Hijau Daerah
+Indikator
+Definisi Ekonomi Hijau adalah model pembangunan ekonomi untuk
+menunjang pembangunan berkelanjutan dengan fokus
+pada investasi, kapital dan infrastruktur, lapangan kerja
+dan keterampilan untuk mewujudkan kesejahteraan sosial
+dan kelestarian lingkungan. Indeks Ekonomi Hijau
+ditujukan sebagai alat untuk mengukur progres dan
+capaian transformasi ekonomi menuju Ekonomi Hijau
+secara tangible, representatif, dan akurat.
+Indeks Ekonomi Hijau Daerah terdiri dari 16 indikator
+terpilih yang mewakili 3 (tiga) pilar Sustainable
+Development: ekonomi (6 indikator), sosial (4 indikator), dan
+lingkungan (6 indikator). Indikator ekonomi terdiri dari 6
+(enam) indikator: intensitas emisi, intensitas energi, GNI per
+kapita, produktivitas pertanian, produktivitas tenaga kerja
+industri dan jasa. Indikator sosial terdiri dari 4 (empat)
+indikator: rata-rata lama sekolah, angka harapan hidup,
+tingkat kemiskinan, dan tingkat pengangguran. Indikator
+lingkungan terdiri dari 6 (enam) indikator: tutupan hutan,
+energi baru terbarukan, kualitas air permukaan, kualitas
+udara, penurunan emisi, dan lahan gambut terdegradasi.
+7 3
+
+===== HALAMAN PDF 78 =====
+Rumus
+Perhitungan
+Interpretasi Skor Indeks Ekonomi Hijau diklasifikasikan menjadi 6
+kategori:
+0,00 - 25,00 : Kurang
+25,01 - 37,50 : Sedang Tier 1
+37,51 - 50,00 : Sedang Tier 2
+50,01 - 62,50 : Baik Tier 1
+65,51 - 75,00 : Baik Tier 2
+75,01 - 100,00 : Sangat Baik
+Sumber Data 1. Persentase luas tutupan hutan dari luas daratan (%):
+Buku Rekalkulasi Penutupan Lahan Indonesia, KLHK
+2. Bauran Energi Baru Terbarukan (EBT) dari pasokan
+energi primer (%): Handbook of Energy and Economy
+Statistics, Kementerian ESDM
+3. Kualitas air permukaan - konsentrasi BOD (mg/L):
+Statistik Lingkungan Hidup, BPS
+4. Kualitas udara - konsentrasi NO (µg/m3): Laporan
+2
+Kualitas Udara, KLHK
+5. Persentase penurunan emisi kumulatif dari baseline (%):
+Laporan Perhitungan AKSARA, Bappenas
+6. Penurunan tutupan lahan gambut (%): Balai Besar
+Sumberdaya Lahan dan Pertanian (Diolah)
+7. Intensitas Emisi: Laporan Perhitungan AKSARA,
+Bappenas
+8. Intensitas Energi Final (BOE/2010 IDR miliar):
+Handbook of Energy and Economy Statistics dan
+74
+
+===== HALAMAN PDF 79 =====
+Statistik Ketenagalistrikan, ESDM (Diolah)
+9. Produk Domestik Regional Bruto (PDRB) Harga Konstan
+2010 (2010 IDR miliar): BPS
+10. Produktivitas pertanian (ton/hektar/tahun):
+Kementerian Pertanian, Kementerian Kelautan dan
+Perikanan, dan BPS
+11. Produktivitas Tenaga Kerja Sektor Industri Manufaktur
+(IDR juta/orang): BPS
+12. Produktivitas Tenaga Kerja Sektor Jasa (IDR
+juta/orang): BPS
+13. Rata-rata Lama Sekolah (tahun): BPS
+14. Angka Harapan Hidup (tahun): BPS
+15. Tingkat Kemiskinan (%): BPS
+16. Tingkat Pengangguran Terbuka (%): BPS
+Frekuensi Tahunan
+18b. Porsi EBT dalam Bauran Energi Primer (%)
+Nama Indikator Porsi EBT dalam bauran energi primer (%)
+Definisi ● Energi Baru dan Terbarukan (EBT) adalah energi
+yang berasal dari sumber energi terbarukan antara
+lain berasal dari panas bumi, angin, bioenergi, sinar
+matahari, aliran dan terjunan air, serta gerakan dan
+perbedaan suhu lapisan laut, serta berasal dari
+sumber energi yang dapat dihasilkan oleh teknologi
+baru (PP No 79 tahun 2014).
+● Porsi EBT dalam bauran energi primer (%) provinsi
+adalah persentase antara total konsumsi EBT
+terhadap total konsumsi energi primer (terbarukan
+dan tidak terbarukan) di suatu provinsi dalam satu
+tahun.
+Rumus
+Perhitungan
+Interpretasi Besar proporsi penggunaan energi terbarukan terhadap
+energi total primer (tingkat provinsi)
+Sumber Data
+Kementerian Energi dan Sumber Daya Mineral.
+Frekuensi Tahunan
+7 5
+
+===== HALAMAN PDF 80 =====
+Transformasi Digital
+19. Indeks Pembangunan Teknologi, Informasi, dan Komunikasi
+Nama Indikator Indeks Pembangunan Teknologi, Informasi, dan Komunikasi
+Definisi Indeks pembangunan TIK merupakan Indeks komposit yang
+mengkombinasikan 11 indikator dan dikelompokan kedalam
+tiga subindeks (Akses dan infrastruktur TIK, Penggunaan TIK
+dan Keahlian TIK) menjadi suatu tolok ukur yang dapat
+digunakan untuk:
+• Memantau dan memperbandingkan perkembangan TIK
+antarwilayah dan antarwaktu;
+• Mengukur kesenjangan digital antarwilayah;
+• Mengukur potensi pembangunan TIK untuk mendorong
+pertumbuhan dan pembangunan berdasarkan kemampuan
+dan keahlian yang tersedia.
+Metode/Rumus Metodologi yang digunakan mengacu pada metodologi ITU
+Perhitungan melalui publikasi Measuring the Information Society 2016.
+𝐼𝑛𝑑𝑒𝑘𝑠 𝑃𝑒𝑚𝑏𝑎𝑛𝑔𝑢𝑛𝑎𝑛 𝑇𝐼𝐾 = 0,4 𝐴𝑐𝑐𝑒𝑠𝑠+0,4 𝑈𝑠𝑒+0,2 𝑆𝑘𝑖𝑙𝑙
+Keterangan:
+Access : Subindeks akses dan infrastruktur TIK
+Use : Subindeks penggunaan TIK
+Skill : Subindeks keahlian TIK
+Interpretasi Skala pengukuran indeks pembangunan TIK berada pada
+rentang 0 – 10. Semakin tinggi nilai indeks menunjukan
+bahwa pembangunan TIK pada suatu wilayah semakin pesat,
+sebaliknya semakin rendah nilai indeks menunjukan
+pembangunan TIK di suatu wilayah relatif masih lambat.
+Sumber Data Badan Pusat Statistik (BPS) dan Kementerian Komunikasi
+dan Informatika
+Frekuensi Tahunan
+76
+
+===== HALAMAN PDF 81 =====
+Integrasi Ekonomi Domestik dan Global
+20. Koefisien Variasi Harga Antarwilayah Tingkat Provinsi
+Nama Indikator Koefisien Variasi Harga Antarwilayah Tingkat Provinsi
+Definisi Disparitas Harga pada Barang Kebutuhan Pokok dan
+Barang Penting di antara Kabupaten/Kota di dalam Satu
+Provinsi
+Rumus KVH (bapokting1) = (simpangan baku / rata-rata)
+Perhitungan antarkab/kota pada bapokting1
+KVH antarwilayah = rata-rata KVH seluruh bapokting
+Formulasi Akhir :
+KVH antarwilayah = (KVH(barang 1) + KVH (barang2) +
+KVH (barang_n)) / jumlah bapokting
+Interpretasi Korelasi terhadap Biaya Logistik Nasional (%)
+Semakin rendah KVH antarwilayah di Tingkat Provinsi
+menunjukan bahwa tingkat harga barang kebutuhan
+pokok dan barang penting di antara Kabupaten/Kota pada
+satu Provinsi semakin konvergen.
+Hal ini menjadi salah satu dampak langsung dari
+perbaikan kinerja logistik di masing-masing provinsi.
+Sumber Data Harga Barang Kebutuhan Pokok dan Barang Penting
+Tahunan di tingkat Kabupaten/Kota
+Kementerian Perdagangan, melalui Sistem Pemantauan
+Pasar dan Kebutuhan Pokok (SP2KP)
+Frekuensi Tahunan
+21. Pembentukan Modal Tetap Bruto (% PDRB)
+Nama Indikator Pembentukan Modal Tetap Bruto (% PDRB)
+Definisi Pembentukan Modal Tetap Bruto (PMTB) adalah
+pengeluaran untuk barang modal yang mempunyai umur
+7 7
+
+===== HALAMAN PDF 82 =====
+pemakaian lebih dari satu tahun dan tidak merupakan
+barang konsumsi. PMTB mencakup bangunan tempat
+tinggal dan bukan tempat tinggal, bangunan lain seperti
+jalan dan bandara, serta mesin dan peralatan.
+Pengeluaran barang modal untuk keperluan militer tidak
+dicakup dalam rincian ini tetapi digolongkan sebagai
+konsumsi pemerintah.
+PMTB juga merupakan salah satu unsur yang dipakai
+dalam metode penghitungan PDRB.
+Pembentukan Modal Tetap Bruto (% PDRB) merupakan
+share PMTB terhadap PRDB Provinsi
+Rumus
+Perhitungan
+𝑃𝑀𝑇𝐵
+𝑃𝑒𝑚𝑏𝑒𝑛𝑡𝑢𝑘𝑎𝑛 𝑃𝑀𝑇𝐵 (%𝑃𝐷𝑅𝐵)= ×100%
+𝑃𝐷𝑅𝐵 𝐴𝐷𝐻𝐾
+Keterangan:
+Pembentukan Modal Tetap Bruto = Total PMTB
+berdasarkan PDB Sisi Pengeluaran (Miliar Rupiah)
+𝑃𝐷R𝐵 𝐴𝐷𝐻𝐾 = Produk Domestik Regional Bruto Atas Dasar
+Harga Konstan (Miliar Rupiah)
+Interpretasi PMTB didefinisikan sebagai penambahan dan
+pengurangan aset tetap pada suatu unit produksi.
+Penambahan barang modal mencakup pengadaan,
+pembuatan, pembelian (barang modal baru dari dalam
+negeri serta barang modal baru dan bekas dari luar
+negeri), termasuk perbaikan besar, transfer atau barter
+barang modal, sewa beli (financial leasing), serta
+pertumbuhan aset sumber daya hayati yang dibudidaya.
+Sedangkan pengurangan barang modal mencakup
+penjualan, transfer atau barter barang modal pada pihak
+lain, serta sewa beli (financial leasing). Pengecualian
+kehilangan yang disebabkan oleh bencana alam tidak
+dicatat sebagai pengurangan.
+Sumber Data Badan Pusat Statistik
+Frekuensi Triwulanan dan Tahunan
+78
+
+===== HALAMAN PDF 83 =====
+22. Ekspor Barang dan Jasa (% PDRB)
+Nama Indikator Ekspor Barang dan Jasa (% PDRB)
+Definisi Ekspor didefiniskan sebagai transaksi alih kepemilikan
+(ekonomi) atas barang dan jasa antara residen suatu
+perekonomian dengan nonresiden. Suatu unit institusi
+didefinisikan sebagai residen dari wilayah ekonomi sebuah
+negara, jika unit institusi tersebut memiliki pusat
+kepentingan ekonomi yang utama di dalam wilayah ekonomi
+dan unit institusi ini terlibat dalam aktivitas atau transaksi
+ekonomi untuk periode waktu yang lama, umumnya
+ditetapkan minimal satu tahun.
+Ekspor barang menggunakan prinsip pencatatan dengan
+basis akrual di mana untuk barang dicatat saat terjadi alih
+kepemilikan yang pendekatannya menggunakan waktu
+pencatatan pada dokumen kepabeanan, sedangkan untuk
+ekspor jasa dicatat saat jasa tersebut disediakan atau
+diberikan.
+Ekspor barang dan jasa (% PDRB) merupakan share ekspor
+barang dan jasa terhadap PDRB Provinsi.
+Rumus
+Perhitungan
+𝐸𝑘𝑠𝑝𝑜𝑟 𝐵𝑎𝑟𝑎𝑛𝑔 𝑑𝑎𝑛 𝐽𝑎𝑠𝑎
+𝐸𝑘𝑠𝑝𝑜𝑟 𝐵𝑎𝑟𝑎𝑛𝑔 𝑑𝑎𝑛 𝐽𝑎𝑠𝑎 (%𝑃𝐷𝑅𝐵)= ×100%
+𝑃𝐷𝑅𝐵 𝐴𝐷𝐻𝐾
+Keterangan:
+Ekspor Barang dan Jasa = Total Ekspor Barang dan Jasa
+berdasarkan PDB Sisi Pengeluaran (Miliar Rupiah)
+PDRB ADHK = Produk Domestik Regional Bruto Atas Dasar
+Harga Konstan (Miliar Rupiah)
+Interpretasi Ekspor barang dan jasa memiliki dampak signifikan
+terhadap Produk Domestik Bruto (PDB) suatu negara. PDB
+adalah ukuran nilai total produksi dalam suatu negara
+dalam satu periode waktu. Ekspor barang dan jasa dapat
+memperluas pasar untuk produk- produk domestik di pasar
+internasional, meningkatkan penjualan, dan membuka
+peluang bagi pertumbuhan ekonomi.
+7 9
+
+===== HALAMAN PDF 84 =====
+Ketika ekspor barang dan jasa mengalami peningkatan,
+maka pendapatan negara juga juga meningkat karena
+peningkatan penjualan dan penerimaan deviden.
+Peningkatan pendapatan ini mendorong investasi, inovasi,
+dan pertumbuhan sektor-sektor ekonomi yang terkait
+dengan produksi barang dan jasa yang diekspor. Selain itu,
+ekspor juga meningkatkan efisiensi dan daya saing industri
+dalam negeri untuk dapat bersaing di pasar global.
+Sumber Data Badan Pusat Statistik
+Frekuensi Tahunan
+Perkotaan dan Perdesaan sebagai Pusat Pertumbuhan Ekonomi
+23. Kota dan desa maju, inklusif, dan berkelanjutan
+23a. Proporsi Kontribusi PDRB Wilayah Metropolitan terhadap Nasional (%)
+Nama Indikator Proporsi Kontribusi PDRB Wilayah Metropolitan terhadap
+Nasional (%)
+Definisi Produk Domestik Regional Bruto atas dasar harga pasar
+adalah jumlah nilai tambah bruto (gross value added) yang
+timbul dari seluruh sektor perekonomian di suatu wilayah.
+Nilai tambah adalah nilai yang ditambahkan dari kombinasi
+faktor produksi dan bahan baku dalam proses produksi.
+Penghitungan nilai tambah adalah nilai produksi (output)
+dikurangi biaya antara.
+Rumus Y (*"Z$ V0[\W04]&/V,40 0&__,40 `a)
+× 100%
+Perhitungan Y *"Z$ /0.%,&01
+Interpretasi Mempertimbangkan delineasi WM yang dapat mencakup
+seluruh/sebagian kecamatan dalam kabupaten, maka
+perhitungan PDRB WM yang dilakukan dengan
+menggunakan data di tingkat kabupaten/kota berpeluang
+bernilai lebih tinggi (overestimate).
+Sumber Data Kompilasi Data PDRB di tingkat kabupaten/kota hingga
+nasional
+80
+
+===== HALAMAN PDF 85 =====
+Frekuensi Tahunan
+23b. Rumah Tangga dengan Akses Hunian Layak, Terjangkau dan Berkelanjutan
+(%)
+Nama Rumah Tangga dengan Akses Hunian Layak, Terjangkau dan
+Indikator Berkelanjutan (%)
+Definisi Maka rumah tangga dengan akses rumah layak huni,
+terjangkau, dan berkelanjutan adalah rumah tangga yang
+menempati rumah layak huni, terjangkau, dan berkelanjutan.
+Mengacu pada Undang-Undang No. 1 Tahun 2011 tentang
+Perumahan dan Kawasan Permukiman, rumah yang layak huni,
+terjangkau, dan berkelanjutan memenuhi:
+a. Persyaratan keselamatan bangunan dan kecukupan
+minimum luas bangunan serta kesehatan penghuninya, yang
+mampu dijangkau oleh seluruh lapisan masyarakat
+b. Prasyarat tata ruang, kesesuaian hak atas tanah dan rumah,
+dan tersedianya prasarana, sarana, dan utilitas umum yang
+memenuhi persyaratan baku mutu lingkungan.
+Pengukuran indikator tersebut menggunakan PBG (Persetujuan
+Bangunan Gedung) dan SLF (Sertifikat Laik Fungsi).
+Mempertimbangkan variasi penerapan PBG dan SLF di tingkat
+pemerintah daerah (kabupaten/kota) maka pengukuran
+indikator ini dapat menggunakan proksi yaitu memenuhi empat
+kriteria sebagai berikut:
+1. Ketahanan bangunan (durable housing) yaitu bahan
+bangunan atap, dinding dan lantai rumah memenuhi
+syarat,
+2. Kecukupan luas tempat tinggal (sufficient living space)
+yaitu luas lantai perkapita ≥ 7,2 m2
+3. Memiliki akses air minum layak
+4. Memiliki akses sanitasi layak
+Rumus 1. Bagi kabupaten/kota yang telah menerapkan PBG dan SLF
+Perhitungan secara menyeluruh menggunakan rumus sebagai berikut:
+Persentase Rumah Tangga yang mengakses hunian layak,
+terjangkau, dan bekelanjutan
+𝐽𝑅𝑇𝐻𝐿𝑇𝐵
+𝑃𝐻𝐿𝑇𝐵 =
+𝐽𝑅𝑇𝑥100
+• PHLTB: Persentase rumah tangga hunian layak,
+terjangkau, berkelanjutan;
+• JRTHLTB: jumlah rumah tangga hunian layak,
+terjangkau, berkelanjutan;
+• JRT: Jumlah rumah tangga
+8 1
+
+===== HALAMAN PDF 86 =====
+2. Bagi kabupaten/kota yang belum menerapkan PBG dan SLF
+secara menyeluruh maka dapat menggunakan indikator
+proksi yaitu 4 kriteria (ketahanan bangunan, kecukupan luas
+tempat tinggal, memiliki akses air minum layak, dan memiliki
+akses sanitasi layak).
+𝐽𝑅𝑇𝐻𝐿𝑇𝐵(𝑝𝑟𝑜𝑘𝑠𝑖)
+𝑃𝐻𝐿𝑇𝐵 (𝑝𝑟𝑜𝑘𝑠𝑖) =
+𝐽𝑅𝑇𝑥100
+• PHLTB (proksi): Persentase rumah tangga hunian layak,
+terjangkau, berkelanjutan;
+• JRTHLTB (proksi): jumlah rumah tangga hunian layak,
+terjangkau, berkelanjutan;
+• JRT: Jumlah rumah tangga
+Segregasi pengolahan data ini dapat digunakan untuk tingkat
+nasional, provinsi, kabupaten/kota, perkotaan-perdesaan, dan
+desil pengeluaran.
+Interpretasi Indikator ini untuk mengukur kesejahteraan rumah tangga di
+Indonesia dari sektor perumahan. Semakin tinggi persentase
+rumah tangga yang menghuni hunian layak, terjangkau, dan
+berkelanjutan maka semakin baik kesejahteraan rumah tangga
+di Indonesia dari sektor perumahan
+Sumber Data • Survei Sosial Ekonomi Nasional (Susenas) KOR BPS
+• Data Kementerian PUPR (untuk mengetahui status
+pelaksanaan PBG dan SLF di Kabupaten/Kota)
+Frekuensi Tahunan
+23c. Persentase Desa Mandiri (%)
+Nama Indikator Persentase Desa Mandiri (%)
+Definisi Indeks pengukuran terhadap tingkat
+kemajuan/pembangunan desa di Indonesia. Basis data
+pengukuran Indeks Desa berasal dari hasil pendataan yang
+dilakukan oleh Desa yang dikelola oleh Kementerian Desa
+PDTT.
+Rumus Perhitungan Indeks Desa
+Perhitungan
+𝐼𝐷 = 8]𝐷 ×𝐷 ×𝐷 ×𝐷 ×𝐷 ×𝐷
+( b c d 2 e
+Keterangan:
+ID : Indeks Desa
+D : Dimensi
+82
+
+===== HALAMAN PDF 87 =====
+Interpretasi Klasifikasi Status Desa
+• Mandiri: Merupakan desa yang mempunyai ketersediaan
+dan akses terhadap layanan dasar, kegiatan sosial,
+kegiatan ekonomi, lingkungan, aksesibilitas dan
+administrasi pemerintahan yang sudah sangat baik.
+• Maju: Merupakan desa yang mempunyai ketersediaan
+dan akses terhadap layanan dasar, kegiatan sosial,
+kegiatan ekonomi, lingkungan, aksesibilitas dan
+administrasi pemerintahan yang sudah baik.
+• Berkembang: Merupakan desa yang mempunyai
+ketersediaan dan akses terhadap layanan dasar, kegiatan
+sosial, kegiatan ekonomi, lingkungan, aksesibilitas dan
+administrasi pemerintahan yang sudah cukup baik.
+• Tertinggal: Merupakan desa yang mempunyai
+ketersediaan dan akses terhadap layanan dasar, kegiatan
+sosial, kegiatan ekonomi, lingkungan, aksesibilitas dan
+administrasi pemerintahan yang masih terbatas.
+• Sangat Tertinggal: Merupakan desa yang mempunyai
+ketersediaan dan akses terhadap layanan dasar, kegiatan
+sosial, kegiatan ekonomi, lingkungan, aksesibilitas dan
+administrasi pemerintahan yang masih sangat terbatas.
+Sumber Data Desa yang dikelola oleh Kementerian Desa PDTT
+Frekuensi Tahunan
+8 3
+
+===== HALAMAN PDF 88 =====
+Transformasi Tata Kelola
+Regulasi dan Tata Kelola yang Berintegritas dan Adaptif
+24. Indeks Reformasi Hukum
+Nama Indeks Reformasi Hukum
+Indikator
+Definisi Reformasi Hukum adalah perubahan secara drastis untuk
+perbaikan di bidang hukum dalam upaya penataan regulasi yang
+berkualitas bersih dan akuntabel pada Kementerian/Lembaga dan
+Pemerintah Daerah. Indeks Reformasi Hukum (IRH) adalah
+instrumen untuk mengukur reformasi hukum dengan melakukan
+identifikasi dan pemetaan regulasi, reregulasi dan deregulasi
+aturan, dan penguatan sistem regulasi nasional.
+Rumus Penghitungan IRH didasarkan pada 4 (empat) variabel sebagai
+Perhitungan berikut:
+a. Tingkat koordinasi Kementerian Hukum dan HAM untuk
+melakukan harmonisasi regulasi, dengan bobot 25%.
+b. Penguatan Kompetensi ASN sebagai perancang PUU yang
+berkualitas, dengan bobot 25%.
+c. Kualitas re-regulasi atau de-regulasi PUU berdasarkan hasil
+reviu, dengan bobot 35%.
+d. Penataan database PUU, dengan bobot 15%.
+Dalam hal ini, sumber data yang digunakan oleh IRH adalah data
+administratif Kementerian/Lembaga/Pemerintah Daerah. Kategori
+penilaian IRH:
+No. Kategori Nilai/Angka Predikat
+1 AA >90 - 100 Istimewa
+2 A >80 - 90 Sangat Baik
+3 BB >70 - 80 Baik
+4 B >60 - 70 Cukup Baik
+5 CC >50 - 60 Cukup
+84
+
+===== HALAMAN PDF 89 =====
+6 C >30 - 50 Buruk
+7 D 0 - 30 Sangat Buruk
+Pada penghitungan IRH, Pemerintah Daerah melakukan penilaian
+mandiri (self-assesment) yang menghasilkan Berita Acara Hasil
+Penilaian Mandiri. Kemudian, Kementerian Hukum dan HAM akan
+melakukan verifikasi terhadap self-assesment tersebut dan
+mengeluarkan Berita Acara Hasil Penilaian.
+Interpretasi Semakin tinggi nilai IRH, maka semakin berhasil pelaksanaan
+komponen-komponen reformasi hukum oleh lembaga yang
+bersangkutan.
+Sumber Data Kementerian Hukum dan HAM
+Frekuensi Tahunan
+25. Indeks Sistem Pemerintahan Berbasis Elektronik
+Nama Indikator Indeks Sistem Pemerintahan Berbasis Elektronik.
+Definisi SPBE adalah penyelenggaraan pemerintahan dengan
+memanfaatkan teknologi informasi dan komunikasi untuk
+memberikan layanan kepada Instansi Pusat, Pemerintah
+Daerah, pegawai Aparatur Sipil Negara, perorangan,
+masyarakat, pelaku usaha, dan pihak lain yang
+memanfaatkan layanan SPBE. Nilai indeks SPBE merupakan
+nilai indeks yang merepresentasikan tingkat kematangan
+penerapan SPBE secara keseluruhan.
+Rumus Nilai indeks SPBE dihitung berdasarkan penjumlahan dari
+Perhitungan penghitungan perkalian antara nilai indeks domain dan bobot
+domain. Rumus penghitungan nilai indeks SPBE dijabarkan
+sebagai berikut:
+dimana:
+• NDj adalah nilai indeks domain ke-j;
+• BDj adalah nilai bobot domain ke-j.
+8 5
+
+===== HALAMAN PDF 90 =====
+Interpretasi Semakin tinggi nilai indeks domain dan bobot domain maka
+akan semakin besar pula nilai indeks SPBE yang dihasilkan.
+Sumber Data Kementerian Pendayagunaan Aparatur Negara dan Reformasi
+Birokrasi.
+Frekuensi Tahunan
+26. Indeks Pelayanan Publik
+Nama Indikator Indeks Pelayanan Publik.
+Definisi Indeks Pelayanan Publik (IPP) adalah Indeks yang digunakan
+untuk mengukur kinerja pelayanan publik di lingkungan
+kementerian, lembaga, dan pemerintah daerah di Indonesia
+berdasarkan Aspek Kebijakan Pelayanan, Aspek
+Profesionalisme SDM, Aspek Sarana Prasarana, Aspek Sistem
+Informasi Pelayanan Publik, Aspek Konsultasi dan
+Pengaduan serta Aspek Inovasi.
+Hasil pengukuran yang diperoleh dari Pemantauan dan
+Evaluasi Kinerja Penyelenggaraan Pelayanan Publik sebagai
+upaya pengukuran sistematis pada suatu unit kerja dalam
+jangka waktu tertentu guna memperoleh nilai indeks.
+Rumus Penentuan nilai indeks dilakukan dengan menentukan nilai
+Perhitungan setiap indikator, menentukan nilai setiap aspek, menentukan
+nilai indeks formulir dan menentukan nilai indeks pelayanan
+publik.
+Interpretasi Angka indeks yang dihasilkan merupakan komposit dari
+berbagai data, baik data primer dan sekunder serta data
+obyektif maupun persepsi. Prinsip yang digunakan dalam
+menyusun indikator IPP berdasarkan kepada Undang-
+Undang Nomor 25 Tahun 2009 tentang pelayanan publik.
+Prinsip-prinsip tersebut adalah:
+1. Keadilan (Fairness);
+86
+
+===== HALAMAN PDF 91 =====
+2. Partisipasi (Participation);
+3. Akuntabilitas (Accountability);
+4. Transparansi (transparency);
+5. Berdayaguna (useful);
+6. Aksesibilitas (accessibility)
+Aspek yang harus dipenuhi oleh unit penyelenggara
+pelayanan publik sesuai ketentuan peraturan perundang-
+undangan, meliputi: Kebijakan Pelayanan, Profesionalisme
+SDM, Sarana Prasarana, Sistem Informasi Pelayanan Publik,
+Konsultasi dan Pengaduan serta Inovasi. Indikator dihasilkan
+melalui persilangan antara prinsip dan aspek yang dijadikan
+dasar penilaian. Berdasarkan persilangan tersebut diperoleh
+37 indikator penilaian yang diisi melalui Formulir F01 (Unit
+Penyelenggara Pelayanan Publik), Formulir F02 (Evaluator)
+dan Formulir F03 (Pengguna Layanan).
+Perhitungan Indeks Pelayanan Publik dikategorikan menjadi:
+Sumber Data Kementerian Pendayagunaan Aparatur Negara dan Reformasi
+Birokrasi.
+Frekuensi Tahunan
+8 7
+
+===== HALAMAN PDF 92 =====
+27. Indeks Integritas Nasional
+Nama Indikator Indeks Integritas Nasional (Persentase)
+Definisi Indeks Integritas Nasional (IIN) adalah indeks yang diukur
+dengan survei masyarakat yang dibangun untuk
+memetakan risiko korupsi dan kemajuan upaya
+pencegahan korupsi yang
+dilakukan kementerian/lembaga/ pemerintah daerah
+(K/L/PD).
+Rumus Penilaian Internal (0,305) + Penilaian Eksternal (0,328)
+Perhitungan + Penilaian Eksper (0,367) – Faktor Koreksi (0,2)
+Interpretasi Hasil dari IIN dijadikan dasar untuk menyusun
+rekomendasi peningkatan upaya pencegahan
+korupsi di masing-masing K/L/PD sesuai karakteristik dan
+temuan pemetaan empiris.
+Sumber Data Komisi Pemberantasan Korupsi
+Frekuensi Tahunan
+88
+
+===== HALAMAN PDF 93 =====
+Keamanan Daerah Tangguh, Demokrasi Substansial, dan Stabilitas Ekonomi
+Daerah
+Hukum Berkeadilan, Keamanan Nasional Tangguh, dan Demokrasi Substansial
+28. Indeks Pembangunan Hukum
+Disesuaikan dengan karakteristik daerah, dalam rumpun Arah Pembangunan (IE)
+yang sama
+29. Proporsi Penduduk yang Merasa Aman Berjalan Sendirian di Area Tempat
+Tinggalnya (%)
+Nama Indikator Proporsi Penduduk yang Merasa Aman Berjalan Sendirian di
+Area Tempat Tinggalnya (%)
+Definisi Seberapa banyak penduduk yang merasa aman berjalan
+sendirian di area tempat tinggalnya. Indikator ini mencakup
+beberapa aspek yang meliputi penduduk yang merasa aman
+berjalan sendirian di area tempat tinggal pada siang dan malam
+hari. Indikator ini biasanya digunakan sebagai dasar dalam
+penyusunan perencanaan pembangunan sektoral di bidang
+keamanan dan ketertiban masyarakat serta perencanaan
+pembangunan nasional dalam rangka meningkatkan
+kesejahteraan masyarakat secara menyeluruh.
+Metode
+Perhitungan
+Interpretasi Semakain tinggi persentase yang dihasilkan dari perhitungan
+yang ada akan menunjukkan semakin besar jumlah penduduk
+yang merasa aman berjalan sendirian di area tempat tinggalnya,
+begitu pun sebaliknya.
+Sumber Data Badan Pusat Statistik (Modul Susenas Hansos)
+Frekuensi Per 3 tahun
+8 9
+
+===== HALAMAN PDF 94 =====
+30. Indeks Demokrasi Indonesia
+Nama Indeks Demokrasi Indonesia
+Indikator
+Definisi IDI merupakan indeks komposit yang mengukur kualitas
+demokrasi di Indonesia. IDI diukur sejak tahun 2009 (IDI 2009).
+Pada tahun 2021 metode pengukuran IDI mengalami perubahan
+karena terdapat perluasan konsep demokrasi yang digunakan.
+Pada IDI 2009 s.d 2020 konsep demokrasi hanya dilihat dari
+ranah politik, sedangkan pada IDI metode baru, demokrasi tidak
+hanya mencakup ranah politik, tetapi juga mencakup ranah
+ekonomi dan sosial. Selain itu, metode baru juga menghitung
+nilai IDI pada tingkat pusat. IDI 2021 merupakan IDI pertama
+yang dihitung dengan menggunakan metode baru.
+IDI metode baru terdiri dari tiga angka indeks:
+1. IDI tingkat provinsi (merupakan agregasi dari nilai 34
+provinsi)
+2. IDI tingkat pusat (Kementerian/Lembaga), dan
+3. IDI tingkat nasional (merupakan agregasi dari nilai IDI
+provinsi dan pusat).
+IDI metode baru terdiri atas 3 aspek dan 22 indikator, yaitu:
+1. Aspek Kebebasan (7 indikator);
+2. Aspek Kesetaraan (7 indikator);
+3. Aspek Kapasitas Lembaga Demokrasi (8 indikator).
+Metode
+Perhitungan
+• Metode penghitungan IDI menggunakan triangulasi, yakni
+mengkombinasikan antara metode penelusuran kuantitatif
+dan kualitatif, dengan rancangan tertentu sehingga data yang
+didapat dari metode yang satu akan memvalidasi (cross
+validate) data yang didapat dengan metode yang lain.
+• Pendekatan kuantitatif yaitu melalui penelusuran dan analisis
+isi surat kabar lokal dengan oplah terbesar di provinsi
+tersebut. Pengumpulan berita juga dilakukan melalui proses
+90
+
+===== HALAMAN PDF 95 =====
+web scrapping dari berbagai portal online dan reviu dokumen
+resmi yang dikeluarkan oleh Pemerintah Daerah dan DPRD
+Provinsi (SK Gubernur, Perda, SE, SK DPRD, data pemilih,
+data pelanggaran pemilu, dan lainnya). Data ini kemudian
+dikoding.
+• Pendekatan kualitatif yaitu ketika hasil data kuantitatif
+divalidasi melalui FGD yang melibatkan para ahli dan
+narasumber yang relevan. Tujuannya antara lain untuk
+menggali dan menjaring data kualitatif, mendapatkan
+informasi tambahan (verifikasi, konfirmasi, atau
+diskonfirmasi), serta melakukan eksplorasi atas kasus-kasus
+yang memiliki tingkat relevansi tinggi dengan indikator-
+indikator IDI.
+• IDI dihitung secara tertimbang menggunakan skala 0-100.
+• Bobot pada aspek, variabel, dan indikator diperoleh dengan
+AHP yang melibatkan juri dari kalangan akademisi, peneliti,
+praktisi, pejabat pemerintah, Ormas/LSM, serta pers.
+Interpretasi Makin tinggi nilai IDI, makin baik kualitas demokrasi.
+Ada tiga kategori nilai:
+1. Kategori Tinggi (>80)
+2. Kategori Sedang (60-80)
+3. Kategori Rendah (<60)
+Sumber Data § Badan Pusat Statistik (BPS) RI
+(https://www.bps.go.id/subject/34/politik-dan-
+keamanan.html#subjekViewTab3)
+§ BPS masing-masing Provinsi
+Frekuensi Tahunan
+Stabilitas Ekonomi Makro
+31. Rasio Pajak Daerah terhadap PDRB (%)
+Nama Indikator Rasio Pajak Daerah terhadap PDRB (%)
+Definisi • Pajak Daerah adalah kontribusi wajib kepada
+Daerah yang terutang oleh orang pribadi atau badan
+yang bersifat memaksa berdasarkan Undang-
+Undang, dengan tidak mendapatkan imbalan secara
+langsung dan digunakan untuk keperluan Daerah
+bagi sebesar-besarnya kemakmuran rakyat.
+• PDRB adalah Penjumlahan nilai tambah bruto
+seluruh barang dan jasa yang tercipta atau
+dihasilkan di wilayah domestik suatu
+regional/negara yang timbul akibat berbagai
+aktivitas ekonomi dalam suatu periode tertentu
+tanpa memperhatikan apakah faktor produksi yang
+9 1
+
+===== HALAMAN PDF 96 =====
+dimiliki residen atau non-residen, di mana barang
+dan jasa dihitung menggunakan harga yang berlaku
+pada periode penghitungan.
+• Rasio Pajak Daerah terhadap PDRB (%) adalah
+indikator yang digunakan untuk mengukur
+seberapa besar kontribusi penerimaan pajak daerah
+terhadap PDRB suatu daerah. Persentase rasio
+tersebut menggambarkan sejauh mana penerimaan
+pajak daerah bagi pemerintah daerah.
+Rumus Penerimaan Pajak Daerah
+4
+RPDRB = 𝑥 100%
+Perhitungan 4 PDRB
+4
+Keterangan:
+RPDRB : Kontribusi Rasio Pajak Daerah terhadap PDRB (%)
+4
+pada tahun t
+Interpretasi Rasio Pajak Daerah terhadap PDRB (%) yang semakin besar
+menunjukkan bahwa Semakin tinggi penerimaan pajak
+daerah, maka semakin besar nilai rasio pajak daerah.
+Semakin tinggi nilai rasio pajak daerah maka pemerintah
+daerah dapat lebih mengandalkan APBD untuk membiayai
+pembangunan di daerah.
+Sumber Data BPS, Sistem Informasi Keuangan Daerah (SIKD).
+Frekuensi Data Triwulanan sesuai dengan rilis PDRB.
+32. Tingkat Inflasi (%)
+Nama Indikator Tingkat Inflasi (%)
+Definisi Kecenderungan naiknya harga barang dan jasa yang
+berlangsung secara terus menerus dalam jangka waktu
+tertentu dalam wilayah provinsi tertentu. Kenaikan harga
+dari satu atau dua barang saja tidak dapat disebut inflasi
+kecuali bila kenaikan itu meluas atau mengakibatkan
+kenaikan harga pada barang lainnya. Indeks Harga
+Konsumen (IHK) adalah salah satu indikator yang
+digunakan untuk mengukur tingkat inflasi.
+Rumus
+Perhitungan Tingkat Inflasi (%) = f#V9)f#V9:; ×100%
+f#V9:;
+Perhitungan Indeks Harga Konsumen (IHK) berdasarkan
+the Classification of Individual Consumption by Purpose
+(COICOP) 2018. Pengukuran IHK dilakukan melalui Survei
+Biaya Hidup (SBH) oleh BPS di 90 Kabupaten/Kota sampel
+IHK.
+Interpretasi Perubahan IHK dari waktu ke waktu menggambarkan
+tingkat kenaikan harga (inflasi) atau tingkat penurunan
+harga (deflasi) dari barang dan jasa. Setelah diketahui
+indeks harga konsumen (IHK) di bulan tersebut, inflasi
+dapat diketahui melalui perhitungan persentase
+perubahan IHK.
+92
+
+===== HALAMAN PDF 97 =====
+Secara umum, persentase perubahan inflasi dibagi dapat
+menjadi tiga:
+1.Inflasi m-t-m membandingkan nilai IHK pada bulan
+amatan dengan bulan sebelumnya (misal bulan amatan
+adalah bulan Januari maka bulan sebelumnya adalah
+Desember).
+2. Inflasi y-t-d membandingkan IHK pada akhir tahun
+amatan dengan titik tertentu dalam tahun yang telah
+berjalan.
+3. Inflasi y-o-y membandingkan nilai IHK pada bulan
+amatan tertentu dengan IHK pada bulan yang sama pada
+tahun sebelumnya (sebagai contoh untuk menghitung
+inflasi year-on-year September 2023 maka IHK September
+2023 dibandingkan dengan IHK September 2022).
+Sumber Data Badan Pusat Statistik
+(catatan: Hingga saat ini BPS tidak me-release data inflasi
+tingkat Provinsi, melainkan inflasi tingkat Kabupaten/Kota
+IHK. Sehingga perlu mendorong BPS untuk dapat
+mempublikasi tingkat inflasi di tingkat Provinsi)
+Frekuensi Bulanan
+33. Pendalaman/Intermediasi Sektor Keuangan
+33a. Total Dana Pihak Ketiga/PDRB (%)
+Nama Total Dana Pihak Ketiga/PDRB (%)
+Indikator
+Definisi Dana pihak ketiga adalah dana-dana yang berasal dari
+masyarakat, baik perorangan maupun badan usaha yang
+diperoleh bank dengan menggunakan berbagai instrument
+produk simpanan yang dimiliki oleh bank. Bank yang
+dimaksud dalam pengertian ini adalah seluruh unit bank
+baik Bank Umum (termasuk Bank Umum Syariah dan Unit
+Usaha Syariah) maupun Bank Perekonomian Rakyat (BPR-
+BPRS) di suatu daerah provinsi.
+Produk Domestik Regional Bruto (PDRB) adalah jumlah
+nilai tambah bruto yang timbul dari seluruh sektor
+perekonomian di suatu daerah. PDRB atas dasar harga
+berlaku menggambarkan nilai tambah barang dan jasa yang
+dihitung menggunakan harga pada tahun berjalan.
+Total Dana Pihak Ketiga/PDRB (%) adalah persentase rasio
+total dana pihak ketiga perbankan di suatu provinsi
+terhadap PDRB provinsi tersebut pada suatu waktu
+tertentu.
+9 3
+
+===== HALAMAN PDF 98 =====
+Rumus 𝑇𝑜𝑡𝑎𝑙 𝐷𝑎𝑛𝑎 𝑃𝑖ℎ𝑎𝑘 𝐾𝑒𝑡𝑖𝑔𝑎/𝑃𝐷𝑅𝐵(%)
+Penghitungan 𝑇𝑜𝑡𝑎𝑙 𝐷𝑎𝑛𝑎 𝑃𝑖ℎ𝑎𝑘 𝐾𝑒𝑡𝑖𝑔𝑎
+= 𝑥 100
+𝑃𝐷𝑅𝐵
+Keterangan:
+Total Dana Pihak Ketiga (DPK) = Total DPK Bank Umum +
+Total DPK BPR-BPRS (di suatu provinsi)
+PDRB = Produk Domestik Regional Bruto (atas dasar harga
+berlaku)
+Interpretasi Total Dana Pihak Ketiga/PDRB (%) menggambarkan tingkat
+besaran perbandingan DPK perbankan suatu daerah
+terhadap PDRB atau pendapatan total perekonomian
+daerahnya. Nilai Total DPK/PDRB menggambarkan tingkat
+pendalaman keuangan di suatu daerah, dimana
+peningkatan angka rasio Total DPK/PDRB (%),
+menunjukkan peningkatan tingkat simpanan masyarakat
+di sektor keuangan yang mengarah pada semakin dalamnya
+sektor keuangan di suatu daerah.
+Sumber Data Total Dana Pihak Ketiga = Otoritas Jasa Keuangan (OJK),
+PDB = Badan Pusat Statistik (BPS)
+Frekuensi Dana Pihak Ketiga = Bulanan
+PDRB = Triwulan
+33b. Aset Dana Pensiun/PDRB(%)
+Nama Aset Dana Pensiun/PDRB (%)
+Indikator
+Definisi Menurut Undang-undang (UU) Nomor 4 Tahun 2023
+tentang Pengembangan dan Penguatan Sektor Keuangan
+Pasal 167, Aset Dana Pensiun dihimpun dari:
+a. iuran pemberi kerja;
+b. iuran peserta;
+c. hasil pengelolaan aset;
+d. pengalihan aset dari Dana Pensiun lain; dan/atau
+e. pengalihan dana awal pemberi kerja.
+Yang mana jumlah aset dana pensiun dihitung
+berdasarkan provinsi. Dari sisi penghitungan, aset dana
+pensiun per provinsi Terdiri dari total aset DPPK-PPMP,
+DPPK-PPIP dan DPLK yang terdapat dalam suatu provinsi
+PDRB pada dasarnya merupakan jumlah nilai tambah yang
+dihasilkan oleh seluruh unit usaha dalam suatu
+94
+
+===== HALAMAN PDF 99 =====
+regional/wilayah tertentu, PDRB atas dasar harga berlaku
+menggambarkan nilai tambah barang dan jasa yang
+dihitung menggunakan harga yang berlaku pada setiap
+tahun.
+Aset Dana Pensiun/PDRB (%) menunjukkan persentase
+rasio total aset dana pensiun terhadap PDRB (atas dasar
+harga berlaku) di suatu provinsi pada suatu waktu
+tertentu.
+Rumus 𝐴𝑠𝑒𝑡 𝑑𝑎𝑛𝑎 𝑝𝑒𝑛𝑠𝑖𝑢𝑛 𝑝𝑒𝑟 𝑝𝑟𝑜𝑣𝑖𝑛𝑠𝑖/ 𝑃𝐷𝑅𝐵(%)= 6%"- )&,& .",%*$, ."# .#17*,%* x 100
+8/9!
+Perhitungan
+Keterangan :
+Aset Dana Pensiun = Terdiri dari total aset DPPK-PPMP, DPPK-PPIP dan DPLK yang
+tersedia dalam provinsi tersebut
+PDRB = Produk Domestik Regional Bruto (atas dasar harga berlaku)
+Interpretasi Aset Dana Pensiun per Provinsi/PDRB (%) menggambarkan
+rasio besaran total aset dana pensiun suatu provinsi
+terhadap PDRB provinsi tersebut. Peningkatan aset dana
+pensiun per provinsi/PDRB di suatu provinsi
+menunjukkan peningkatan pendalaman sektor keuangan
+di provinsi tersebut.
+Sumber Data Aset Dana Pensiun per Provinsi = Otoritas Jasa Keuangan
+PDRB = Badan Pusat Statistik
+Frekuensi Aset Dana Pensiun per Provinsi = Bulanan
+Pengumpulan PDRB = Triwulanan
+33c. Nilai Transaksi Saham Per Provinsi Berupa Nilai Rata-rata Tahunan
+Nama Nilai transaksi saham per provinsi berupa nilai rata-rata
+Indikator tahunan (dalam Rupiah)
+Definisi Nilai transaksi saham per provinsi adalah total nilai
+transaksi saham yang dilakukan oleh investor berdasarkan
+domisili (provinsi). Nilai transaksi saham merupakan hasil
+dari volume atau jumlah saham yang ditransaksikan dikali
+dengan harga saham.
+Rumus nilai transaksi saham per provinsi berupa nilai rata − rata
+Perhitungan tahunan =
+nilai transaksi investor saham per provinsi selama setahun
+12
+Interpretasi Untuk mengukur size dari pasar modal dapat digunakan
+berbagai pendekatan. Salah satunya dengan mengukur
+tingkat likuiditas pasar melalui pendekatan rata-rata
+transaksi. Pasar modal yang aktif memberikan sinyal
+adanya pertumbuhan perekonomian. Sentimen pasar yang
+9 5
+
+===== HALAMAN PDF 100 =====
+baik kemudian akan meningkatkan performa saham yang
+pada akhirnya akan mempengaruhi nilai kapitalisasi pasar
+secara keseluruhan.
+Sumber Data Otoritas Jasa Keuangan
+Frekuensi Tahunan
+33d. Total Kredit/PDRB (%)
+Nama Total Kredit Per Provinsi/PDRB (%)
+Indikator
+Definisi Total Kredit per Provinsi adalah penjumlahan dari total
+penyaluran kredit dan pembiayaan yang disalurkan oleh
+perbankan yang terdiri dari Bank Umum (termasuk Bank
+Umum Syariah dan Unit Usaha Syariah) dan Bank
+Perekonomian Rakyat (BPR-BPRS) di lingkup provinsi.
+PDRB pada dasarnya merupakan jumlah nilai tambah yang
+dihasilkan oleh seluruh unit usaha dalam suatu
+regional/wilayah tertentu, atau merupakan jumlah nilai
+barang dan jasa akhir yang dihasilkan oleh seluruh unit
+ekonomi. PDRB atas dasar harga berlaku menggambarkan
+nilai tambah barang dan jasa yang dihitung menggunakan
+harga yang berlaku pada setiap tahun.
+Total Kredit per Provinsi /PDRB (%) menunjukkan
+persentase rasio total kredit dan pembiayaan yang
+disalurkan oleh perbankan di suatu provinsi terhadap
+PDRB (atas dasar harga berlaku) provinsi tersebut pada
+suatu waktu tertentu.
+Rumus 𝑇𝑜𝑡𝑎𝑙 𝐾𝑟𝑒𝑑𝑖𝑡 𝑝𝑒𝑟 𝑃𝑟𝑜𝑣𝑖𝑛𝑠𝑖/𝑃𝐷𝑅𝐵(%)= DEFGH IJKLMF NKJ NJEOMPQM x 100
+Perhitungan RSTU
+Keterangan:
+Total Kredit per provinsi = Total Penyaluran Kredit Bank Umum + Total
+Penyaluran Kredit BPR-BPRS di masing-masing
+provinsi
+PDRB = Produk Domestik Regional Bruto (atas dasar harga berlaku)
+Interpretasi Total Kredit per provinsi/PDRB (%) menggambarkan
+tingkat pemanfaatan kredit dan pembiayaan perbankan di
+provinsi sebagai salah satu sumber pembiayaan
+pembangunan daerah. Semakin tinggi nilai Total Kredit per
+provinsi/PDRB (%) menunjukkan semakin berfungsinya
+perbankan sebagai lembaga intermediasi keuangan yang
+berperan dalam menyalurkan pendanaan pada usaha-
+96
+
+===== HALAMAN PDF 101 =====
+usaha dalam perekonomian provinsi tersebut.
+Sumber Data Total Kredit per provinsi= Otoritas Jasa Keuangan (OJK),
+PDRB = Badan Pusat Statistik (BPS)
+Frekuensi Total Kredit per Provinsi = Bulanan,
+PDRB = Triwulanan
+34. Inklusi Keuangan (%)
+Nama Inklusi Keuangan (%)
+Indikator
+Definisi Inklusi Keuangan (%) adalah tingkat penggunaan produk dan
+layanan jasa keuangan oleh masyarakat Indonesia pada suatu
+kurun waktu tertentu
+Rumus Tingkat indeks inklusi keuangan diukur menggunakan
+Perhitungan metode survei yang dilakukan pada responden (sample
+penduduk) yang tersebar di seluruh provinsi di Indonesia.
+Pengambilan data survei dilakukan secara
+langsung/wawancara tatap muka dibantu dengan sistem
+Computer Assisted Personal Interviewing (CAPI).
+Parameter yang digunakan adalah parameter penggunaan
+(usage), dimana masyarakat yang dikatakan inklusif secara
+keuangan adalah masyarakat yang menggunakan produk dan
+layanan jasa keuangan dalam kurun waktu 12 bulan terakhir
+dihitung dari waktu pelaksanaan survei.
+𝐽𝑢𝑚𝑙𝑎ℎ 𝑅𝑒𝑠𝑝𝑜𝑛𝑑𝑒𝑛 𝑦𝑎𝑛𝑔 𝑀𝑒𝑛𝑔𝑔𝑢𝑛𝑎𝑘𝑎𝑛 𝑃𝑟𝑜𝑑𝑢𝑘/𝐿𝑎𝑦𝑎𝑛𝑎𝑛 𝐾𝑒𝑢𝑎𝑛𝑔𝑎𝑛
+𝑥 100%
+𝑇𝑜𝑡𝑎𝑙 𝑆𝑎𝑚𝑝𝑒𝑙
+Interpretasi Inklusi Keuangan adalah ketersediaan akses bagi masyarakat
+untuk memanfaatkan produk dan/atau layanan jasa
+keuangan di lembaga keuangan formal sesuai dengan
+kebutuhan dan kemampuan masyarakat dalam rangka
+mewujudkan kesejahteraan.
+Peningkatan inklusi keuangan menunjukkan adanya
+peningkatan penggunaan produk dan layanan jasa keuangan
+formal oleh masyarakat baik dengan tujuan bertransaksi,
+menabung, melakukan investasi dan lainnya. Tingkat inklusi
+keuangan yang semakin tinggi akan mendorong pendalaman
+sektor keuangan dan mengindikasikan semakin luasnya
+peran jasa keuangan sebagai enabler dalam pembangunan
+nasional
+9 7
+
+===== HALAMAN PDF 102 =====
+Sumber Otoritas Jasa Keuangan (OJK)
+Data
+Frekuensi Setiap tiga tahun sekali
+35. Asia Power Index (Diplomatic Influence)
+Disesuaikan dengan karakteristik daerah, dalam rumpun Arah Pembangunan (IE)
+yang sama
+36. Asia Power Index (Military Capability)
+Disesuaikan dengan karakteristik daerah, dalam rumpun Arah Pembangunan (IE)
+yang sama
+98
+
+===== HALAMAN PDF 103 =====
+Ketahanan Sosial Budaya dan Ekologi
+Beragama Maslahat dan Berkebudayaan Maju
+37. Indeks Pembangunan Kebudayaan (IPK)
+Nama Indikator Indeks Pembangunan Kebudayaan (IPK)
+Definisi
+Instrumen untuk mengukur capaian kinerja pembangunan
+kebudayaan, diharapkan dapat memberikan gambaran
+pembangunan kebudayaan secara lebih holistik dengan
+memuat 7 (tujuh) dimensi, yakni: (1) dimensi ekonomi budaya;
+(2) dimensi pendidikan; (3) dimensi ketahanan sosial budaya;
+(4) dimensi warisan budaya; (5) dimensi ekspresi budaya; (6)
+dimensi budaya literasi; dan (7) dimensi kesetaraan gender.
+7 dimensi tersebut diukur melalui 31 indikator, yaitu:
+1) Dimensi ekonomi budaya;
+a) Persentase penduduk yang pernah terlibat sebagai
+pelaku/ pendukung pertunjukkan seni yang
+menjadikan keterlibatan sebagai sumber penghasilan
+(terhadap penduduk usia 15 tahun ke atas)
+2) Dimensi pendidikan;
+a) Rata-rata lama sekolah penduduk usia 25+
+b) Harapan lama sekolah penduduk usia 7+
+c) Angka Kesiapan Sekolah
+d) Persentase satuan pendidikan yang mempunyai guru
+yang mengajar mulok bahasa daerah dan ekskul
+kesenian
+e) Persentase penduduk penyandang disabilitas usia 7-18
+tahun yang bersekolah
+f) Persentase pendidikan penduduk usia 7-18 tahun
+dengan kategori kelompok pengeluaran 40% terbawah
+3) Dimensi ketahanan sosial budaya;
+a) Persentase rumah tangga yang setuju jika ada
+sekelompok orang dari agama lain yang melakukan
+kegiatan di lingkun- gan sekitar tempat tinggal
+b) Persentase rumah tangga yang setuju jika ada
+sekelompok orang dari suku lain yang melakukan
+kegiatan di lingkungan sekitar tempat tinggal
+9 9
+
+===== HALAMAN PDF 104 =====
+c) Persentase rumah tangga yang setuju jika salah satu
+anggota rumah tangga bersahabat dengan orang lain
+yang beda agama
+d) Persentase rumah tangga yang setuju jika salah satu
+anggota rumah tangga bersahabat dengan orang lain
+yang beda suku
+e) Persentase penduduk berumur 10 tahun ke atas yang
+mengikuti kegiatan sosial kemasyarakatan di
+lingkungan sekitar dalam tiga bulan terakhir
+f) Persentase penduduk usia 10 tahun ke atas yang
+mengikuti gotong royong
+g) Persentase Rumah Tangga yang merasa khawatir
+dengan keamanan saat berjalan kaki sendirian di malam
+hari dalam setahun terakhir
+h) Persentase masyarakat yang merasa aman menitipkan
+rumah kepada tetangga
+4) Dimensi warisan budaya;
+a) Persentase benda, bangunan, struktur, dan situs cagar
+budaya yang telah ditetapkan terhadap total registrasi
+b) Persentase warisan budaya takbenda yang telah
+ditetapkan terhadap total registrasi
+c) Persentase penduduk usia 5 tahun ke atas yang
+menggunakan bahasa daerah di rumah atau dalam
+pergaulan sehari-hari
+d) Persentase penduduk usia 10 tahun ke atas yang
+menonton secara langsung pertunjukkan seni
+e) Persentase penduduk usia 10 tahun ke atas yang
+mengunjungi peninggalan sejarah
+f) Persentase rumah tangga yang menggunakan produk
+tradisional
+5) Dimensi ekspresi budaya;
+a) Persentase penduduk usia 10 tahun ke atas yang
+member- ikan saran atau pendapat dalam kegiatan
+rapat selama satu tahun terakhir
+b) Persentase penduduk usia 10 tahun ke atas yang aktif
+mengikuti kegiatan organisasi
+c) Persentase penduduk usia 10 tahun ke atas yang pernah
+terlibat sebagai pelaku/pen- dukung pertunjukkan seni
+100
+
+===== HALAMAN PDF 105 =====
+d) Persentase rumah tangga yang menyelenggarakan
+upacara adat
+6) Dimensi budaya literasi;
+a) Persentase penduduk usia 10 tahun ke atas yang
+membaca selain kitab suci baik cetak maupun
+elektronik dalam satu minggu terakhir
+b) Persentase penduduk usia 10 tahun ke atas yang
+mengakses internet dalam tiga bulan terakhir
+c) Persentase penduduk usia 10 tahun ke atas yang
+mengunjungi perpustakaan/ memanfaatkan taman
+bacaan masyarakat
+7) Dimensi kesetaraan gender;
+a) Rasio tingkat partisipasi angkatan kerja usia 15 tahun
+ke atas perempuan terhadap laki-laki
+b) Rasio penduduk usia 25 tahun ke atas perempuan
+terhadap laki-laki yang memiliki ijazah minimal
+SMA/sederajat
+c) Rasio anggota parlemen perempuan terhadap anggota
+parlemen laki-laki
+Rumus l
+Perhitungan 𝐼𝑃𝐾 =rs𝑊 ×𝑖𝑛𝑑𝑒𝑘𝑠 𝐷t
+k k
+k'(
+Keterangan:
+𝐼𝑃𝐾 = Indeks Pembangunan Kebudayaan
+𝑊 = Bobot dimensi ke-𝑗
+k
+𝐷 = Dimensi ke-𝑗
+k
+Rumus menghitung indeks dimensi (𝐷):
+k
+∑& 𝑆𝑋
+%'( k%
+𝐼𝑛𝑑𝑒𝑘𝑠 𝐷 = u w×100
+k 𝑛
+k
+Keterangan:
+𝐷 = Dimensi ke-𝑗
+k
+𝑆𝑋 = Nilai indikator 𝑖 pada dimensi ke- 𝑗 yang sudah
+k%
+dinormalisasi
+𝑛 = Jumlah indikator dimensi ke-𝑗
+k
+10 1
+
+===== HALAMAN PDF 106 =====
+Interpretasi Angka IPK menggambarkan upaya pemerintah dalam
+mengukur upaya kemajuan pembangunan kebudayaan. Nilai
+IPK terdiri dari 5 kategori, yaitu:
+0,00 – 20,00 sangat rendah;
+20,01 – 40,00 rendah;
+40,01 – 60,00 sedang;
+60,01 – 80,00 tinggi;
+80,01 – 100,00 sangat tinggi.
+Sumber Data Ditjen Kebudayaan, Kemendikbudristek
+Frekuensi Tahunan
+38. Indeks Kerukunan Umat Beragama (IKUB)
+Nama Indikator Indeks Kerukunan Umat Beragama (IKUB)
+Definisi
+Indeks yang menggambarkan sejauh mana tingkat kerukunan
+umat beragama. IKUB diukur melalui tiga indikator kerukunan
+umat beragama, yakni toleransi, kesetaraan, dan kerja sama.
+Rumus ∑c 𝐼𝑛𝑑𝑒𝑘𝑠 𝐷
+k'( k
+Perhitungan 𝐼𝐾𝑈𝐵 =
+3
+Keterangan:
+𝐼𝑃𝐾 = Indeks Kerukunan Umat Beragama
+𝐷 = Dimensi ke-𝑗
+k
+Rumus menghitung indeks dimensi (𝐷):
+k
+∑& 𝑆𝑋
+%'( k%
+𝐼𝑛𝑑𝑒𝑘𝑠 𝐷 =
+k 𝑛
+k
+Keterangan:
+𝐷 = Dimensi ke-𝑗
+k
+𝑆𝑋 = Nilai indikator 𝑖 pada dimensi ke-𝑗
+k%
+𝑛 = Jumlah indikator dimensi ke-𝑗
+k
+102
+
+===== HALAMAN PDF 107 =====
+Interpretasi Nilai IKUB terdiri dari 5 kategori, yaitu:
+0,00 – 20,00 rukun sangat rendah;
+20,01 – 40,00 rukun rendah;
+40,01 – 60,00 rukun sedang;
+60,01 – 80,00 rukun tinggi;
+80,01 – 100,00 rukun sangat tinggi.
+Sumber Data Balitbang, Kemenag
+Frekuensi Tahunan
+Keluarga Berkualitas, Kesetaraan Gender, dan Masyarakat Inklusif
+39. Indeks Pembangunan Kualitas Keluarga*)
+Nama Indikator Indeks Pembangunan Kualitas Keluarga (IPKK)
+Definisi IPKK mengukur kualitas keluarga berdasarkan 3 (tiga)
+dimensi, yaitu kesejahteraan, ketahanan, dan partisipasi.
+Ketiga dimensi tersebut merupakan elemen vital yang
+menunjukkan fungsi keluarga serta peranannya sebagai modal
+sosial dalam mendukung pembangunan sumber daya
+manusia.
+Rumus IPKK diperoleh dengan menghitung rata-rata nilai indeks dari
+Perhitungan setiap dimensi pembentuknya, yaitu dimensi kesejahteraan,
+dimensi ketahanan, dan dimensi partisipasi.
+Interpretasi Nilai IPKK berkisar antara 0 - 100 dan bermakna positif. Nilai
+IPKK yang semakin besar menunjukkan kualitas keluarga
+yang semakin meningkat dan sebaliknya.
+Sumber Data Badan Pusat Statistik, BKKBN, Kementerian PPPA
+Frekuensi Tahunan
+Keterangan: *) metadata masih dalam pengembangan
+10 3
+
+===== HALAMAN PDF 108 =====
+40. Indeks Ketimpangan Gender (IKG)
+Nama Indikator Indeks Ketimpangan Gender (IKG)
+Definisi Indeks Ketimpangan Gender (IKG) terdiri dari 3 (tiga) dimensi
+dan 5 (lima) indikator, yaitu dimensi kesehatan reproduksi
+perempuan yang dibentuk dari indikator proporsi perempuan
+yang melahirkan hidup tidak di fasilitas kesehatan (MTF) dan
+proporsi perempuan yang saat melahirkan hidup pertama
+berumur kurang dari 20 tahun (MHPK20), dimensi
+pemberdayaan yang dibentuk dari indikator persentase
+penduduk usia 25 tahun ke atas dengan pendidikan
+SMA/sederajat ke atas dan persentase anggota legislatif, serta
+dimensi pasar tenaga kerja yang diwakili dengan indikator
+tingkat partisipasi angkatan kerja (TPAK) laki-laki dan TPAK
+perempuan.
+Rumus Langkah-langkah metode penghitungan IKG berikut formula
+Perhitungan yang digunakan adalah sebagai berikut:
+1. Menghitung Indeks Perempuan dan Indeks Laki-laki
+2. Menghitung agregasi indeks perempuan dan indeks laki-
+laki dengan rata-rata harmonic
+3. Menghitung indeks masing – masing dimensi
+4. Menghitung agregasi indeks dimensi dengan rata-rata
+geometrik
+104
+
+===== HALAMAN PDF 109 =====
+5. Menghitung Indeks Kesetaraan Gender
+6. Menghitung Indeks Ketimpangan Gender
+Keterangan:
+Interpretasi IKG bernilai antara 0 - 1 dan bermakna positif. Nilai IKG yang
+semakin rendah menunjukkan ketimpangan gender yang
+semakin rendah atau kesetaraan gender yang semakin
+tinggi, dan sebaliknya.
+Sumber Data Survei Sosial Ekonomi Nasional (Susenas) BPS, Survei
+Angkatan Kerja Nasional (Sakernas) BPS, dan Sekretaris
+Dewan (Sekwan)
+Frekuensi Tahunan
+10 5
+
+===== HALAMAN PDF 110 =====
+Lingkungan Hidup Berkualitas
+41. Indeks Pengelolaan Keanekaragaman Hayati Daerah
+Nama Indikator Indeks Pengelolaan Keanekaragaman Hayati Daerah
+Definisi Indeks Pengelolaan Keanekaragaman Hayati Daerah adalah
+ukuran atas capaian aksi pengelolaan keanekaragaman hayati
+yang dilakukan per provinsi. Pengelolaan keanekaragaman
+hayati adalah tindakan yang dilakukan secara sistematis dan
+terukur dengan tujuan akhir untuk mempertahankan
+keberadaan seluruh bentuk kehidupan di bumi, melalui
+pengurangan ancaman dan peningkatan pemanfaatan
+berkelanjutan keanekaragaman hayati. Pengurangan ancaman
+adalah upaya pengayaan keanekaragaman hayati melalui
+perlindungan, konservasi, dan restorasi, baik di tingkat
+ekosistem, spesies, maupun genetik. Pemanfaatan
+berkelanjutan adalah pemanfaatan komponen
+keanekaragaman hayati secara optimal yang sebesar-besarnya
+untuk masyarakat dan generasi yang akan datang.
+Rumus
+Perhitungan
+Interpretasi Indeks memiliki skala nol sampai satu. Nilai nol menunjukkan
+capaian pengelolaan keanekaragaman hayati yang sangat
+buruk, sedangkan nilai satu menunjukkan capaian
+pengelolaan keanekaragaman hayati yang sangat baik yang
+dilakukan oleh berbagai pihak, tidak terbatas oleh pemerintah
+daerah. Perlu diperhatikan bahwa nilai indeks pengelolaan
+keanekaragaman hayati mencerminkan kualitas dan kuantitas
+upaya yang dikerahkan untuk melestarikan keanekaragaman
+106
+
+===== HALAMAN PDF 111 =====
+hayati dan tidak status kehati itu sendiri. Namun, melalui
+pengelolaan kehati yang baik diharapkan dapat mencerminkan
+kondisi keanekaragaman hayati yang baik pula.
+Sumber Data ● Buku Statistik Lingkungan Hidup dan Kehutanan
+KLHK
+● Buku Statistik Lingkungan Hidup BPS
+● Buku Statistik Lahan Pertanian Kementerian Pertanian
+● Website Sistem Informasi Statistik KLHK
+(https://statistik.menlhk.go.id/sisklhk/)
+● Website Statistik KKP
+(https://statistik.kkp.go.id/home.php)
+● Website Satu Data Kementerian Pertanian
+(https://satudata.pertanian.go.id)
+● Website Statistik Kehutanan BPS
+(https://www.bps.go.id/subject/60/kehutanan.html)
+● Website Statistik Perikanan BPS
+(https://www.bps.go.id/subject/56/perikanan.html)
+Frekuensi Tahunan
+42. Kualitas Lingkungan Hidup
+42a. Indeks Kualitas Lingkungan Hidup Daerah
+Nama Indikator Indeks Kualitas Lingkungan Hidup Daerah
+Definisi Nilai yang menggambarkan kualitas Lingkungan Hidup dalam
+suatu wilayah pada waktu tertentu, yang merupakan nilai
+komposit dari Indeks Kualitas Air (IKA), Indeks Kualitas Udara
+(IKU), Indeks Kualitas Tutupan Lahan (IKTL), Indeks Kualitas
+Ekosistem Gambut (IKEG), dan Indeks Kualitas Air Laut
+(IKAL).
+Rumus IKLH Provinsi
+Perhitungan
+IKLH IKLH = (0.3400 x IKA) + (0.4280 x IKU) +
+Provinsi (0.1040 x IKTL) + (0.0209 x IKEG) + (0.099
+dengan x IKAL)
+Ekosistem
+Gambut
+10 7
+
+===== HALAMAN PDF 112 =====
+IKLH IKLH = (0.340 x IKA) + (0.428 x IKU) +
+Provinsi (0.133 x IKTL) + (0.099 x IKAL)
+tanpa
+Ekosistem
+Gambut
+IKLH IKLH = (0.3760 x IKA) + (0.4050 x IKU) +
+Provinsi (0.1712 x IKTL) + (0.0478 x IKEG)
+tanpa
+Laut
+dengan
+Ekosistem
+Gambut
+Interpretasi Kategori Indeks Kualitas Lingkungan Hidup
+Nomor Kategori Angka Rentang
+1 Sangat Baik 90 ≤ x ≤ 100
+2 Baik 70 ≤ x < 90
+3 Sedang 50 ≤ x < 70
+4 Kurang 25 ≤ x < 50
+5 Sangat Kurang 0 ≤ x < 25
+Sumber Data Data yang dipergunakan dalam perhitungan IKLH berasal dari
+data pemantauan kualitas lingkungan pada media air, udara,
+tutupan lahan, tutupan ekosistem gambut, dan air laut yang
+dilakukan oleh Pemerintah Daerah Provinsi
+Frekuensi Data pemantauan yang dipergunakan dalam perhitungan
+IKLH adalah data pemantauan tahun berjalan dengan durasi
+pemantauan 1 tahun
+42b. Rumah Tangga dengan Akses Sanitasi Aman (%)
+Nama Indikator Rumah Tangga dengan Akses Sanitasi Aman (%)
+Definisi Akses Aman adalah apabila rumah tangga memiliki fasilitas
+sanitasi sendiri, dengan bangunan atas dilengkapi kloset
+dengan leher angsa, dan bangunan bawahnya menggunakan
+tangki septik yang disedot setidaknya sekali dalam 5 (lima)
+108
+
+===== HALAMAN PDF 113 =====
+tahun terakhir dan diolah dalam instalasi pengolahan lumpur
+tinja (IPLT), atau tersambung ke sistem pengolahan air limbah
+domestik terpusat (SPALD-T)
+Rumus
+Perhitungan 𝑱𝑹𝑻𝑺𝑻+𝑱𝑹𝑻𝑰𝑷𝑳𝑻
+𝑷𝑺𝑨 = 𝒙 𝟏𝟎𝟎%
+𝑱𝑹𝑻𝑺
+PSA = Persentase Rumah Tangga yang memiliki akses
+sanitasi aman
+JRTSPAL = Jumlah rumah aangga yang memiliki akses
+terhadap SPALD-T
+JRTIPLT = Jumlah rumah tangga dengan akses terhadap
+tangka septik yang disedot setidaknya sekali
+dalam 5 (lima) tahun terakhir dan diolah dalam
+instalasi pengolahan lumpur tinja (IPLT)
+JRTS = Jumlah rumah tangga seluruhnya
+Interpretasi Indikator ini diperlukan untuk mendapatkan data akses
+sanitasi aman sebagai pemenuhan layanan dasar bagi
+masyarakat. Akses terhadap sanitasi yang aman serta sanitasi
+sangat penting bagi kesehatan, kesejahteraan dan
+produktivitas dan diakui sebagai hak asasi manusia. Sebagian
+besar penyakit menular disebabkan oleh bakteri atau
+virusyang ditularkan baik melalui udara, melalui permukaan
+atau makanan, atau melalui kotoran manusia. Untuk itu
+persentase rumah tangga yang menggunakan layanan sanitasi
+yang dikelola secara aman dinilai penting untuk melihat
+terpenuhinya layanan sanitasi dan kebersihan dasar dari
+masyarakat
+Sumber Data 1. Survei Sosial Ekonomi Nasional (Susenas) KOR BPS
+2. Data Infrastruktur Kementerian PUPR
+Frekuensi Tahunan
+42c. Pengolahan Sampah
+- Timbulan Sampah Terolah di Fasilitas Pengolahan Sampah (%)
+Nama Indikator Timbulan Sampah Terolah di Fasilitas Pengolahan Sampah (%)
+Definisi Timbulan Sampah
+Timbulan sampah merupakan sampah yang berasal dari
+sumber sampah. Jenis sampah yang dimaksud adalah
+Sampah Rumah Tangga (SRT) dan Sampah Sejenis Sampah
+Rumah Tangga (SSSRT). Sampah rumah tangga adalah
+sampah yang berasal dari kegiatan sehari-hari dalam rumah
+tangga yang tidak termasuk tinja dan sampah spesifik.
+Sampah sejenis sampah rumah tangga adalah sampah rumah
+tangga yang berasal dari kawasan komersial, kawasan
+10 9
+
+===== HALAMAN PDF 114 =====
+industri, kawasan khusus, fasilitas sosial, fasilitas umum,
+dan/atau fasilitas lainnya.
+Kegiatan pengolahan sampah merupakan kegiatan mengubah
+karakteristik, komposisi, dan/atau jumlah sampah.
+Pengolahan sampah yang dimaksud mempertimbangkan;
+karakteristik sampah, teknologi pengolahan yang ramah
+lingkungan, keselamatan kerja, dan kondisi sosial
+masyarakat. Sampah diolah berasal dari kegiatan sehari-hari
+dalam rumah tangga, kawasan komersial, kawasan industri,
+kawasan khusus, fasilitas sosial, fasilitas umum, dan/atau
+fasilitas lainnya yang tidak termasuk tinja dan sampah
+spesifik.
+Kegiatan pengolahan sampah yang diukur meliputi kegiatan;
+a. Pengolahan sampah organik seperti pengomposan,
+dan/atau pengolahan sampah organik lainnya seperti
+biokonversi maggot BSF, vermi composting, biodigester,
+dsb.
+b. Daur ulang materi (material recovery) merupakan upaya
+memanfaatkan sampah menjadi barang yang berguna
+setelah melalui suatu proses pengolahan terlebih dahulu.
+Jenis sampah yang diutamakan di daur ulang seperti;
+plastik, kardus, kertas, kaca, logam, dan sejenisnya. Rantai
+nilai daur ulang materi biasanya melibatkan beberapa
+langkah seperti industri daur ulang swasta yang membeli,
+memproses, dan memperdagangkan bahan mulai dari
+pengambilan hingga diproses ulang menjadi produk,
+bahan, atau zat yang memiliki nilai pasar. Pada rantai daur
+ulang materi ini melibatkan pemulung informal, lapak,
+pengepul, bandar, dan pendaur ulang rantai akhir.
+Kegiatan pengolahan sampah berlangsung di fasilitas
+pengolahan sebagai berikut; TPS3R, TPST, Pusat Olah Organik
+(POO), Bank Sampah, Pusat Daur Ulang (PDU), fasilitas
+pengolahan lainnya yang dikelola operator pemerintah
+dan/atau swasta.
+Catatan:
+Mengacu pada definisi global dari UN-Habitat, bahwa makna
+dari waste recovery sepadan dengan kegiatan pengolahan
+sampah. Pemulihan (recovery) itu sendiri merupakan setiap
+kegiatan yang secara prinsip utamanya adalah sampah
+memiliki fungsi untuk mengganti bahan material lain untuk
+memenuhi fungsi tertentu, dalam alur produksi atau ekonomi
+yang lebih luas. Kegiatan pengolahan sampah menjadi energi
+dan/atau bahan bakar lainnya tidak dihitung ke dalam
+indikator sampah terolah.
+110
+
+===== HALAMAN PDF 115 =====
+Rumus Langkah ke-1: Menghitung Jumlah Sampah Terolah
+Perhitungan
+Terdapat dua alternatif menghitung jumah sampah terolah:
+Cara (1)
+𝑆𝑂 = 𝑆𝑇−𝑀𝐹𝑃𝐴+𝑅𝐷𝑃
+Keterangan:
+SO : Sampah terolah (ton/hari)
+ST : Sampah terkumpul (ton/hari)
+MFPA : Sampah yang masuk ke fasilitas pemrosesan
+akhir sampah (ton/hari)
+RPD : Residu dari fasilitas pengolahan-daur ulang
+sampah (ton/hari)
+Cara (2)
+𝑆𝑂 = 𝑀𝐹𝑃𝐷+𝐷𝑃𝐴−𝑅𝑃𝐷
+Keterangan:
+SO : Sampah terolah (ton/hari)
+MFPD : Sampah yang masuk ke fasilitas pengolahan-
+daur ulang sampah (ton/hari)
+DPA : Material daur ulang yang diambil dari fasilitas
+pemrosesan akhir oleh sektor informal
+(ton/hari)
+RPD : Residu dari fasilitas pengolahan-daur ulang
+sampah (ton/hari)
+Langkah ke-2: Menghitung Timbulan Sampah
+𝑇𝑆 = 𝑇𝑃 𝑥 (𝑇𝑃𝑅𝑇+𝑇𝑃𝑁𝑅𝑇)
+Keterangan:
+TS : Timbulan sampah (kg/hari)
+TP : Total populasi (orang)
+TPRT : Timbulan sampah per kapita dari rumah
+tangga (kg/orang/hari)
+TPNRT : Timbulan sampah per kapita dari non-rumah
+tangga (kg/hari)
+11 1
+
+===== HALAMAN PDF 116 =====
+Jika tidak terdapat informasi TPNRT, maka pendekatan
+dapat di estimasi menggunakan perhitungan berikut.
+𝑇𝑆 = 70% 𝑑𝑎𝑟𝑖 𝑟𝑢𝑚𝑎ℎ 𝑡𝑎𝑛𝑔𝑔𝑎+30% 𝑑𝑎𝑟𝑖 𝑛𝑜𝑛−𝑟𝑢𝑚𝑎ℎ 𝑡𝑎𝑛𝑔𝑔𝑎
+𝑇𝑆𝑅𝑇
+𝑇𝑆 =
+70%
+Keterangan:
+TS : Timbulan sampah (ton/hari)
+TS : Timbulan sampah rumah tangga (ton/hari)
+RT
+Langkah ke-3: Menghitung Tingkat Sampah Terolah
+𝑆𝑂
+%𝑆𝑂 = 𝑋 100%
+𝑇𝑆
+Keterangan:
+%SO : Tingkat sampah terolah (%)
+SO : Sampah terolah (ton/hari)
+TS : Timbulan sampah (ton/hari)
+Interpretasi Indikator ini diperlukan untuk mengukur kemajuan kinerja
+pengolahan sampah di Provinsi.
+Sumber Data 1. Survei Sosial Ekonomi Nasional (Susenas) KOR BPS dan
+Podes (masih dalam proses uji coba)
+2. Sistem Informasi Pengelolaan Sampah Nasional (SIPSN)
+Kementerian Lingkungan Hidup dan Kehutanan
+3. SI INSAN Kementerian PUPR
+Frekuensi 1. Survei Sosial Ekonomi Nasional (Susenas) KOR BPS dan
+Podes: Tahunan
+2. Sistem Informasi Pengelolaan Sampah Nasional (SIPSN)
+Kementerian Lingkungan Hidup dan Kehutanan: Tahunan
+3. SI INSAN Kementerian PUPR: Tahunan
+- Proporsi Rumah Tangga (RT) Dengan Layanan Penuh Pengumpulan
+Sampah (% RT)
+Nama Indikator Proporsi Rumah Tangga (RT) Dengan Layanan Penuh
+Pengumpulan Sampah (% RT)
+Definisi Pengumpulan Sampah
+Pengumpulan sampah adalah kegiatan mengambil dan
+memindahkan sampah dari sumber sampah ke TPS atau TPS
+3R. Sampah yang dikumpulkan berasal dari kegiatan sehari-
+hari dalam rumah tangga, kawasan komersial, kawasan
+112
+
+===== HALAMAN PDF 117 =====
+industri, kawasan khusus, fasilitas sosial, fasilitas umum,
+dan/atau fasilitas lainnya yang tidak termasuk tinja dan
+sampah spesifik.
+Rumah Tangga dengan Layanan Penuh Pengumpulan
+Sampah adalah rumah tangga yang:
+• Menerima layanan pengumpulan sampah dari pintu ke
+pintu dengan frekuensi tetap danrutin (minimal 2 kali
+dalam seminggu), serta sampah dikumpulkan minimal
+dalam tiga atau lebih yang terpisah misal: fraksi basah
+(organik), daur ulang, dan residu; atau
+• Memiliki tempat pengumpulan sampah bersama (Komunal)
+yang disepakati di lingkungan dalam jarak 200m, dilayani
+dengan frekuensi tetap danrutin tanpa membuang sampah
+sembarangan dan sampah dikumpulkan dalam tiga fraksi
+atau lebih yang terpisah, misalnya fraksi basah (organik),
+daur ulang, dan residu.
+Catatan:
+Indikator ini diperlukan untuk mengukur kemajuan kinerja
+pengelolaan sampah di Kabupaten/Kota. Penting untuk
+diketahui bahwa (a) Sampah terkumpul, dan (b) Proporsi
+rumah tangga dengan layanan penuh pengumpulan
+sampah adalah dua konsep yang berbeda.
+Pada (a) Sampah Terkumpul mengacu pada jumlah sampah
+yang mencapai fasilitas pengelolaan sampah, sementara (b)
+Proporsi rumah tangga dengan layanan penuh pengumpulan
+sampah mempertimbangkan rumah tangga yang menerima
+layanan pengumpulan sampah.
+Praktik lapangan yang terjadi di beberapa Kabupaten/Kota,
+sampah yang terkumpul dibuang ke lingkungan (tidak
+diangkut ke fasilitas pengelolaan sampah). Dalam hal ini
+rumah tangga tersebut memiliki pelayanan pengumpulan
+sampah, namun sampah terkumpul mencemari lingkungan.
+Oleh karena itu, terdapat kemungkinan suatu
+Kabupaten/Kota memiliki nilai yang tinggi dalam “Proporsi
+rumah tangga dengan layanan penuh pengumpulan sampah”,
+namun jumlah “sampah terkumpul” dan diangkut ke fasilitas
+pengelolaan sampah rendah.
+Rumus Unit Satuan:
+Perhitungan Persentase Rumah tangga
+Cara Perhitungan:
+𝐽𝑅𝑇𝐿𝐴
+𝑃𝑅𝑇𝐿𝑃 = 𝑋 100%
+𝐽𝑅𝑇𝑆
+11 3
+
+===== HALAMAN PDF 118 =====
+Keterangan:
+PRTLA : Proporsi rumah tangga dengan layanan
+penuh pengumpulan sampah
+JRTLA : Jumlah rumah tangga dengan akses
+terhadap layanan penuh pengumpulan
+sampah
+JRTS : Jumlah rumah tangga seluruhnya
+Sumber:
+§ Diadaptasi dari Metadata SDGs, 2021
+§ Rancangan Platform Pengelolaan Persampahan Nasional,
+2023
+Interpretasi Indikator ini diperlukan untuk mengukur kemajuan kinerja
+pelayanan rumah tangga untuk pengumpulan sampah di
+Provinsi.
+Sumber Data 1. Survei Sosial Ekonomi Nasional (Susenas) MKP BPS
+2. Survei Sosial Ekonomi Nasional (Susenas) KOR BPS (masih
+dalam tahap pengusulan)
+Frekuensi 1. Survei Sosial Ekonomi Nasional (Susenas) MKP BPS: 3
+Tahunan
+2. Survei Sosial Ekonomi Nasional (Susenas) KOR BPS:
+Tahunan
+43. Ketahanan Energi, Air, dan Pangan
+43a. Ketahanan Energi
+- Konsumsi Listrik per Kapita (kWh)
+Nama Indikator Konsumsi Listrik per Kapita (kWh)
+Definisi Konsumsi Listrik per kapita (kWh/Kapita) adalah pemakaian
+tenaga listrik dibagi jumlah penduduk pada suatu wilayah
+dalam periode satu tahun. Pemakaian tenaga listrik tersebut
+merupakan jumlah kWh (kilo Watt hours) energi listrik yang
+digunakan secara langsung ataupun tidak langsung.
+Rumus
+Perhitungan
+𝐾𝐿𝑝𝑙𝑛+ 𝐾𝐿𝑛𝑜𝑛𝑝𝑙𝑛
+KLpk =
+𝑃
+Keterangan:
+KLpk: Konsumsi listrik per kapita
+114
+
+===== HALAMAN PDF 119 =====
+KLPLN: Total konsumsi listrik yang disalurkan oleh PT.
+PLN
+KLNONPLN: Total konsumsi listrik yang disalurkan oleh
+non PT. PLN
+P: Jumlah penduduk
+Catatan:
+1. Jumlah pemakaian tenaga listrik adalah total
+penjualan listrik PT. PLN dan non PT. PLN yang
+disalurkan ke pelanggan;
+2. Perhitungan indikator masih difokuskan pada
+wilayah usaha Pt. PLN.
+Interpretasi Indikator ini diperlukan untuk mengetahui kualitas
+pemenuhan kebutuhan listrik dan rata-rata konsumsi
+listrik per kapita yang didukung oleh pengelolaan
+ketenagalistrikan guna mencapai keberhasilan
+pembangunan nasional.
+Sumber Data Kementerian ESDM, PT PLN, dan BPS
+Frekuensi Tahunan
+- Intensitas Energi Primer (SBM/Rp Milyar)
+Nama Indikator Intensitas Energi Primer (SBM/Rp Milyar)
+Definisi ● Energi primer adalah energi yang diberikan oleh alam
+dan belum mengalami proses pengolahan lebih lanjut.
+Intensitas energi primer adalah total pasokan energi
+primer per unit produk domestik bruto dengan satuan
+Setara Barel Minyak (SBM) per miliar rupiah (Peraturan
+Pemerintah Nomor 79 Tahun 2014 tentang Kebijakan
+Energi Nasional).
+● Intensitas energi primer adalah total pasokan energi
+primer per unit produk domestik bruto berdasarkan
+paritas daya beli dengan satuan Setara Barel Minyak
+(SBM) per miliar rupiah.
+11 5
+
+===== HALAMAN PDF 120 =====
+Rumus Intensitas energi primer diperoleh dengan cara membagi
+Perhitungan total pasokan energi primer dengan produk domestik bruto
+berdasarkan paritas daya beli
+Rumus:
+Keterangan:
+IEP: Intensitas energi primer
+TEP: Total pasokan energi primer
+PDB PPP : Produk domestik bruto berdasarkan
+Paritas Daya Beli
+Interpretasi Mengidentifikasi seberapa banyak energi yang digunakan
+untuk menghasilkan satu unit output ekonomi. Intensitas
+energi primer merupakan proksi untuk mengukur seberapa
+efisien perekonomian dapat memanfaatkan energi untuk
+menghasilkan output. Hal ini merefleksikan efisiensi
+penggunaan energi untuk menghasilkan pertumbuhan
+ekonomi. Semakin rendah rasio dari intensitas energi primer
+maka semakin sedikit energi yang dibutuhkan untuk
+menghasilkan satu unit output.
+Sumber Data Handbook of Energy & Economic Statistics of
+Indonesia, Kementerian ESDM
+Frekuensi Tahunan
+43b. Prevalensi Ketidakcukupan Konsumsi Pangan (Prevalence of
+Undernourishment)
+Nama Indikator Prevalensi Ketidakcukupan Konsumsi Pangan (Prevalence of
+Undernourishment)
+Definisi • Ketidakcukupan konsumsi pangan merupakan kondisi
+seseorang secara reguler mengkonsumsi sejumlah
+makanan yang tidak cukup untuk menyediakan energi
+yang dibutuhkan untuk hidup sehat, aktif, dan produktif.
+116
+
+===== HALAMAN PDF 121 =====
+• Prevalensi ketidakcukupan konsumsi pangan (Prevalence
+of Undernourishment/PoU) adalah proporsi penduduk di
+suatu wilayah yang mengkonsumsi pangan lebih rendah
+dari standar kecukupan energi untuk dapat hidup sehat,
+aktif dan produktif, yang dinyatakan dalam bentuk
+persentase. Atau, probabilitas individu yang dipilih secara
+acak dari suatu populasi referensi, yang secara reguler
+mengkonsumsi makanan yang kurang dari kebutuhan
+energinya
+Rumus
+Perhitungan
+Keterangan:
+PoU : Proporsi populasi yang mengalami ketidakcukupan
+konsumsi pangan di bawah kebutuhan minimum energi
+(MDER) yang diukur dengan kkal.
+MDER : Kebutuhan Minimum Energi yang diukur dengan
+kkal (Minimum Dietery Energy Requirement).
+f(x) : Fungsi kepadatan probabilitas tingkat konsumsi
+kalori umumnya sehari-hari untuk rata-rata per kapita
+individu dalam suatu populasi tertentu
+Interpretasi Mengidentifikasi seberapa banyak penduduk yang
+mengkonsumsi pangan dibawah standar kecukupan energi
+yang direkomendasikan. Semakin tinggi nilai PoU
+mengidentifikasikan semakin banyak penduduk yang
+mengkonsumsi pangan tidak ideal secara kandungan
+nutrisinya.
+Sumber Data Badan Pusat Statistik
+Frekuensi Tahunan
+43c. Ketahanan Air
+- Kapasitas Air Baku (m3/detik )
+Nama Indikator Kapasitas Air Baku (m3/detik )
+Definisi Debit air yang dapat diolah dan atau dimanfaatkan untuk
+keperluan domestik, perkotaan, industri, dan lain-lain yang
+bersumber dari mata air, air tanah, air permukaan, air hujan,
+atau sumber air lainnya
+11 7
+
+===== HALAMAN PDF 122 =====
+Rumus Total kapasitas debit pengambilan air yang dapat diolah dan
+Perhitungan atau dimanfaatkan untuk keperluan domestik, perkotaan,
+industri dan lain-lain di setiap sumber air meliputi mata air,
+air tanah, air permukaan, air hujan, dan atau sumber air
+lainnya
+Interpretasi -
+Sumber Data 1. Buku Informasi Statistik Infrastruktur PUPR (Kementerian
+Pekerjaan Umum dan Perumahan Rakyat)
+Frekuensi 1. Buku Informasi Statistik Infrastruktur PUPR (Kementerian
+Pekerjaan Umum dan Perumahan Rakyat) – Per Tahun
+- Akses Rumah Tangga Perkotaan terhadap Air Siap Minum Perpipaan (%)
+Nama Indikator Akses Rumah Tangga Perkotaan terhadap Air Siap Minum
+Perpipaan (%)
+Definisi Akses Rumah Tangga Perkotaan terhadap Air Siap Minum
+Perpipaan adalah rumah tangga di perkotaan yang memiliki
+akses terhadap air siap minum melalui jaringan perpipaan
+yang memenuhi kriteria sebagai berikut 1) Rumah tangga
+menggunakan sumber air minum jaringan perpipaan; 2)
+Lokasi sumber air minum berada di dalam atau di halam
+rumah (on premises); 3) Tersedia setiap saat dibutuhkan; dan
+4) Memenuhi syarat kualitas air minum sebagaimana
+tercantum dalam Peraturan Menteri Kesehatan RI Nomor 2
+Tahun 2023.
+Rumus
+Perhitungan 𝑱𝑹𝑻𝑨𝑺𝑴𝑷𝑷
+𝑷𝑨𝑺𝑴𝑷𝑷 = 𝒙 𝟏𝟎𝟎%
+𝑱𝑹𝑻
+• PASMPP: Persentase rumah tangga perkotaan yang
+memiliki akses terhadap air siap minum perpipaan.
+• JRTASMPP: Jumlah rumah tangga perkotaan yang
+memiliki akses terhadap air siap minum perpipaan.
+• JRT: Jumlah rumah tangga seluruhnya di perkotaan.
+Interpretasi Indikator ini diperlukan untuk mengukur capaian target
+RPJMD yang merupakan kewenangan dari Pemerintah
+Daerah.
+Sumber Data 1. Surveilans Kualitas Air Minum Rumah Tangga oleh
+Kementerian Kesehatan/Dinas Kesehatan
+2. Survei Sosial Ekonomi Nasional (Susenas) KOR BPS
+Frekuensi SKAM RT : Tahunan
+Susenas KOR : Tahunan
+118
+
+===== HALAMAN PDF 123 =====
+Resiliensi terhadap Bencana dan Perubahan Iklim
+44. Indeks Risiko Bencana
+Nama Indikator Indeks Risiko Bencana
+Definisi IRB dihasilkan dari suatu kajian risiko bencana. Pengkajian
+risiko bencana merupakan sebuah pendekatan untuk
+memperlihatkan potensi dampak negatif yang mungkin
+timbul dari suatu potensi bencana yang ada di suatu
+wilayah. Potensi tersebut dihitung dengan
+mempertimbangkan tingkat bahaya, kerentanan, dan
+kapasitas wilayah tersebut. Maka dari itu, terdapat 3 (tiga)
+komponen yang membentuk risiko, yaitu bahaya,
+kerentanan, dan kapasitas. Interaksi antara tiga komponen
+tersebut digunakan untuk memperoleh potensi risiko
+bencana suatu wilayah dengan memperhitungkan potensi
+jiwa terpapar, kerugian harta benda, dan kerusakan
+lingkungan.
+Rumus
+Perhitungan
+Keterangan
+Hazard (bahaya) dihitung berdasarkan probabilitas spasial,
+frekuensi dan kekuatan (magnitude) dari suatu fenomena
+alam seperti gempabumi, banjir, letusan gunung api, dan
+lainnya.
+Vulnerability (kerentanan) dihitung berdasarkan parameter
+sosial budaya, ekonomi, fisik dan lingkungan.
+Kapasitas (Capacity) dinilai dengan menggunakan
+pendekatan tingkat ketahanan daerah berdasarkan tujuh
+prioritas yaitu: (1) Perkuatan kebijakan dan kelembagaan; (2)
+Pengkajian risiko dan perencanaan terpadu; (3)
+Pengembangan sistem informasi, diklat dan logistik; (4)
+Penanganan tematik kawasan rawan bencana; (5)
+Peningkatan efektivitas pencegahan dan mitigasi bencana;
+(6) Perkuatan kesiapsiagaan dan penanganan darurat
+bencana; dan (7) Pengembangan sistem pemulihan bencana
+Interpretasi Semakin kecil nilai Indeks Risiko Bencana (IRB), diartikan
+semakin baik. Semakin kecil nilai indeks yang dihasilkan,
+dapat diartikan bahwa tingkat kapasitas semakin baik
+(meningkat), dengan nilai bahaya dan kerentanan yang
+cenderung dianggap konstan.
+Pembagian kelas tingkat Indeks Risiko Bencana sebagai
+berikut:
+• lndeks <13 adalah Rendah
+11 9
+
+===== HALAMAN PDF 124 =====
+• lndeks 13 - 144 adalah Sedang
+• lndeks >144 adalah Tinggi
+Sumber Data BNPB
+Frekuensi Tahunan
+45. Persentase Penurunan Emisi GRK (%)
+Nama Indikator Persentase Penurunan Emisi GRK (%)
+Definisi Gas Rumah Kaca (GRK) adalah gas yang terkandung dalam
+atmosfer, baik alami maupun antropogenik, yang menyerap
+dan memancarkan kembali radiasi inframerah. Penurunan
+emisi GRK dihasilkan dari pelaksanaan berbagai kegiatan
+yang secara langsung dan tidak langsung menurunkan emisi
+gas rumah kaca sesuai dengan target pembangunan nasional
+maupun pembangunan daerah.
+Persentase penurunan emisi GRK daerah tahunan adalah
+perbandingan angka penurunan emisi GRK daerah di titik
+tahun tertentu terhadap angka baseline emisi daerah di titik
+tahun yang sama.
+Persentase penurunan emisi GRK daerah kumulatif adalah
+perbandingan akumulasi penurunan emisi GRK daerah
+selama periode base year hingga tahun tertentu terhadap
+akumulasi emisi GRK baseline daerah untuk periode yang
+sama.
+Rumus a. Persentase Penurunan Emisi GRK Daerah Tahunan
+Perhitungan
+%PE = PE / EB
+t t t
+%PE = persentase penurunan emisi GRK total sektoral
+t
+daerah pada tahun t
+PE = penurunan emisi GRK total sektoral
+t
+tahun t
+EB = emisi GRK total sektoral baseline
+t
+tahun t
+t = titik tahun perhitungan
+b. Persentase Penurunan Emisi GRK Daerah Kumulatif
+120
+
+===== HALAMAN PDF 125 =====
+%PEK = ∑t PE / ∑t EB
+i = base year t i = base year t
+%PEK = persentase penurunan emisi GRK
+daerah kumulatif
+∑t PE = akumulasi penurunan emisi GRK total
+i = base year t
+daerah selama periode base year
+hingga tahun t
+∑t EB = akumulasi emisi GRK total baseline
+i = base year t
+daerah selama periode base year
+hingga tahun t
+t = titik tahun perhitungan
+i = base year tahun 2010
+Interpretasi Persentase penurunan emisi baik tahunan maupun
+kumulatif
+Sumber Data Sistem AKSARA Bappenas
+Frekuensi Tahunan
+12 1
+
+===== HALAMAN PDF 126 =====
+PENUTUP
+122
+
+===== HALAMAN PDF 127 =====
+12 3
+
+===== HALAMAN PDF 128 =====
+Surat Edaran Bersama ini merupakan pedoman dan panduan bagi penyelarasan
+muatan RPJP Daerah Provinsi dengan RPJP Nasional Tahun 2025-2045. Surat
+Edaran Bersama ini disusun dengan memperhatikan peraturan perundang-
+undangan yang berlaku dan menyesuaikan dengan Rancangan Undang-Undang
+RPJP Nasional Tahun 2025-2045 beserta dengan lampirannya serta diharapkan
+dapat menjadi pedoman bagi seluruh pemangku kepentingan terkait dalam
+penyelarasan RPJP Daerah provinsi untuk periode Tahun 2025-2045.
+MENTERI DALAM NEGERI MENTERI PERENCANAAN
+PEMBANGUNAN NASIONAL/
+KEPALA BADAN PERENCANAAN
+PEMBANGUNAN NASIONAL
+[ttd] [ttd]
+MUHAMMAD TITO KARNAVIAN SUHARSO MONOARFA
+124
+
+===== HALAMAN PDF 129 =====
+12 5
+Januari 2024

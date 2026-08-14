@@ -1,0 +1,87 @@
+﻿id_indikator,nama_di_excel,nama_di_buku1,skor,status_cocok
+ISV-01,GNI per kapita,Konsumsi Listrik per Kapita (kWh),85.5,COCOK
+ISV-02,Kontribusi PDB Maritim(%),Kontribusi PDRB Industri Pengolahan (%),85.5,PERLU_REVIEW
+ISV-03,Kontribusi PDB industri Manufaktur(%),Proporsi Kontribusi PDRB Wilayah Metropolitan terhadap Nasional (%),85.5,PERLU_REVIEW
+ISV-04,Persentase Penduduk yang Hidup di Bawah Garis Kemiskinan Nasional,Tingkat Kemiskinan (%),85.5,PERLU_REVIEW
+ISV-05,Rasio gini,Rasio Gini,100.0,COCOK
+ISV-06,Kontribusi PDRB KTI,Kontribusi PDRB Industri Pengolahan (%),88.24,COCOK
+ISV-07,Global Power Index,Indeks Sistem Pemerintahan Berbasis Elektronik.,47.5,PERLU_REVIEW
+ISV-08,Indeks Modal Manusia,Indeks Modal Manusia,100.0,COCOK
+ISV-09,intensitas emisi GRK,Penurunan intensitas emisi GRK (%),100.0,COCOK
+ISV-10,Indeks Kualitas Lingkungan Hidup,Indeks Kualitas Lingkungan Hidup Daerah,100.0,COCOK
+IUP-01,Usia Harapan Hidup,Usia Harapan Hidup (UHH) (tahun),100.0,COCOK
+IUP-02,Kesehatan Ibu dan Anak: Angka Kematian Ibu,Angka Kematian Ibu (per 100.000 kelahiran hidup),100.0,COCOK
+IUP-03,Kesehatan Ibu dan Anak: Prevalensi stunting (pendek dan sangat pendek) pada balita,Prevalensi Stunting (pendek dan sangat pendek) pada balita (%),100.0,COCOK
+IUP-04,Insidensi Tuberkulosis (per 100.000 penduduk),Angka keberhasilan pengobatan tuberkulosis (treatment success rate) (%),85.5,COCOK
+IUP-05,Persentase Penduduk yang Memiliki Jaminan Kesehatan Nasional (JKN),Persentase kabupaten/kota yang mencapai standar kompetensi minimum pada asesmen tingkat nasional untuk: i) Literasi membaca ii) Numerasi,85.5,PERLU_REVIEW
+IUP-06,Rata-rata Nilai Pembelajaran,Nilai transaksi saham per provinsi berupa nilai rata-rata tahunan (dalam Rupiah),85.5,COCOK
+IUP-07,Hasil Pembelajaran: Rata-rata nilai PISA - Matematika,Rata-rata Lama Sekolah Penduduk Usia di Atas 15 Tahun (tahun),51.61,PERLU_REVIEW
+IUP-08,Hasil Pembelajaran: Rata-rata nilai PISA - Sains,Nilai transaksi saham per provinsi berupa nilai rata-rata tahunan (dalam Rupiah),55.27,PERLU_REVIEW
+IUP-09,Hasil Pembelajaran: Rata-rata nilai asesmen nasional Literasi - Membaca,Persentase kabupaten/kota yang mencapai standar kompetensi minimum pada asesmen tingkat nasional untuk: i) Literasi membaca ii) Numerasi,85.5,PERLU_REVIEW
+IUP-10,Hasil Pembelajaran: Rata-rata nilai asesmen nasional Literasi - Numerasi,Cakupan kepesertaan jaminan kesehatan nasional (JKN) (%),85.5,COCOK
+IUP-11,Hasil Pembelajaran: Rata-rata lama sekolah penduduk usia di atas 15 tahun (tahun),Rata-rata Lama Sekolah Penduduk Usia di Atas 15 Tahun (tahun),100.0,COCOK
+IUP-12,Hasil Pembelajaran: Harapan lama sekolah,Harapan Lama Sekolah,100.0,COCOK
+IUP-13,APK Perguruan Tinggi,Proporsi Penduduk Berusia 15 Tahun ke Atas yang Berkualifikasi Pendidikan Tinggi (%),85.5,COCOK
+IUP-14,Persentase pekerja lulusan pendidikan menengah dan tinggi yang bekerja di bidang keahlian menengah tinggi,Persentase Pekerja Lulusan Pendidikan Menengah dan Tinggi yang Bekerja di Bidang Keahlian Menengah Tinggi (%),100.0,COCOK
+IUP-15,Persentase Penduduk yang Hidup di Bawah Garis Kemiskinan Nasional,Tingkat Kemiskinan (%),85.5,PERLU_REVIEW
+IUP-16,Cakupan kepesertaan jaminan sosial ketenagakerjaan,Cakupan Kepesertaan Jaminan Sosial Ketenagakerjaan (%),100.0,COCOK
+IUP-17,Persentase penyandang disabilitas bekerja di sektor formal (%),Formal (%),100.0,PERLU_REVIEW
+IUP-18,Produktivitas Industri dan Pertanian: Rasio PDB Industri Pengolahan (%),Kontribusi PDRB Industri Pengolahan (%),85.5,COCOK
+IUP-19,"Produktivitas Industri dan Pertanian: Pertumbuhan PDB Pertanian, Kehutanan dan Perikanan (%)",Proporsi Jumlah Usaha Kecil dan Menengah (UKM) Non Pertanian (%),85.5,COCOK
+IUP-20,Rasio PDB Pariwisata,Rasio PDRB Penyediaan Akomodasi Makan dan Minum (%),85.5,COCOK
+IUP-21,Pengembangan pariwisata: Devisa Pariwisata,Indeks Pembangunan Kebudayaan (IPK),57.63,PERLU_REVIEW
+IUP-22,Proporsi PDB Ekonomi Kreatif,Proporsi PDRB Ekonomi Kreatif (%),98.25,COCOK
+IUP-23,"Produktivitas UMKM, Koperasi, BUMN: Proporsi Jumlah Usaha Kecil dan Menengah",Proporsi Jumlah Industri Kecil dan Menengah (IKM) (%),88.31,COCOK
+IUP-24,"Produktivitas UMKM, Koperasi, BUMN: Rasio Kewirausahaan",Rasio Kewirausahaan Daerah (%),85.5,COCOK
+IUP-25,"Produktivitas UMKM, Koperasi, BUMN: Rasio Volume Usaha Koperasi terhadap PDB",Rasio Volume Usaha Koperasi terhadap PDRB (%),93.51,COCOK
+IUP-26,"Produktivitas UMKM, Koperasi, BUMN: d. Return on Asset (ROA) BUMN",Return on Asset (ROA) BUMD (%),85.71,COCOK
+IUP-27,Tingkat Pengangguran terbuka,Tingkat Pengangguran Terbuka (%),100.0,COCOK
+IUP-28,Penciptaan Lapangan Kerja yang Baik: Proporsi Penciptaan Lapangan Kerja Formal (%),Formal (%),100.0,COCOK
+IUP-29,Tingkat Partisipasi Angkatan Kerja Perempuan,Tingkat Partisipasi Angkatan Kerja Perempuan (%),100.0,COCOK
+IUP-30,Tingkat Penguasaan IPTEK: Pengeluaran Iptek dan Inovasi (Persen PDB),Tingkat Kemiskinan (%),85.5,PERLU_REVIEW
+IUP-31,Tingkat Penguasaan IPTEK: Peringkat Indeks Inovasi Global (peringkat),Tingkat Kemiskinan (%),85.5,COCOK
+IUP-32,Tingkat Penerapan Ekonomi Hijau: Indeks Ekonomi Hijau,Persentase kabupaten/kota yang mencapai standar kompetensi minimum pada asesmen tingkat nasional untuk: i) Literasi membaca ii) Numerasi,85.5,COCOK
+IUP-33,Tingkat Penerapan Ekonomi Hijau: Porsi EBT dalam Bauran Energi Primer (%),Porsi EBT dalam bauran energi primer (%),100.0,COCOK
+IUP-34,Indeks Daya Saing Digital di Tingkat Global (Peringkat),Tingkat Kemiskinan (%),85.5,COCOK
+IUP-35,Biaya Logistik (% PDB),Koefisien Variasi Harga Antarwilayah Tingkat Provinsi,51.43,PERLU_REVIEW
+IUP-36,Pembentukan Modal Tetap Bruto (% PDB),Pembentukan Modal Tetap Bruto (% PDRB),100.0,COCOK
+IUP-37,Ekspor Barang dan Jasa (%PDB),Ekspor Barang dan Jasa (% PDRB),100.0,COCOK
+IUP-38,"Kota Maju, Inklusif, dan Berkelanjutan: Proporsi kontribusi PDRB wilayah metropolitan terhadap nasional (%)",Proporsi Kontribusi PDRB Wilayah Metropolitan terhadap Nasional (%),100.0,COCOK
+IUP-39,"Kota Maju, Inklusif, dan Berkelanjutan: Rumah tangga dengan akses hunian layak, terjangkau, dan berkelanjutan (%)","Rumah Tangga dengan Akses Hunian Layak, Terjangkau dan Berkelanjutan (%)",100.0,COCOK
+IUP-40,"Kota Maju, Inklusif, dan Berkelanjutan: Persentase Desa Mandiri (%)",Persentase Desa Mandiri (%),100.0,COCOK
+IUP-41,Indeks Materi Hukum,Indeks Ekonomi Biru Indonesia (IBEI),85.5,PERLU_REVIEW
+IUP-42,Indeks Sistem Pemerintahan Berbasis Elektronik,Indeks Sistem Pemerintahan Berbasis Elektronik.,100.0,COCOK
+IUP-43,Indeks Pelayanan Publik,Indeks Pelayanan Publik.,100.0,COCOK
+IUP-44,Anti Korupsi: Indeks Integritas Nasional -,Indeks Integritas Nasional (Persentase),100.0,COCOK
+IUP-45,Anti Korupsi: Indeks Persepsi Korupsi,Indeks Modal Manusia,85.5,PERLU_REVIEW
+IUP-46,Indeks Pembangunan Hukum,"Indeks Pembangunan Teknologi, Informasi, dan Komunikasi",85.71,COCOK
+IUP-47,Proporsi Penduduk yang Merasa Aman Berjalan Sendirian di Area Tempat Tinggalnya (%),Proporsi Penduduk yang Merasa Aman Berjalan Sendirian di Area Tempat Tinggalnya (%),100.0,COCOK
+IUP-48,Indeks Demokrasi Indonesia,Indeks Demokrasi Indonesia,100.0,COCOK
+IUP-49,Rasio pajak terhadap PDB,Rasio Pajak Daerah terhadap PDRB (%),90.91,COCOK
+IUP-50,Tingkat inflasi,Tingkat Inflasi (%),100.0,COCOK
+IUP-51,Pendalaman/ Intermediasi Sektor Keuangan: Aset Perbankan/PDB (%),Aset Dana Pensiun/PDRB (%),85.5,PERLU_REVIEW
+IUP-52,Pendalaman/ Intermediasi Sektor Keuangan: Aset Dana Pensiun /PDB (%),Aset Dana Pensiun/PDRB (%),87.91,COCOK
+IUP-53,Pendalaman/ Intermediasi Sektor Keuangan: Aset Asuransi/PDB (%),Aset Dana Pensiun/PDRB (%),85.5,PERLU_REVIEW
+IUP-54,Pendalaman/ Intermediasi Sektor Keuangan: Kapitalisasi Pasar Modal/PDB (%),Indeks Modal Manusia,85.5,PERLU_REVIEW
+IUP-55,Pendalaman/ Intermediasi Sektor Keuangan: Total Kredit/PDB (%),Total Kredit Per Provinsi/PDRB (%),85.5,COCOK
+IUP-56,Indeks Inklusi Keuangan,Inklusi Keuangan (%),100.0,COCOK
+IUP-57,Asia Power Index (Diplomatic Influence),Produk Domestik Regional Bruto per Kapita (Rp Juta),58.06,PERLU_REVIEW
+IUP-58,Asia Power Index (Military Capability),Produk Domestik Regional Bruto per Kapita (Rp Juta),58.06,PERLU_REVIEW
+IUP-59,Indeks Pembangunan Kebudayaan,Indeks Pembangunan Kebudayaan (IPK),100.0,COCOK
+IUP-60,Indeks Kerukunan Umat Beragama:,Indeks Kerukunan Umat Beragama (IKUB),100.0,COCOK
+IUP-61,Indeks Pembangunan Kualitas Keluarga,Indeks Pembangunan Kualitas Keluarga (IPKK),100.0,COCOK
+IUP-62,Indeks Ketimpangan Gender (IKG),Indeks Ketimpangan Gender (IKG),100.0,COCOK
+IUP-63,Indeks Pengelolaan Keanekaragaman Hayati,Indeks Pengelolaan Keanekaragaman Hayati Daerah,100.0,COCOK
+IUP-64,Indeks Kualitas Udara,"Indeks Pembangunan Teknologi, Informasi, dan Komunikasi",85.5,PERLU_REVIEW
+IUP-65,Kualitas Lingkungan Hidup: Indeks Kualitas Lingkungan Hidup - Indeks Kualitas Air (IKA),Indeks Kualitas Lingkungan Hidup Daerah,94.12,PERLU_REVIEW
+IUP-66,Kualitas Lingkungan Hidup: Indeks Kualitas Lingkungan Hidup - Indeks Kualitas Lahan (IKL),Indeks Ekonomi Biru Indonesia (IBEI),85.5,COCOK
+IUP-67,Kualitas Lingkungan Hidup: Indeks Kualitas Lingkungan Hidup - Indeks Kualitas Air Laut (IKAL),Indeks Ekonomi Hijau Daerah,85.5,COCOK
+IUP-68,Kualitas Lingkungan Hidup: Rumah Tangga dengan Akses Sanitasi Aman (%),Rumah Tangga dengan Akses Sanitasi Aman (%),100.0,COCOK
+IUP-69,Kualitas Lingkungan Hidup: Timbulan Sampah Terolah di Fasilitas Pengolahan Sampah (%),Timbulan Sampah Terolah di Fasilitas Pengolahan Sampah (%),100.0,COCOK
+IUP-70,"Ketahanan Energi, Air, dan Pangan: Indeks Ketahanan Energi",Indeks Reformasi Hukum,85.5,COCOK
+IUP-71,"Ketahanan Energi, Air, dan Pangan: Prevalensi ketidakcukupan konsumsi pangan (%)",Prevalensi Ketidakcukupan Konsumsi Pangan (Prevalence of Undernourishment),100.0,COCOK
+IUP-72,"Ketahanan Energi, Air, dan Pangan: Ketahanan Air - Kapasitas Tampungan Air (m3/kapita)",Intensitas Energi Primer (SBM/Rp Milyar),85.5,COCOK
+IUP-73,Persentase Rumah Tangga yang Memiliki Akses terhadap Sumber Air Minum Layak,Kapasitas Air Baku (m3/detik ),85.5,COCOK
+IUP-74,Proporsi Kerugian Ekonomi Langsung akibat Bencana Relatif terhadap PDB (%),Indeks Risiko Bencana,85.5,COCOK
+IUP-75,Persentase Penurunan Emisi GRK(%): Kumulatif,Persentase satuan pendidikan yang mencapai standar kompetensi minimum pada asesmen tingkat nasional untuk: i) Literasi membaca ii) Numerasi,85.5,COCOK
+IUP-76,Persentase Penurunan Emisi GRK(%): Tahunan,Persentase Penurunan Emisi GRK (%),100.0,COCOK
