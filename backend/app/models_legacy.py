@@ -1,10 +1,26 @@
+"""Model ORM tabel ETL lama (`indikator`, `nilai_indikator`, `metadata_indikator`).
+
+Jembatan sementara. Skema target berada di `backend/app/models/` dan dikelola
+Alembic; modul ini hanya melayani endpoint yang belum dipindahkan selama basis
+data masih memakai skema SQLite lama.
+
+Memakai registry (`LegacyBase`) terpisah dari `db.base.Base` supaya nama tabel
+yang sama tidak bentrok dengan model konsolidasi.
+
+TODO(Fase 3): dihapus setelah seluruh endpoint memakai repository ORM baru.
+"""
+
+from __future__ import annotations
+
 from sqlalchemy import Boolean, Float, ForeignKey, Integer, String, Text
-from sqlalchemy.orm import Mapped, mapped_column
-
-from .db.base import Base
+from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 
 
-class Indikator(Base):
+class LegacyBase(DeclarativeBase):
+    pass
+
+
+class Indikator(LegacyBase):
     __tablename__ = "indikator"
     id_indikator: Mapped[str] = mapped_column(String, primary_key=True)
     kategori: Mapped[str] = mapped_column(String)
@@ -34,7 +50,7 @@ class Indikator(Base):
     catatan_teknis: Mapped[str | None] = mapped_column(Text)
 
 
-class NilaiIndikator(Base):
+class NilaiIndikator(LegacyBase):
     __tablename__ = "nilai_indikator"
     id_indikator: Mapped[str] = mapped_column(ForeignKey("indikator.id_indikator"), primary_key=True)
     tahun: Mapped[int] = mapped_column(Integer, primary_key=True)
@@ -43,7 +59,7 @@ class NilaiIndikator(Base):
     sumber_sheet: Mapped[str] = mapped_column(String)
 
 
-class MetadataIndikator(Base):
+class MetadataIndikator(LegacyBase):
     __tablename__ = "metadata_indikator"
     id_indikator: Mapped[str] = mapped_column(ForeignKey("indikator.id_indikator"), primary_key=True)
     definisi: Mapped[str | None] = mapped_column(Text)

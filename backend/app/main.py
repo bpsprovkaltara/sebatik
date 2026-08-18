@@ -16,7 +16,7 @@ from sqlalchemy.orm import Session
 from .config import settings
 from .database import get_db
 from .features_api import router as features_router
-from .models import Indikator
+from .models_legacy import Indikator
 
 app = FastAPI(title="API SEBATIK", version="1.0.0", docs_url="/api/docs", openapi_url="/api/openapi.json", description="API Dasbor Pemantauan Capaian Data Indikator ISV-IUP BPS Provinsi Kalimantan Utara")
 app.add_middleware(CORSMiddleware, allow_origins=settings.cors_origins, allow_credentials=True, allow_methods=["*"], allow_headers=["*"])
