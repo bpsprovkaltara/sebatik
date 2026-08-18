@@ -57,6 +57,10 @@ class Settings(BaseSettings):
         return value
 
     @property
+    def is_production(self) -> bool:
+        return self.environment.lower() in {"production", "produksi"}
+
+    @property
     def is_sqlite(self) -> bool:
         return self.database_url.startswith("sqlite")
 
@@ -70,7 +74,7 @@ class Settings(BaseSettings):
 
     def validasi_produksi(self) -> None:
         """Dipanggil `create_app`; gagal cepat daripada berjalan tanpa rahasia."""
-        if self.environment.lower() not in {"production", "produksi"}:
+        if not self.is_production:
             return
         if self.secret_key == SECRET_BAWAAN or len(self.secret_key) < 32:
             raise RuntimeError("SEBATIK_SECRET_KEY wajib diisi acak minimal 32 karakter di produksi.")

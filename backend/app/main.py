@@ -15,6 +15,7 @@ from fastapi.responses import JSONResponse
 from fastapi.staticfiles import StaticFiles
 
 from .config import settings
+from .middleware import HeaderKeamanan
 from .routers import SEMUA_ROUTER
 
 log = logging.getLogger("sebatik")
@@ -35,6 +36,7 @@ def create_app() -> FastAPI:
         openapi_url="/api/openapi.json",
         description=DESKRIPSI,
     )
+    app.add_middleware(HeaderKeamanan, aktifkan_hsts=settings.is_production)
     app.add_middleware(
         CORSMiddleware,
         allow_origins=settings.cors_origins,

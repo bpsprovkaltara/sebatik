@@ -80,3 +80,14 @@ def client(db_termigrasi: str) -> Iterator[TestClient]:
     with TestClient(app, raise_server_exceptions=False) as klien:
         yield klien
     mesin.dispose()
+
+
+@pytest.fixture(scope="session")
+def auth(client: TestClient) -> dict[str, str]:
+    """Header Authorization untuk akun admin seed."""
+    response = client.post(
+        "/api/v1/auth/login",
+        data={"username": "admin", "password": "Sebatik-Ganti-Segera-2026!"},
+    )
+    assert response.status_code == 200, "akun seed admin harus ada untuk tes API"
+    return {"Authorization": f"Bearer {response.json()['access_token']}"}

@@ -26,16 +26,6 @@ def _json(client):
     return ambil
 
 
-@pytest.fixture(scope="session")
-def auth(client) -> dict[str, str]:
-    response = client.post(
-        "/api/v1/auth/login",
-        data={"username": "admin", "password": "Sebatik-Ganti-Segera-2026!"},
-    )
-    assert response.status_code == 200, "akun seed admin harus ada untuk tes kontrak"
-    return {"Authorization": f"Bearer {response.json()['access_token']}"}
-
-
 # --- endpoint publik -------------------------------------------------------
 
 
