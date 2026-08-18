@@ -36,10 +36,7 @@ disallow_untyped_defs = true
 # Modul lama belum ber-anotasi. Masing-masing keluar dari daftar ini ketika fase
 # yang menulis ulangnya selesai (lihat docs/refactoring/peta-jalan.md).
 [[tool.mypy.overrides]]
-module = [
-    "src.etl.audit",              # Fase 5 — ditulis ulang data-driven
-    "src.etl.pipeline",           # Fase 5 — ditulis ulang data-driven
-]
+module = ["src.etl.audit"]        # laporan audit; anotasi menyusul
 ignore_errors = true
 
 [tool.pytest.ini_options]
@@ -53,7 +50,7 @@ filterwarnings = ["ignore::DeprecationWarning"]
 # tiap berkas dikeluarkan dari daftar ini ketika fase yang menulis ulangnya
 # selesai (lihat docs/refactoring/peta-jalan.md).
 exclude = [
-    "src/etl/*.py",                  # Fase 5 — ditulis ulang data-driven
+    "src/etl/audit.py",
     "scripts/generate_system_diagrams.py",
     "scripts/seed_master_dashboard.py",
     "tools/*.py",

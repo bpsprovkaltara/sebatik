@@ -22,16 +22,16 @@ from ..models import KODE_PROVINSI, JenisNilai, StatusUnggahan, StatusVerifikasi
 from ..repositories import nilai as repo_nilai
 from ..repositories import tata_kelola as repo_tata_kelola
 
-# Sheet yang wajib ada agar pipeline ETL dapat berjalan.
-SHEET_WAJIB = frozenset(
-    {
-        "form provinsi",
-        "ISV IUP Kaltara",
-        "ISV IUP Kaltara 2026",
-        "Rakor ISV IUP Kaltara 2026",
-        "Rakor ISV IUP Kaltara 202607",
-    }
-)
+
+def sheet_wajib() -> frozenset[str]:
+    """Sheet yang harus ada agar pipeline ETL dapat berjalan.
+
+    Diambil dari konfigurasi ETL, bukan disalin, supaya daftar ini tidak
+    menyimpang ketika versi workbook berganti.
+    """
+    from src.etl.config import bawaan
+
+    return frozenset(bawaan().sheet_wajib)
 
 
 class BerkasTidakValid(Exception):
@@ -63,7 +63,7 @@ def arsipkan(isi: bytes) -> Path:
 def periksa_sheet(path: Path) -> None:
     workbook = load_workbook(path, read_only=True)
     try:
-        hilang = SHEET_WAJIB - set(workbook.sheetnames)
+        hilang = sheet_wajib() - set(workbook.sheetnames)
     finally:
         workbook.close()
     if hilang:

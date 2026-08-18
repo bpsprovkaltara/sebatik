@@ -113,15 +113,19 @@ def _upgrade_users(conn: sqlite3.Connection) -> None:
         conn.execute("PRAGMA foreign_keys=ON")
     elif sql:
         cols = _columns(conn, "pengguna")
-        if "wilayah_kode" not in cols: conn.execute("ALTER TABLE pengguna ADD COLUMN wilayah_kode TEXT REFERENCES wilayah(kode)")
-        if "dibuat_pada" not in cols: conn.execute("ALTER TABLE pengguna ADD COLUMN dibuat_pada TEXT")
+        if "wilayah_kode" not in cols:
+            conn.execute("ALTER TABLE pengguna ADD COLUMN wilayah_kode TEXT REFERENCES wilayah(kode)")
+        if "dibuat_pada" not in cols:
+            conn.execute("ALTER TABLE pengguna ADD COLUMN dibuat_pada TEXT")
 
 
 def migrate_governance(db_path: Path) -> None:
     """Idempotent role, regional workflow, evidence, and seed migration."""
     conn = sqlite3.connect(db_path)
     conn.execute("PRAGMA foreign_keys=ON")
-    conn.executescript("CREATE TABLE IF NOT EXISTS wilayah (kode TEXT PRIMARY KEY,nama TEXT NOT NULL,tingkat TEXT NOT NULL,parent_kode TEXT,aktif INTEGER NOT NULL DEFAULT 1);")
+    conn.executescript(
+        "CREATE TABLE IF NOT EXISTS wilayah (kode TEXT PRIMARY KEY,nama TEXT NOT NULL,tingkat TEXT NOT NULL,parent_kode TEXT,aktif INTEGER NOT NULL DEFAULT 1);"
+    )
     _upgrade_users(conn)
     for column, definition in (
         ("wilayah_kode", "TEXT REFERENCES wilayah(kode)"),
@@ -143,7 +147,8 @@ def migrate_governance(db_path: Path) -> None:
                 "INSERT OR IGNORE INTO pengguna(username,nama,password_hash,peran,wilayah_kode,harus_ganti_password) VALUES (?,?,?,?,?,1)",
                 (username, f"Operator {name} {number}", initial_password, "OPERATOR", code),
             )
-    conn.commit(); conn.close()
+    conn.commit()
+    conn.close()
 
 
 def migrate(db_path: Path, direction_csv: Path | None = None) -> None:
@@ -155,13 +160,23 @@ def migrate(db_path: Path, direction_csv: Path | None = None) -> None:
             for row in csv.DictReader(stream):
                 direction = row.get("arah_baik_verifikasi") or row.get("arah_baik_heuristik")
                 if direction in {"NAIK", "TURUN"}:
-                    conn.execute("UPDATE indikator SET arah_baik=?, arah_baik_terverifikasi=1 WHERE id_indikator=?", (direction, row["id_indikator"]))
+                    conn.execute(
+                        "UPDATE indikator SET arah_baik=?, arah_baik_terverifikasi=1 WHERE id_indikator=?",
+                        (direction, row["id_indikator"]),
+                    )
     today = date.today().isoformat()
-    conn.execute("INSERT OR IGNORE INTO snapshot_ketersediaan(id_indikator,tanggal_snapshot,status) SELECT id_indikator,?,status_ketersediaan FROM indikator", (today,))
+    conn.execute(
+        "INSERT OR IGNORE INTO snapshot_ketersediaan(id_indikator,tanggal_snapshot,status) SELECT id_indikator,?,status_ketersediaan FROM indikator",
+        (today,),
+    )
     if not conn.execute("SELECT 1 FROM pengguna WHERE username='admin'").fetchone():
         password_hash = PasswordHash.recommended().hash("Sebatik-Ganti-Segera-2026!")
-        conn.execute("INSERT INTO pengguna(username,nama,password_hash,peran,harus_ganti_password) VALUES ('admin','Administrator Awal',?,'ADMIN',1)", (password_hash,))
-    conn.commit(); conn.close()
+        conn.execute(
+            "INSERT INTO pengguna(username,nama,password_hash,peran,harus_ganti_password) VALUES ('admin','Administrator Awal',?,'ADMIN',1)",
+            (password_hash,),
+        )
+    conn.commit()
+    conn.close()
     migrate_governance(db_path)
 
 

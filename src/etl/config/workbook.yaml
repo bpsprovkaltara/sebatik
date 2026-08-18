@@ -1,0 +1,155 @@
+# Pemetaan workbook ISV-IUP ke model data SEBATIK.
+#
+# Seluruh nomor baris, nomor kolom, dan rentang tahun yang bermakna bisnis
+# tinggal di berkas ini. Menambah versi workbook baru = mengubah berkas ini,
+# tanpa menyentuh kode (lihat docs/refactoring/etl.md).
+#
+# Konvensi: nomor baris dan kolom mengikuti openpyxl (mulai dari 1);
+# `kolom_akhir` bersifat inklusif; `null` pada `baris.akhir` berarti membaca
+# sampai data habis.
+
+versi: 1
+
+kategori:
+  # Nomor urut pada sheet lama bersifat menyambung: 1..10 adalah ISV, sisanya
+  # IUP yang nomornya digeser mundur sebanyak batas ISV.
+  isv_nomor_maksimum: 10
+  daftar: [ISV, IUP]
+
+ekspektasi:
+  jumlah_indikator: 86
+
+master:
+  sheet: "form provinsi"
+  baris_header: 1
+  baris:
+    awal: 2
+    akhir: null
+  # Pemetaan nama kolom di header -> field internal. Pembacaan berbasis header,
+  # bukan posisi, sehingga penambahan kolom di tengah tidak merusak apa pun.
+  kolom:
+    kategori: "Kategori"
+    nama_asli: "Indikator"
+    nama_perbaikan: "Perbaikan Nama Indikator"
+    kelompok: "Kelompok Indikator"
+    arah_pembangunan: "Arah Pembangunan"
+    penghasil: "Penghasil Indikator"
+    kl_pengampu: "K/L/D/i Pengampu Indikator"
+    tim_pjk: "Tim PJK Provinsi"
+    status_ketersediaan: "Ketersediaan"
+    status_metadata: "Ketersediaan Metadata Indikator"
+    periode_data: "Periode Data"
+    tahun_terakhir: "Tahun Terakhir Data"
+    indikator_proxy: "Indikator Proxy"
+    catatan_teknis: "Catatan Teknis"
+    status_rpjmd: "NOTES to DANS"
+    kode_sdgs: "Indikator SDGs"
+    link_metadata: "Tautan Metadata Indikator"
+    link_publikasi: "Link Publikasi"
+    link_data: "Link Data"
+  # Kolom alternatif bila label utama tidak ditemukan (mis. ada spasi di akhir).
+  kolom_alternatif:
+    periode_data: ["Periode Data "]
+  pic:
+    PIC_DGDS: "PIC DGDS"
+    PIC_PJK: "PIC PJK"
+    PIC_PROVINSI: "PIC Provinsi"
+  bawaan:
+    status_metadata: "Tidak Tersedia"
+  tahun_terakhir_rentang: [1900, 2100]
+
+# Sheet sumber kepemilikan OPD. Tim PJK sengaja tetap dari master supaya
+# domain nilainya tidak berubah.
+pemilik:
+  sheet: "ISV IUP Kaltara 2026"
+  identitas: nomor_saja
+  baris:
+    awal: 3
+    akhir: 200
+  kolom_nomor: 1
+  kolom_nama: 2
+  kolom_opd: 3
+
+# Sumber nilai, urut prioritas menurun. Sumber berikutnya hanya mengisi
+# kombinasi (indikator, tahun, jenis) yang masih kosong.
+nilai:
+  - sheet: "Rakor ISV IUP Kaltara 202607"
+    identitas: kategori_nomor
+    baris:
+      awal: 3
+      akhir: 164
+    kolom_kategori: 1
+    kolom_nomor: 2
+    # Kategori dan nomor memakai merged cell, jadi nilainya diteruskan ke
+    # baris di bawahnya sampai bertemu nilai baru.
+    teruskan_identitas: true
+    kolom_jenis: 4
+    blok:
+      - jenis: dari_kolom
+        kolom_awal: 5
+        kolom_akhir: 13
+        tahun_awal: 2021
+      - jenis: dari_kolom
+        kolom: 14
+        tahun: 2045
+        # Horizon 2045 hanya berlaku untuk target, bukan realisasi.
+        hanya_jenis: target
+
+  - sheet: "Rakor ISV IUP Kaltara 2026"
+    identitas: kategori_nomor
+    baris:
+      awal: 3
+      akhir: 199
+    kolom_kategori: 1
+    kolom_nomor: 2
+    teruskan_identitas: false
+    blok:
+      - jenis: realisasi
+        kolom_awal: 6
+        kolom_akhir: 10
+        tahun_awal: 2021
+      - jenis: target
+        kolom_awal: 11
+        kolom_akhir: 15
+        tahun_awal: 2025
+
+  - sheet: "ISV IUP Kaltara 2026"
+    identitas: nomor_saja
+    baris:
+      awal: 3
+      akhir: 200
+    kolom_nomor: 1
+    kolom_nama: 2
+    blok:
+      - jenis: realisasi
+        kolom_awal: 5
+        kolom_akhir: 10
+        tahun_awal: 2021
+
+  - sheet: "ISV IUP Kaltara"
+    identitas: nomor_saja
+    baris:
+      awal: 3
+      akhir: 200
+    kolom_nomor: 1
+    kolom_nama: 2
+    blok:
+      - jenis: realisasi
+        kolom_awal: 3
+        kolom_akhir: 7
+        tahun_awal: 2021
+      - jenis: target
+        kolom_awal: 8
+        kolom_akhir: 12
+        tahun_awal: 2025
+
+# Sheet yang diperiksa `src.etl.audit`; sama dengan yang dipakai pipeline agar
+# audit dan pipeline tidak menyimpang.
+audit:
+  sheet:
+    - "form provinsi"
+    - "ISV IUP Kaltara"
+    - "ISV IUP Kaltara 2026"
+    - "Rakor ISV IUP Kaltara 2026"
+    - "Rakor ISV IUP Kaltara 202607"
+  tahun_valid: [2020, 2050]
