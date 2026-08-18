@@ -7,12 +7,6 @@ kesamaan daftar makro antara beranda dan Insight.
 
 from __future__ import annotations
 
-from fastapi.testclient import TestClient
-
-from backend.app.main import app
-
-client = TestClient(app)
-
 SOROTAN = [
     "PDRB per Kapita (Rp Juta)",
     "Tingkat inflasi",
@@ -22,7 +16,7 @@ SOROTAN = [
 ]
 
 
-def test_beranda_menampilkan_sorotan_lebih_dulu_lalu_seluruh_makro():
+def test_beranda_menampilkan_sorotan_lebih_dulu_lalu_seluruh_makro(client):
     payload = client.get("/api/v1/beranda").json()
     makro = payload["indikator_makro"]
     # Lima sorotan tampil lebih dulu, sisanya menyusul dari klasifikasi
@@ -33,7 +27,7 @@ def test_beranda_menampilkan_sorotan_lebih_dulu_lalu_seluruh_makro():
     assert len({item["id_indikator"] for item in makro}) == len(makro)
 
 
-def test_insight_memakai_daftar_makro_yang_sama_dengan_beranda():
+def test_insight_memakai_daftar_makro_yang_sama_dengan_beranda(client):
     beranda = client.get("/api/v1/beranda").json()["indikator_makro"]
     insight = client.get("/api/v1/insight").json()
     # Pemilih kartu Insight memuat seluruh indikator makro, sejumlah yang sama

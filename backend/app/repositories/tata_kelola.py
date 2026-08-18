@@ -216,3 +216,8 @@ def catat_unggahan(session: Session, **kolom: Any) -> UnggahanExcel:
     session.add(unggahan)
     session.flush()
     return unggahan
+
+
+def ambil_pengusul(session: Session, pengguna_id: int | None) -> Pengguna | None:
+    """Akun pengusul sebuah usulan, untuk menampilkan nama pembaru data."""
+    return session.get(Pengguna, pengguna_id) if pengguna_id else None

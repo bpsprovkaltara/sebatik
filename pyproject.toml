@@ -37,8 +37,6 @@ disallow_untyped_defs = true
 # yang menulis ulangnya selesai (lihat docs/refactoring/peta-jalan.md).
 [[tool.mypy.overrides]]
 module = [
-    "backend.app.features_api",   # Fase 3 — dipecah ke routers/services
-    "backend.app.master_seed",    # Fase 8 — dihapus setelah Alembic + seed CLI
     "src.etl.audit",              # Fase 5 — ditulis ulang data-driven
     "src.etl.pipeline",           # Fase 5 — ditulis ulang data-driven
 ]
@@ -55,9 +53,6 @@ filterwarnings = ["ignore::DeprecationWarning"]
 # tiap berkas dikeluarkan dari daftar ini ketika fase yang menulis ulangnya
 # selesai (lihat docs/refactoring/peta-jalan.md).
 exclude = [
-    "backend/app/features_api.py",   # Fase 3 — dipecah ke routers/services
-    "backend/app/main.py",           # Fase 3 — menjadi factory create_app()
-    "backend/app/master_seed.py",    # Fase 8 — dihapus setelah Alembic + seed CLI
     "src/etl/*.py",                  # Fase 5 — ditulis ulang data-driven
     "scripts/generate_system_diagrams.py",
     "scripts/seed_master_dashboard.py",

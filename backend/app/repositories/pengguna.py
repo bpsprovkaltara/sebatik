@@ -18,7 +18,8 @@ from ..models import Pengguna, Wilayah
 class ProfilPengguna(NamedTuple):
     """Bentuk aman untuk dikirim ke klien — tanpa hash kata sandi."""
 
-    id: int
+    # None hanya untuk profil tamu (lihat deps.TAMU); akun nyata selalu punya id.
+    id: int | None
     username: str
     nama: str
     peran: str

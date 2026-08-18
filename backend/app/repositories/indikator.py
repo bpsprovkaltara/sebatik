@@ -137,6 +137,16 @@ def id_berklasifikasi(session: Session, kolom: str) -> list[str]:
     return list(session.scalars(stmt))
 
 
+def daftar_arah_terverifikasi(session: Session) -> list[Indikator]:
+    """Indikator yang arah baiknya sudah dikonfirmasi admin.
+
+    Hanya indikator ini yang boleh masuk peringkat: tanpa arah yang pasti,
+    "membaik" dan "memburuk" tidak dapat dibedakan.
+    """
+    stmt = select(Indikator).where(Indikator.arah_baik_terverifikasi.is_(True))
+    return list(session.scalars(stmt))
+
+
 def ambil_metadata(session: Session, id_indikator: str) -> MetadataIndikator | None:
     return session.get(MetadataIndikator, id_indikator)
 

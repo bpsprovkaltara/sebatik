@@ -16,7 +16,7 @@ from datetime import UTC, datetime
 from sqlalchemy import Select, func, select
 from sqlalchemy.orm import Session
 
-from ..models import JenisNilai, NilaiIndikator, StatusVerifikasi
+from ..models import KODE_PROVINSI, Indikator, JenisNilai, NilaiIndikator, StatusVerifikasi
 
 
 def _disetujui(stmt: Select) -> Select:
@@ -232,3 +232,17 @@ def upsert(
     baris.status_verifikasi = status_verifikasi
     baris.diverifikasi_pada = diverifikasi_pada or datetime.now(UTC)
     return baris, nilai_lama
+
+
+def semua_nilai_provinsi(session: Session) -> list[NilaiIndikator]:
+    """Seluruh nilai tahunan provinsi — dipakai penyusunan diff unggahan massal."""
+    stmt = select(NilaiIndikator).where(
+        NilaiIndikator.wilayah_kode == KODE_PROVINSI,
+        NilaiIndikator.periode.is_(None),
+    )
+    return list(session.scalars(stmt))
+
+
+def semua_indikator_ringkas(session: Session) -> list[Indikator]:
+    """Dimensi indikator seadanya, tanpa filter verifikasi (untuk diff)."""
+    return list(session.scalars(select(Indikator)))

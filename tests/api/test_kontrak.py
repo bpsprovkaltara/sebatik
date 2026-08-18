@@ -9,45 +9,41 @@ yang dipakai frontend.
 from __future__ import annotations
 
 import pytest
-from fastapi.testclient import TestClient
-
-from backend.app.main import app
-
-client = TestClient(app)
 
 KODE_PROVINSI = "65"
 INDIKATOR_MASTER = "ISV-001"
-INDIKATOR_LEGACY = "ISV-04"
+# Setelah konsolidasi hanya ada satu skema ID; endpoint analitik memakai yang sama.
+INDIKATOR_LEGACY = "ISV-004"
 
 
-def _json(path: str, **kwargs):
-    response = client.get(path, **kwargs)
-    assert response.status_code == 200, f"{path} -> {response.status_code}"
-    return response.json()
+@pytest.fixture
+def _json(client):
+    def ambil(path: str, **kwargs):
+        response = client.get(path, **kwargs)
+        assert response.status_code == 200, f"{path} -> {response.status_code}"
+        return response.json()
+
+    return ambil
 
 
-def _token_admin() -> str:
+@pytest.fixture(scope="session")
+def auth(client) -> dict[str, str]:
     response = client.post(
         "/api/v1/auth/login",
         data={"username": "admin", "password": "Sebatik-Ganti-Segera-2026!"},
     )
     assert response.status_code == 200, "akun seed admin harus ada untuk tes kontrak"
-    return response.json()["access_token"]
-
-
-@pytest.fixture(scope="module")
-def auth() -> dict[str, str]:
-    return {"Authorization": f"Bearer {_token_admin()}"}
+    return {"Authorization": f"Bearer {response.json()['access_token']}"}
 
 
 # --- endpoint publik -------------------------------------------------------
 
 
-def test_health():
+def test_health(_json, client):
     assert _json("/api/v1/health") == {"status": "ok"}
 
 
-def test_indikator_paginasi():
+def test_indikator_paginasi(_json, client):
     body = _json("/api/v1/indikator?page_size=2")
     assert {"data", "total", "page", "page_size"} <= body.keys()
     assert isinstance(body["total"], int)
@@ -67,7 +63,7 @@ def test_indikator_paginasi():
     } == baris.keys()
 
 
-def test_beranda_provinsi():
+def test_beranda_provinsi(_json, client):
     body = _json("/api/v1/beranda")
     assert {
         "tahun",
@@ -104,31 +100,30 @@ def test_beranda_provinsi():
     assert [item["jumlah_kelompok"] for item in body["ketersediaan_kelompok"]] == [5, 8, 17, 45]
 
 
-@pytest.mark.xfail(
-    strict=True,
-    reason="Bug model data ganda: beranda_nilai_wilayah tidak punya kolom "
-    "satuan_catatan sehingga /beranda untuk kab/kota gagal 500. "
-    "Hilang setelah konsolidasi ke satu tabel nilai_indikator (Fase 4).",
-)
-def test_beranda_wilayah_kabupaten():
-    """Beranda harus melayani wilayah kab/kota, bukan hanya provinsi."""
+def test_beranda_wilayah_kabupaten(_json, client):
+    """Beranda harus melayani wilayah kab/kota, bukan hanya provinsi.
+
+    Sebelum konsolidasi endpoint ini selalu 500 karena `beranda_nilai_wilayah`
+    tidak punya kolom `satuan_catatan`. Satu tabel fakta menghapus seluruh
+    kelas bug itu.
+    """
     body = _json("/api/v1/beranda?wilayah_kode=6501")
     assert body["wilayah_kode"] == "6501"
     assert {"indikator_makro", "sasaran_visi", "ketersediaan_kelompok"} <= body.keys()
 
 
-def test_beranda_menolak_wilayah_asing():
+def test_beranda_menolak_wilayah_asing(_json, client):
     assert client.get("/api/v1/beranda?wilayah_kode=9999").status_code == 422
 
 
-def test_indikator_explorer():
+def test_indikator_explorer(_json, client):
     body = _json("/api/v1/indikator-explorer")
     assert {"data", "total_indikator", "status_data"} <= body.keys()
     grup = body["data"][0]
     assert {"kelompok", "jumlah", "indikator"} == grup.keys()
 
 
-def test_indikator_explorer_detail():
+def test_indikator_explorer_detail(_json, client):
     body = _json(f"/api/v1/indikator-explorer/{INDIKATOR_MASTER}")
     assert {
         "id_indikator",
@@ -145,12 +140,12 @@ def test_indikator_explorer_detail():
     assert {"kode", "nama", "tingkat", "nilai", "status"} <= body["wilayah"][0].keys()
 
 
-def test_capaian_explorer():
+def test_capaian_explorer(_json, client):
     body = _json("/api/v1/capaian-explorer")
     assert {"indikator", "kelompok", "wilayah", "status_data"} <= body.keys()
 
 
-def test_capaian_explorer_detail():
+def test_capaian_explorer_detail(_json, client):
     body = _json(f"/api/v1/capaian-explorer/{INDIKATOR_MASTER}")
     assert {
         "id_indikator",
@@ -175,7 +170,7 @@ def test_capaian_explorer_detail():
             assert 0 <= nilai <= 100
 
 
-def test_insight():
+def test_insight(_json, client):
     body = _json("/api/v1/insight")
     assert {
         "tahun_sistem",
@@ -190,7 +185,7 @@ def test_insight():
     assert body["indikator_aktif"]["id_indikator"] == body["indikator_makro"][0]["id_indikator"]
 
 
-def test_validitas():
+def test_validitas(_json, client):
     body = _json("/api/v1/validitas")
     assert {"wilayah", "wilayah_opsi", "data", "total", "status_data"} <= body.keys()
     baris = body["data"][0]
@@ -213,18 +208,18 @@ def test_validitas():
     } == baris.keys()
 
 
-def test_metadata_indikator_master():
+def test_metadata_indikator_master(_json, client):
     body = _json(f"/api/v1/beranda-indikator/{INDIKATOR_MASTER}/metadata")
     assert {"id_indikator", "metadata", "metadata_tersedia", "nilai"} <= body.keys()
 
 
-def test_wilayah():
+def test_wilayah(_json, client):
     body = _json("/api/v1/wilayah")
     assert {"kode", "nama", "tingkat", "parent_kode"} == body["data"][0].keys()
     assert any(item["kode"] == KODE_PROVINSI for item in body["data"])
 
 
-def test_capaian():
+def test_capaian(_json, client):
     body = _json("/api/v1/capaian")
     assert {"data", "total", "arah_bersifat_sementara"} <= body.keys()
     baris = body["data"][0]
@@ -240,7 +235,7 @@ def test_capaian():
     } <= baris.keys()
 
 
-def test_capaian_tanpa_data_bukan_nol():
+def test_capaian_tanpa_data_bukan_nol(_json, client):
     """Indikator tanpa realisasi tidak boleh dilaporkan sebagai capaian 0%."""
     data = _json("/api/v1/capaian")["data"]
     kosong = [row for row in data if row["nilai_terakhir"] is None]
@@ -249,12 +244,12 @@ def test_capaian_tanpa_data_bukan_nol():
     assert all(row["persentase_capaian"] is None for row in kosong)
 
 
-def test_detail_indikator_legacy():
+def test_detail_indikator_legacy(_json, client):
     body = _json(f"/api/v1/indikator/{INDIKATOR_LEGACY}/detail")
     assert {"nilai", "metadata", "status_capaian", "arah_baik"} <= body.keys()
 
 
-def test_analitik():
+def test_analitik(_json, client):
     selisih = _json(f"/api/v1/analitik/selisih/{INDIKATOR_LEGACY}")
     assert {"id_indikator", "arah_baik", "data"} == selisih.keys()
 
@@ -264,16 +259,16 @@ def test_analitik():
     gap = _json(f"/api/v1/analitik/gap/{INDIKATOR_LEGACY}")
     assert "disclaimer" in gap
 
-    multi = _json("/api/v1/analitik/multi?ids=ISV-04&ids=ISV-05")
+    multi = _json(f"/api/v1/analitik/multi?ids={INDIKATOR_LEGACY}&ids=ISV-005")
     assert {"id_indikator", "nama", "seri"} == multi["data"][0].keys()
 
-    korelasi = _json("/api/v1/analitik/korelasi?x=ISV-01&y=ISV-02")
+    korelasi = _json("/api/v1/analitik/korelasi?x=ISV-001&y=ISV-002")
     assert {"n", "pearson", "data", "peringatan"} == korelasi.keys()
     if korelasi["n"] < 4:
         assert korelasi["pearson"] is None
 
 
-def test_analitik_multi_dibatasi_empat():
+def test_analitik_multi_dibatasi_empat(_json, client):
     assert client.get("/api/v1/analitik/multi?ids=a&ids=b&ids=c&ids=d&ids=e").status_code == 422
 
 
@@ -289,7 +284,7 @@ def test_analitik_multi_dibatasi_empat():
         ("/api/v1/download/paket.zip", b"PK"),
     ],
 )
-def test_ekspor(path: str, prefix: bytes):
+def test_ekspor(client, path: str, prefix: bytes):
     response = client.get(path)
     assert response.status_code == 200
     assert response.content.startswith(prefix)
@@ -299,7 +294,7 @@ def test_ekspor(path: str, prefix: bytes):
 # --- autentikasi & admin ---------------------------------------------------
 
 
-def test_login_dan_profil(auth):
+def test_login_dan_profil(_json, client, auth):
     body = client.post(
         "/api/v1/auth/login",
         data={"username": "admin", "password": "Sebatik-Ganti-Segera-2026!"},
@@ -312,16 +307,16 @@ def test_login_dan_profil(auth):
     assert "password_hash" not in saya
 
 
-def test_login_salah_401():
+def test_login_salah_401(_json, client):
     response = client.post("/api/v1/auth/login", data={"username": "admin", "password": "salah-sekali-1234"})
     assert response.status_code == 401
 
 
-def test_profil_tamu_tanpa_token():
+def test_profil_tamu_tanpa_token(_json, client):
     assert _json("/api/v1/auth/saya")["peran"] == "PENGUNJUNG"
 
 
-def test_admin_butuh_peran(auth):
+def test_admin_butuh_peran(_json, client, auth):
     assert client.get("/api/v1/admin/log").status_code == 403
     assert client.get("/api/v1/admin/pengguna").status_code == 403
     assert client.get("/api/v1/admin/log", headers=auth).status_code == 200
@@ -341,12 +336,12 @@ def test_admin_butuh_peran(auth):
     assert all("password_hash" not in row for row in pengguna["data"])
 
 
-def test_daftar_usulan(auth):
+def test_daftar_usulan(_json, client, auth):
     body = _json("/api/v1/admin/usulan", headers=auth)
     assert "data" in body
 
 
-def test_endpoint_ketersediaan_lama_sudah_hilang():
+def test_endpoint_ketersediaan_lama_sudah_hilang(_json, client):
     for path in (
         "/api/v1/ringkasan",
         "/api/v1/matriks-ketersediaan",
@@ -357,7 +352,7 @@ def test_endpoint_ketersediaan_lama_sudah_hilang():
         assert client.get(path).status_code == 404, path
 
 
-def test_indikator_publik_tanpa_data_pribadi():
+def test_indikator_publik_tanpa_data_pribadi(_json, client):
     baris = _json("/api/v1/indikator?page_size=1")["data"][0]
     for terlarang in ("nama_pic", "pic_provinsi", "status_ketersediaan"):
         assert terlarang not in baris
