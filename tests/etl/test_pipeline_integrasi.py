@@ -1,10 +1,9 @@
-from pathlib import Path
 import sqlite3
+from pathlib import Path
 
 import openpyxl
 
 from src.etl.pipeline import extract_values, run
-
 
 SOURCE = Path("data/raw/ISV-IUP_Provinsi_Kalimantan_Utara.xlsx")
 
@@ -15,7 +14,10 @@ def test_etl_file_asli_tanpa_id_ganda_atau_fakta_hilang(tmp_path):
     run(SOURCE, database, report)
     conn = sqlite3.connect(database)
     assert conn.execute("SELECT COUNT(*) FROM indikator").fetchone()[0] == 86
-    assert conn.execute("SELECT COUNT(*) FROM indikator").fetchone()[0] == conn.execute("SELECT COUNT(DISTINCT id_indikator) FROM indikator").fetchone()[0]
+    assert (
+        conn.execute("SELECT COUNT(*) FROM indikator").fetchone()[0]
+        == conn.execute("SELECT COUNT(DISTINCT id_indikator) FROM indikator").fetchone()[0]
+    )
 
     workbook = openpyxl.load_workbook(SOURCE, data_only=True)
     expected, _ = extract_values(workbook)

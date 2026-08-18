@@ -1,7 +1,6 @@
 import json
 import sqlite3
 
-
 db = sqlite3.connect("data/processed/sebatik.db")
 dimensions = [
     ("sasaran_visi", "Sasaran Visi", 5),

@@ -4,17 +4,16 @@ from __future__ import annotations
 
 import argparse
 import csv
-from dataclasses import dataclass
-from pathlib import Path
 import re
 import sqlite3
+from dataclasses import dataclass
+from pathlib import Path
 from typing import Any
 
 import openpyxl
 
 from .common import clean_text, enum_rpjmd, indicator_id, parse_angka
 from .units import indicator_unit
-
 
 VALUE_SOURCES = [
     "Rakor ISV IUP Kaltara 202607",
@@ -148,7 +147,7 @@ def extract_values(wb):
         iid = indicator_id(cat, num if (clean_text(cat) or "").upper() == "ISV" else (parse_angka(num) or 0) - 10)
         kind = (clean_text(ws.cell(r, 4).value) or "").casefold()
         if iid and kind in {"target", "realisasi"}:
-            for c, year in zip(range(5, 14), range(2021, 2030)):
+            for c, year in zip(range(5, 14), range(2021, 2030), strict=True):
                 add_value(store, stats, iid, year, kind, ws.cell(r, c).value, ws.title)
             if kind == "target":
                 add_value(store, stats, iid, 2045, kind, ws.cell(r, 14).value, ws.title)
@@ -158,21 +157,21 @@ def extract_values(wb):
         category, number = ws.cell(r,1).value, parse_angka(ws.cell(r,2).value)
         iid = indicator_id(category, number if (clean_text(category) or "").upper() == "ISV" else (number - 10 if number is not None else None))
         if not iid: continue
-        for c, year in zip(range(6,11), range(2021,2026)):
+        for c, year in zip(range(6,11), range(2021,2026), strict=True):
             add_value(store, stats, iid, year, "realisasi", ws.cell(r,c).value, ws.title)
-        for c, year in zip(range(11,16), range(2025,2030)):
+        for c, year in zip(range(11,16), range(2025,2030), strict=True):
             add_value(store, stats, iid, year, "target", ws.cell(r,c).value, ws.title)
     # Prioritas 3: realisasi 2026.
     ws = wb[VALUE_SOURCES[2]]
     for r, iid, _ in keyed_old_rows(ws):
-        for c, year in zip(range(5,11), range(2021,2027)):
+        for c, year in zip(range(5,11), range(2021,2027), strict=True):
             add_value(store, stats, iid, year, "realisasi", ws.cell(r,c).value, ws.title)
     # Prioritas 4: format lama.
     ws = wb[VALUE_SOURCES[3]]
     for r, iid, _ in keyed_old_rows(ws):
-        for c, year in zip(range(3,8), range(2021,2026)):
+        for c, year in zip(range(3,8), range(2021,2026), strict=True):
             add_value(store, stats, iid, year, "realisasi", ws.cell(r,c).value, ws.title)
-        for c, year in zip(range(8,13), range(2025,2030)):
+        for c, year in zip(range(8,13), range(2025,2030), strict=True):
             add_value(store, stats, iid, year, "target", ws.cell(r,c).value, ws.title)
     return list(store.values()), stats
 

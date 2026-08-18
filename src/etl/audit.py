@@ -3,14 +3,13 @@
 from __future__ import annotations
 
 import argparse
+import re
 from collections import Counter, defaultdict
 from pathlib import Path
-import re
 
 import openpyxl
 
 from .common import clean_text, indicator_id, parse_angka
-
 
 SHEETS = [
     "form provinsi", "ISV IUP Kaltara", "ISV IUP Kaltara 2026",

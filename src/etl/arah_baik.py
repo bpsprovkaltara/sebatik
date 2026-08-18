@@ -4,10 +4,9 @@ from __future__ import annotations
 
 import argparse
 import csv
-from pathlib import Path
 import re
 import sqlite3
-
+from pathlib import Path
 
 DOWN_PATTERNS = [
     (r"kemiskinan", "kemiskinan membaik ketika menurun"),

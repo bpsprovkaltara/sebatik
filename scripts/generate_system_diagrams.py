@@ -1,7 +1,8 @@
-from pathlib import Path
-from PIL import Image, ImageDraw, ImageFont
 import math
 import textwrap
+from pathlib import Path
+
+from PIL import Image, ImageDraw, ImageFont
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "docs" / "images" / "diagram-sistem"
@@ -107,7 +108,7 @@ def process_diagram():
         ("ADMIN", LIGHT_PURPLE, PURPLE),
     ]
     x0, gap, lane_w, top, bottom = 70, 24, 846, 185, 2160
-    for i, (name, bg, accent) in enumerate(lanes):
+    for i, (name, _bg, accent) in enumerate(lanes):
         x = x0+i*(lane_w+gap)
         d.rounded_rectangle((x, top, x+lane_w, bottom), 22, fill=WHITE, outline=BORDER, width=3)
         d.rounded_rectangle((x, top, x+lane_w, top+92), 22, fill=accent)
@@ -258,9 +259,9 @@ def database_diagram():
     indicator=table(105,310,1010,415,"indikator",[("PK","id_indikator"),("","kategori · nomor · nama_indikator"),("","kelompok · tim_pjk · satuan"),("","status_ketersediaan · status_metadata"),("","tahun_terakhir · is_proxy"),("","arah_baik · status_rpjmd")],BLUE)
     nilai=table(105,800,490,255,"nilai_indikator",[("PK/FK","id_indikator"),("PK","tahun · jenis"),("","nilai · sumber_sheet")],BLUE)
     meta=table(625,800,490,285,"metadata_indikator",[("PK/FK","id_indikator"),("","definisi · rumus"),("","interpretasi · sumber_data"),("","frekuensi · sumber_metadata")],BLUE)
-    pic=table(105,1160,490,240,"penugasan_pic",[("PK","id"),("FK","id_indikator"),("","jenis_pic · nama_pic")],BLUE)
-    snap=table(625,1160,490,240,"snapshot_ketersediaan",[("PK/FK","id_indikator"),("PK","tanggal_snapshot"),("","status")],BLUE)
-    logchg=table(105,1510,1010,350,"log_perubahan",[("PK","id"),("FK","pengguna_id"),("FK","id_indikator"),("","field · nilai_lama · nilai_baru"),("","sumber_perubahan · referensi_id")],BLUE)
+    table(105,1160,490,240,"penugasan_pic",[("PK","id"),("FK","id_indikator"),("","jenis_pic · nama_pic")],BLUE)
+    table(625,1160,490,240,"snapshot_ketersediaan",[("PK/FK","id_indikator"),("PK","tanggal_snapshot"),("","status")],BLUE)
+    table(105,1510,1010,350,"log_perubahan",[("PK","id"),("FK","pengguna_id"),("FK","id_indikator"),("","field · nilai_lama · nilai_baru"),("","sumber_perubahan · referensi_id")],BLUE)
 
     # Governance
     wilayah=table(1245,310,540,275,"wilayah",[("PK","kode"),("FK","parent_kode (hierarki)"),("","nama · tingkat · aktif")],GREEN)
@@ -268,8 +269,8 @@ def database_diagram():
     usulan=table(1320,770,1000,450,"usulan_nilai",[("PK","id"),("FK","id_indikator · wilayah_kode"),("FK","pengusul_id · verifikator_id"),("","tahun · jenis · nilai · sumber"),("","status · alasan_verifikasi"),("","dibuat_pada · diverifikasi_pada")],GREEN)
     bukti=table(1245,1360,540,300,"bukti_dukung",[("PK","id"),("FK","usulan_id"),("","nama_file · path_file"),("","mime_type · ukuran · checksum")],GREEN)
     regional=table(1855,1360,540,350,"nilai_indikator_wilayah",[("PK/FK","id_indikator · wilayah_kode"),("PK","tahun · jenis"),("FK","usulan_id"),("","nilai · sumber"),("","diverifikasi_pada")],GREEN)
-    upload=table(1245,1830,540,320,"unggahan_excel",[("PK","id"),("FK","pengguna_id"),("","nama_file · path_arsip"),("","checksum · status"),("","ringkasan_diff")],GREEN)
-    activity=table(1855,1830,540,300,"log_aktivitas",[("PK","id"),("FK","pengguna_id"),("","aksi · objek_tipe · objek_id"),("","detail · waktu")],GREEN)
+    table(1245,1830,540,320,"unggahan_excel",[("PK","id"),("FK","pengguna_id"),("","nama_file · path_arsip"),("","checksum · status"),("","ringkasan_diff")],GREEN)
+    table(1855,1830,540,300,"log_aktivitas",[("PK","id"),("FK","pengguna_id"),("","aksi · objek_tipe · objek_id"),("","detail · waktu")],GREEN)
 
     # Public tables
     bi=table(2535,310,960,380,"beranda_indikator",[("PK","id_indikator"),("","kode · nama · kategori"),("","kelompok · satuan · opd_pengampu"),("","status_ketersediaan"),("","status_verifikasi · diverifikasi_pada")],ORANGE)

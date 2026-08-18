@@ -1,7 +1,7 @@
 """Load the verified initial dashboard snapshot from the audited workbook extract."""
 
-from pathlib import Path
 import sqlite3
+from pathlib import Path
 
 from backend.app.master_seed import seed_verified_master
 

@@ -1,10 +1,15 @@
 from __future__ import annotations
 
-from collections import defaultdict
-from datetime import date, datetime, timedelta, timezone
+import csv
+import json
+import math
+import re
+import sqlite3
+import uuid
+import zipfile
+from datetime import UTC, date, datetime, timedelta
 from hashlib import sha256
 from io import BytesIO, StringIO
-import csv, json, math, os, re, shutil, sqlite3, tempfile, uuid, zipfile
 from pathlib import Path
 
 import jwt
@@ -18,16 +23,17 @@ from reportlab.pdfgen import canvas
 from sqlalchemy import text
 from sqlalchemy.orm import Session
 
-from .database import DEFAULT_DB, get_db
 from src.etl.pipeline import run as run_etl
 
+from .config import settings
+from .database import DEFAULT_DB, get_db
 
 router = APIRouter(prefix="/api/v1")
 oauth2 = OAuth2PasswordBearer(tokenUrl="/api/v1/auth/login", auto_error=False)
 password_hash = PasswordHash.recommended()
-SECRET = os.getenv("SEBATIK_SECRET_KEY", "GANTI-SECRET-INI-SEBELUM-PRODUKSI-SEBATIK")
-ARCHIVE_DIR = Path(os.getenv("SEBATIK_ARCHIVE_DIR", DEFAULT_DB.parent / "arsip-unggahan"))
-EVIDENCE_DIR = Path(os.getenv("SEBATIK_EVIDENCE_DIR", DEFAULT_DB.parent / "bukti-dukung"))
+SECRET = settings.secret_key
+ARCHIVE_DIR = Path(settings.archive_dir)
+EVIDENCE_DIR = Path(settings.evidence_dir)
 
 # Lima indikator sorotan beranda. Sejak kartu makro berjalan sebagai korsel,
 # daftar ini tidak lagi membatasi apa yang tampil — ia hanya menentukan urutan
@@ -57,7 +63,7 @@ def one(db, sql, params=None):
 def current_user(token: str | None=Depends(oauth2), db: Session=Depends(get_db)):
     if not token: return {"id":None,"username":"pengunjung","nama":"Pengunjung","peran":"PENGUNJUNG","tim_pjk":None,"wilayah_kode":None}
     try: payload=jwt.decode(token,SECRET,algorithms=["HS256"])
-    except jwt.PyJWTError: raise HTTPException(401,"Token tidak valid")
+    except jwt.PyJWTError as exc: raise HTTPException(401,"Token tidak valid") from exc
     user=one(db,"SELECT id,username,nama,peran,tim_pjk,wilayah_kode,harus_ganti_password FROM pengguna WHERE id=:id AND aktif=1",{"id":int(payload["sub"])})
     if not user: raise HTTPException(401,"Pengguna tidak aktif")
     return user
@@ -334,7 +340,7 @@ def indicator_payload(db, ind, wilayah_kode=None):
 def login(form: OAuth2PasswordRequestForm=Depends(), db: Session=Depends(get_db)):
     user=one(db,"SELECT * FROM pengguna WHERE username=:u AND aktif=1",{"u":form.username})
     if not user or not password_hash.verify(form.password,user["password_hash"]): raise HTTPException(401,"Username atau kata sandi salah")
-    token=jwt.encode({"sub":str(user["id"]),"exp":datetime.now(timezone.utc)+timedelta(hours=8)},SECRET,algorithm="HS256")
+    token=jwt.encode({"sub":str(user["id"]),"exp":datetime.now(UTC)+timedelta(hours=settings.access_token_ttl_hours)},SECRET,algorithm="HS256")
     return {"access_token":token,"token_type":"bearer","peran":user["peran"],"harus_ganti_password":bool(user["harus_ganti_password"])}
 
 
@@ -356,7 +362,7 @@ def create_user(username:str=Form(...),nama:str=Form(...),password:str=Form(...)
     if peran=="VERIFIKATOR" and wilayah_kode!="65":raise HTTPException(422,"Verifikator hanya dapat ditempatkan pada Provinsi Kalimantan Utara")
     if len(password)<12:raise HTTPException(422,"Kata sandi minimal 12 karakter")
     try:db.execute(text("INSERT INTO pengguna(username,nama,password_hash,peran,tim_pjk,wilayah_kode,harus_ganti_password) VALUES (:u,:n,:p,:r,:t,:w,1)"),{"u":username,"n":nama,"p":password_hash.hash(password),"r":peran,"t":tim_pjk,"w":wilayah_kode});db.commit()
-    except Exception:db.rollback();raise HTTPException(409,"Username sudah digunakan")
+    except Exception as exc:db.rollback();raise HTTPException(409,"Username sudah digunakan") from exc
     return {"status":"DIBUAT","username":username}
 
 
@@ -431,7 +437,7 @@ def yearly_change(indicator_id:str,db:Session=Depends(get_db)):
     ind=one(db,"SELECT arah_baik,arah_baik_terverifikasi FROM indikator WHERE id_indikator=:id",{"id":indicator_id})
     vals=rows(db,"SELECT tahun,nilai FROM nilai_indikator WHERE id_indikator=:id AND jenis='realisasi' AND nilai IS NOT NULL ORDER BY tahun",{"id":indicator_id})
     data=[]
-    for a,b in zip(vals,vals[1:]):
+    for a,b in zip(vals,vals[1:],strict=False):
         diff=b["nilai"]-a["nilai"]; improvement=diff if ind and ind["arah_baik"]=="NAIK" else -diff
         data.append({"tahun":b["tahun"],"selisih":diff,"membaik":improvement>=0})
     return {"id_indikator":indicator_id,"arah_baik":ind["arah_baik"] if ind else None,"data":data}
@@ -473,7 +479,7 @@ def multi(ids:list[str]=Query(...),db:Session=Depends(get_db)):
 def correlation(x:str,y:str,db:Session=Depends(get_db)):
     xv={r["tahun"]:r["nilai"] for r in rows(db,"SELECT tahun,nilai FROM nilai_indikator WHERE id_indikator=:id AND jenis='realisasi' AND nilai IS NOT NULL",{"id":x})};yv={r["tahun"]:r["nilai"] for r in rows(db,"SELECT tahun,nilai FROM nilai_indikator WHERE id_indikator=:id AND jenis='realisasi' AND nilai IS NOT NULL",{"id":y})};years=sorted(set(xv)&set(yv));points=[{"tahun":t,"x":xv[t],"y":yv[t]} for t in years]
     if len(points)<4:return {"n":len(points),"pearson":None,"data":points,"peringatan":"Hasil disembunyikan karena n < 4. Korelasi bukan sebab-akibat; seri pendek tidak layak ditafsirkan."}
-    xs=[p["x"] for p in points];ys=[p["y"] for p in points];mx=sum(xs)/len(xs);my=sum(ys)/len(ys);den=math.sqrt(sum((a-mx)**2 for a in xs)*sum((b-my)**2 for b in ys));pearson=sum((a-mx)*(b-my) for a,b in zip(xs,ys))/den if den else None
+    xs=[p["x"] for p in points];ys=[p["y"] for p in points];mx=sum(xs)/len(xs);my=sum(ys)/len(ys);den=math.sqrt(sum((a-mx)**2 for a in xs)*sum((b-my)**2 for b in ys));pearson=sum((a-mx)*(b-my) for a,b in zip(xs,ys,strict=True))/den if den else None
     return {"n":len(points),"pearson":round(pearson,4) if pearson is not None else None,"data":points,"peringatan":"Korelasi bukan sebab-akibat; seri tahunan pendek harus ditafsirkan dengan sangat hati-hati."}
 
 
@@ -491,7 +497,7 @@ async def submit_value(id_indikator:str=Form(...),tahun:int=Form(...),jenis:str=
     for upload in attachments:
         content=await upload.read()
         if upload.content_type not in allowed: raise HTTPException(422,f"Format bukti tidak didukung: {upload.filename}")
-        if len(content)>10*1024*1024: raise HTTPException(413,f"Bukti melebihi 10 MB: {upload.filename}")
+        if len(content)>settings.max_bukti_bytes: raise HTTPException(413,f"Bukti melebihi 10 MB: {upload.filename}")
         prepared.append((upload,content))
     if periode not in (None,1,2): raise HTTPException(422,"Periode semester harus 1 atau 2")
     result=db.execute(text("INSERT INTO usulan_nilai(id_indikator,tahun,jenis,nilai,periode,sumber,catatan,pengusul_id,wilayah_kode,dikirim_pada) VALUES (:i,:t,:j,:n,:p,:s,:c,:u,:w,CURRENT_TIMESTAMP) RETURNING id"),{"i":id_indikator,"t":tahun,"j":jenis,"n":nilai,"p":periode,"s":sumber,"c":catatan,"u":user["id"],"w":scope})
@@ -576,8 +582,8 @@ def audit_log(user=Depends(require("ADMIN")),db:Session=Depends(get_db)):return 
 @router.post("/admin/unggah/pratinjau")
 async def preview_upload(file:UploadFile=File(...),user=Depends(require("ADMIN")),db:Session=Depends(get_db)):
     if not file.filename.lower().endswith('.xlsx'):raise HTTPException(422,"Hanya file .xlsx")
-    content=await file.read();
-    if len(content)>30*1024*1024:raise HTTPException(413,"File melebihi 30 MB")
+    content=await file.read()
+    if len(content)>settings.max_unggah_bytes:raise HTTPException(413,"File melebihi 30 MB")
     ARCHIVE_DIR.mkdir(parents=True,exist_ok=True);uid=str(uuid.uuid4());archive=ARCHIVE_DIR/f"{datetime.now():%Y%m%d-%H%M%S}-{uid}.xlsx";archive.write_bytes(content)
     try:
         wb=load_workbook(archive,read_only=True);required={'form provinsi','ISV IUP Kaltara','ISV IUP Kaltara 2026','Rakor ISV IUP Kaltara 2026','Rakor ISV IUP Kaltara 202607'}
@@ -591,7 +597,7 @@ async def preview_upload(file:UploadFile=File(...),user=Depends(require("ADMIN")
         staged.close();current.close()
         result=db.execute(text("INSERT INTO unggahan_excel(nama_file_asli,path_arsip,checksum_sha256,status,ringkasan_diff,pengguna_id) VALUES (:n,:p,:h,'MENUNGGU_PERSETUJUAN',:d,:u) RETURNING id"),{"n":file.filename,"p":str(archive),"h":sha256(content).hexdigest(),"d":json.dumps(diff),"u":user["id"]}).scalar_one();db.commit();return {"id":result,"diff":diff}
     except HTTPException:raise
-    except Exception as exc:raise HTTPException(422,f"ETL pratinjau gagal: {exc}")
+    except Exception as exc:raise HTTPException(422,f"ETL pratinjau gagal: {exc}") from exc
 
 
 @router.post("/admin/unggah/{upload_id}/setujui")

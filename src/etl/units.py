@@ -40,7 +40,7 @@ IUP_IDS = [
 
 INDICATOR_UNITS = {
     **{f"ISV-{number:03d}": unit for number, unit in enumerate(ISV_UNITS, 1)},
-    **{f"IUP-{number:03d}": unit for number, unit in zip(IUP_IDS, IUP_UNITS)},
+    **{f"IUP-{number:03d}": unit for number, unit in zip(IUP_IDS, IUP_UNITS, strict=True)},
 }
 
 

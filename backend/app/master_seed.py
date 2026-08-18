@@ -2,10 +2,10 @@ from __future__ import annotations
 
 import json
 import sqlite3
+from contextlib import suppress
 from pathlib import Path
 
 from src.etl.units import indicator_unit
-
 
 SOURCE_JSON = Path(__file__).resolve().parents[2] / "data" / "raw" / "basis_data_indikator_isv_iup_kaltara.json"
 
@@ -68,7 +68,7 @@ def _records(rows: list[list]) -> list[dict]:
     if not rows:
         return []
     headers = [str(value or "").strip() for value in rows[0]]
-    return [dict(zip(headers, row)) for row in rows[1:] if row and row[0]]
+    return [dict(zip(headers, row, strict=False)) for row in rows[1:] if row and row[0]]
 
 
 def _key(value) -> str:
@@ -190,8 +190,8 @@ def seed_verified_master(db_path: Path) -> None:
         period_values=[]
         if kind == "realisasi" and text_value and ";" in text_value:
             for period,part in enumerate(text_value.split(";"),1):
-                try: period_values.append((period,float(part.strip().replace(",","."))))
-                except ValueError: pass
+                # Bagian non-numerik (mis. "n/a") dilewati, bukan menggagalkan seluruh baris.
+                with suppress(ValueError): period_values.append((period,float(part.strip().replace(",","."))))
             if period_values: numeric=period_values[-1][1]
         conn.execute(
             """INSERT INTO beranda_nilai

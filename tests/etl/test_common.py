@@ -1,8 +1,8 @@
 import unittest
 
 from src.etl.common import clean_text, enum_rpjmd, indicator_id, parse_angka
-from src.etl.pipeline import extract_unit
 from src.etl.metadata_pdf import normalize_labels, score_names
+from src.etl.pipeline import extract_unit
 
 
 class CommonTests(unittest.TestCase):
@@ -30,7 +30,9 @@ class CommonTests(unittest.TestCase):
 
     def test_pdf_label_and_fuzzy_name(self):
         self.assertIn("Nama Indikator Rasio Gini", normalize_labels("Nama Rasio Gini\nIndikator"))
-        self.assertGreaterEqual(score_names("Kontribusi PDRB Provinsi (%)", "Kontribusi Produk Domestik Regional Bruto Provinsi (%)"), 85)
+        self.assertGreaterEqual(
+            score_names("Kontribusi PDRB Provinsi (%)", "Kontribusi Produk Domestik Regional Bruto Provinsi (%)"), 85
+        )
 
 
 if __name__ == "__main__":

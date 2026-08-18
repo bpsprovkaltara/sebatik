@@ -4,16 +4,15 @@ from __future__ import annotations
 
 import argparse
 import csv
-from dataclasses import dataclass
-from pathlib import Path
 import re
 import sqlite3
+from dataclasses import dataclass
+from pathlib import Path
 
 import pdfplumber
 from rapidfuzz import fuzz, process
 
 from .common import clean_text
-
 
 LABELS = ["Definisi", "Rumus Perhitungan", "Interpretasi", "Sumber Data", "Frekuensi"]
 
@@ -47,6 +46,23 @@ def clean_field(value: str | None) -> str | None:
     return clean_text(value)
 
 
+def label_positions(chunk: str) -> dict[str, tuple[int, int]]:
+    """Posisi awal/akhir setiap label kartu di dalam satu potongan teks."""
+    positions = {}
+    for label in LABELS:
+        found = re.search(rf"\b{re.escape(label)}\b", chunk, flags=re.I)
+        if found: positions[label] = (found.start(), found.end())
+    return positions
+
+
+def field_value(chunk: str, positions: dict[str, tuple[int, int]], label: str) -> str | None:
+    """Isi satu label: dari akhir posisi labelnya sampai label berikutnya."""
+    if label not in positions: return None
+    begin = positions[label][1]
+    following = [awal for awal, _ in positions.values() if awal > begin]
+    return clean_field(chunk[begin:min(following) if following else len(chunk)])
+
+
 def parse_cards(page_texts: list[tuple[int, str]]) -> list[Card]:
     joined = "\n".join(f"[[PAGE:{page}]]\n{text}" for page, text in page_texts)
     joined = normalize_labels(joined)
@@ -63,16 +79,16 @@ def parse_cards(page_texts: list[tuple[int, str]]) -> list[Card]:
             continue
         page_markers = re.findall(r"\[\[PAGE:(\d+)\]\]", joined[:match.start()])
         page = int(page_markers[-1]) if page_markers else page_texts[0][0]
-        positions = {}
-        for label in LABELS:
-            found = re.search(rf"\b{re.escape(label)}\b", chunk, flags=re.I)
-            if found: positions[label] = (found.start(), found.end())
-        def field(label):
-            if label not in positions: return None
-            begin = positions[label][1]
-            following = [pos[0] for lab,pos in positions.items() if pos[0] > begin]
-            return clean_field(chunk[begin:min(following) if following else len(chunk)])
-        cards.append(Card(name, field("Definisi"), field("Rumus Perhitungan"), field("Interpretasi"), field("Sumber Data"), field("Frekuensi"), page))
+        positions = label_positions(chunk)
+        cards.append(Card(
+            name,
+            field_value(chunk, positions, "Definisi"),
+            field_value(chunk, positions, "Rumus Perhitungan"),
+            field_value(chunk, positions, "Interpretasi"),
+            field_value(chunk, positions, "Sumber Data"),
+            field_value(chunk, positions, "Frekuensi"),
+            page,
+        ))
     return cards
 
 

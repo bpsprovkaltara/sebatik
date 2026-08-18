@@ -1,8 +1,8 @@
 from __future__ import annotations
 
-from datetime import date
-from io import BytesIO, StringIO
 import csv
+from io import BytesIO, StringIO
+from pathlib import Path
 from typing import Literal
 
 from fastapi import Depends, FastAPI, Query
@@ -10,16 +10,16 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import Response, StreamingResponse
 from fastapi.staticfiles import StaticFiles
 from openpyxl import Workbook
-from sqlalchemy import asc, case, desc, func, or_, select
+from sqlalchemy import asc, desc, func, select
 from sqlalchemy.orm import Session
 
+from .config import settings
 from .database import get_db
-from .models import Indikator
 from .features_api import router as features_router
-
+from .models import Indikator
 
 app = FastAPI(title="API SEBATIK", version="1.0.0", docs_url="/api/docs", openapi_url="/api/openapi.json", description="API Dasbor Pemantauan Capaian Data Indikator ISV-IUP BPS Provinsi Kalimantan Utara")
-app.add_middleware(CORSMiddleware, allow_origins=["http://localhost:5173", "http://127.0.0.1:5173"], allow_credentials=True, allow_methods=["*"], allow_headers=["*"])
+app.add_middleware(CORSMiddleware, allow_origins=settings.cors_origins, allow_credentials=True, allow_methods=["*"], allow_headers=["*"])
 app.include_router(features_router)
 
 PUBLIC_FIELDS = ["id_indikator", "nama_indikator", "kategori", "kelompok", "satuan", "tim_pjk", "opd_penanggung_jawab", "status_metadata", "tahun_terakhir", "is_proxy"]
@@ -77,7 +77,7 @@ def export_xlsx(db: Session=Depends(get_db)):
 
 
 # Build frontend dapat dilayani oleh proses FastAPI yang sama saat produksi.
-from pathlib import Path
+
 frontend_dist = Path(__file__).resolve().parents[2] / "frontend" / "dist"
 if frontend_dist.exists():
     app.mount("/", StaticFiles(directory=frontend_dist, html=True), name="frontend")

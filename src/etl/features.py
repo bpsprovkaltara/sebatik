@@ -3,14 +3,13 @@
 from __future__ import annotations
 
 import csv
+import sqlite3
 from datetime import date
 from pathlib import Path
-import sqlite3
 
 from pwdlib import PasswordHash
 
 from .arah_baik import ensure_columns
-
 
 FEATURE_SCHEMA = """
 CREATE TABLE IF NOT EXISTS snapshot_ketersediaan (
