@@ -2,19 +2,10 @@
 
 from __future__ import annotations
 
-import pytest
-
-from backend.app.services.pembatas import pembatas_login
-
 from .conftest import SANDI_ADMIN
 
-
-@pytest.fixture(autouse=True)
-def bersihkan_pembatas():
-    """Hitungan percobaan tidak boleh bocor antar-tes."""
-    pembatas_login.kosongkan()
-    yield
-    pembatas_login.kosongkan()
+# Pembersihan pembatas laju antar-tes ditangani fixture autouse di conftest.py,
+# supaya seluruh modul tes API mendapat isolasi yang sama.
 
 
 def test_header_keamanan_terpasang_di_semua_respons(client):

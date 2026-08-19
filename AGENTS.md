@@ -44,6 +44,7 @@ python -m src.etl.metadata_pdf data/raw/BUKU_1_RPJPN_RPJPD_2025-2045.pdf
 
 # Mutu kode
 python -m pytest
+python -m pytest --cov=backend/app --cov=src --cov-fail-under=80
 ruff check . ; ruff format --check . ; mypy backend src
 cd frontend ; pnpm lint ; pnpm test ; pnpm build
 ```
@@ -129,7 +130,8 @@ OPERATOR (wilayah) -> MENUNGGU_VERIFIKASI -> VERIFIKATOR/ADMIN -> DISETUJUI / DI
 
 ## Pengujian
 
-- Backend: `python -m pytest` (427 tes). Tes kontrak berjalan di atas benih uji sendiri sehingga tidak memerlukan `data/`.
+- Backend: `python -m pytest` (427 tes, cakupan 82%). Tes kontrak berjalan di atas benih uji sendiri sehingga tidak memerlukan `data/`.
+- CI menjalankan `pytest --cov=backend/app --cov=src --cov-fail-under=80`; menurunkan cakupan di bawah 80% membuat CI merah.
 - Tiga tes memerlukan berkas nyata dan melewatkan dirinya bila `data/` kosong: integrasi ETL dan dua regresi isi beranda.
 - Frontend: `pnpm test` (Vitest) dan `pnpm lint` di `frontend/`.
 - CI (`.github/workflows/ci.yml`) menjalankan ruff, mypy, migrasi Alembic naik-turun terhadap PostgreSQL sungguhan, pytest, serta lint/test/build frontend.

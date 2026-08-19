@@ -70,5 +70,46 @@ Untuk memulihkan, hentikan aplikasi, simpan database bermasalah, salin file back
 
 ## Pindah ke PostgreSQL
 
-Lihat langkah lengkap beserta urutan cutover dan cara rollback di
+1. Hentikan aplikasi agar tidak ada penulisan baru ke SQLite, lalu buat backup:
+
+```powershell
+.\.venv-sebatik\Scripts\python.exe scripts\backup_sqlite.py
+```
+
+2. Isi `.env` dengan `POSTGRES_PASSWORD` dan URL container berikut (kata sandi
+   pada keduanya harus sama):
+
+```dotenv
+POSTGRES_PASSWORD=GANTI_DENGAN_SANDI_KUAT
+SEBATIK_DATABASE_URL=postgresql+psycopg://sebatik:GANTI_DENGAN_SANDI_KUAT@db:5432/sebatik
+```
+
+3. Nyalakan database saja. Untuk perintah yang berjalan dari PowerShell, pakai
+   URL dengan host `localhost`; jangan menulis URL itu ke `.env` karena aplikasi
+   nantinya berjalan di dalam container.
+
+```powershell
+docker compose up -d db
+$env:SEBATIK_DATABASE_URL = 'postgresql+psycopg://sebatik:GANTI_DENGAN_SANDI_KUAT@localhost:5434/sebatik'
+.\.venv-sebatik\Scripts\python.exe -m alembic -c backend/alembic.ini upgrade head
+.\.venv-sebatik\Scripts\python.exe scripts\migrasi_ke_skema_target.py --periksa
+.\.venv-sebatik\Scripts\python.exe scripts\migrasi_ke_skema_target.py --jalankan
+Remove-Item Env:SEBATIK_DATABASE_URL
+```
+
+4. Jalankan seluruh layanan dan periksa kesehatan serta data sebelum menerima
+   penulisan baru:
+
+```powershell
+docker compose up -d
+docker compose ps
+Invoke-RestMethod http://localhost:8000/api/v1/health
+```
+
+Jika verifikasi gagal sebelum cutover, skrip membatalkan transaksinya dan
+SQLite tetap utuh. Untuk rollback setelah cutover, hentikan aplikasi dan
+arahkan kembali konfigurasi ke SQLite; data baru yang sempat ditulis ke
+PostgreSQL harus direkonsiliasi manual.
+
+Latar keputusan dan batasan lengkap ada di
 [refactoring/CATATAN-PELAKSANAAN.md](refactoring/CATATAN-PELAKSANAAN.md).

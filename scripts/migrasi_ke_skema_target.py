@@ -49,7 +49,7 @@ import sqlite3
 import sys
 from collections.abc import Iterator
 from datetime import UTC, datetime
-from pathlib import Path
+from pathlib import Path, PureWindowsPath
 from typing import Any
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
@@ -417,7 +417,13 @@ def pindahkan_bukti(sumber: sqlite3.Connection, sesi: Session, id_usulan: set[in
                 id=baris["id"],
                 usulan_id=baris["usulan_id"],
                 nama_file=baris["nama_file"],
-                path_file=baris["path_file"],
+                # Path absolut Windows dari pemasangan lama tidak dapat dibaca
+                # container Linux. File fisik disalin ke volume pada cutover.
+                path_file=str(
+                    Path(settings.evidence_dir)
+                    / str(baris["usulan_id"])
+                    / PureWindowsPath(str(baris["path_file"])).name
+                ),
                 mime_type=baris.get("mime_type"),
                 ukuran=baris["ukuran"],
                 checksum_sha256=baris["checksum_sha256"],
@@ -560,7 +566,7 @@ def pindahkan_audit(
             UnggahanExcel(
                 id=baris["id"],
                 nama_file_asli=baris["nama_file_asli"],
-                path_arsip=baris["path_arsip"],
+                path_arsip=str(Path(settings.archive_dir) / PureWindowsPath(str(baris["path_arsip"])).name),
                 checksum_sha256=baris["checksum_sha256"],
                 status=baris["status"],
                 ringkasan_diff=baris.get("ringkasan_diff"),

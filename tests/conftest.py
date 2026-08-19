@@ -20,6 +20,13 @@ TEMP_ROOT = REPO_ROOT / "tmp" / "pytest"
 TEMP_ROOT.mkdir(parents=True, exist_ok=True)
 os.environ.setdefault("PYTEST_DEBUG_TEMPROOT", str(TEMP_ROOT))
 
+# Dipasang tanpa `setdefault`: nilai dari `.env` harus benar-benar dikalahkan.
+# Basis data tidak ikut dipaku karena tiap fixture menyiapkannya sendiri.
+os.environ["SEBATIK_ENVIRONMENT"] = "test"
+os.environ["SEBATIK_SECRET_KEY"] = "kunci-uji-yang-panjangnya-lebih-dari-32-karakter"
+os.environ["SEBATIK_SECRET_KEYS"] = ""
+os.environ["SEBATIK_DATABASE_URL"] = f"sqlite:///{(TEMP_ROOT / 'bawaan.db').as_posix()}"
+
 
 @pytest.fixture(scope="session")
 def engine_uji(tmp_path_factory: pytest.TempPathFactory):

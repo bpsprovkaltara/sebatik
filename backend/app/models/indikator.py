@@ -77,7 +77,9 @@ class Indikator(Base):
     arah_baik: Mapped[str | None] = mapped_column(String(10))
     arah_baik_terverifikasi: Mapped[bool] = mapped_column(Boolean, nullable=False, default=False)
 
-    kode_sdgs: Mapped[str | None] = mapped_column(String(40))
+    # Sumber lama tidak hanya menyimpan kode singkat; beberapa baris memuat
+    # uraian indikator SDGs lengkap (hingga ratusan karakter).
+    kode_sdgs: Mapped[str | None] = mapped_column(Text)
     link_metadata: Mapped[str | None] = mapped_column(Text)
     link_publikasi: Mapped[str | None] = mapped_column(Text)
     link_data: Mapped[str | None] = mapped_column(Text)

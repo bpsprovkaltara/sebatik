@@ -43,7 +43,8 @@ jobs:
         env:
           SEBATIK_DATABASE_URL: postgresql+psycopg://sebatik:sebatik@localhost:5432/sebatik_test
       - name: Test
-        run: pytest
+        # Ambang cakupan mengikuti target testing-ci.md §7 (>= 80%).
+        run: pytest --cov=backend/app --cov=src --cov-fail-under=80
 
   frontend:
     runs-on: ubuntu-latest

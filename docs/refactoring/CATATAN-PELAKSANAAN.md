@@ -76,12 +76,12 @@ alasan tertulis; tanda itu dilepas setelah konsolidasi (Fase 4) membuatnya lulus
 
 ## Lingkungan pengembangan
 
-- PostgreSQL **belum dapat diuji di mesin lokal** (Docker Desktop tidak berjalan
-  saat pengerjaan). Yang dilakukan sebagai gantinya:
-  - DDL PostgreSQL diverifikasi lewat mode offline Alembic (`upgrade head --sql`).
-  - Migrasi dan pemindahan data dijalankan penuh terhadap SQLite target.
-  - CI menjalankan `alembic upgrade head` dan `downgrade base` terhadap
-    PostgreSQL 16 sungguhan pada setiap PR.
+- PostgreSQL **sudah diverifikasi terhadap server sungguhan** (PostgreSQL 16 di
+  Docker). Selama sebagian besar pengerjaan Docker belum tersedia, sehingga
+  verifikasinya bersandar pada mode offline Alembic dan SQLite target; setelah
+  Docker tersedia, seluruh jalur diuji langsung. Ringkasannya di Temuan 10.
+- CI juga menjalankan `alembic upgrade head` dan `downgrade base` terhadap
+  PostgreSQL 16 pada setiap PR.
 - Berkas `.venv-sebatik` dibuat ulang karena `.runtime-packages` yang ada di repo
   tidak lengkap (paket `sqlalchemy` hanya menyisakan direktori `cyextension`).
 
@@ -142,6 +142,104 @@ terlihat pada jejak jaringan peramban. Pilihan awal kini diambil dari daftar
 yang benar-benar dimuat, sehingga tidak ikut basi saat daftar indikator berganti
 versi lagi.
 
+## Temuan 6 — Fase 3 belum selesai: muatan masih dirakit di router
+
+**Kapan:** peninjauan ulang seluruh dokumen refactoring.
+
+`features_api.py` memang sudah hilang dan semua endpoint sudah punya router,
+tetapi pemindahannya berhenti di separuh jalan: penyusunan muatan ikut pindah
+ke `routers/`, bukan ke `services/`. `routers/insight.py` merakit kartu makro,
+seri, dan perbandingan wilayah sendiri (142 baris); `capaian.py` menghitung
+progres dan proyeksi; `validitas.py` menentukan status dan pembaru terakhir.
+Sembilan berkas service yang disebut backend.md §1.2 belum ada sama sekali
+(`beranda`, `insight`, `explorer`, `validitas`, `indikator`, `auth`,
+`pengguna`, serta penyusunan muatan pada `capaian` dan `analitik`).
+
+Tes arsitektur yang ada tidak menangkapnya karena hanya melarang SQL mentah
+dan pemanggilan `select()` — bukan perhitungan.
+
+**Yang dilakukan:** seluruh penyusunan muatan dipindah ke `services/`; router
+tinggal memvalidasi masukan dan menerjemahkan penolakan. Total baris `routers/`
+turun dari 1.807 menjadi 892. Aturan §8 kemudian diikat menjadi tes: router
+tidak boleh memuat perulangan maupun dict respons berkunci banyak, dan setiap
+domain endpoint wajib punya berkas service-nya.
+
+Karena service tidak boleh mengimpor FastAPI, penolakan dikembalikan sebagai
+nilai (`services.Penolakan`) dan router yang mengubahnya menjadi
+`HTTPException`. Pola ini sudah dipakai `verifikasi.py` sejak Fase 4; sekarang
+dinaikkan ke `services/__init__.py` supaya dipakai seragam.
+
+## Temuan 7 — Lapisan `schemas/` praktis tidak ada
+
+**Kapan:** peninjauan ulang seluruh dokumen refactoring.
+
+arsitektur-target.md §1 mendaftar delapan berkas skema per domain dan
+backend.md §4 mensyaratkan setiap endpoint memakai skema respons eksplisit.
+Yang ada hanya `schemas/wilayah.py`: **1 dari 42 endpoint** punya
+`response_model`. Akibatnya kontrak JSON hanya hidup di
+`tests/api/test_kontrak.py` dan tidak muncul di `/api/docs` sama sekali.
+
+**Yang dilakukan:** dibuat dua belas berkas skema (`umum`, `sistem`, `beranda`,
+`explorer`, `capaian`, `insight`, `validitas`, `analitik`, `indikator`, `auth`,
+`admin`, `usulan`, `unggahan`) dan dipasang pada semua endpoint JSON. Lima
+endpoint unduhan berkas sengaja tidak memakainya karena tidak mengirim JSON.
+
+Dua hal yang perlu diketahui:
+
+- `/beranda` dulu punya **dua bentuk respons**: saat belum ada data sama sekali,
+  kunci `wilayah_kode` dan `status_data` tidak ikut dikirim. Bentuknya kini
+  selalu sama, sesuai `BerandaResponse` di backend.md §4.
+- `/analitik/gap/{id}` memang punya dua bentuk yang sah — indikator tanpa
+  realisasi hanya mengirim `status` dan `disclaimer`. Endpoint itu memakai
+  `response_model_exclude_unset=True` supaya bentuk ringkasnya tidak mendadak
+  dipenuhi kunci bernilai null.
+
+## Temuan 8 — Sisa checklist keamanan yang tercatat "selesai"
+
+**Kapan:** peninjauan ulang seluruh dokumen refactoring.
+
+Tiga butir auth-keamanan.md belum ada kodenya: rotasi kunci (§2.4), klaim `jti`
+dan token segar (§3 Opsi A), serta log auth terstruktur (§7). TTL akses juga
+masih 8 jam, padahal §3 meminta 1–2 jam.
+
+**Yang dilakukan:**
+
+- `SEBATIK_SECRET_KEYS` menampung kunci lama; token diverifikasi terhadap kunci
+  aktif lalu kunci lama, tetapi selalu ditandatangani kunci aktif.
+- Token membawa `jti`, dan klaim `tipe` memisahkan token akses dari token segar
+  sehingga cookie yang bocor tidak dapat dipakai sebagai bearer. Token terbitan
+  versi lama (tanpa klaim `tipe`) tetap diterima sebagai token akses agar
+  pembaruan aplikasi tidak memaksa semua orang masuk ulang.
+- TTL akses menjadi 2 jam; sesi disambung `POST /auth/refresh` dengan token
+  segar 24 jam di cookie httpOnly, `SameSite=Strict`, `Path=/api/v1/auth`, dan
+  `Secure` di produksi. `POST /auth/logout` menghapusnya.
+- `frontend/src/api/client.js` menyegarkan sekali saat 401 lalu mengulang
+  permintaan; penyegaran berjalan satu per satu supaya beberapa 401 serentak
+  tidak saling menimpa token hasilnya.
+- Peristiwa auth (masuk, gagal, dibatasi, segarkan, keluar, ganti sandi, reset,
+  akun dibuat) dicatat sebagai JSON satu baris tanpa kata sandi maupun token.
+
+Opsi B (token akses ikut pindah ke cookie httpOnly) tetap menjadi tindak
+lanjut: token akses masih disimpan di `localStorage`, tetapi kini berumur
+2 jam, bukan 8.
+
+## Temuan 9 — Tes frontend belum menyentuh yang paling mudah salah
+
+**Kapan:** peninjauan ulang seluruh dokumen refactoring.
+
+testing-ci.md §4 meminta tes untuk `api/client.js` (penyisipan header auth dan
+penanganan 401), untuk hook, dan untuk komponen murni. Tidak satu pun ada —
+padahal `client.js` justru satu-satunya tempat 401 ditangani.
+
+**Yang dilakukan:** ditambahkan `api/client.test.js`, `hooks/useFetch.test.jsx`,
+dan `components/charts/charts.test.jsx`. Tes frontend naik dari 22 menjadi 50.
+`TooltipCard` juga dipindah dari `ui.jsx` ke `components/charts/` sesuai
+frontend.md §4.
+
+Tiruan `fetch` pada tes klien menjawab berdasarkan URL, bukan urutan panggilan:
+menyegarkan token ikut memicu pemuatan ulang profil, jadi jumlah panggilan
+bukan sesuatu yang layak dikunci di tes.
+
 ## Urutan fase yang dijalankan
 
 Fase 7 (keamanan) dikerjakan sebelum Fase 6 (frontend), bukan sesudahnya seperti
@@ -155,12 +253,13 @@ yang sudah final daripada menulis ulang setelahnya.
 |---|---|
 | Aplikasi berjalan di PostgreSQL dengan Alembic; tidak ada migrasi ad hoc | Skema dan compose siap; cutover menunggu server PostgreSQL kantor |
 | Satu model data konsolidasi; verifikasi menulis satu tabel | Selesai, dengan tes yang membuktikannya |
-| `features_api.py` dihapus; endpoint terpetakan ke router/service/repository | Selesai |
+| `features_api.py` dihapus; endpoint terpetakan ke router/service/repository | Selesai — termasuk penyusunan muatan (lihat Temuan 6) |
+| Skema respons eksplisit per endpoint di OpenAPI | Selesai (lihat Temuan 7) |
 | `App.jsx` < 150 baris; router + layer API terpusat | Selesai (59 baris) |
 | ETL data-driven; tidak ada rentang hardcode | Selesai |
 | Test kontrak API membuktikan kontrak publik tidak berubah | Selesai |
 | CI hijau: lint + type + test backend + test/build frontend | Selesai |
-| Checklist keamanan terpenuhi | Selesai, kecuali dua butir operasional di bawah |
+| Checklist keamanan terpenuhi | Selesai (lihat Temuan 8), kecuali dua butir operasional di bawah |
 | Dokumentasi diperbarui | Selesai |
 
 Dua butir keamanan yang harus dikerjakan operator, bukan kode:
@@ -170,12 +269,53 @@ Dua butir keamanan yang harus dikerjakan operator, bukan kode:
 
 ## Tindak lanjut yang belum dikerjakan
 
-1. **Cutover PostgreSQL** belum dijalankan pada lingkungan sungguhan; belum ada
-   server PostgreSQL yang tersedia saat pengerjaan. Semua perkakasnya siap dan
-   migrasinya diuji di CI terhadap PostgreSQL 16.
+1. **Cutover PostgreSQL di lingkungan kantor** belum dijalankan — itu keputusan
+   operasional, bukan pekerjaan kode. Seluruh jalurnya sudah diverifikasi
+   terhadap PostgreSQL 16 sungguhan (lihat Temuan 10), termasuk migrasi,
+   pemindahan data, penyelarasan sequence, dan alur verifikasi.
 2. **`arah_baik` untuk 63 indikator** perlu diisi lewat panel admin sebelum
    halaman capaian menampilkan angka untuk indikator tersebut.
 3. **Pembatas laju login** disimpan di memori proses. Cukup untuk satu instans;
    perlu dipindah ke Redis/PostgreSQL bila kelak dijalankan multi-instans.
-4. **Refresh token** (auth-keamanan.md §3 Opsi B) belum dibuat; TTL akses masih
-   8 jam dan token masih disimpan di `localStorage`.
+4. **Opsi B auth-keamanan.md §3** — token akses ikut pindah ke cookie httpOnly —
+   belum dikerjakan. Token akses masih di `localStorage`, tetapi kini berumur
+   2 jam dan sesinya disambung token segar httpOnly (lihat Temuan 8).
+5. **Basis data lokal `data/processed/sebatik.db` masih berskema lama.** Berkas
+   itu belum pernah dipindahkan ke skema konsolidasi, sehingga menjalankan
+   aplikasi langsung di atasnya menghasilkan 500 (`no such column:
+   nilai_indikator.status_verifikasi`). Jalankan urutan cutover di atas lebih
+   dulu, atau arahkan `SEBATIK_DATABASE_URL` ke salinan hasil migrasi.
+
+## Temuan 10 — Verifikasi penuh terhadap PostgreSQL sungguhan
+
+**Kapan:** setelah Docker tersedia di mesin pengerjaan.
+
+Sebelumnya PostgreSQL hanya dapat diverifikasi lewat DDL mode offline. Setelah
+Docker berjalan, seluruh jalur diuji langsung terhadap PostgreSQL 16:
+
+| Yang diuji | Hasil |
+|---|---|
+| `alembic upgrade head` (3 revisi) | Berhasil |
+| Pemindahan data dari SQLite lama | 86 indikator, 670 fakta; verifikasi lolos |
+| Sebelas endpoint publik dan admin | Semua 200 |
+| Penyelarasan sequence setelah sisipan id eksplisit | Kelima sequence selaras |
+| `kode_sdgs` 634 karakter | Tersimpan utuh sebagai `text` |
+| Indeks unik parsial pada `nilai_indikator` | Duplikat tahunan dan periodik ditolak |
+| `alembic downgrade base` | Nol tabel tersisa |
+| Alur verifikasi usulan | Menambah tepat satu baris fakta |
+
+Dua hal yang **hanya** dapat ditemukan di PostgreSQL, dan lolos sepenuhnya dari
+pengujian SQLite:
+
+1. **`kode_sdgs` terlalu pendek.** Kolomnya dideklarasikan `String(40)`, padahal
+   11 dari 19 baris terisi melebihi batas itu dan yang terpanjang mencapai 634
+   karakter — sebagian sumber lama menyimpan uraian indikator SDGs lengkap,
+   bukan kode singkat. SQLite mengabaikan panjang `VARCHAR` sehingga tidak
+   pernah mengeluh; PostgreSQL menegakkannya dan akan menggagalkan cutover.
+   Diperbaiki oleh migrasi `0003_kode_sdgs_text`. Downgrade-nya sengaja
+   dibiarkan gagal bila sudah ada uraian panjang, supaya kembali ke revisi lama
+   tidak memotong data diam-diam.
+2. **Penyelarasan sequence** (`selaraskan_urutan`) tidak pernah benar-benar
+   berjalan sebelumnya karena SQLite tidak punya sequence. Tanpa itu, INSERT
+   pertama setelah cutover akan memakai id 1 dan langsung bentrok. Kini
+   terverifikasi selaras pada kelima tabel ber-sequence.

@@ -257,6 +257,22 @@ def client(db_uji: str) -> Iterator[TestClient]:
     mesin.dispose()
 
 
+@pytest.fixture(autouse=True)
+def bersihkan_pembatas_login():
+    """Kosongkan hitungan percobaan masuk sebelum dan sesudah setiap tes.
+
+    `pembatas_login` adalah keadaan bersama satu proses. Tanpa pembersihan ini,
+    tes yang sengaja menghabiskan jatah (test_keamanan_http.py) membuat login di
+    modul lain balas 429, dan kegagalannya muncul di tempat yang sama sekali
+    tidak berhubungan — bergantung urutan tes.
+    """
+    from backend.app.services.pembatas import pembatas_login
+
+    pembatas_login.kosongkan()
+    yield
+    pembatas_login.kosongkan()
+
+
 @pytest.fixture(scope="session")
 def auth(client: TestClient) -> dict[str, str]:
     """Header Authorization untuk akun admin uji."""
