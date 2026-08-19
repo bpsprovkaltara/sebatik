@@ -2,11 +2,25 @@
 
 from __future__ import annotations
 
+import os
 from pathlib import Path
 
 import pytest
 
 from backend.app.config import DEFAULT_DB_PATH, SECRET_BAWAAN, Settings
+
+
+@pytest.fixture(autouse=True)
+def lingkungan_bersih(monkeypatch: pytest.MonkeyPatch):
+    """Buang seluruh variabel SEBATIK_* sebelum tiap tes di berkas ini.
+
+    Tes di sini menguji nilai *bawaan* dan pembacaan variabel tertentu, jadi
+    keduanya hanya bermakna bila tidak ada setelan lain yang membayangi — baik
+    dari `.env` pengembang maupun dari yang dipasang tests/conftest.py.
+    """
+    for nama in list(os.environ):
+        if nama.startswith("SEBATIK_"):
+            monkeypatch.delenv(nama, raising=False)
 
 
 def test_nilai_bawaan_sama_dengan_perilaku_lama():

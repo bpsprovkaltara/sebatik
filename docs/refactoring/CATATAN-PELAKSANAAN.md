@@ -319,3 +319,44 @@ pengujian SQLite:
    berjalan sebelumnya karena SQLite tidak punya sequence. Tanpa itu, INSERT
    pertama setelah cutover akan memakai id 1 dan langsung bentrok. Kini
    terverifikasi selaras pada kelima tabel ber-sequence.
+
+## Temuan 11 — Migrasi `0003` jalan di PostgreSQL, gagal di SQLite
+
+**Kapan:** saat memverifikasi ulang setelah migrasi `0003_kode_sdgs_text` dibuat.
+
+Migrasi itu ditulis dengan `op.alter_column` biasa. PostgreSQL menerimanya,
+tetapi SQLite tidak punya `ALTER COLUMN` sama sekali dan seluruh tes integrasi
+gagal dengan `near "ALTER": syntax error`.
+
+Jebakannya halus: `env.py` sudah menyetel `render_as_batch=True` untuk SQLite,
+tetapi setelan itu hanya memengaruhi **hasil autogenerate** — ia tidak membuat
+operasi yang ditulis tangan berjalan dalam batch mode. Perbaikannya membungkus
+perubahan tipe dengan `op.batch_alter_table`, sehingga Alembic membangun ulang
+tabelnya di SQLite dan tetap memakai `ALTER` biasa di PostgreSQL.
+
+Diverifikasi pada keduanya: kolomnya menjadi `TEXT` di SQLite dan `text` di
+PostgreSQL, dan `downgrade base` bersih di kedua dialek.
+
+## Temuan 12 — Suite tes ikut membaca `.env` pengembang
+
+**Kapan:** saat menyiapkan `.env` untuk cutover PostgreSQL.
+
+`Settings` membaca `.env`, dan `.env` yang dibuat untuk cutover memuat
+`SEBATIK_ENVIRONMENT=production`. Akibatnya cookie sesi dipasang bertanda
+`Secure`, yang tidak dikirim balik lewat `http://testserver`, sehingga tes alur
+token segar gagal — **hanya di mesin yang punya `.env`**. CI, yang tidak punya
+berkas itu, tetap hijau.
+
+Divergensi semacam ini yang paling mahal: gejalanya muncul jauh dari sebabnya,
+dan "di CI hijau, kok" menyesatkan. `tests/conftest.py` kini memaku
+`SEBATIK_ENVIRONMENT`, `SEBATIK_SECRET_KEY`, `SEBATIK_SECRET_KEYS`, dan
+`SEBATIK_DATABASE_URL` lewat variabel lingkungan — yang menang atas `.env` —
+sehingga suite berperilaku sama di mana pun.
+
+Sebagai pasangannya, `tests/unit/test_config.py` justru **membuang** seluruh
+variabel `SEBATIK_*` sebelum tiap tes: berkas itu menguji nilai bawaan, yang
+hanya bermakna bila tidak ada setelan yang membayanginya.
+
+Pelajaran yang sama berlaku untuk pembatas laju login: ia keadaan bersama satu
+proses, jadi `tests/api/conftest.py` mengosongkannya di sekitar setiap tes agar
+modul yang sengaja menghabiskan jatah tidak menjatuhkan modul lain.
