@@ -102,3 +102,51 @@ def test_database_tidak_punya_efek_samping_impor():
     isi = (AKAR / "database.py").read_text(encoding="utf-8")
     for terlarang in ("migrate_governance", "seed_verified_master"):
         assert terlarang not in isi, f"database.py masih memanggil {terlarang} saat impor"
+
+
+# --- router tetap tipis ----------------------------------------------------
+#
+# backend.md §8 mensyaratkan router tanpa perhitungan. Aturan itu sebelumnya
+# hanya konvensi; di bawah ini ia diikat menjadi tes agar penyusunan muatan
+# tidak diam-diam kembali merangkak ke lapisan HTTP.
+
+# Router boleh memakai comprehension untuk memetakan hasil repository menjadi
+# skema, tetapi perulangan bertingkat berarti muatan disusun di router.
+SIMPUL_PERHITUNGAN = (ast.For, ast.While)
+
+
+@pytest.mark.parametrize("berkas", ROUTERS, ids=lambda p: p.name)
+def test_router_tidak_menyusun_muatan_dengan_perulangan(berkas: Path):
+    pohon = ast.parse(berkas.read_text(encoding="utf-8"))
+    perulangan = [simpul for simpul in ast.walk(pohon) if isinstance(simpul, SIMPUL_PERHITUNGAN)]
+    assert not perulangan, (
+        f"{berkas.name} menyusun muatan dengan perulangan pada baris "
+        f"{[s.lineno for s in perulangan]}; pindahkan ke services/"
+    )
+
+
+@pytest.mark.parametrize("berkas", ROUTERS, ids=lambda p: p.name)
+def test_router_tidak_membangun_dict_respons_besar(berkas: Path):
+    """Dict besar di router menandakan bentuk respons dirakit di lapisan HTTP."""
+    pohon = ast.parse(berkas.read_text(encoding="utf-8"))
+    besar = [simpul for simpul in ast.walk(pohon) if isinstance(simpul, ast.Dict) and len(simpul.keys) > 5]
+    assert not besar, (
+        f"{berkas.name} merakit dict respons pada baris {[s.lineno for s in besar]}; pindahkan ke services/"
+    )
+
+
+def test_setiap_domain_endpoint_punya_service():
+    """backend.md §1.2: tiap domain endpoint punya service-nya sendiri."""
+    nama_service = {p.stem for p in SERVICES}
+    for wajib in (
+        "beranda",
+        "insight",
+        "explorer",
+        "capaian",
+        "validitas",
+        "analitik",
+        "auth",
+        "pengguna",
+        "indikator",
+    ):
+        assert wajib in nama_service, f"services/{wajib}.py belum ada"

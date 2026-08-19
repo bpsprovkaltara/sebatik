@@ -35,6 +35,10 @@ class Settings(BaseSettings):
 
     database_url: str = f"sqlite:///{DEFAULT_DB_PATH.as_posix()}"
     secret_key: str = SECRET_BAWAAN
+    # Kunci lama yang masih diterima saat memverifikasi token (auth-keamanan.md
+    # §2.4). Diisi saat rotasi supaya sesi yang sedang berjalan tidak ditolak
+    # serentak; dikosongkan lagi setelah token lama pasti kedaluwarsa.
+    secret_keys: Annotated[list[str], NoDecode] = []
     archive_dir: Path = DEFAULT_DB_PATH.parent / "arsip-unggahan"
     evidence_dir: Path = DEFAULT_DB_PATH.parent / "bukti-dukung"
     # NoDecode: nilai env dibaca mentah agar daftar dipisah koma diterima,
@@ -43,14 +47,17 @@ class Settings(BaseSettings):
         "http://localhost:5173",
         "http://127.0.0.1:5173",
     ]
-    access_token_ttl_hours: int = 8
+    # Token akses sengaja pendek; sesi dipertahankan lewat token segar
+    # httpOnly di `/auth/refresh` (auth-keamanan.md §3 Opsi A).
+    access_token_ttl_hours: int = 2
+    refresh_token_ttl_hours: int = 24
     kode_provinsi: str = "65"
     max_bukti_bytes: int = 10 * 1024 * 1024
     max_unggah_bytes: int = 30 * 1024 * 1024
 
-    @field_validator("cors_origins", mode="before")
+    @field_validator("cors_origins", "secret_keys", mode="before")
     @classmethod
-    def _pisah_origin(cls, value: object) -> object:
+    def _pisah_daftar(cls, value: object) -> object:
         """Terima daftar dipisah koma agar `.env` tetap satu baris."""
         if isinstance(value, str) and not value.strip().startswith("["):
             return [item.strip() for item in value.split(",") if item.strip()]

@@ -9,7 +9,7 @@
    sesinya sudah mati, bersihkan token supaya bilah atas tidak lagi menawarkan
    ruang kerja yang tak dapat dibuka.
    ========================================================================== */
-import {clearToken, getToken} from '../auth'
+import {clearToken, getToken, segarkanToken} from '../auth'
 
 export class ApiError extends Error{
   constructor(status, pesan, detail){
@@ -38,17 +38,30 @@ async function bacaDetail(response){
   }
 }
 
+const berkepala = (token, headers) => {
+  const hasil = {...(headers || {})}
+  if(token) hasil.Authorization = `Bearer ${token}`
+  return hasil
+}
+
 /* `autentikasi:'wajib'` menandai permintaan yang memang butuh sesi; 401 di
-   sana membersihkan token. Endpoint publik memakai 'opsional' sehingga token
-   basi tidak membuat halaman publik ikut gagal. */
+   sana mencoba menyegarkan sesi lebih dulu, dan baru membersihkan token bila
+   penyegaran pun gagal. Endpoint publik memakai 'opsional' sehingga token basi
+   tidak membuat halaman publik ikut gagal.
+
+   Penyegaran dicoba tepat sekali per permintaan: bila permintaan ulang dengan
+   token baru masih 401, masalahnya bukan token kedaluwarsa. */
 export async function request(path, {autentikasi = 'opsional', headers, ...options} = {}){
   const token = getToken()
-  const berkepala = {...(headers || {})}
-  if(token) berkepala.Authorization = `Bearer ${token}`
+  let response = await fetch(path, {...options, headers: berkepala(token, headers)})
 
-  const response = await fetch(path, {...options, headers: berkepala})
+  if(response.status === 401 && token){
+    const baru = await segarkanToken()
+    if(baru) response = await fetch(path, {...options, headers: berkepala(baru, headers)})
+  }
+
   if(response.status === 401){
-    if(token) clearToken()
+    if(getToken()) clearToken()
     if(autentikasi === 'wajib') throw new ApiError(401, 'Sesi berakhir. Silakan masuk kembali.', null)
     /* Ulangi tanpa token: endpoint publik tetap harus tampil bagi tamu. */
     const ulang = await fetch(path, options)
@@ -62,7 +75,9 @@ export async function request(path, {autentikasi = 'opsional', headers, ...optio
 /* Untuk unduhan biner (bukti dukung): pemanggil butuh Response, bukan JSON. */
 export async function requestMentah(path, options = {}){
   const token = getToken()
-  const headers = {...(options.headers || {})}
-  if(token) headers.Authorization = `Bearer ${token}`
-  return fetch(path, {...options, headers})
+  const response = await fetch(path, {...options, headers: berkepala(token, options.headers)})
+  if(response.status !== 401 || !token) return response
+  const baru = await segarkanToken()
+  if(!baru) return response
+  return fetch(path, {...options, headers: berkepala(baru, options.headers)})
 }

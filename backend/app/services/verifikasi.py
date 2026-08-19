@@ -10,23 +10,18 @@ data dan tidak bisa terlewat oleh jalur pemanggilan baru.
 
 from __future__ import annotations
 
+from collections.abc import Sequence
 from datetime import UTC, datetime
-from typing import NamedTuple
 
 from sqlalchemy.orm import Session
 
 from ..models import KODE_PROVINSI, JenisNilai, Peran, StatusVerifikasi, UsulanNilai
 from ..repositories import nilai as repo_nilai
 from ..repositories import tata_kelola as repo_tata_kelola
+from . import Penolakan
+from . import bukti as svc_bukti
 
 KEPUTUSAN_SAH = (StatusVerifikasi.DISETUJUI, StatusVerifikasi.DITOLAK)
-
-
-class Penolakan(NamedTuple):
-    """Alasan sebuah tindakan tidak diizinkan, beserta kode HTTP-nya."""
-
-    kode: int
-    pesan: str
 
 
 def periksa_pengusulan(
@@ -138,3 +133,70 @@ def putuskan(
         },
     )
     session.commit()
+
+
+PERIODE_SAH = (None, 1, 2)
+
+
+def periode_sah(periode: int | None) -> bool:
+    return periode in PERIODE_SAH
+
+
+def ajukan(
+    session: Session,
+    *,
+    id_indikator: str,
+    wilayah_kode: str | None,
+    tahun: int,
+    jenis: str,
+    periode: int | None,
+    nilai: float,
+    sumber: str,
+    catatan: str | None,
+    pengusul_id: int,
+    lampiran: Sequence[svc_bukti.Lampiran],
+) -> UsulanNilai:
+    """Simpan usulan beserta bukti dukungnya dalam satu transaksi.
+
+    Pemanggil bertanggung jawab memvalidasi lampiran (`bukti.periksa_lampiran`)
+    lebih dulu; di sini berkas sudah dianggap layak ditulis.
+    """
+    usulan = repo_tata_kelola.buat_usulan(
+        session,
+        id_indikator=id_indikator,
+        wilayah_kode=wilayah_kode,
+        tahun=tahun,
+        jenis=jenis,
+        periode=periode,
+        nilai=nilai,
+        sumber=sumber,
+        catatan=catatan,
+        pengusul_id=pengusul_id,
+    )
+    for berkas in lampiran:
+        siap = svc_bukti.simpan(usulan.id, berkas.nama_file, berkas.isi, berkas.mime_type)
+        repo_tata_kelola.catat_bukti(
+            session,
+            usulan_id=usulan.id,
+            nama_file=siap.nama_file,
+            path_file=str(siap.path_file),
+            mime_type=siap.mime_type,
+            ukuran=siap.ukuran,
+            checksum_sha256=siap.checksum_sha256,
+        )
+    repo_tata_kelola.catat_aktivitas(
+        session,
+        pengguna_id=pengusul_id,
+        aksi="KIRIM_USULAN",
+        objek_tipe="usulan_nilai",
+        objek_id=str(usulan.id),
+        detail={
+            "indikator": id_indikator,
+            "tahun": tahun,
+            "jenis": jenis,
+            "wilayah": wilayah_kode,
+            "jumlah_bukti": len(lampiran),
+        },
+    )
+    session.commit()
+    return usulan

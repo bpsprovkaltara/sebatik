@@ -41,7 +41,70 @@ def test_token_membawa_subjek_dan_peran():
     muatan = security.baca_token(security.buat_token(7, "ADMIN"))
     assert muatan["sub"] == "7"
     assert muatan["peran"] == "ADMIN"
-    assert {"iat", "exp"} <= muatan.keys()
+    assert {"iat", "exp", "jti"} <= muatan.keys()
+
+
+def test_setiap_token_punya_jti_sendiri():
+    """auth-keamanan.md §3: `jti` membuat token dapat dirujuk di log audit."""
+    satu = security.baca_token(security.buat_token(7, "ADMIN"))["jti"]
+    dua = security.baca_token(security.buat_token(7, "ADMIN"))["jti"]
+    assert satu != dua
+
+
+def test_token_segar_tidak_dapat_dipakai_sebagai_token_akses():
+    """Token yang hanya boleh ditukar tidak boleh membuka endpoint biasa."""
+    segar = security.buat_token_segar(7, "ADMIN")
+    with pytest.raises(security.TokenTidakValid):
+        security.baca_token(segar)
+    assert security.baca_token(segar, tipe=security.TIPE_SEGAR)["sub"] == "7"
+
+
+def test_token_akses_tidak_dapat_dipakai_menyegarkan():
+    akses = security.buat_token(7, "ADMIN")
+    with pytest.raises(security.TokenTidakValid):
+        security.baca_token(akses, tipe=security.TIPE_SEGAR)
+
+
+def test_token_tanpa_klaim_tipe_masih_diterima_sebagai_akses():
+    """Token terbitan versi lama tidak boleh memaksa semua orang masuk ulang."""
+    from datetime import datetime, timedelta
+
+    import jwt
+
+    token = jwt.encode(
+        {"sub": "1", "peran": "ADMIN", "exp": datetime.now(UTC) + timedelta(hours=1)},
+        security.settings.secret_key,
+        algorithm=security.ALGORITMA,
+    )
+    assert security.baca_token(token)["sub"] == "1"
+
+
+def test_token_kunci_lama_masih_diterima_saat_rotasi(monkeypatch):
+    """auth-keamanan.md §2.4: rotasi tidak boleh menendang sesi yang berjalan."""
+    from datetime import datetime, timedelta
+
+    import jwt
+
+    kunci_lama = "kunci-lama-" + "x" * 32
+    token = jwt.encode(
+        {"sub": "3", "peran": "ADMIN", "exp": datetime.now(UTC) + timedelta(hours=1)},
+        kunci_lama,
+        algorithm=security.ALGORITMA,
+    )
+    with pytest.raises(security.TokenTidakValid):
+        security.baca_token(token)
+
+    monkeypatch.setattr(security.settings, "secret_keys", [kunci_lama])
+    assert security.baca_token(token)["sub"] == "3"
+
+
+def test_token_baru_selalu_ditandatangani_kunci_aktif(monkeypatch):
+    monkeypatch.setattr(security.settings, "secret_keys", ["kunci-lama-" + "x" * 32])
+    token = security.buat_token(4, "ADMIN")
+    import jwt
+
+    # Dapat dibuka dengan kunci aktif, bukan kunci lama.
+    assert jwt.decode(token, security.settings.secret_key, algorithms=[security.ALGORITMA])["sub"] == "4"
 
 
 def test_token_kedaluwarsa_ditolak(monkeypatch):

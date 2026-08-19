@@ -300,6 +300,54 @@ def test_login_dan_profil(_json, client, auth):
     assert "password_hash" not in saya
 
 
+def test_login_memasang_cookie_segar_httponly(client):
+    """auth-keamanan.md §3: token segar tidak boleh terjangkau JavaScript."""
+    client.cookies.clear()
+    response = client.post("/api/v1/auth/login", data={"username": "admin", "password": SANDI_ADMIN})
+    assert response.status_code == 200
+    kuki = response.headers["set-cookie"]
+    assert "sebatik_segar=" in kuki
+    assert "HttpOnly" in kuki
+    assert "Path=/api/v1/auth" in kuki
+    # Token segar tidak ikut dalam badan respons; hanya token akses yang keluar.
+    assert "sebatik_segar" not in response.text
+
+
+def test_segarkan_menukar_cookie_dengan_token_akses_baru(client):
+    client.cookies.clear()
+    client.post("/api/v1/auth/login", data={"username": "admin", "password": SANDI_ADMIN})
+    response = client.post("/api/v1/auth/refresh")
+    assert response.status_code == 200
+    assert {"access_token", "token_type", "peran", "harus_ganti_password"} == response.json().keys()
+
+    # Token baru benar-benar dapat dipakai.
+    token = response.json()["access_token"]
+    assert client.get("/api/v1/admin/log", headers={"Authorization": f"Bearer {token}"}).status_code == 200
+
+
+def test_segarkan_tanpa_cookie_ditolak(client):
+    client.cookies.clear()
+    assert client.post("/api/v1/auth/refresh").status_code == 401
+
+
+def test_token_segar_tidak_diterima_sebagai_bearer(client):
+    """Cookie yang bocor pun tidak bisa langsung membuka endpoint terlindungi."""
+    client.cookies.clear()
+    client.post("/api/v1/auth/login", data={"username": "admin", "password": SANDI_ADMIN})
+    segar = client.cookies.get("sebatik_segar", path="/api/v1/auth")
+    assert segar
+    assert client.get("/api/v1/admin/log", headers={"Authorization": f"Bearer {segar}"}).status_code == 401
+
+
+def test_keluar_menghapus_cookie_segar(client, auth):
+    client.cookies.clear()
+    client.post("/api/v1/auth/login", data={"username": "admin", "password": SANDI_ADMIN})
+    response = client.post("/api/v1/auth/logout", headers=auth)
+    assert response.status_code == 200
+    assert response.json() == {"status": "KELUAR"}
+    assert client.post("/api/v1/auth/refresh").status_code == 401
+
+
 def test_login_salah_401(_json, client):
     response = client.post("/api/v1/auth/login", data={"username": "admin", "password": "salah-sekali-1234"})
     assert response.status_code == 401

@@ -33,6 +33,7 @@ export const korelasi = (x, y) => request(denganQuery(`${V1}/analitik/korelasi`,
 export const login = form =>
   request(`${V1}/auth/login`, {method: 'POST', body: form})
 export const profilSaya = () => request(`${V1}/auth/saya`, {autentikasi: 'wajib'})
+export const keluar = () => request(`${V1}/auth/logout`, {method: 'POST'})
 export const gantiPassword = form =>
   request(`${V1}/auth/ganti-password`, {method: 'POST', body: form, autentikasi: 'wajib'})
 

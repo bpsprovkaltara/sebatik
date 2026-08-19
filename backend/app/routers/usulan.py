@@ -14,6 +14,8 @@ from ..repositories import indikator as repo_indikator
 from ..repositories import tata_kelola as repo_tata_kelola
 from ..repositories import wilayah as repo_wilayah
 from ..repositories.pengguna import ProfilPengguna
+from ..schemas.umum import StatusResponse
+from ..schemas.usulan import DaftarBuktiResponse, DaftarUsulanResponse, UsulanDibuatResponse
 from ..services import bukti as svc_bukti
 from ..services import verifikasi as svc_verifikasi
 
@@ -23,10 +25,8 @@ boleh_mengusulkan = wajib_peran(Peran.ADMIN, Peran.OPERATOR)
 boleh_melihat = wajib_peran(Peran.ADMIN, Peran.OPERATOR, Peran.VERIFIKATOR)
 boleh_memutuskan = wajib_peran(Peran.ADMIN, Peran.VERIFIKATOR)
 
-PERIODE_SAH = (None, 1, 2)
 
-
-@router.post("/admin/usulan")
+@router.post("/admin/usulan", response_model=UsulanDibuatResponse)
 async def kirim_usulan(
     id_indikator: str = Form(...),
     tahun: int = Form(...),
@@ -58,25 +58,18 @@ async def kirim_usulan(
     )
     if not repo_wilayah.ada_dan_aktif(session, lingkup):
         raise HTTPException(422, "Wilayah tidak valid")
-    if periode not in PERIODE_SAH:
+    if not svc_verifikasi.periode_sah(periode):
         raise HTTPException(422, "Periode semester harus 1 atau 2")
 
-    lampiran = bukti or []
-    if not lampiran:
-        raise HTTPException(422, "Minimal satu bukti dukung wajib diunggah")
+    lampiran = [
+        svc_bukti.Lampiran(nama_file=berkas.filename, isi=await berkas.read(), mime_type=berkas.content_type)
+        for berkas in (bukti or [])
+    ]
+    ditolak = svc_bukti.periksa_lampiran(lampiran)
+    if ditolak:
+        raise HTTPException(ditolak.kode, ditolak.pesan)
 
-    # Semua berkas divalidasi sebelum satu pun ditulis, supaya penolakan di
-    # berkas terakhir tidak meninggalkan berkas separuh terunggah.
-    disiapkan = []
-    for unggahan in lampiran:
-        isi = await unggahan.read()
-        if not svc_bukti.format_didukung(unggahan.content_type):
-            raise HTTPException(422, f"Format bukti tidak didukung: {unggahan.filename}")
-        if not svc_bukti.ukuran_wajar(len(isi)):
-            raise HTTPException(413, f"Bukti melebihi 10 MB: {unggahan.filename}")
-        disiapkan.append((unggahan, isi))
-
-    usulan = repo_tata_kelola.buat_usulan(
+    usulan = svc_verifikasi.ajukan(
         session,
         id_indikator=id_indikator,
         wilayah_kode=lingkup,
@@ -86,42 +79,17 @@ async def kirim_usulan(
         nilai=nilai,
         sumber=sumber,
         catatan=catatan,
-        pengusul_id=pengguna.id,
+        pengusul_id=id_terautentikasi(pengguna),
+        lampiran=lampiran,
     )
-    for unggahan, isi in disiapkan:
-        siap = svc_bukti.simpan(usulan.id, unggahan.filename, isi, unggahan.content_type)
-        repo_tata_kelola.catat_bukti(
-            session,
-            usulan_id=usulan.id,
-            nama_file=siap.nama_file,
-            path_file=str(siap.path_file),
-            mime_type=siap.mime_type,
-            ukuran=siap.ukuran,
-            checksum_sha256=siap.checksum_sha256,
-        )
-    repo_tata_kelola.catat_aktivitas(
-        session,
-        pengguna_id=pengguna.id,
-        aksi="KIRIM_USULAN",
-        objek_tipe="usulan_nilai",
-        objek_id=str(usulan.id),
-        detail={
-            "indikator": id_indikator,
-            "tahun": tahun,
-            "jenis": jenis,
-            "wilayah": lingkup,
-            "jumlah_bukti": len(disiapkan),
-        },
-    )
-    session.commit()
     return {
         "status": "MENUNGGU_VERIFIKASI",
         "id": usulan.id,
-        "jumlah_bukti": len(disiapkan),
+        "jumlah_bukti": len(lampiran),
     }
 
 
-@router.get("/admin/usulan")
+@router.get("/admin/usulan", response_model=DaftarUsulanResponse)
 def daftar_usulan(
     status: str | None = None,
     pengguna: ProfilPengguna = Depends(boleh_melihat),
@@ -148,26 +116,15 @@ def _usulan_dapat_diakses(session: Session, pengguna: ProfilPengguna, usulan_id:
     return usulan
 
 
-@router.get("/admin/usulan/{usulan_id}/bukti")
+@router.get("/admin/usulan/{usulan_id}/bukti", response_model=DaftarBuktiResponse)
 def daftar_bukti(
     usulan_id: int,
     pengguna: ProfilPengguna = Depends(boleh_melihat),
     session: Session = Depends(get_session),
 ) -> dict[str, Any]:
     _usulan_dapat_diakses(session, pengguna, usulan_id)
-    return {
-        "data": [
-            {
-                "id": b.id,
-                "nama_file": b.nama_file,
-                "mime_type": b.mime_type,
-                "ukuran": b.ukuran,
-                "checksum_sha256": b.checksum_sha256,
-                "diunggah_pada": b.diunggah_pada,
-            }
-            for b in repo_tata_kelola.daftar_bukti(session, usulan_id)
-        ]
-    }
+    bukti = repo_tata_kelola.daftar_bukti(session, usulan_id)
+    return {"data": svc_bukti.ringkas(bukti, sertakan_checksum=True)}
 
 
 @router.get("/admin/usulan/{usulan_id}/bukti/{bukti_id}")
@@ -193,7 +150,7 @@ def lihat_bukti(
     )
 
 
-@router.post("/admin/usulan/{usulan_id}/verifikasi")
+@router.post("/admin/usulan/{usulan_id}/verifikasi", response_model=StatusResponse)
 def verifikasi_usulan(
     usulan_id: int,
     keputusan: str = Form(...),

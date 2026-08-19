@@ -56,15 +56,16 @@ Dokumentasi API: `http://localhost:8000/api/docs`.
 |---|---|
 | `backend/app/main.py` | Factory `create_app()`: middleware, exception handler, daftar router, mount build frontend. Tidak ada logika endpoint. |
 | `backend/app/config.py` | `Settings` (pydantic-settings) — satu-satunya sumber konfigurasi, semua env berawalan `SEBATIK_`. |
-| `backend/app/routers/` | Lapisan HTTP tipis, satu berkas per domain. Tanpa SQL, tanpa perhitungan. |
-| `backend/app/services/` | Aturan bisnis murni: capaian, analitik, verifikasi, ketersediaan, ekspor, unggahan, bukti, pembatas laju. |
+| `backend/app/routers/` | Lapisan HTTP tipis, satu berkas per domain. Tanpa SQL, tanpa perhitungan, tanpa perulangan. |
+| `backend/app/schemas/` | Skema Pydantic respons per domain. Setiap endpoint JSON memakainya sebagai `response_model`, sehingga kontraknya terdokumentasi di OpenAPI. |
+| `backend/app/services/` | Aturan bisnis dan penyusunan muatan: beranda, explorer, capaian, insight, validitas, analitik, indikator, auth, pengguna, verifikasi, ketersediaan, ekspor, unggahan, bukti, pembatas laju. |
 | `backend/app/repositories/` | Query ORM, satu fungsi per bentuk query. Satu-satunya tempat SQL boleh ada. |
 | `backend/app/models/` | Model ORM skema konsolidasi + enum domain. |
 | `backend/app/deps.py`, `security.py`, `middleware.py` | Dependency FastAPI, token/kata sandi, header keamanan. |
 | `backend/app/cli.py` | Perintah `seed` dan `periksa`. |
 | `backend/alembic/` | Migrasi skema. |
 | `src/etl/` | `config/` (workbook.yaml + loader), `extract/`, `transform/`, `load/`, `pipeline.py` (orkestrator), `audit.py`, `metadata_pdf.py`. |
-| `frontend/src/` | `App.jsx` (router saja), `api/` (client + endpoints), `pages/`, `components/`, `context/`, `hooks/`, `lib/`, `ui.jsx`, `tokens.js`, `Brand.jsx`, `styles.css`. |
+| `frontend/src/` | `App.jsx` (router saja), `api/` (client + endpoints), `pages/`, `components/` (`layout/`, `charts/`, `home/`, `explorer/`, `admin/`, `maps/`), `context/`, `hooks/`, `lib/`, `ui.jsx`, `tokens.js`, `Brand.jsx`, `styles.css`. |
 | `scripts/` | `migrasi_ke_skema_target.py`, `backup_sqlite.py`, `run_local_server.py`, `generate_system_diagrams.py`. |
 | `tools/` | `import_classified_workbook.py` (workbook klasifikasi → JSON master). |
 | `tests/` | `unit/` (service murni, keamanan, aturan arsitektur), `api/` (kontrak), `integrasi/` (repository, migrasi, alur verifikasi), `etl/`. |
@@ -79,9 +80,19 @@ routers  ->  services  ->  repositories  ->  models
 ```
 
 Arah ketergantungan tidak boleh berbalik. Aturan ini ditegakkan sebagai tes di
-`tests/unit/test_arsitektur.py`, bukan sekadar konvensi: router tidak boleh
-memanggil `select()`, service tidak boleh mengimpor FastAPI, dan tidak boleh ada
-`text("...")` di luar `repositories/`.
+`tests/unit/test_arsitektur.py`, bukan sekadar konvensi:
+
+- router tidak boleh memanggil `select()`, tidak boleh memuat perulangan, dan
+  tidak boleh merakit dict respons lebih dari lima kunci — itu tanda muatan
+  disusun di lapisan HTTP;
+- service tidak boleh mengimpor FastAPI (penolakan dikembalikan sebagai
+  `services.Penolakan`, router yang menerjemahkannya menjadi `HTTPException`);
+- tidak boleh ada `text("...")` di luar `repositories/`;
+- setiap domain endpoint harus punya berkas service-nya sendiri.
+
+`tests/api/test_kontrak_openapi.py` melengkapinya dari sisi kontrak: setiap
+endpoint JSON wajib punya `response_model`, dan skemanya harus berupa komponen
+bernama di OpenAPI — bukan objek anonim.
 
 ## Konvensi kode
 
@@ -113,10 +124,12 @@ OPERATOR (wilayah) -> MENUNGGU_VERIFIKASI -> VERIFIKATOR/ADMIN -> DISETUJUI / DI
 - **ETL data-driven.** Jangan menambahkan nomor baris/kolom atau rentang tahun ke kode; tempatnya di `src/etl/config/workbook.yaml`.
 - **Kontrak API.** `tests/api/test_kontrak.py` menjaga bentuk respons publik. Bila kontrak memang perlu berubah, ubah tesnya dalam commit yang sama beserta alasannya.
 - **Tautan frontend.** Rute didefinisikan di `frontend/src/lib/rute.js`. Tautan hash lama (`#capaian`) masih dialihkan otomatis; jangan membuat tautan baru dalam bentuk itu.
+- **Sesi dua token.** Token akses berumur 2 jam dan dikirim di header `Authorization`; sesi disambung token segar berumur 24 jam yang hidup sebagai cookie httpOnly di `/api/v1/auth`. `api/client.js` menyegarkan sekali saat 401 lalu mengulang permintaan — jangan menambahkan penanganan 401 sendiri di halaman. Keluar harus lewat `keluarSesi()` supaya cookie segar ikut dihapus.
+- **Rotasi rahasia.** `SEBATIK_SECRET_KEYS` menampung kunci lama yang masih diterima saat memverifikasi token. Token baru selalu ditandatangani `SEBATIK_SECRET_KEY` yang aktif.
 
 ## Pengujian
 
-- Backend: `python -m pytest` (353 tes). Tes kontrak berjalan di atas benih uji sendiri sehingga tidak memerlukan `data/`.
+- Backend: `python -m pytest` (427 tes). Tes kontrak berjalan di atas benih uji sendiri sehingga tidak memerlukan `data/`.
 - Tiga tes memerlukan berkas nyata dan melewatkan dirinya bila `data/` kosong: integrasi ETL dan dua regresi isi beranda.
 - Frontend: `pnpm test` (Vitest) dan `pnpm lint` di `frontend/`.
 - CI (`.github/workflows/ci.yml`) menjalankan ruff, mypy, migrasi Alembic naik-turun terhadap PostgreSQL sungguhan, pytest, serta lint/test/build frontend.

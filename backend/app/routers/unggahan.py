@@ -12,6 +12,8 @@ from ..deps import get_session, wajib_peran
 from ..models import Peran, StatusUnggahan
 from ..repositories import tata_kelola as repo_tata_kelola
 from ..repositories.pengguna import ProfilPengguna
+from ..schemas.umum import StatusResponse
+from ..schemas.unggahan import PratinjauResponse
 from ..services import unggahan as svc
 
 router = APIRouter(prefix="/api/v1", tags=["unggahan"])
@@ -19,7 +21,7 @@ router = APIRouter(prefix="/api/v1", tags=["unggahan"])
 hanya_admin = wajib_peran(Peran.ADMIN)
 
 
-@router.post("/admin/unggah/pratinjau")
+@router.post("/admin/unggah/pratinjau", response_model=PratinjauResponse)
 async def pratinjau_unggahan(
     file: UploadFile = File(...),
     admin: ProfilPengguna = Depends(hanya_admin),
@@ -61,7 +63,7 @@ async def pratinjau_unggahan(
     return {"id": unggahan.id, "diff": diff}
 
 
-@router.post("/admin/unggah/{unggahan_id}/setujui")
+@router.post("/admin/unggah/{unggahan_id}/setujui", response_model=StatusResponse)
 def setujui_unggahan(
     unggahan_id: int,
     admin: ProfilPengguna = Depends(hanya_admin),

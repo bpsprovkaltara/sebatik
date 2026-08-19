@@ -8,9 +8,10 @@ tersimpan di basis data tidak boleh menjadi jalan keluar ke berkas lain.
 from __future__ import annotations
 
 import uuid
+from collections.abc import Sequence
 from hashlib import sha256
 from pathlib import Path
-from typing import NamedTuple
+from typing import Any, NamedTuple
 
 from ..config import settings
 
@@ -71,3 +72,50 @@ def path_boleh_dibaca(path_tersimpan: str) -> Path | None:
     except (ValueError, OSError):
         return None
     return path
+
+
+class Lampiran(NamedTuple):
+    """Satu berkas yang sudah dibaca dari permintaan, sebelum divalidasi."""
+
+    nama_file: str | None
+    isi: bytes
+    mime_type: str | None
+
+
+class LampiranDitolak(NamedTuple):
+    kode: int
+    pesan: str
+
+
+def periksa_lampiran(lampiran: Sequence[Lampiran]) -> LampiranDitolak | None:
+    """Validasi seluruh berkas sebelum satu pun ditulis.
+
+    Diperiksa sekaligus, bukan satu per satu sambil menulis, supaya penolakan
+    pada berkas terakhir tidak meninggalkan berkas separuh terunggah.
+    """
+    if not lampiran:
+        return LampiranDitolak(422, "Minimal satu bukti dukung wajib diunggah")
+    for berkas in lampiran:
+        if not format_didukung(berkas.mime_type):
+            return LampiranDitolak(422, f"Format bukti tidak didukung: {berkas.nama_file}")
+        if not ukuran_wajar(len(berkas.isi)):
+            batas_mb = settings.max_bukti_bytes // (1024 * 1024)
+            return LampiranDitolak(413, f"Bukti melebihi {batas_mb} MB: {berkas.nama_file}")
+    return None
+
+
+def ringkas(bukti: Sequence[Any], *, sertakan_checksum: bool = False) -> list[dict[str, Any]]:
+    """Metadata bukti untuk respons API — tidak pernah memuat isi berkasnya."""
+    hasil = []
+    for b in bukti:
+        baris = {
+            "id": b.id,
+            "nama_file": b.nama_file,
+            "mime_type": b.mime_type,
+            "ukuran": b.ukuran,
+            "diunggah_pada": b.diunggah_pada,
+        }
+        if sertakan_checksum:
+            baris["checksum_sha256"] = b.checksum_sha256
+        hasil.append(baris)
+    return hasil

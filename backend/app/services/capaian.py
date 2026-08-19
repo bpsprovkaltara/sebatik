@@ -145,3 +145,196 @@ def kalimat_insight(
             f"dan trennya {tren}."
         )
     return f"Capaian {tahun} tersedia, tetapi progres belum dapat dihitung lengkap."
+
+
+# ---------------------------------------------------------------------------
+# Penyusunan muatan capaian.
+#
+# Bagian di atas murni angka. Bagian ini merangkainya menjadi muatan endpoint
+# dengan membaca repository — tetap di luar router karena isinya perhitungan,
+# bukan HTTP (backend.md §1.2).
+# ---------------------------------------------------------------------------
+
+from typing import Any  # noqa: E402
+
+from sqlalchemy.orm import Session  # noqa: E402
+
+from ..models import KODE_PROVINSI, Indikator, JenisNilai, Wilayah  # noqa: E402
+from ..repositories import indikator as repo_indikator  # noqa: E402
+from ..repositories import nilai as repo_nilai  # noqa: E402
+from . import nilai as svc_nilai  # noqa: E402
+from .analitik import TAHUN_TARGET_AKHIR, TAHUN_TARGET_ANTARA  # noqa: E402
+from .beranda import STATUS_HANYA_TERVERIFIKASI  # noqa: E402
+
+CATATAN_WILAYAH = "Belum ada basis data kabupaten/kota. Visualisasi akan terisi setelah data wilayah diverifikasi."
+
+
+def muatan(session: Session, indikator: Indikator, wilayah_kode: str = KODE_PROVINSI) -> dict[str, Any]:
+    """Ringkasan capaian satu indikator untuk satu wilayah."""
+    seri = repo_nilai.seri(session, indikator.id_indikator, wilayah_kode)
+    realisasi = [baris for baris in seri if baris.jenis == JenisNilai.REALISASI and baris.nilai is not None]
+    terakhir = max(realisasi, key=lambda baris: baris.tahun) if realisasi else None
+    target_setahun = next(
+        (
+            baris
+            for baris in seri
+            if terakhir
+            and baris.jenis == JenisNilai.TARGET
+            and baris.tahun == terakhir.tahun
+            and baris.nilai is not None
+        ),
+        None,
+    )
+    hasil = capaian(
+        terakhir.nilai if terakhir else None,
+        target_setahun.nilai if target_setahun else None,
+        indikator.arah_baik,
+        bool(indikator.arah_baik_terverifikasi),
+    )
+    return {
+        "id_indikator": indikator.id_indikator,
+        "nama_indikator": indikator.nama_indikator,
+        "kategori": indikator.kategori,
+        "kelompok": indikator.kelompok,
+        "arah_pembangunan": indikator.arah_pembangunan,
+        "tim_pjk": indikator.tim_pjk,
+        "satuan": indikator.satuan,
+        "arah_baik": indikator.arah_baik,
+        "arah_baik_terverifikasi": indikator.arah_baik_terverifikasi,
+        "nilai_terakhir": terakhir.nilai if terakhir else None,
+        "tahun_terakhir_realisasi": terakhir.tahun if terakhir else None,
+        "target_tahun_sama": target_setahun.nilai if target_setahun else None,
+        "persentase_capaian": hasil.persentase,
+        "status_capaian": hasil.status,
+        "tren": [{"tahun": baris.tahun, "nilai": baris.nilai} for baris in realisasi],
+    }
+
+
+# Filter daftar capaian: nama parameter endpoint -> kolom pada muatan.
+FILTER_DAFTAR = (
+    ("kategori", "kategori"),
+    ("kelompok", "kelompok"),
+    ("arah_pembangunan", "arah_pembangunan"),
+    ("tim", "tim_pjk"),
+    ("status_capaian", "status_capaian"),
+)
+
+
+def daftar(session: Session, *, wilayah_kode: str = KODE_PROVINSI, **filter_aktif: str | None) -> dict[str, Any]:
+    """Daftar capaian seluruh indikator, disaring menurut kolom muatannya."""
+    data = [muatan(session, indikator, wilayah_kode) for indikator in repo_indikator.daftar_ekspor(session)]
+    for parameter, kolom in FILTER_DAFTAR:
+        nilai = filter_aktif.get(parameter)
+        if nilai:
+            data = [baris for baris in data if baris.get(kolom) == nilai]
+    return {"data": data, "total": len(data), "arah_bersifat_sementara": True}
+
+
+def detail(session: Session, indikator: Indikator, wilayah: Wilayah, *, tahun: int | None) -> dict[str, Any]:
+    """Penelusuran progres satu indikator terhadap target 2029 dan 2045."""
+    id_indikator = indikator.id_indikator
+    semua = repo_nilai.seri(session, id_indikator, wilayah.kode)
+    target = {baris.tahun: baris for baris in semua if baris.jenis == JenisNilai.TARGET}
+    realisasi = [
+        baris
+        for baris in semua
+        if baris.jenis == JenisNilai.REALISASI and svc_nilai.angka_terakhir(baris.nilai, baris.nilai_teks) is not None
+    ]
+    tahun_tersedia = [baris.tahun for baris in realisasi]
+    dipilih = tahun if tahun in tahun_tersedia else (max(tahun_tersedia) if tahun_tersedia else tahun)
+
+    def angka_target(tahun_target: int) -> float | None:
+        baris = target.get(tahun_target)
+        return svc_nilai.angka_terakhir(baris.nilai, baris.nilai_teks) if baris else None
+
+    target_2045 = angka_target(TAHUN_TARGET_AKHIR)
+    # Target antara RPJMD dipakai sebagai tolok progres pada tracker karena 2029
+    # adalah horizon yang masih bisa ditindaklanjuti perencana hari ini; 2045
+    # tetap dikirim sebagai tujuan akhir.
+    target_2029 = angka_target(TAHUN_TARGET_ANTARA)
+
+    seri: list[dict[str, Any]] = []
+    sebelumnya: float | None = None
+    for baris in realisasi:
+        angka = svc_nilai.angka_terakhir(baris.nilai, baris.nilai_teks)
+        seri.append(
+            {
+                "tahun": baris.tahun,
+                "nilai": angka,
+                "nilai_asli": baris.nilai,
+                "nilai_teks": baris.nilai_teks,
+                "growth": svc_nilai.pertumbuhan(angka, sebelumnya),
+                "target": angka_target(baris.tahun),
+            }
+        )
+        sebelumnya = angka
+
+    sekarang = next((x for x in seri if x["tahun"] == dipilih), None)
+    baseline = seri[0] if seri else None
+    tahun_sebelumnya = next((x for x in reversed(seri) if dipilih and x["tahun"] < dipilih), None)
+
+    arah = arah_target(baseline["nilai"] if baseline else None, target_2045)
+    nilai_sekarang = sekarang["nilai"] if sekarang else None
+    nilai_baseline = baseline["nilai"] if baseline else None
+    progres_2045 = progres_menuju(nilai_sekarang, nilai_baseline, target_2045)
+    progres_2029 = progres_menuju(nilai_sekarang, nilai_baseline, target_2029)
+    gap_2045 = svc_nilai.selisih(target_2045, nilai_sekarang, digit=4)
+    gap_2029 = svc_nilai.selisih(target_2029, nilai_sekarang, digit=4)
+
+    proyeksi = [
+        {
+            "tahun": x["tahun"],
+            "realisasi": x["nilai"],
+            "jalur_target": nilai_sekarang if x["tahun"] == dipilih else None,
+        }
+        for x in seri
+    ]
+    if target_2045 is not None and not any(x["tahun"] == TAHUN_TARGET_AKHIR for x in proyeksi):
+        proyeksi.append({"tahun": TAHUN_TARGET_AKHIR, "realisasi": None, "jalur_target": target_2045})
+
+    return {
+        "id_indikator": indikator.id_indikator,
+        "kategori": indikator.kategori,
+        "kelompok": indikator.kelompok,
+        "arah_pembangunan": indikator.arah_pembangunan,
+        "kode_indikator": indikator.kode_indikator,
+        "nama_indikator": indikator.nama_indikator,
+        "satuan": indikator.satuan,
+        "sumber_data": indikator.sumber_data,
+        "frekuensi": indikator.frekuensi,
+        "opd_pengampu": indikator.opd_pengampu,
+        "wilayah": {"kode": wilayah.kode, "nama": wilayah.nama, "tingkat": wilayah.tingkat},
+        "tahun": dipilih,
+        "tahun_tersedia": tahun_tersedia,
+        "series": seri,
+        "projection": proyeksi,
+        "nilai_tahun": nilai_sekarang,
+        "nilai_teks": sekarang["nilai_teks"] if sekarang else None,
+        "target_2045": target_2045,
+        "target_2045_teks": target[TAHUN_TARGET_AKHIR].nilai_teks if TAHUN_TARGET_AKHIR in target else None,
+        "target_2029": target_2029,
+        "target_2029_teks": target[TAHUN_TARGET_ANTARA].nilai_teks if TAHUN_TARGET_ANTARA in target else None,
+        "arah_target": arah,
+        "progres_2045": progres_2045,
+        "progres_2029": progres_2029,
+        "gap_2045": gap_2045,
+        "gap_2029": gap_2029,
+        "kebutuhan_per_tahun": kebutuhan_per_tahun(gap_2045, dipilih, TAHUN_TARGET_AKHIR),
+        "insight": kalimat_insight(
+            nama_wilayah=wilayah.nama,
+            tahun=dipilih,
+            ada_nilai=sekarang is not None,
+            tahun_baseline=baseline["tahun"] if baseline else None,
+            progres_2029=progres_2029,
+            progres_2045=progres_2045,
+            target_2029=target_2029,
+            target_2045=target_2045,
+            sedang_membaik=membaik(
+                nilai_sekarang,
+                tahun_sebelumnya["nilai"] if tahun_sebelumnya else None,
+                arah,
+            ),
+        ),
+        "status_data": STATUS_HANYA_TERVERIFIKASI,
+        "catatan_wilayah": None if wilayah.kode == KODE_PROVINSI else CATATAN_WILAYAH,
+    }

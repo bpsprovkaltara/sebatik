@@ -8,21 +8,22 @@ from fastapi import APIRouter, Depends, Form, HTTPException
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import Session
 
-from ..deps import get_session, wajib_peran
-from ..models import KODE_PROVINSI, PERAN, Peran
+from ..deps import get_session, id_terautentikasi, wajib_peran
+from ..models import Peran
 from ..repositories import pengguna as repo_pengguna
 from ..repositories import tata_kelola as repo_tata_kelola
-from ..repositories import wilayah as repo_wilayah
 from ..repositories.pengguna import ProfilPengguna
-from ..security import PANJANG_PASSWORD_MINIMUM, hash_password, password_memenuhi_syarat
+from ..schemas.admin import DaftarAkunResponse, LogResponse, PenggunaDibuatResponse
+from ..schemas.umum import StatusResponse
+from ..services import auth as svc_auth
+from ..services import pengguna as svc
 
 router = APIRouter(prefix="/api/v1", tags=["admin"])
 
-PESAN_PASSWORD_PENDEK = f"Kata sandi minimal {PANJANG_PASSWORD_MINIMUM} karakter"
 hanya_admin = wajib_peran(Peran.ADMIN)
 
 
-@router.post("/admin/pengguna")
+@router.post("/admin/pengguna", response_model=PenggunaDibuatResponse)
 def buat_pengguna(
     username: str = Form(...),
     nama: str = Form(...),
@@ -33,23 +34,23 @@ def buat_pengguna(
     admin: ProfilPengguna = Depends(hanya_admin),
     session: Session = Depends(get_session),
 ) -> dict[str, str]:
-    if peran not in tuple(PERAN):
-        raise HTTPException(422, "Peran tidak valid")
-    if peran in {Peran.OPERATOR, Peran.VERIFIKATOR} and not repo_wilayah.ada_dan_aktif(session, wilayah_kode):
-        raise HTTPException(422, "Wilayah wajib dan harus aktif")
-    if peran == Peran.VERIFIKATOR and wilayah_kode != KODE_PROVINSI:
-        raise HTTPException(422, "Verifikator hanya dapat ditempatkan pada Provinsi Kalimantan Utara")
-    if not password_memenuhi_syarat(password):
-        raise HTTPException(422, PESAN_PASSWORD_PENDEK)
+    penolakan = svc.periksa_pembuatan(
+        peran=peran,
+        wilayah_aktif=svc.wilayah_penempatan_sah(session, wilayah_kode),
+        wilayah_kode=wilayah_kode,
+        password=password,
+    )
+    if penolakan:
+        raise HTTPException(penolakan.kode, penolakan.pesan)
 
-    repo_pengguna.buat(
+    svc.buat(
         session,
         username=username,
         nama=nama,
-        password_hash=hash_password(password),
+        password=password,
         peran=peran,
-        tim_pjk=tim_pjk,
         wilayah_kode=wilayah_kode,
+        tim_pjk=tim_pjk,
     )
     try:
         session.commit()
@@ -58,86 +59,57 @@ def buat_pengguna(
         # galat lain tidak boleh disamarkan menjadi 409.
         session.rollback()
         raise HTTPException(409, "Username sudah digunakan") from exc
+    svc_auth.catat_peristiwa(
+        "akun_dibuat", pengguna_id=id_terautentikasi(admin), username=username, hasil="berhasil", peran_baru=peran
+    )
     return {"status": "DIBUAT", "username": username}
 
 
-@router.get("/admin/pengguna")
+@router.get("/admin/pengguna", response_model=DaftarAkunResponse)
 def daftar_pengguna(
     admin: ProfilPengguna = Depends(hanya_admin),
     session: Session = Depends(get_session),
 ) -> dict[str, Any]:
-    return {
-        "data": [
-            {
-                "id": akun.id,
-                "username": akun.username,
-                "nama": akun.nama,
-                "peran": akun.peran,
-                "wilayah_kode": akun.wilayah_kode,
-                "wilayah": nama_wilayah,
-                "tim_pjk": akun.tim_pjk,
-                "aktif": akun.aktif,
-                "harus_ganti_password": akun.harus_ganti_password,
-            }
-            for akun, nama_wilayah in repo_pengguna.daftar_dengan_wilayah(session)
-        ]
-    }
+    return svc.daftar(session)
 
 
-@router.patch("/admin/pengguna/{pengguna_id}/status")
+@router.patch("/admin/pengguna/{pengguna_id}/status", response_model=StatusResponse)
 def ubah_status_pengguna(
     pengguna_id: int,
     aktif: bool = Form(...),
     admin: ProfilPengguna = Depends(hanya_admin),
     session: Session = Depends(get_session),
 ) -> dict[str, str]:
-    if pengguna_id == admin.id and not aktif:
-        raise HTTPException(422, "Admin tidak dapat menonaktifkan akunnya sendiri")
+    penolakan = svc.periksa_ubah_status(pengguna_id=pengguna_id, admin_id=admin.id, aktif=aktif)
+    if penolakan:
+        raise HTTPException(penolakan.kode, penolakan.pesan)
     akun = repo_pengguna.ambil(session, pengguna_id)
     if akun is None:
         raise HTTPException(404, "Pengguna tidak ditemukan")
-
-    akun.aktif = aktif
-    repo_tata_kelola.catat_aktivitas(
-        session,
-        pengguna_id=admin.id,
-        aksi="UBAH_STATUS_AKUN",
-        objek_tipe="pengguna",
-        objek_id=str(pengguna_id),
-        detail={"aktif": aktif},
-    )
-    session.commit()
-    return {"status": "AKTIF" if aktif else "NONAKTIF"}
+    return svc.ubah_status(session, akun, aktif=aktif, admin_id=id_terautentikasi(admin))
 
 
-@router.post("/admin/pengguna/{pengguna_id}/reset-password")
+@router.post("/admin/pengguna/{pengguna_id}/reset-password", response_model=StatusResponse)
 def reset_password(
     pengguna_id: int,
     password_baru: str = Form(...),
     admin: ProfilPengguna = Depends(hanya_admin),
     session: Session = Depends(get_session),
 ) -> dict[str, str]:
-    if not password_memenuhi_syarat(password_baru):
-        raise HTTPException(422, PESAN_PASSWORD_PENDEK)
+    if not svc_auth.password_layak(password_baru):
+        raise HTTPException(422, svc.PESAN_PASSWORD_PENDEK)
     akun = repo_pengguna.ambil(session, pengguna_id)
     if akun is None:
         raise HTTPException(404, "Pengguna tidak ditemukan")
 
-    # Reset oleh admin selalu memaksa ganti sandi pada login berikutnya.
-    repo_pengguna.ganti_password(akun, hash_password(password_baru), wajib_ganti=True)
-    repo_tata_kelola.catat_aktivitas(
-        session,
-        pengguna_id=admin.id,
-        aksi="RESET_PASSWORD",
-        objek_tipe="pengguna",
-        objek_id=str(pengguna_id),
-        detail="Kata sandi direset oleh admin",
+    hasil = svc.reset_password(session, akun, password_baru=password_baru, admin_id=id_terautentikasi(admin))
+    svc_auth.catat_peristiwa(
+        "reset_password", pengguna_id=id_terautentikasi(admin), hasil="berhasil", target_id=pengguna_id
     )
-    session.commit()
-    return {"status": "PASSWORD_DIRESET"}
+    return hasil
 
 
-@router.get("/admin/log")
+@router.get("/admin/log", response_model=LogResponse)
 def log_audit(
     admin: ProfilPengguna = Depends(hanya_admin),
     session: Session = Depends(get_session),

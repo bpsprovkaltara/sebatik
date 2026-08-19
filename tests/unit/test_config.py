@@ -10,12 +10,16 @@ from backend.app.config import DEFAULT_DB_PATH, SECRET_BAWAAN, Settings
 
 
 def test_nilai_bawaan_sama_dengan_perilaku_lama():
-    """Fase 0 tidak boleh mengubah perilaku: bawaan harus identik dengan sebelumnya."""
+    """Bawaan tetap seperti sebelum refactoring, kecuali yang sengaja diubah.
+
+    TTL token adalah pengecualian yang disengaja: auth-keamanan.md §3 Opsi A
+    meminta token akses berumur pendek, dengan sesi dipertahankan lewat token
+    segar. Diuji terpisah di `test_ttl_token_dipendekkan_dan_ada_token_segar`.
+    """
     settings = Settings(_env_file=None)
     assert settings.database_url == f"sqlite:///{DEFAULT_DB_PATH.as_posix()}"
     assert settings.secret_key == SECRET_BAWAAN
     assert settings.cors_origins == ["http://localhost:5173", "http://127.0.0.1:5173"]
-    assert settings.access_token_ttl_hours == 8
     assert settings.kode_provinsi == "65"
     assert settings.max_bukti_bytes == 10 * 1024 * 1024
     assert settings.max_unggah_bytes == 30 * 1024 * 1024
@@ -66,3 +70,20 @@ def test_produksi_menerima_secret_acak_panjang(monkeypatch):
 
 def test_development_tidak_memaksa_secret():
     Settings(_env_file=None).validasi_produksi()
+
+
+def test_ttl_token_dipendekkan_dan_ada_token_segar():
+    """auth-keamanan.md §3: TTL akses 1-2 jam, sesi disambung token segar."""
+    settings = Settings(_env_file=None)
+    assert 1 <= settings.access_token_ttl_hours <= 2
+    assert settings.refresh_token_ttl_hours > settings.access_token_ttl_hours
+
+
+def test_kunci_lama_boleh_dipisah_koma(monkeypatch):
+    """Rotasi kunci (auth-keamanan.md §2.4) dibaca dari satu baris `.env`."""
+    monkeypatch.setenv("SEBATIK_SECRET_KEYS", "kunci-lama-satu, kunci-lama-dua")
+    assert Settings(_env_file=None).secret_keys == ["kunci-lama-satu", "kunci-lama-dua"]
+
+
+def test_tanpa_rotasi_daftar_kunci_lama_kosong():
+    assert Settings(_env_file=None).secret_keys == []

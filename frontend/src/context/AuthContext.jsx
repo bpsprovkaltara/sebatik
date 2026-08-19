@@ -1,6 +1,6 @@
 import {createContext, useCallback, useContext, useMemo} from 'react'
 
-import {clearToken, roleLabel, setToken, useProfile, useToken} from '../auth'
+import {keluarSesi, roleLabel, setToken, useProfile, useToken} from '../auth'
 import * as endpoints from '../api/endpoints'
 
 /* Status masuk tetap dikelola auth.js supaya tab lain ikut tersinkron. Context
@@ -18,7 +18,9 @@ export function AuthProvider({children}){
     return hasil
   }, [])
 
-  const keluar = useCallback(() => clearToken(), [])
+  /* Keluar juga menghapus cookie segar di server; kalau hanya token lokal yang
+     dibuang, permintaan berikutnya akan menyegarkan sesi yang baru ditutup. */
+  const keluar = useCallback(() => keluarSesi(), [])
 
   const nilai = useMemo(() => ({
     token,
