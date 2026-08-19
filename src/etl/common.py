@@ -6,7 +6,6 @@ import math
 import re
 from typing import Any
 
-
 NON_NUMERIC = {"", "-", "–", "—", "n/a", "na", "none", "null", "tidak tersedia", "belum tersedia"}
 
 

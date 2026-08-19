@@ -1,2 +1,0 @@
-export async function api(path){const response=await fetch(path);if(!response.ok)throw new Error(`API gagal (${response.status})`);return response.json()}
-export const qs=(params)=>{const out=new URLSearchParams();Object.entries(params).forEach(([key,value])=>{if(Array.isArray(value))value.filter(Boolean).forEach(v=>out.append(key,v));else if(value!==''&&value!=null)out.set(key,value)});return out.toString()}

@@ -2,6 +2,8 @@
 __pycache__/
 *.py[cod]
 .pytest_cache/
+.coverage
+htmlcov/
 .venv/
 .venv-*/
 .runtime-packages/
@@ -16,3 +18,13 @@ frontend/dist/
 .claude/
 tmp/
 *.log
+
+# Data. Berkas mentah dan basis data tidak ikut ter-commit: ukurannya besar,
+# berubah setiap kali aplikasi berjalan, dan sebagiannya memuat data pribadi
+# (nama PIC). Sumber kebenarannya ada di berbagi pakai kantor, bukan di git.
+data/raw/
+data/processed/*.db
+data/processed/cadangan/
+data/processed/arsip-unggahan/
+data/processed/bukti-dukung/
+backup/

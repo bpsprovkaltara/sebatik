@@ -32,6 +32,50 @@ export function setToken(next){
 
 export const clearToken=()=>setToken('')
 
+/* ----------------------------------------------------------------------------
+   Menyegarkan sesi
+   ----------------------------------------------------------------------------
+   Token akses sengaja berumur pendek (auth-keamanan.md §3). Yang menjaga sesi
+   tetap hidup adalah cookie httpOnly yang dipasang saat masuk dan hanya dikirim
+   ke /api/v1/auth — JavaScript tidak pernah dapat membacanya.
+
+   Penyegaran dijalankan satu per satu: bila beberapa permintaan sama-sama kena
+   401, semuanya menunggu satu penyegaran yang sedang berjalan, bukan memicu
+   penyegaran masing-masing dan saling menimpa token hasilnya.
+   -------------------------------------------------------------------------- */
+let permintaanSegar=null
+
+/* Permintaan penyegaran disimpan terpisah dari penerapan hasilnya. Menerapkan
+   token di dalam promise yang sama akan membuat pendengar yang ikut memicu
+   penyegaran menunggu promise yang sedang berjalan itu sendiri. */
+async function ambilTokenSegar(){
+  if(!permintaanSegar){
+    permintaanSegar=(async()=>{
+      try{
+        const response=await fetch('/api/v1/auth/refresh',{method:'POST'})
+        if(!response.ok)return ''
+        return (await response.json())?.access_token||''
+      }catch{
+        /* Gangguan jaringan bukan bukti sesi berakhir; token dibiarkan. */
+        return null
+      }
+    })()
+  }
+  try{return await permintaanSegar}finally{permintaanSegar=null}
+}
+
+export async function segarkanToken(){
+  const token=await ambilTokenSegar()
+  if(token===null)return ''
+  setToken(token)
+  return token
+}
+
+export async function keluarSesi(){
+  try{await fetch('/api/v1/auth/logout',{method:'POST',headers:current?{Authorization:`Bearer ${current}`}:{}})}catch{}
+  setToken('')
+}
+
 export function useToken(){
   const [token,set]=useState(current)
   useEffect(()=>{
@@ -68,10 +112,16 @@ async function loadProfile(){
   const asked=current
   try{
     const response=await fetch('/api/v1/auth/saya',{headers:{Authorization:`Bearer ${asked}`}})
-    /* Token kedaluwarsa dibersihkan di sini juga. Tanpa ini, seseorang yang
-       membuka Beranda dengan sesi yang sudah mati akan melihat bilah atas
-       menawarkan ruang kerja yang tidak lagi bisa ia buka. */
-    if(response.status===401){setToken('');return}
+    /* Sesi yang baru kedaluwarsa masih bisa disambung lewat cookie segar; yang
+       benar-benar mati dibersihkan di sini juga. Tanpa itu, seseorang yang
+       membuka Beranda dengan sesi mati akan melihat bilah atas menawarkan
+       ruang kerja yang tidak lagi bisa ia buka. */
+    if(response.status===401){
+      const baru=await segarkanToken()
+      /* Bila berhasil, setToken sudah memicu pemuatan ulang profil di sini. */
+      if(!baru){profile=null;emitProfile()}
+      return
+    }
     if(asked!==current)return
     profile=response.ok?await response.json():null
   }catch{profile=null}

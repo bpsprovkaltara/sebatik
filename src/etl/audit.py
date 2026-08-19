@@ -3,19 +3,21 @@
 from __future__ import annotations
 
 import argparse
+import re
 from collections import Counter, defaultdict
 from pathlib import Path
-import re
 
 import openpyxl
 
 from .common import clean_text, indicator_id, parse_angka
+from .config import bawaan
+from .transform import kategori_dari_nomor, nomor_dalam_kategori
 
-
-SHEETS = [
-    "form provinsi", "ISV IUP Kaltara", "ISV IUP Kaltara 2026",
-    "Rakor ISV IUP Kaltara 2026", "Rakor ISV IUP Kaltara 202607",
-]
+# Audit dan pipeline membaca konfigurasi yang sama supaya keduanya tidak
+# menyimpang saat versi workbook berganti (etl.md §7).
+KONFIGURASI = bawaan()
+SHEETS = list(KONFIGURASI.sheet_audit)
+TAHUN_VALID = range(*KONFIGURASI.tahun_valid)
 
 
 def last_used(ws):
@@ -28,7 +30,7 @@ def detect_header_rows(ws):
     first_values = {clean_text(ws.cell(1, c).value) for c in range(1, ws.max_column + 1)}
     if "Indikator" in first_values or "No" in first_values:
         years = sum(
-            parse_angka(ws.cell(2, c).value) in range(2020, 2050)
+            parse_angka(ws.cell(2, c).value) in TAHUN_VALID
             if parse_angka(ws.cell(2, c).value) is not None else False
             for c in range(1, ws.max_column + 1)
         )
@@ -41,7 +43,7 @@ def detect_header_rows(ws):
             best = (score, r)
     start = best[1]
     second = start + 1
-    has_years = second <= ws.max_row and sum(parse_angka(ws.cell(second, c).value) in range(2020, 2050) if parse_angka(ws.cell(second, c).value) is not None else False for c in range(1, ws.max_column + 1)) >= 3
+    has_years = second <= ws.max_row and sum(parse_angka(ws.cell(second, c).value) in TAHUN_VALID if parse_angka(ws.cell(second, c).value) is not None else False for c in range(1, ws.max_column + 1)) >= 3
     return [start, second] if has_years else [start]
 
 
@@ -70,11 +72,23 @@ def logical_type(values):
     return ", ".join(f"{k}:{v}" for k, v in types.items()) or "kosong"
 
 
+def daftar_id_diharapkan() -> list[str]:
+    """Seluruh ID indikator yang seharusnya ada, diturunkan dari konfigurasi.
+
+    Jumlah ISV berasal dari batas penomoran menyambung; sisanya IUP hingga
+    total yang diharapkan. Tidak ada angka 86 atau 76 yang dikodekan di sini.
+    """
+    isv = KONFIGURASI.isv_nomor_maksimum
+    iup = KONFIGURASI.jumlah_indikator_diharapkan - isv
+    return [f"ISV-{i:02d}" for i in range(1, isv + 1)] + [f"IUP-{i:02d}" for i in range(1, iup + 1)]
+
+
 def extract_indicators(ws, sheet):
     rows = []
-    if sheet == "form provinsi":
-        sequence = {"ISV": 0, "IUP": 0}
-        for r in range(2, 88):
+    isv_maks = KONFIGURASI.isv_nomor_maksimum
+    if sheet == KONFIGURASI.master.sheet:
+        sequence = dict.fromkeys(KONFIGURASI.kategori, 0)
+        for r in KONFIGURASI.master.baris.rentang(ws.max_row):
             cat, num, name = ws.cell(r, 1).value, ws.cell(r, 4).value, ws.cell(r, 5).value
             cat = (clean_text(cat) or "").upper()
             if cat not in sequence:
@@ -83,24 +97,26 @@ def extract_indicators(ws, sheet):
             iid = indicator_id(cat, sequence[cat])
             if iid: rows.append((iid, clean_text(name), r))
         return rows
-    if sheet == "Rakor ISV IUP Kaltara 202607":
+    sumber = next((x for x in KONFIGURASI.nilai if x.sheet == sheet), None)
+    if sumber is not None and sumber.identitas == "kategori_nomor":
         cat = num = name = None
-        for r in range(3, 165):
-            cat = ws.cell(r, 1).value or cat
-            num = ws.cell(r, 2).value or num
+        for r in sumber.baris.rentang(ws.max_row):
+            cat = ws.cell(r, sumber.kolom_kategori).value or cat
+            num = ws.cell(r, sumber.kolom_nomor).value or num
             name = ws.cell(r, 3).value or name
-            if clean_text(ws.cell(r, 4).value) == "Target":
-                iid = indicator_id(cat, num if (clean_text(cat) or "").upper() == "ISV" else (parse_angka(num) or 0) - 10)
+            if sumber.kolom_jenis and clean_text(ws.cell(r, sumber.kolom_jenis).value) == "Target":
+                kategori = (clean_text(cat) or "").upper()
+                iid = indicator_id(kategori, nomor_dalam_kategori(num, kategori, isv_maks))
                 if iid: rows.append((iid, clean_text(name), r))
         return rows
-    # Sheet lama memakai nomor global 1..86; IUP dimulai pada nomor global 11.
-    start = 3
-    for r in range(start, min(last_used(ws)[0], 200) + 1):
+    # Sheet lama memakai nomor global menyambung; IUP melanjutkan penomoran ISV.
+    baris = sumber.baris if sumber is not None else KONFIGURASI.pemilik.baris
+    for r in baris.rentang(min(last_used(ws)[0], ws.max_row)):
         num, name = ws.cell(r, 1).value, ws.cell(r, 2).value
         n = parse_angka(num)
         if n is None or not clean_text(name): continue
-        category = "ISV" if int(n) <= 10 else "IUP"
-        iid = indicator_id(category, n if category == "ISV" else n - 10)
+        category = kategori_dari_nomor(n, isv_maks)
+        iid = indicator_id(category, nomor_dalam_kategori(n, category, isv_maks))
         if iid: rows.append((iid, clean_text(name), r))
     return rows
 
@@ -156,7 +172,7 @@ def run(workbook_path: Path, output_path: Path):
         report.append(f"| {iid} | {desc.replace('|','/')} |")
 
     report += ["", "## Pemetaan indikator antar-sheet", "", "Kunci pemetaan adalah `Kategori + No`. Pada sheet tanpa kolom Kategori, kategori diinferensikan saat nomor kembali ke 1.", "", "| ID | " + " | ".join(SHEETS) + " |", "|---|" + "---|" * len(SHEETS)]
-    all_ids = [f"ISV-{i:02d}" for i in range(1,11)] + [f"IUP-{i:02d}" for i in range(1,77)]
+    all_ids = daftar_id_diharapkan()
     for iid in all_ids:
         cells = []
         for sheet in SHEETS:
