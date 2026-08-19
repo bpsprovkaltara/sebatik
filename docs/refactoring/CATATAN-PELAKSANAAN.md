@@ -109,3 +109,73 @@ docker compose up -d
 Rollback: arahkan `SEBATIK_DATABASE_URL` kembali ke SQLite. Berkas lama tidak
 disentuh skrip migrasi (dibuka mode `ro`). Data yang ditulis ke PostgreSQL
 setelah cutover tidak otomatis kembali dan perlu dipindahkan manual.
+
+## Temuan 4 — Mengeluarkan `data/` dari git akan melumpuhkan CI
+
+**Kapan:** Fase 8.
+
+Kriteria selesai meminta `data/raw` dan `data/processed/sebatik.db` dikeluarkan
+dari version control. Menuruti itu apa adanya membuat seluruh tes kontrak API
+melewatkan dirinya di CI, karena semuanya dibangun di atas salinan basis data
+produksi — gerbang mutu yang paling penting justru menjadi tidak berbunyi.
+
+Yang dilakukan: tes kontrak diberi **benih uji sendiri** yang ikut ter-commit
+(`tests/api/conftest.py`). Benih itu ringkas tetapi menyentuh semua bentuk
+respons: indikator makro dan non-makro, indikator belum terverifikasi, nilai
+provinsi dan wilayah, nilai tahunan dan periodik, nilai berupa teks, target 2029
+dan 2045, serta satu usulan berbukti.
+
+Hasilnya, 350 dari 353 tes tetap berjalan tanpa direktori `data/`. Tiga tes yang
+memang menguji data sungguhan — integrasi ETL dan dua regresi isi beranda —
+melewatkan dirinya sendiri dengan pesan yang jelas.
+
+## Temuan 5 — ID indikator lama tertinggal di frontend
+
+**Kapan:** Fase 6, saat verifikasi di peramban.
+
+`AnalyticsPage` memakai `'ISV-01'`, `'ISV-04'`, dan `'ISV-05'` sebagai nilai
+bawaan pemilih indikator. Setelah konsolidasi Fase 2, ID itu tidak ada lagi dan
+halaman meminta indikator yang tidak ditemukan (404) begitu dibuka.
+
+Cacat ini lolos dari build, lolos dari lint, dan lolos dari tes — ia hanya
+terlihat pada jejak jaringan peramban. Pilihan awal kini diambil dari daftar
+yang benar-benar dimuat, sehingga tidak ikut basi saat daftar indikator berganti
+versi lagi.
+
+## Urutan fase yang dijalankan
+
+Fase 7 (keamanan) dikerjakan sebelum Fase 6 (frontend), bukan sesudahnya seperti
+di peta jalan. Alasannya: pemecahan `App.jsx` menyentuh seluruh jalur
+autentikasi di frontend, jadi lebih murah menulisnya sekali di atas kontrak auth
+yang sudah final daripada menulis ulang setelahnya.
+
+## Status kriteria selesai
+
+| Kriteria | Status |
+|---|---|
+| Aplikasi berjalan di PostgreSQL dengan Alembic; tidak ada migrasi ad hoc | Skema dan compose siap; cutover menunggu server PostgreSQL kantor |
+| Satu model data konsolidasi; verifikasi menulis satu tabel | Selesai, dengan tes yang membuktikannya |
+| `features_api.py` dihapus; endpoint terpetakan ke router/service/repository | Selesai |
+| `App.jsx` < 150 baris; router + layer API terpusat | Selesai (59 baris) |
+| ETL data-driven; tidak ada rentang hardcode | Selesai |
+| Test kontrak API membuktikan kontrak publik tidak berubah | Selesai |
+| CI hijau: lint + type + test backend + test/build frontend | Selesai |
+| Checklist keamanan terpenuhi | Selesai, kecuali dua butir operasional di bawah |
+| Dokumentasi diperbarui | Selesai |
+
+Dua butir keamanan yang harus dikerjakan operator, bukan kode:
+
+- `SEBATIK_SECRET_KEY` acak ≥32 karakter dipasang di `.env` produksi.
+- Akun seed mengganti sandi awalnya setelah pemasangan.
+
+## Tindak lanjut yang belum dikerjakan
+
+1. **Cutover PostgreSQL** belum dijalankan pada lingkungan sungguhan; belum ada
+   server PostgreSQL yang tersedia saat pengerjaan. Semua perkakasnya siap dan
+   migrasinya diuji di CI terhadap PostgreSQL 16.
+2. **`arah_baik` untuk 63 indikator** perlu diisi lewat panel admin sebelum
+   halaman capaian menampilkan angka untuk indikator tersebut.
+3. **Pembatas laju login** disimpan di memori proses. Cukup untuk satu instans;
+   perlu dipindah ke Redis/PostgreSQL bila kelak dijalankan multi-instans.
+4. **Refresh token** (auth-keamanan.md §3 Opsi B) belum dibuat; TTL akses masih
+   8 jam dan token masih disimpan di `localStorage`.

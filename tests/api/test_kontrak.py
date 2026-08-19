@@ -10,10 +10,13 @@ from __future__ import annotations
 
 import pytest
 
+from .conftest import SANDI_ADMIN
+
 KODE_PROVINSI = "65"
+# ID ini berasal dari benih uji di conftest.py, bukan dari data produksi.
 INDIKATOR_MASTER = "ISV-001"
 # Setelah konsolidasi hanya ada satu skema ID; endpoint analitik memakai yang sama.
-INDIKATOR_LEGACY = "ISV-004"
+INDIKATOR_LEGACY = "ISV-002"
 
 
 @pytest.fixture
@@ -287,7 +290,7 @@ def test_ekspor(client, path: str, prefix: bytes):
 def test_login_dan_profil(_json, client, auth):
     body = client.post(
         "/api/v1/auth/login",
-        data={"username": "admin", "password": "Sebatik-Ganti-Segera-2026!"},
+        data={"username": "admin", "password": SANDI_ADMIN},
     ).json()
     assert {"access_token", "token_type", "peran", "harus_ganti_password"} == body.keys()
     assert body["token_type"] == "bearer"

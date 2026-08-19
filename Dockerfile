@@ -14,8 +14,10 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY backend backend
 COPY src src
 COPY scripts scripts
-COPY data/processed data/processed
 COPY --from=frontend /build/dist frontend/dist
-RUN mkdir -p /app/data/processed/arsip-unggahan /app/backup
+# Direktori data dibuat kosong. Isinya tidak ikut ke dalam image: basis data
+# tinggal di PostgreSQL (volume terpisah), sedangkan arsip unggahan dan bukti
+# dukung dipasang sebagai volume supaya tidak hilang saat image diganti.
+RUN mkdir -p /app/data/processed/arsip-unggahan /app/data/processed/bukti-dukung /app/backup
 EXPOSE 8000
 CMD ["python","-m","uvicorn","backend.app.main:app","--host","0.0.0.0","--port","8000"]

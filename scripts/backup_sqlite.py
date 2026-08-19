@@ -1,4 +1,10 @@
-"""Backup konsisten SQLite dengan retensi harian."""
+"""Backup konsisten berkas SQLite dengan retensi harian.
+
+Dipakai untuk pemasangan tunggal yang masih memakai SQLite, dan untuk
+mengarsipkan basis data lama sebelum cutover ke PostgreSQL. Pemasangan yang
+sudah memakai PostgreSQL memakai `pg_dump` lewat layanan `backup` di
+docker-compose.yml, bukan skrip ini.
+"""
 
 from __future__ import annotations
 

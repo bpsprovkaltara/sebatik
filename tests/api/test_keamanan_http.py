@@ -6,6 +6,8 @@ import pytest
 
 from backend.app.services.pembatas import pembatas_login
 
+from .conftest import SANDI_ADMIN
+
 
 @pytest.fixture(autouse=True)
 def bersihkan_pembatas():
@@ -47,7 +49,7 @@ def test_masuk_berhasil_mengosongkan_jatah(client):
     """Pengguna sah tidak boleh terkunci gara-gara salah ketik beberapa kali."""
     for _ in range(4):
         client.post("/api/v1/auth/login", data={"username": "admin", "password": "salah-sekali-lah"})
-    benar = {"username": "admin", "password": "Sebatik-Ganti-Segera-2026!"}
+    benar = {"username": "admin", "password": SANDI_ADMIN}
     assert client.post("/api/v1/auth/login", data=benar).status_code == 200
     # Jatah kembali penuh setelah berhasil.
     assert client.post("/api/v1/auth/login", data=benar).status_code == 200
