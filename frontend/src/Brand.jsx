@@ -132,21 +132,52 @@ export function WaveEdge() {
              terisinya justru masalah: ia berakhir rata di kaki bingkai dan
              terbaca sebagai pita lurus. Karena itu ragam ini diluruhkan dengan
              mask gradasi sehingga isinya menghilang sebelum sampai ke tepi. */
-const WAVE_PATH =
-  'M0 22c48-16 96-20 168-8s132 22 204 10 132-24 204-12 132 22 204 10 132-24 204-12 120 20 192 12 60-8 84-12v30H0Z'
+/* Bentuk ombaknya dibangkitkan, bukan digambar tangan.
+
+   Versi tangan sebelumnya memakai satu deret kurva dengan panjang gelombang
+   yang hampir seragam dan amplitudo kecil di dalam bingkai setinggi 40px:
+   hasilnya lengkungan sopan yang terbaca sebagai garis berlekuk, bukan air.
+   Yang membuat air terlihat hidup adalah beberapa gelombang berbeda panjang
+   yang saling menumpuk — jadi di sini tiga lapis dibangkitkan dari setengah
+   gelombang yang sama-sama membagi habis 1440, masing-masing dengan panjang,
+   tinggi, dan garis dasar sendiri.
+
+   `q` disusul rangkaian `t`: tiap `t` mencerminkan titik kendali sebelumnya,
+   sehingga puncak dan lembahnya menyambung mulus seperti sinus, bukan patah di
+   titik temu. Karena setengah gelombangnya membagi habis lebar bingkai, dua
+   salinan berdampingan tetap menyambung saat digeser separuh — itulah yang
+   membuat putarannya tidak pernah terlihat menyambung. */
+const wavePath = (half, amp, base) => {
+  const steps = 1440 / half
+  let d = `M0 ${base} q ${half / 2} ${-amp} ${half} 0`
+  for (let i = 1; i < steps; i++) d += ` t ${half} 0`
+  return `${d} V120 H0 Z`
+}
+
+/* Panjang gelombang mengecil dari belakang ke depan supaya lapis terdepan
+   terbaca sebagai riak yang lebih dekat ke mata. */
+const WAVE_LAYERS = [
+  {key: 'back', d: wavePath(240, 34, 48)},
+  {key: 'mid', d: wavePath(180, 26, 62)},
+  {key: 'front', d: wavePath(144, 20, 76)}
+]
 
 export function WaveDivider({flip = false, tone = 'soft'}) {
   return (
     <div className={`wave-divider${flip ? ' is-flipped' : ''}`} data-tone={tone} aria-hidden="true">
-      <svg viewBox="0 0 1440 40" preserveAspectRatio="none">
-        <g className="wave-layer wave-layer-back">
-          <path d={WAVE_PATH} />
-          <path d={WAVE_PATH} transform="translate(1440 0)" />
-        </g>
-        <g className="wave-layer wave-layer-front">
-          <path d={WAVE_PATH} />
-          <path d={WAVE_PATH} transform="translate(1440 0)" />
-        </g>
+      <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
+        {WAVE_LAYERS.map((layer) => (
+          <g className={`wave-layer wave-layer-${layer.key}`} key={layer.key}>
+            {/* Lapis dalam mengayun naik-turun pelan. Ia dipisahkan dari lapis
+                luar yang menggeser mendatar karena keduanya sama-sama memakai
+                `transform` — ditumpuk pada satu elemen, yang belakangan akan
+                membatalkan yang pertama. */}
+            <g className="wave-sway">
+              <path d={layer.d} />
+              <path d={layer.d} transform="translate(1440 0)" />
+            </g>
+          </g>
+        ))}
       </svg>
     </div>
   )

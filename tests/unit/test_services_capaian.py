@@ -120,15 +120,21 @@ def test_kebutuhan_per_tahun():
 
 def _kalimat(**ubah):
     baku = {
+        "nama_indikator": "PDRB per Kapita",
         "nama_wilayah": "Kalimantan Utara",
         "tahun": 2025,
         "ada_nilai": True,
         "tahun_baseline": 2021,
         "progres_2029": 40.0,
         "progres_2045": 20.0,
-        "target_2029": 8.0,
+        "target_2029": 327.0,
         "target_2045": 12.0,
         "sedang_membaik": True,
+        "nilai_sekarang": 208.21,
+        "nilai_baseline": 157.09,
+        "satuan": "Juta Rupiah",
+        "interpretasi": "Peningkatan PDRB per kapita menunjukkan penguatan kesejahteraan masyarakat. Kalimat kedua.",
+        "riwayat": [(2021, 157.09), (2022, 192.59), (2023, 201.79), (2024, 198.68), (2025, 208.21)],
     }
     return svc.kalimat_insight(**{**baku, **ubah})
 
@@ -140,10 +146,11 @@ def test_insight_tanpa_nilai():
 def test_insight_memakai_progres_2029_bukan_2045():
     """Kalimat harus mengikuti angka yang digambar cincin tracker."""
     kalimat = _kalimat()
-    assert "40.0% perjalanan" in kalimat
+    assert "PDRB per Kapita Kalimantan Utara pada 2025 tercatat 208,21 Juta Rupiah" in kalimat
     assert "target 2029" in kalimat
-    assert "membaik" in kalimat
-    assert "Target akhir 2045 berada di 12." in kalimat
+    assert "naik dari 157,09 Juta Rupiah pada 2021" in kalimat
+    assert "Interpretasi indikator: Peningkatan PDRB per kapita" in kalimat
+    assert "2045" not in kalimat
 
 
 def test_insight_jatuh_ke_2045_bila_2029_tidak_ada():
@@ -158,11 +165,15 @@ def test_insight_tanpa_target_sama_sekali():
 
 
 def test_insight_tren_menjauh():
-    assert "menjauh dari arah target" in _kalimat(sedang_membaik=False)
+    assert "masih cukup lebar" in _kalimat(sedang_membaik=False)
 
 
 def test_insight_tren_tidak_dapat_dibandingkan():
-    assert "belum dapat dibandingkan" in _kalimat(sedang_membaik=None)
+    assert "target 2029" in _kalimat(sedang_membaik=None)
+
+
+def test_insight_menyebut_tahun_yang_sempat_tertahan():
+    assert "meski sempat tertahan pada 2024" in _kalimat()
 
 
 # --- penafsiran nilai ------------------------------------------------------

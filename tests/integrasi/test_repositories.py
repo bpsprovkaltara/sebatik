@@ -184,6 +184,20 @@ def test_nilai_periode_terbaru_menggantikan_tahunan(session, indikator_uji):
     assert repo_nilai.ambil(session, "ISV-001", PROVINSI, 2025, JenisNilai.REALISASI).nilai == 1.0
 
 
+def test_seri_tampilan_mengisi_tahun_kosong_dengan_nilai_terdekat(session, indikator_uji):
+    _sisip_nilai(session, tahun=2023, nilai=8.5)
+
+    seri = repo_nilai.seri(session, "ISV-001", PROVINSI, JenisNilai.REALISASI)
+
+    assert [(baris.tahun, baris.nilai) for baris in seri] == [
+        (2021, 8.5),
+        (2022, 8.5),
+        (2023, 8.5),
+        (2024, 8.5),
+        (2025, 8.5),
+    ]
+
+
 def test_nilai_belum_disetujui_tidak_terbaca(session, indikator_uji):
     _sisip_nilai(session, tahun=2025, nilai=99.0, status_verifikasi=StatusVerifikasi.MENUNGGU)
     assert repo_nilai.ambil(session, "ISV-001", PROVINSI, 2025, JenisNilai.REALISASI) is None

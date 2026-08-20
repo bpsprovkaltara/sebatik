@@ -108,10 +108,13 @@ def metadata_lengkap(session: Session, indikator: Indikator) -> dict[str, Any]:
         None
         if metadata is None
         else {
-            "definisi": metadata.definisi,
+            "definisi": _ringkas_metadata(metadata.definisi),
             "rumus_mentah": metadata.rumus_mentah,
             "rumus_latex": metadata.rumus_latex,
-            "interpretasi": metadata.interpretasi,
+            "keterangan_rumus": _baris(metadata.rumus),
+            "perlu_verifikasi_rumus": bool(metadata.rumus_latex) and metadata.perlu_verifikasi_manual,
+            "halaman_sumber": metadata.halaman_sumber,
+            "interpretasi": _ringkas_metadata(metadata.interpretasi),
             "sumber_data": metadata.sumber_data,
             "frekuensi": metadata.frekuensi,
             "status_metadata": metadata.status_metadata,
@@ -144,6 +147,27 @@ def metadata_lengkap(session: Session, indikator: Indikator) -> dict[str, Any]:
             for baris in repo_nilai.seri_lengkap(session, id_indikator, KODE_PROVINSI)
         ],
     }
+
+
+def _ringkas_metadata(teks: str | None, batas: int = 700) -> str | None:
+    """Ringkas uraian buku pada batas kalimat agar modal tetap mudah dipindai."""
+    if not teks or len(teks) <= batas:
+        return teks
+    potongan = teks[:batas]
+    akhir = max(potongan.rfind(". "), potongan.rfind("; "))
+    return potongan[: akhir + 1 if akhir > batas // 2 else batas].strip() + "…"
+
+
+def _baris(teks: str | None) -> list[str]:
+    """Pecah keterangan notasi yang disimpan sebagai satu kolom multi-baris.
+
+    Rumus dan keterangannya datang dari `data/processed/rumus_latex_buku1.json` lewat
+    `scripts/perbarui_rumus_latex.py`, bukan lagi dari daftar rumus bawaan yang
+    dulu ditulis di berkas ini. Daftar itu hanya menutupi lima indikator dan
+    tidak punya jejak halaman sumber; sekarang seluruh 86 indikator terlayani
+    dari satu berkas data yang bisa diperiksa terhadap Buku 1.
+    """
+    return [baris.strip() for baris in (teks or "").splitlines() if baris.strip()]
 
 
 def arah_baik_sah(arah_baik: str) -> bool:

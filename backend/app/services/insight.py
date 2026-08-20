@@ -45,8 +45,8 @@ def _kartu(session: Session, indikator: Any, wilayah_kode: str, tahun_sistem: in
     # Label dirangkai lengkap dengan tahunnya: "Semester 2" saja tidak
     # memberi tahu semester tahun berapa.
     label = (
-        f"{periode.label_periode} {tahun_terakhir}"
-        if periode and periode.label_periode
+        svc_nilai.label_periode_tampil(indikator.nama_indikator, periode.label_periode, tahun_terakhir)
+        if periode and periode.label_periode and tahun_terakhir is not None
         else (str(tahun_terakhir) if tahun_terakhir is not None else None)
     )
     kartu = {

@@ -61,6 +61,11 @@ class MetadataMaster(BaseModel):
     definisi: str | None = None
     rumus_mentah: str | None = None
     rumus_latex: str | None = None
+    # Keterangan notasi rumus: daftar "simbol = arti" yang di Buku 1 tercetak
+    # persis di bawah rumusnya. Disimpan satu baris per notasi.
+    keterangan_rumus: list[str] = []
+    perlu_verifikasi_rumus: bool = False
+    halaman_sumber: str | None = None
     interpretasi: str | None = None
     sumber_data: str | None = None
     frekuensi: str | None = None

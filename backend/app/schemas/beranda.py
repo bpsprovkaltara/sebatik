@@ -7,6 +7,12 @@ from pydantic import BaseModel
 from .umum import WilayahSingkat  # noqa: F401  (dipakai domain lain lewat modul ini)
 
 
+class KelompokKerangka(BaseModel):
+    nama: str
+    jumlah_indikator: int
+    id_indikator: list[str]
+
+
 class KetersediaanKelompok(BaseModel):
     kode: str
     label: str
@@ -15,6 +21,22 @@ class KetersediaanKelompok(BaseModel):
     slot_terisi: int
     slot_total: int
     persentase: float
+    kelompok: list[KelompokKerangka]
+
+
+class RingkasanKategori(BaseModel):
+    terisi: int
+    total: int
+    persentase: float
+
+
+class KetersediaanTahunan(BaseModel):
+    tahun: int
+    terisi: int
+    total: int
+    persentase: float
+    isv: RingkasanKategori
+    iup: RingkasanKategori
 
 
 class IndikatorMakro(BaseModel):
@@ -31,6 +53,7 @@ class IndikatorMakro(BaseModel):
     perubahan: float | None = None
     arah_perubahan: str | None = None
     keterangan: str | None = None
+    label_periode: str | None = None
 
 
 class SasaranVisi(BaseModel):
@@ -45,6 +68,7 @@ class SasaranVisi(BaseModel):
     target: float | None = None
     target_teks: str | None = None
     keterangan: str | None = None
+    label_periode: str | None = None
 
 
 class BerandaResponse(BaseModel):
@@ -53,5 +77,6 @@ class BerandaResponse(BaseModel):
     tahun_tersedia: list[int]
     indikator_makro: list[IndikatorMakro]
     sasaran_visi: list[SasaranVisi]
+    ketersediaan_tahunan: list[KetersediaanTahunan]
     ketersediaan_kelompok: list[KetersediaanKelompok]
     status_data: str

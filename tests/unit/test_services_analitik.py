@@ -156,7 +156,7 @@ def _keputusan(**ubah):
     baku = {
         "keputusan": "DISETUJUI",
         "alasan": None,
-        "peran_verifikator": "ADMIN",
+        "peran_verifikator": "VERIFIKATOR",
         "wilayah_verifikator": "65",
         "pengusul_id": 2,
         "verifikator_id": 1,
@@ -187,9 +187,9 @@ def test_verifikator_provinsi_boleh():
     assert _keputusan(peran_verifikator="VERIFIKATOR", wilayah_verifikator="65") is None
 
 
-def test_admin_di_luar_provinsi_tetap_boleh():
-    """Batasan wilayah hanya berlaku untuk peran VERIFIKATOR."""
-    assert _keputusan(peran_verifikator="ADMIN", wilayah_verifikator="6501") is None
+def test_admin_tidak_boleh_memutuskan_usulan():
+    penolakan = _keputusan(peran_verifikator="ADMIN", wilayah_verifikator="65")
+    assert penolakan and penolakan.kode == 403
 
 
 def test_penolakan_wajib_beralasan():
@@ -200,4 +200,6 @@ def test_penolakan_wajib_beralasan():
 
 def test_label_periode():
     assert svc_verifikasi.label_periode(2) == "Semester 2"
+    assert svc_verifikasi.label_periode(3, "Triwulanan") == "Triwulan 3"
     assert svc_verifikasi.label_periode(None) is None
+    assert svc_verifikasi.periode_sah(4) is True

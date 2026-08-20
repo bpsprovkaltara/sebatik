@@ -6,10 +6,10 @@ import {ArrowUpRight} from 'lucide-react'
 /* Empat pintu masuk utama. Angka pada kartu diambil dari muatan beranda yang
    sama, jadi tidak ada permintaan tambahan ke backend. */
 const HOME_DOORS=[
-  [RUTE.indikator,'Indikator',Compass,'Telusuri seri realisasi, target, dan pertumbuhan tiap indikator.'],
-  [RUTE.capaian,'Capaian',Target,'Ukur jarak setiap indikator menuju target Kalimantan Utara 2045.'],
-  [RUTE.insight,'Insight',Sparkles,'Baca situasi indikator makro dan perbandingan antarwilayah.'],
-  [RUTE.validitas,'Validitas',ShieldCheck,'Periksa status verifikasi, pembaruan, dan metadata indikator.']
+  [RUTE.indikator,'Indikator',Compass,'Telusuri seri realisasi, target, dan pertumbuhan tiap indikator'],
+  [RUTE.capaian,'Capaian',Target,'Ukur jarak setiap indikator menuju target Kalimantan Utara 2045'],
+  [RUTE.insight,'Insight',Sparkles,'Baca situasi indikator makro dan perbandingan antarwilayah'],
+  [RUTE.validitas,'Validitas',ShieldCheck,'Periksa status verifikasi, pembaruan, dan metadata indikator']
 ]
 
 

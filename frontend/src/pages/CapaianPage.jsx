@@ -4,6 +4,7 @@ import {chartTheme, useTheme} from '../theme'
 import {capaianColor, seriesColor} from '../tokens'
 import {TooltipCard} from '../components/charts/TooltipCard'
 import {ChartSkeleton, CountUp, EmptyState, Panel, Reveal, SectionHead, VizLegend} from '../ui'
+import {SmartSelect} from '../components/ui/SmartSelect'
 import {Activity, AlertTriangle, Info, Sparkles} from 'lucide-react'
 import {useEffect, useState} from 'react'
 import {Bar, BarChart, CartesianGrid, Cell, Line, LineChart, Pie, PieChart, ReferenceLine, ResponsiveContainer, Tooltip, XAxis, YAxis} from 'recharts'
@@ -58,11 +59,9 @@ export default function CapaianPage(){
     if(first?.id_indikator!==id)selectIndicator(first?.id_indikator||'')
   }
 
-  /* Cincin tracker mengukur jarak menuju target 2029, bukan 2045. Horizon
-     lima tahun masih bisa ditindaklanjuti perencana tahun ini; pada horizon
-     dua puluh tahun hampir semua indikator terbaca "baru sedikit" sehingga
-     angkanya tidak membedakan apa pun. Target 2045 tetap ditampilkan sebagai
-     tujuan akhir di kotak keterangan di bawah cincin. */
+  /* Cincin tracker mengukur jarak menuju target 2029. Horizon lima tahun
+     masih bisa ditindaklanjuti perencana tahun ini dan membedakan kemajuan
+     antarindikator dengan lebih jelas. */
   const progress=detail?.progres_2029
   const donutRest=ct.dark?'#362A28':'#F0E4D5'
   const donut=[
@@ -80,7 +79,7 @@ export default function CapaianPage(){
   return <Shell
     active={RUTE.capaian}
     title="Capaian"
-    subtitle="Pantau perubahan tahunan dan progres indikator terverifikasi menuju target Kalimantan Utara 2045."
+    subtitle="Pantau perubahan tahunan dan progres indikator terverifikasi menuju target Kalimantan Utara 2029"
   >
     {error&&<div className="error"><AlertTriangle size={18}/>{error}</div>}
 
@@ -89,35 +88,52 @@ export default function CapaianPage(){
         <span>Nama indikator</span>
         <input value={search} onChange={e=>setSearchFilter(e.target.value)} placeholder="Cari nama atau kode..."/>
       </label>
-      <label className="field">
+      <div className="field">
         <span>Kelompok</span>
-        <select value={group} onChange={e=>setGroupFilter(e.target.value)}>
-          <option value="">Semua kelompok</option>
-          {config.kelompok.map(x=><option key={x}>{x}</option>)}
-        </select>
-      </label>
-      <label className="field">
+        <SmartSelect
+          value={group}
+          onChange={setGroupFilter}
+          options={[{value:'',label:'Semua kelompok'},...config.kelompok.map(x=>({value:x,label:x}))]}
+          ariaLabel="Kelompok indikator"
+          placeholder="Semua kelompok"
+        />
+      </div>
+      <div className="field">
         <span>Indikator</span>
-        <select value={id} onChange={e=>selectIndicator(e.target.value)}>
-          {/* Tanpa awalan kode. Kodenya tidak menolong saat memilih dari
-              daftar — ia menggeser semua nama sejauh lebar kode dan bikin
-              mata sulit memindai. Kode indikator tetap tampil di kepala
-              analisis begitu satu indikator terpilih. */}
-          {choices.map(x=><option value={x.id_indikator} key={x.id_indikator}>{x.nama_indikator}</option>)}
-        </select>
-      </label>
-      <label className="field">
+        {/* Kode indikator tidak lagi ikut di depan nama — ia menggeser semua
+            nama sejauh lebar kode dan bikin mata sulit memindai. Ia dipindah
+            ke lajur kecil di kiri baris, jadi tetap bisa dicari lewat ketikan
+            tanpa mengganggu barisan namanya. */}
+        <SmartSelect
+          value={id}
+          onChange={selectIndicator}
+          options={choices.map(x=>({value:x.id_indikator,label:x.nama_indikator}))}
+          ariaLabel="Indikator yang dianalisis"
+          placeholder="Pilih indikator"
+          emptyText="Tidak ada indikator yang cocok"
+          searchable={false}
+        />
+      </div>
+      <div className="field">
         <span>Tahun analisis</span>
-        <select value={year} onChange={e=>setYear(e.target.value)}>
-          {(detail?.tahun_tersedia||[]).map(x=><option key={x}>{x}</option>)}
-        </select>
-      </label>
-      <label className="field">
+        <SmartSelect
+          value={year}
+          onChange={setYear}
+          options={(detail?.tahun_tersedia||[]).map(x=>({value:String(x),label:String(x)}))}
+          ariaLabel="Tahun analisis"
+          placeholder="Tahun"
+        />
+      </div>
+      <div className="field">
         <span>Wilayah</span>
-        <select value={region} onChange={e=>{setDetail(null);setRegion(e.target.value);setYear('')}}>
-          {config.wilayah.map(x=><option value={x.kode} key={x.kode}>{x.nama}</option>)}
-        </select>
-      </label>
+        <SmartSelect
+          value={region}
+          onChange={value=>{setDetail(null);setRegion(value);setYear('')}}
+          options={config.wilayah.map(x=>({value:x.kode,label:x.nama}))}
+          ariaLabel="Wilayah"
+          placeholder="Pilih wilayah"
+        />
+      </div>
     </Reveal>
 
     {detail&&<>
@@ -135,7 +151,7 @@ export default function CapaianPage(){
               level={3}
               kicker="Perubahan tahunan"
               title="Perubahan realisasi dibanding tahun sebelumnya"
-              desc="Setiap batang membandingkan realisasi satu tahun dengan realisasi terakhir sebelumnya. Warna menunjukkan apakah pergerakannya searah dengan target 2045."
+              desc={`Setiap batang membandingkan realisasi satu tahun dengan realisasi terakhir sebelumnya. Warna menunjukkan apakah pergerakannya searah dengan target ${detail.tahun_target_analisis}.`}
             />
             {barData.length?<>
               <ResponsiveContainer width="100%" height={320}>
@@ -154,8 +170,8 @@ export default function CapaianPage(){
                 </BarChart>
               </ResponsiveContainer>
               <VizLegend items={[
-                {label:'Searah dengan target 2045',color:upColor},
-                {label:'Berlawanan arah dengan target 2045',color:downColor}
+                {label:`Searah dengan target ${detail.tahun_target_analisis}`,color:upColor},
+                {label:`Berlawanan arah dengan target ${detail.tahun_target_analisis}`,color:downColor}
               ]}/>
             </>:<EmptyState icon={Activity} title="Growth belum tersedia" desc="Diperlukan minimal dua tahun realisasi terverifikasi."/>}
           </div>
@@ -177,10 +193,15 @@ export default function CapaianPage(){
                 <span>menuju 2029</span>
               </div>
             </div>
+            {/* Cincinnya mengukur jarak ke 2029, tetapi angka yang dituju RPJPD
+                adalah 2045. Ditampilkan berdampingan, keduanya menjawab dua
+                pertanyaan berbeda: seberapa jauh target lima tahunan, dan ke
+                mana sebenarnya arah akhirnya. Baris 2045 memakai lebar penuh
+                karena angkanya kerap yang terpanjang di antara ketiganya. */}
             <dl className="tracker-stats">
-              <div><dt>Realisasi {detail.tahun||'-'}</dt><dd>{valueLabel(detail.nilai_tahun,detail.nilai_teks,detail.satuan)}</dd></div>
+              <div><dt>Realisasi {detail.label_periode||detail.tahun||'-'}</dt><dd>{valueLabel(detail.nilai_tahun,detail.nilai_teks,detail.satuan)}</dd></div>
               <div><dt>Target 2029</dt><dd>{valueLabel(detail.target_2029,detail.target_2029_teks,detail.satuan)}</dd></div>
-              <div><dt>Target 2045</dt><dd>{valueLabel(detail.target_2045,detail.target_2045_teks,detail.satuan)}</dd></div>
+              <div className="tracker-stat-akhir"><dt>Target 2045</dt><dd>{valueLabel(detail.target_2045,detail.target_2045_teks,detail.satuan)}</dd></div>
             </dl>
           </div>
         </div>
@@ -189,9 +210,8 @@ export default function CapaianPage(){
       <Panel
         delay={60}
         className="target-trajectory"
-        kicker="Jalur menuju 2045"
-        title="Realisasi tahun berjalan dan target akhir"
-        desc="Garis putus-putus adalah jalur linear dari tahun analisis menuju target, bukan proyeksi resmi."
+        kicker={`Jalur menuju ${detail.tahun_target_analisis}`}
+        title={detail.nama_indikator}
       >
         {detail.projection.some(x=>x.realisasi!==null)?<>
           <ResponsiveContainer width="100%" height={360}>
@@ -215,14 +235,19 @@ export default function CapaianPage(){
           ]}/>
         </>:<EmptyState icon={Activity} title="Seri data belum tersedia" desc="Visualisasi akan muncul setelah data wilayah diverifikasi."/>}
 
+        {/* Narasinya datang sebagai satu teks dengan baris baru sebagai batas
+            pokok bahasan: cerita angkanya dulu, lalu interpretasi indikatornya.
+            Batas itu dihormati sebagai paragraf terpisah — disatukan, kalimat
+            tentang arti indikator terbaca seperti lanjutan cerita angka. */}
         <div className="insight-box">
           <Sparkles size={20}/>
-          <div><b>Insight otomatis</b><p>{detail.insight}</p></div>
+          <div>
+            <b>Insight otomatis</b>
+            {String(detail.insight||'').split('\n').filter(Boolean).map((paragraf,i)=>
+              <p key={i}>{paragraf}</p>
+            )}
+          </div>
         </div>
-        <p className="method-note">
-          Progres dihitung dari posisi realisasi tahun analisis terhadap perjalanan antara baseline pertama dan target 2045.
-          Nilai dibatasi 0–100% agar mudah dibaca.
-        </p>
       </Panel>
     </>}
 

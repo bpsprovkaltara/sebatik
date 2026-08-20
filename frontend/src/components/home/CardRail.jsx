@@ -2,7 +2,7 @@ import {ChevronLeft, ChevronRight} from 'lucide-react'
 import {useEffect, useRef, useState} from 'react'
 
 /* Jeda putaran korsel kartu makro, dalam milidetik. */
-const MACRO_INTERVAL=3000
+const MACRO_INTERVAL=5000
 
 
 export function CardRail({count,auto=false,className='',children}){

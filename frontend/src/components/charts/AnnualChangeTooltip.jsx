@@ -7,8 +7,8 @@ export function AnnualChangeTooltip({active,payload,arahTarget}){
   const pointChange=item.nilai-item.previousValue
   const movement=pointChange>0?'Naik':pointChange<0?'Turun':'Tetap'
   const targetRelation=(arahTarget==='TURUN'?item.growth<=0:item.growth>=0)
-    ?'searah dengan target 2045'
-    :'berlawanan arah dengan target 2045'
+    ?'searah dengan target 2029'
+    :'berlawanan arah dengan target 2029'
   const signedGrowth=`${item.growth>0?'+':item.growth<0?'−':''}${changeNumber.format(Math.abs(item.growth))}%`
   return <div className="viz-tooltip annual-change-tooltip" role="tooltip">
     <strong>{item.tahun} · realisasi {changeNumber.format(item.nilai)}</strong>
