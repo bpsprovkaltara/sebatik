@@ -23,7 +23,7 @@ router = APIRouter(prefix="/api/v1", tags=["usulan"])
 
 boleh_mengusulkan = wajib_peran(Peran.ADMIN, Peran.OPERATOR)
 boleh_melihat = wajib_peran(Peran.ADMIN, Peran.OPERATOR, Peran.VERIFIKATOR)
-boleh_memutuskan = wajib_peran(Peran.ADMIN, Peran.VERIFIKATOR)
+boleh_memutuskan = wajib_peran(Peran.VERIFIKATOR)
 
 
 @router.post("/admin/usulan", response_model=UsulanDibuatResponse)

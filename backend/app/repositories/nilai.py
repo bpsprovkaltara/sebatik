@@ -126,11 +126,45 @@ def seri(
     wilayah_kode: str,
     jenis: str | None = None,
 ) -> list[NilaiIndikator]:
-    """Seluruh seri tahunan satu indikator pada satu wilayah, urut tahun."""
-    stmt = _lingkup(select(NilaiIndikator), id_indikator, wilayah_kode, jenis).order_by(
-        NilaiIndikator.tahun, NilaiIndikator.jenis
+    """Seri tampilan: rilis terbaru menang dan celah 2021–2025 diisi nilai terdekat.
+
+    Baris sintetis hanya hidup di memori dan tidak pernah ditulis ke tabel
+    fakta. Saat nilai asli untuk tahun tersebut disetujui, hasil query berikutnya
+    otomatis memakai nilai asli itu.
+    """
+    stmt = _lingkup(select(NilaiIndikator), id_indikator, wilayah_kode, jenis, tahunan=False).order_by(
+        NilaiIndikator.tahun, NilaiIndikator.jenis, NilaiIndikator.periode.asc().nullsfirst()
     )
-    return list(session.scalars(stmt))
+    semua = list(session.scalars(stmt))
+    # Karena periodenya diurutkan menaik, penetapan terakhir pada kunci yang
+    # sama adalah rilis semester/triwulan paling mutakhir.
+    terpilih = {(baris.tahun, baris.jenis): baris for baris in semua}
+    realisasi = {
+        tahun: baris
+        for (tahun, jenis_baris), baris in terpilih.items()
+        if jenis_baris == JenisNilai.REALISASI
+        and 2021 <= tahun <= 2025
+        and (baris.nilai is not None or baris.nilai_teks is not None)
+    }
+    if realisasi:
+        for tahun in range(2021, 2026):
+            if (tahun, JenisNilai.REALISASI) in terpilih:
+                continue
+            sumber = min(realisasi.values(), key=lambda baris: (abs(baris.tahun - tahun), baris.tahun))
+            terpilih[(tahun, JenisNilai.REALISASI)] = NilaiIndikator(
+                id_indikator=sumber.id_indikator,
+                wilayah_kode=sumber.wilayah_kode,
+                tahun=tahun,
+                jenis=JenisNilai.REALISASI,
+                periode=sumber.periode,
+                nilai=sumber.nilai,
+                nilai_teks=sumber.nilai_teks,
+                label_periode=sumber.label_periode,
+                satuan_catatan=f"Menggunakan nilai terdekat tahun {sumber.tahun}",
+                sumber=sumber.sumber,
+                status_verifikasi=StatusVerifikasi.DISETUJUI,
+            )
+    return [terpilih[kunci] for kunci in sorted(terpilih)]
 
 
 def seri_lengkap(session: Session, id_indikator: str, wilayah_kode: str) -> list[NilaiIndikator]:
@@ -161,6 +195,29 @@ def hitung_slot_terisi(
             NilaiIndikator.jenis == JenisNilai.REALISASI,
             NilaiIndikator.periode.is_(None),
             NilaiIndikator.tahun.between(tahun_awal, tahun_akhir),
+            (NilaiIndikator.nilai.is_not(None)) | (NilaiIndikator.nilai_teks.is_not(None)),
+        )
+    )
+    return session.scalar(stmt) or 0
+
+
+def hitung_terisi_tahun(
+    session: Session,
+    id_indikator: Sequence[str],
+    wilayah_kode: str,
+    tahun: int,
+) -> int:
+    """Jumlah indikator yang memiliki realisasi tahunan atau periodik pada satu wilayah."""
+    if not id_indikator:
+        return 0
+    stmt = _disetujui(
+        select(func.count(func.distinct(NilaiIndikator.id_indikator)))
+        .select_from(NilaiIndikator)
+        .where(
+            NilaiIndikator.id_indikator.in_(id_indikator),
+            NilaiIndikator.wilayah_kode == wilayah_kode,
+            NilaiIndikator.jenis == JenisNilai.REALISASI,
+            NilaiIndikator.tahun == tahun,
             (NilaiIndikator.nilai.is_not(None)) | (NilaiIndikator.nilai_teks.is_not(None)),
         )
     )

@@ -2,6 +2,7 @@ import {RUTE} from '../lib/rute'
 import {useToken} from '../auth'
 import * as endpoints from '../api/endpoints'
 import {ChartSkeleton, EmptyState, Reveal} from '../ui'
+import {SmartSelect} from '../components/ui/SmartSelect'
 import {AlertTriangle, Eye, Search} from 'lucide-react'
 import {useEffect, useState} from 'react'
 import {MetadataModal} from '../components/explorer/MetadataModal'
@@ -35,18 +36,22 @@ export default function ValidityPage(){
   return <Shell
     active={RUTE.validitas}
     title="Validitas"
-    subtitle="Status verifikasi, pembaruan, dan metadata setiap indikator menurut wilayah."
+    subtitle="Status verifikasi, pembaruan, dan metadata setiap indikator menurut wilayah"
   >
     {error&&<div className="error"><AlertTriangle size={18}/>{error}</div>}
 
     <Reveal as="section" className="panel validity-panel">
       <div className="validity-toolbar">
-        <label className="field">
+        <div className="field">
           <span>Wilayah</span>
-          <select value={region} onChange={e=>setRegion(e.target.value)}>
-            {(data?.wilayah_opsi||[]).map(x=><option value={x.kode} key={x.kode}>{x.nama}</option>)}
-          </select>
-        </label>
+          <SmartSelect
+            value={region}
+            onChange={setRegion}
+            options={(data?.wilayah_opsi||[]).map(x=>({value:x.kode,label:x.nama}))}
+            ariaLabel="Wilayah"
+            placeholder="Pilih wilayah"
+          />
+        </div>
         <label className="search">
           <Search size={17}/>
           <input value={query} onChange={e=>setQuery(e.target.value)} placeholder="Cari nama atau kode indikator..." aria-label="Cari indikator"/>

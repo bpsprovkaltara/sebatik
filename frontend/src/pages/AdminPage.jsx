@@ -2,6 +2,7 @@ import {RUTE} from '../lib/rute'
 import {clearToken, roleLabel, setToken, useToken} from '../auth'
 import * as endpoints from '../api/endpoints'
 import {EmptyState, Panel, Reveal, SectionHead} from '../ui'
+import {SmartSelect} from '../components/ui/SmartSelect'
 import {CheckCircle2, Eye, EyeOff, FileWarning, Info} from 'lucide-react'
 import {useEffect, useState} from 'react'
 import {OperatorFlow} from '../components/admin/OperatorFlow'
@@ -228,10 +229,12 @@ export default function AdminPage(){
           </select>
           {accountRole!=='ADMIN'&&(accountRole==='VERIFIKATOR'
             ?<><input type="hidden" name="wilayah_kode" value="65"/><div className="locked-field">Provinsi Kalimantan Utara</div></>
-            :<select name="wilayah_kode" required>
-              <option value="">Pilih wilayah operator</option>
-              {regions.map(x=><option value={x.kode} key={x.kode}>{x.nama}</option>)}
-            </select>)}
+            :<SmartSelect
+              name="wilayah_kode"
+              options={regions.map(x=>({value:x.kode,label:x.nama}))}
+              ariaLabel="Wilayah operator"
+              placeholder="Pilih wilayah operator"
+            />)}
           <button>Buat akun</button>
         </Reveal>
 
@@ -281,10 +284,15 @@ export default function AdminPage(){
             desc="Koreksi angka dibuat sebagai usulan baru agar riwayat lama tidak hilang."
           />
           <input type="hidden" name="jenis" value="realisasi"/>
-          <select name="id_indikator" value={draft.id_indikator} onChange={e=>setDraft({...draft,id_indikator:e.target.value})} required>
-            <option value="">Pilih indikator</option>
-            {catalog.map(x=><option value={x.id_indikator} key={x.id_indikator}>{x.kode_indikator} · {x.nama_indikator}</option>)}
-          </select>
+          <SmartSelect
+            name="id_indikator"
+            value={draft.id_indikator}
+            onChange={value=>setDraft({...draft,id_indikator:value})}
+            options={catalog.map(x=>({value:x.id_indikator,label:x.nama_indikator,code:x.kode_indikator}))}
+            ariaLabel="Indikator yang dikirim"
+            placeholder="Pilih indikator"
+            emptyText="Tidak ada indikator yang cocok"
+          />
           <div className="form-pair">
             <input name="tahun" type="number" min="2000" max="2045" value={draft.tahun} onChange={e=>setDraft({...draft,tahun:e.target.value})} required/>
             <select name="periode" value={draft.periode} onChange={e=>setDraft({...draft,periode:e.target.value})}>
@@ -323,7 +331,7 @@ export default function AdminPage(){
         desc="Periksa angka, sumber, dan bukti sebelum mengambil keputusan."
         actions={<span className="count-pill">{submissions.filter(x=>x.status==='MENUNGGU_VERIFIKASI').length} menunggu</span>}
       >
-        <SubmissionTable rows={submissions} canDecide onEvidence={loadEvidence} onDecision={decide}/>
+        <SubmissionTable rows={submissions} canDecide={me?.peran==='VERIFIKATOR'} onEvidence={loadEvidence} onDecision={decide}/>
       </Panel>}
 
     {me?.peran==='OPERATOR'&&

@@ -1,10 +1,12 @@
-import {AuroraField, BatikLayer} from '../../Brand'
+import {AuroraField, BatikLayer, WaveEdge} from '../../Brand'
 import {useState} from 'react'
 
-/* Foto latar bersifat opsional. Bila berkasnya belum dipasang, gradasi laut
-   dan motif kawung di belakangnya sudah berdiri sendiri, jadi tidak ada
-   kotak gambar rusak yang terlihat pengguna. */
 const HERO_PHOTO='/hero-beranda.jpg'
+
+/* Logotipe dipecah per huruf supaya tiap huruf bisa datang menyusul, bukan
+   seluruh kata muncul sekaligus. `aria-label` pada judulnya menjaga pembaca
+   layar tetap mendengar satu kata utuh, bukan tujuh huruf terpisah. */
+const WORDMARK=[...'SEBATIK']
 
 
 export function HomeHero(){
@@ -18,27 +20,31 @@ export function HomeHero(){
     <AuroraField/>
     <BatikLayer opacity={.08} drift/>
 
+    {/* Dua kolom, rata kiri. Sebelumnya nama, tagline, dan paragraf bertumpuk
+        di satu lajur tengah: pita selebar layar hanya terpakai sepertiga
+        tengahnya, dan ketiganya berebut satu sumbu baca yang sama. Dipisah
+        begini, sisi kiri memegang identitas dan sisi kanan memegang penjelasan
+        — pitanya terpakai penuh dan mata punya dua tempat berhenti. */}
     <div className="home-hero-grid">
       <div className="home-hero-identity">
-        <div className="home-hero-branding">
-          <h1>SEBATIK</h1>
-          <p className="home-hero-expand">Sistem Monitoring Berkelanjutan Capaian Indikator ISV-IUP Kalimantan Utara</p>
-        </div>
+        <h1 aria-label="SEBATIK">
+          {WORDMARK.map((huruf,i)=>
+            <span key={i} style={{'--i':i}} aria-hidden="true">{huruf}</span>
+          )}
+        </h1>
+        <p className="home-hero-expand">
+          Sistem Monitoring Berkelanjutan Capaian Indikator ISV–IUP Kalimantan Utara
+        </p>
       </div>
 
       <div className="home-hero-copy">
         <p>
-          SEBATIK memantau ketersediaan dan capaian 86 indikator ISV-IUP Provinsi Kalimantan
-          Utara dalam satu dasbor terpadu. Menghubungkan target RPJPD dengan realisasi tahunan
+          SEBATIK memantau ketersediaan dan capaian indikator ISV-IUP Provinsi Kalimantan
+          Utara dalam satu dasbor terpadu, menghubungkan target RPJPD dengan realisasi tahunan
           menuju Indonesia Emas 2045.
         </p>
       </div>
     </div>
+    <WaveEdge />
   </header>
 }
-
-
-/* Angka ringkasan di kaki kartu dilepas. Kartu ini pintu masuk, bukan papan
-   angka — dan angka yang sama sudah muncul utuh di bagian-bagian di bawahnya.
-   Panah naik ke baris judul supaya kartunya tinggal dua baris: nama fitur dan
-   satu kalimat penjelas. */

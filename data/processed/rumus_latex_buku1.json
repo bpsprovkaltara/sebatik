@@ -1,0 +1,813 @@
+{
+  "sumber": "Buku 1 Penyelarasan Muatan RPJPD dengan RPJPN Tahun 2025-2045, Bagian 2.3 Metadata 5 Indikator Sasaran Visi dan 45 Indikator Utama Pembangunan",
+  "catatan_berkas": [
+    "Berkas ini menyimpan bentuk LaTeX dari rumus perhitungan tiap indikator, beserta keterangan notasinya.",
+    "Alasannya: kolom `rumus_mentah` di basis data berisi hasil ekstraksi teks PDF yang rusak. Buku 1 menyusun rumusnya memakai font matematis dengan peta karakter yang tidak baku, sehingga pecahan terurai jadi baris terpisah dan sebagian huruf tertukar - misalnya 'Nilai tambah sektor industri pengolahan' terbaca sebagai '\"#$%# &%'(%) *+,&-.'. Teks aslinya tetap disimpan apa adanya sebagai jejak audit.",
+    "Field `asal` menyatakan dari mana bentuk LaTeX-nya berasal, dan menentukan tanda `perlu_verifikasi_manual` di basis data:",
+    "  buku1   - rumusnya tercetak sebagai rumus di Buku 1 dan disalin ulang di sini.",
+    "  turunan - Buku 1 memuat rumusnya sebagai GAMBAR (tidak ikut terekstrak) atau hanya menyebutnya sebagai kalimat; bentuk LaTeX-nya disusun dari kalimat definisi/keterangan buku itu sendiri. Wajib diperiksa verifikator sebelum dianggap final.",
+    "  null pada `latex` berarti Buku 1 memang tidak memuat rumus tertutup untuk indikator itu - biasanya indeks komposit yang dihitung lembaga penyusunnya lewat survei, PCA, atau penilaian ahli. Modal metadata menampilkan uraian metodenya, bukan rumus kosong."
+  ],
+  "indikator": {
+    "ISV-001": {
+      "latex": "\\text{PDRB per kapita}_t = \\dfrac{\\text{PDRB}_{\\text{ADHB},\\,t}}{\\text{populasi}_t}",
+      "keterangan": [
+        "PDRB(ADHB) = PDRB atas dasar harga berlaku",
+        "populasi = jumlah penduduk regional",
+        "t = periode"
+      ],
+      "asal": "buku1",
+      "halaman": "43"
+    },
+    "ISV-002": {
+      "latex": null,
+      "keterangan": [],
+      "asal": "buku1",
+      "halaman": "44",
+      "catatan": "Buku 1 tidak memuat rumus tertutup. IBEI disusun dari pilar ekonomi, sosial, dan lingkungan yang diolah dengan multi-stages PCA untuk menghasilkan bobot dan skor pada rentang 0-100."
+    },
+    "ISV-003": {
+      "latex": "\\text{Kontribusi PDRB Industri Pengolahan} = \\dfrac{\\text{Nilai tambah sektor industri pengolahan}}{\\text{Nilai PDRB provinsi}} \\times 100\\%",
+      "keterangan": [
+        "Nilai tambah sektor industri pengolahan = nilai tambah bruto lapangan usaha industri pengolahan",
+        "Nilai PDRB provinsi = total PDRB provinsi pada tahun yang sama"
+      ],
+      "asal": "buku1",
+      "halaman": "45"
+    },
+    "ISV-004": {
+      "latex": "P_0 = \\dfrac{q}{n} \\times 100\\%",
+      "keterangan": [
+        "P(0) = tingkat kemiskinan (persentase penduduk miskin)",
+        "q = jumlah penduduk dengan rata-rata pengeluaran per kapita per bulan di bawah garis kemiskinan",
+        "n = jumlah penduduk",
+        "GK = GKM + GKNM, yaitu akumulasi Garis Kemiskinan Makanan dan Garis Kemiskinan Non Makanan"
+      ],
+      "asal": "turunan",
+      "halaman": "45-46",
+      "catatan": "Rumus di Buku 1 tercetak sebagai gambar sehingga tidak ikut terekstrak. Bentuk di sini disusun dari kalimat definisi buku: penduduk dikategorikan miskin bila pengeluaran per kapita per bulannya di bawah garis kemiskinan."
+    },
+    "ISV-005": {
+      "latex": "\\text{Rasio Gini} = 1 - \\sum_{i=1}^{n} (p_i - p_{i-1})(Y_i - Y_{i-1})",
+      "keterangan": [
+        "p(i) = proporsi kumulatif dari penerima pendapatan ke-i",
+        "Y(i) = proporsi kumulatif pengeluaran per kapita ke-i",
+        "n = jumlah observasi"
+      ],
+      "asal": "buku1",
+      "halaman": "46",
+      "catatan": "Disalin persis seperti tercetak di Buku 1. Perlu dicatat bahwa rumus Brown yang lazim dipakai BPS menjumlahkan proporsi kumulatif pengeluaran, (Y(i) + Y(i-1)), bukan mengurangkannya. Perbedaan ini ditandai untuk diperiksa verifikator."
+    },
+    "ISV-006": {
+      "latex": "\\text{Kontribusi PDRB}_{\\text{provinsi}} = \\dfrac{\\text{PDRB}_{\\text{provinsi}}}{\\text{PDB}_{\\text{nasional}}} \\times 100\\%",
+      "keterangan": [
+        "PDRB(provinsi) = Produk Domestik Regional Bruto provinsi",
+        "PDB(nasional) = Produk Domestik Bruto nasional pada tahun yang sama"
+      ],
+      "asal": "buku1",
+      "halaman": "47"
+    },
+    "ISV-007": {
+      "latex": null,
+      "keterangan": [],
+      "asal": "buku1",
+      "catatan": "Buku 1 tidak memuat metadata rumus untuk indikator ini."
+    },
+    "ISV-008": {
+      "latex": null,
+      "keterangan": [],
+      "asal": "buku1",
+      "catatan": "Buku 1 tidak memuat rumus tertutup. Indeks Modal Manusia disusun dari probabilitas bertahan hidup hingga usia 5 tahun, komponen pendidikan (harapan lama sekolah dan kualitas pembelajaran), serta komponen kesehatan."
+    },
+    "ISV-009": {
+      "latex": "IE_t = \\dfrac{TE_t}{\\text{PDRB}_t} \\qquad\\text{dan}\\qquad \\%IE_t = \\dfrac{IE_t - IEB_t}{IEB_t} \\times 100\\%",
+      "keterangan": [
+        "IE(t) = intensitas emisi GRK pada tahun t (ton CO2e per miliar rupiah harga 2010)",
+        "TE(t) = total tingkat emisi GRK pada tahun t (ton CO2e)",
+        "PDRB(t) = Produk Domestik Regional Bruto tahun t (miliar rupiah harga 2010)",
+        "IEB(t) = intensitas emisi GRK baseline pada tahun t",
+        "t = titik tahun perhitungan"
+      ],
+      "asal": "buku1",
+      "halaman": "49"
+    },
+    "ISV-010": {
+      "latex": "\\text{IKLH} = 0{,}3400\\,\\text{IKA} + 0{,}4280\\,\\text{IKU} + 0{,}1040\\,\\text{IKTL} + 0{,}0209\\,\\text{IKEG} + 0{,}0990\\,\\text{IKAL}",
+      "keterangan": [
+        "IKA = Indeks Kualitas Air; IKU = Indeks Kualitas Udara; IKTL = Indeks Kualitas Tutupan Lahan; IKEG = Indeks Kualitas Ekosistem Gambut; IKAL = Indeks Kualitas Air Laut",
+        "Bobot di atas berlaku untuk provinsi berlaut yang memiliki ekosistem gambut - termasuk Kalimantan Utara",
+        "Provinsi tanpa ekosistem gambut: IKLH = 0,340 IKA + 0,428 IKU + 0,133 IKTL + 0,099 IKAL",
+        "Provinsi tanpa laut dengan ekosistem gambut: IKLH = 0,3760 IKA + 0,4050 IKU + 0,1712 IKTL + 0,0478 IKEG"
+      ],
+      "asal": "buku1",
+      "halaman": "107"
+    },
+
+    "IUP-001": {
+      "latex": null,
+      "keterangan": [],
+      "asal": "buku1",
+      "halaman": "50",
+      "catatan": "Buku 1 tidak memuat rumus tertutup. Idealnya UHH dihitung dari Angka Kematian Menurut Umur (ASDR) lewat tabel kematian; karena registrasi kematian belum lengkap, penghitungan dilakukan secara tidak langsung dengan paket program MCPDA atau Mortpack."
+    },
+    "IUP-002": {
+      "latex": "\\text{AKI} = \\dfrac{\\text{JKI}}{\\text{JLH}} \\times 100.000",
+      "keterangan": [
+        "AKI = angka kematian ibu",
+        "JKI = jumlah kematian ibu yang berkaitan dengan kehamilan, persalinan, dan masa nifas, tercatat atau hasil estimasi pada waktu tertentu",
+        "JLH = jumlah kelahiran hidup pada periode yang sama"
+      ],
+      "asal": "buku1",
+      "halaman": "51"
+    },
+    "IUP-003": {
+      "latex": "\\text{Prevalensi stunting} = \\underbrace{\\dfrac{\\text{JAB}_{(5)\\,\\text{P}}}{\\text{JAB}_{(5)}} \\times 100\\%}_{\\text{PAB}_{(5)\\,\\text{P}}} + \\underbrace{\\dfrac{\\text{JAB}_{(5)\\,\\text{SP}}}{\\text{JAB}_{(5)}} \\times 100\\%}_{\\text{PAB}_{(5)\\,\\text{SP}}}",
+      "keterangan": [
+        "PAB(5)P = prevalensi anak balita pendek (stunting)",
+        "PAB(5)SP = prevalensi anak balita sangat pendek (stunting)",
+        "JAB(5)P = jumlah anak balita pendek pada waktu tertentu",
+        "JAB(5)SP = jumlah anak balita sangat pendek pada waktu tertentu",
+        "JAB(5) = jumlah anak balita pada waktu yang sama"
+      ],
+      "asal": "buku1",
+      "halaman": "52-53"
+    },
+    "IUP-004": {
+      "latex": "\\text{Treatment coverage} = \\dfrac{\\text{Jumlah kasus tuberkulosis yang ditemukan dan diobati}}{\\text{Perkiraan jumlah kasus tuberkulosis}} \\times 100\\%",
+      "keterangan": [
+        "Pembilang = seluruh kasus tuberkulosis yang berhasil ditemukan dan mendapatkan pengobatan pada periode tertentu",
+        "Penyebut = perkiraan jumlah kasus tuberkulosis yang ada di wilayah tersebut pada periode yang sama"
+      ],
+      "asal": "turunan",
+      "halaman": "54",
+      "catatan": "Buku 1 menuliskan metodenya sebagai kalimat, bukan rumus. Bentuk di sini menyalin kalimat itu apa adanya ke dalam pecahan."
+    },
+    "IUP-005": {
+      "latex": "\\text{Cakupan JKN} = \\dfrac{\\text{Jumlah peserta jaminan kesehatan nasional}}{\\text{Jumlah penduduk}} \\times 100\\%",
+      "keterangan": [
+        "Pembilang = jumlah peserta jaminan kesehatan nasional",
+        "Penyebut = jumlah penduduk pada periode yang sama"
+      ],
+      "asal": "turunan",
+      "halaman": "55",
+      "catatan": "Buku 1 menuliskan metodenya sebagai kalimat, bukan rumus."
+    },
+    "IUP-006": {
+      "latex": "\\%\\,\\text{kabkot min. SKM} = \\dfrac{\\sum_{i=1}^{n} \\text{kabkot min. SKM}}{n}",
+      "keterangan": [
+        "kabkot min. SKM = kabupaten/kota yang mencapai standar kompetensi minimum pada asesmen tingkat nasional untuk literasi membaca",
+        "n = jumlah kabupaten/kota"
+      ],
+      "asal": "buku1",
+      "halaman": "56"
+    },
+    "IUP-007": {
+      "latex": "\\%\\,\\text{satdik min. SKM} = \\dfrac{\\sum_{i=1}^{n} \\text{satdik min. SKM}}{n}",
+      "keterangan": [
+        "satdik min. SKM = satuan pendidikan yang mencapai standar kompetensi minimum pada asesmen tingkat nasional untuk literasi membaca",
+        "n = jumlah satuan pendidikan"
+      ],
+      "asal": "buku1",
+      "halaman": "56"
+    },
+    "IUP-008": {
+      "latex": "\\%\\,\\text{kabkot min. SKM} = \\dfrac{\\sum_{i=1}^{n} \\text{kabkot min. SKM}}{n}",
+      "keterangan": [
+        "kabkot min. SKM = kabupaten/kota yang mencapai standar kompetensi minimum pada asesmen tingkat nasional untuk numerasi",
+        "n = jumlah kabupaten/kota"
+      ],
+      "asal": "buku1",
+      "halaman": "57"
+    },
+    "IUP-009": {
+      "latex": "\\%\\,\\text{satdik min. SKM} = \\dfrac{\\sum_{i=1}^{n} \\text{satdik min. SKM}}{n}",
+      "keterangan": [
+        "satdik min. SKM = satuan pendidikan yang mencapai standar kompetensi minimum pada asesmen tingkat nasional untuk numerasi",
+        "n = jumlah satuan pendidikan"
+      ],
+      "asal": "buku1",
+      "halaman": "57"
+    },
+    "IUP-010": {
+      "latex": "\\text{Rata-rata Lama Sekolah}_{15+} = \\dfrac{1}{P_{15+}} \\sum_{i=1}^{P_{15+}} x_i",
+      "keterangan": [
+        "P(15+) = jumlah penduduk berusia 15 tahun ke atas",
+        "x(i) = lama sekolah penduduk ke-i"
+      ],
+      "asal": "buku1",
+      "halaman": "58"
+    },
+    "IUP-011": {
+      "latex": "\\text{Harapan Lama Sekolah} = FK \\sum_{i=7}^{n} \\dfrac{E_{i,t}}{P_{i,t}}",
+      "keterangan": [
+        "FK = faktor koreksi pesantren",
+        "E(i,t) = jumlah penduduk usia i yang bersekolah pada tahun t",
+        "P(i,t) = jumlah penduduk usia i pada tahun t",
+        "i = usia (7, 8, ..., n)"
+      ],
+      "asal": "buku1",
+      "halaman": "59"
+    },
+    "IUP-012": {
+      "latex": "\\text{Proporsi penduduk 15+ berkualifikasi pendidikan tinggi} = \\dfrac{\\text{Jumlah penduduk 15 tahun ke atas yang lulus/berijazah pendidikan tinggi}}{\\text{Jumlah penduduk 15 tahun ke atas}} \\times 100\\%",
+      "keterangan": [
+        "Pembilang dan penyebut dihitung pada provinsi dan tahun yang sama"
+      ],
+      "asal": "buku1",
+      "halaman": "60"
+    },
+    "IUP-013": {
+      "latex": "\\text{Persentase pekerja lulusan menengah dan tinggi di bidang keahlian menengah-tinggi} = \\dfrac{\\text{Penduduk 15+ lulus pendidikan menengah/tinggi yang bekerja pada bidang keahlian menengah atau tinggi}}{\\text{Penduduk 15+ lulus pendidikan menengah/tinggi yang bekerja}} \\times 100\\%",
+      "keterangan": [
+        "Pembilang dan penyebut dihitung pada tahun T dan provinsi yang sama"
+      ],
+      "asal": "buku1",
+      "halaman": "61"
+    },
+    "IUP-014": {
+      "latex": "P_0 = \\dfrac{q}{n} \\times 100\\%",
+      "keterangan": [
+        "P(0) = tingkat kemiskinan (persentase penduduk miskin)",
+        "q = jumlah penduduk dengan rata-rata pengeluaran per kapita per bulan di bawah garis kemiskinan",
+        "n = jumlah penduduk"
+      ],
+      "asal": "turunan",
+      "halaman": "62",
+      "catatan": "Rumus di Buku 1 tercetak sebagai gambar sehingga tidak ikut terekstrak. Bentuk di sini disusun dari kalimat definisi buku."
+    },
+    "IUP-015": {
+      "latex": "\\text{Cakupan Jamsos Naker} = \\dfrac{\\text{Jumlah peserta BPJS Ketenagakerjaan}}{\\text{Jumlah semesta penduduk bekerja}} \\times 100\\%",
+      "keterangan": [
+        "Peserta = Pekerja Penerima Upah (PPU), Jasa Konstruksi, dan Pekerja Bukan Penerima Upah",
+        "Semesta penduduk bekerja = penduduk bekerja yang berusia 15-65 tahun"
+      ],
+      "asal": "buku1",
+      "halaman": "63"
+    },
+    "IUP-016": {
+      "latex": null,
+      "keterangan": [],
+      "asal": "buku1",
+      "halaman": "64",
+      "catatan": "Rumus di Buku 1 tercetak sebagai gambar dan tidak ikut terekstrak; definisinya hanya membatasi siapa yang dihitung sebagai pekerja penyandang disabilitas, tanpa menyebut pembagi yang dipakai. Menyusun pecahannya sendiri berisiko salah, jadi dikosongkan sampai diverifikasi dari dokumen aslinya."
+    },
+    "IUP-017": {
+      "latex": "\\text{Kontribusi PDRB Industri Pengolahan} = \\dfrac{\\text{Nilai tambah sektor industri pengolahan}}{\\text{Nilai PDRB provinsi}} \\times 100\\%",
+      "keterangan": [
+        "Nilai tambah sektor industri pengolahan = nilai tambah bruto lapangan usaha industri pengolahan",
+        "Nilai PDRB provinsi = total PDRB provinsi pada tahun yang sama"
+      ],
+      "asal": "buku1",
+      "halaman": "65"
+    },
+    "IUP-018": {
+      "latex": "g_t = \\dfrac{\\text{PDRB}_t - \\text{PDRB}_{t-1}}{\\text{PDRB}_{t-1}} \\times 100\\%",
+      "keterangan": [
+        "g(t) = pertumbuhan PDRB lapangan usaha pertanian, kehutanan, dan perikanan pada tahun t",
+        "PDRB(t) = PDRB atas dasar harga konstan lapangan usaha tersebut pada tahun t"
+      ],
+      "asal": "turunan",
+      "halaman": "65",
+      "catatan": "Buku 1 tidak memuat rumus terpisah untuk indikator turunan ini. Bentuk di sini adalah rumus laju pertumbuhan tahunan yang berlaku umum atas seri PDRB harga konstan."
+    },
+    "IUP-019": {
+      "latex": "g_t = \\dfrac{\\text{PDRB}_t - \\text{PDRB}_{t-1}}{\\text{PDRB}_{t-1}} \\times 100\\%",
+      "keterangan": [
+        "g(t) = pertumbuhan PDRB sektor industri pengolahan nonmigas pada tahun t",
+        "PDRB(t) = PDRB atas dasar harga konstan sektor industri pengolahan nonmigas pada tahun t"
+      ],
+      "asal": "turunan",
+      "halaman": "65",
+      "catatan": "Buku 1 tidak memuat rumus terpisah untuk indikator turunan ini. Bentuk di sini adalah rumus laju pertumbuhan tahunan yang berlaku umum atas seri PDRB harga konstan."
+    },
+    "IUP-020": {
+      "latex": "\\text{Rasio PDRB Penyediaan Akmamin} = \\dfrac{\\text{Nilai tambah penyediaan akomodasi dan makan minum}}{\\text{Nilai PDRB provinsi}} \\times 100\\%",
+      "keterangan": [
+        "Akmamin = penyediaan akomodasi dan penyediaan makan minum",
+        "Nilai PDRB provinsi = total PDRB provinsi pada tahun yang sama"
+      ],
+      "asal": "buku1",
+      "halaman": "66"
+    },
+    "IUP-021": {
+      "latex": "\\text{Tamu wisman} = \\sum \\text{Jumlah tamu wisatawan mancanegara di setiap hotel berbintang di provinsi}",
+      "keterangan": [
+        "Indikator ini berupa jumlah, bukan rasio: seluruh tamu wisatawan mancanegara yang menginap di hotel berbintang di provinsi tertentu dijumlahkan"
+      ],
+      "asal": "buku1",
+      "halaman": "66"
+    },
+    "IUP-022": {
+      "latex": "\\text{Proporsi PDRB Ekonomi Kreatif} = \\dfrac{\\text{PDRB atas dasar harga berlaku sektor ekonomi kreatif}}{\\text{PDRB}} \\times 100\\%",
+      "keterangan": [
+        "Pembilang = nilai tambah bruto sektor ekonomi kreatif atas dasar harga berlaku",
+        "Penyebut = total PDRB pada tahun yang sama"
+      ],
+      "asal": "buku1",
+      "halaman": "67"
+    },
+    "IUP-023": {
+      "latex": "\\text{Proporsi UKM} = \\dfrac{\\text{Jumlah unit usaha kecil dan menengah non pertanian}}{\\text{Total jumlah unit usaha}} \\times 100\\%",
+      "keterangan": [
+        "Pembilang = jumlah unit usaha kecil dan menengah di luar lapangan usaha pertanian",
+        "Penyebut = total jumlah unit usaha pada tahun yang sama"
+      ],
+      "asal": "buku1",
+      "halaman": "68"
+    },
+    "IUP-024": {
+      "latex": "\\text{Proporsi IKM} = \\dfrac{\\text{Jumlah unit industri kecil dan menengah}}{\\text{Total jumlah unit industri}} \\times 100\\%",
+      "keterangan": [
+        "Pembilang dan penyebut dihitung pada tahun yang sama"
+      ],
+      "asal": "buku1",
+      "halaman": "68"
+    },
+    "IUP-025": {
+      "latex": "\\text{Rasio Kewirausahaan Daerah} = \\dfrac{\\text{Berusaha dibantu buruh tetap dibayar}}{\\text{Total angkatan kerja daerah}} \\times 100\\%",
+      "keterangan": [
+        "Berusaha dibantu buruh tetap = berusaha atas risiko sendiri dan mempekerjakan paling sedikit satu buruh atau pekerja tetap yang dibayar",
+        "Angkatan kerja = penduduk usia 15 tahun ke atas yang bekerja, punya pekerjaan tetapi sementara tidak bekerja, dan pengangguran"
+      ],
+      "asal": "buku1",
+      "halaman": "69"
+    },
+    "IUP-026": {
+      "latex": "\\text{Rasio Volume Usaha Koperasi terhadap PDRB} = \\dfrac{\\text{Volume usaha koperasi daerah}}{\\text{PDRB ADHB}} \\times 100\\%",
+      "keterangan": [
+        "PDRB ADHB = Produk Domestik Regional Bruto atas dasar harga berlaku"
+      ],
+      "asal": "buku1",
+      "halaman": "70"
+    },
+    "IUP-027": {
+      "latex": "\\text{Return on Asset (ROA)} = \\dfrac{\\text{Laba bersih}}{\\text{Total aset}} \\times 100\\%",
+      "keterangan": [
+        "Laba bersih dan total aset diambil dari laporan keuangan BUMD pada tahun yang sama"
+      ],
+      "asal": "buku1",
+      "halaman": "70"
+    },
+    "IUP-028": {
+      "latex": "\\text{TPT} = \\dfrac{PP}{PAK} \\times 100\\%",
+      "keterangan": [
+        "TPT = tingkat pengangguran terbuka (%)",
+        "PP = jumlah pengangguran (orang)",
+        "PAK = jumlah angkatan kerja (orang)"
+      ],
+      "asal": "buku1",
+      "halaman": "71"
+    },
+    "IUP-029": {
+      "latex": null,
+      "keterangan": [],
+      "asal": "buku1",
+      "halaman": "71",
+      "catatan": "Buku 1 tidak memuat metadata rumus terpisah untuk indikator turunan ini."
+    },
+    "IUP-030": {
+      "latex": "\\text{TPAK}_p = \\dfrac{\\text{PAK}_p}{P_{(15+,\\,p)}} \\times 100\\%",
+      "keterangan": [
+        "TPAK(p) = tingkat partisipasi angkatan kerja perempuan (%)",
+        "PAK(p) = jumlah angkatan kerja perempuan (orang)",
+        "P(15+,p) = jumlah penduduk perempuan usia 15 tahun ke atas (orang)"
+      ],
+      "asal": "buku1",
+      "halaman": "72"
+    },
+    "IUP-031": {
+      "latex": null,
+      "keterangan": [],
+      "asal": "buku1",
+      "halaman": "73",
+      "catatan": "Buku 1 menyerahkan indikator ini untuk disesuaikan dengan karakteristik daerah dalam rumpun arah pembangunan yang sama, tanpa memuat rumus baku."
+    },
+    "IUP-032": {
+      "latex": null,
+      "keterangan": [],
+      "asal": "buku1",
+      "halaman": "74",
+      "catatan": "Buku 1 tidak memuat rumus tertutup. Indeks Ekonomi Hijau Daerah mengukur progres transformasi ekonomi hijau melalui dimensi investasi, kapital dan infrastruktur, lapangan kerja dan keterampilan, kesejahteraan sosial, serta kelestarian lingkungan."
+    },
+    "IUP-033": {
+      "latex": "\\text{Porsi EBT} = \\dfrac{\\text{Total konsumsi EBT}}{\\text{Total konsumsi energi primer}} \\times 100\\%",
+      "keterangan": [
+        "EBT = energi baru dan terbarukan (panas bumi, angin, bioenergi, sinar matahari, aliran dan terjunan air, gerakan dan perbedaan suhu lapisan laut, serta sumber energi dari teknologi baru - PP No. 79 Tahun 2014)",
+        "Total konsumsi energi primer mencakup energi terbarukan dan tidak terbarukan di provinsi tersebut dalam satu tahun"
+      ],
+      "asal": "turunan",
+      "halaman": "75",
+      "catatan": "Rumusnya tidak ikut terekstrak, tetapi definisi Buku 1 menyebut secara utuh bahwa indikator ini adalah persentase total konsumsi EBT terhadap total konsumsi energi primer."
+    },
+    "IUP-034": {
+      "latex": "\\text{Indeks Pembangunan TIK} = 0{,}4\\,\\text{Access} + 0{,}4\\,\\text{Use} + 0{,}2\\,\\text{Skill}",
+      "keterangan": [
+        "Access = subindeks akses dan infrastruktur TIK",
+        "Use = subindeks penggunaan TIK",
+        "Skill = subindeks keahlian TIK",
+        "Metodologi mengacu pada ITU, Measuring the Information Society 2016"
+      ],
+      "asal": "buku1",
+      "halaman": "76"
+    },
+    "IUP-035": {
+      "latex": "\\text{KVH}_{\\text{bapokting}} = \\dfrac{\\text{simpangan baku antarkabupaten/kota}}{\\text{rata-rata antarkabupaten/kota}} \\qquad \\text{KVH antarwilayah} = \\dfrac{\\sum_{k=1}^{m}\\text{KVH}_{\\text{bapokting }k}}{m}",
+      "keterangan": [
+        "bapokting = barang pokok penting",
+        "KVH(bapokting) = koefisien variasi harga satu jenis bapokting antarkabupaten/kota",
+        "m = jumlah bapokting yang dipantau"
+      ],
+      "asal": "buku1",
+      "halaman": "77"
+    },
+    "IUP-036": {
+      "latex": "\\text{Pembentukan PMTB}\\,(\\%\\text{PDRB}) = \\dfrac{\\text{PMTB}}{\\text{PDRB ADHK}} \\times 100\\%",
+      "keterangan": [
+        "PMTB = total Pembentukan Modal Tetap Bruto berdasarkan PDB sisi pengeluaran (miliar rupiah)",
+        "PDRB ADHK = Produk Domestik Regional Bruto atas dasar harga konstan (miliar rupiah)"
+      ],
+      "asal": "buku1",
+      "halaman": "78"
+    },
+    "IUP-037": {
+      "latex": "\\text{Ekspor Barang dan Jasa}\\,(\\%\\text{PDRB}) = \\dfrac{\\text{Ekspor barang dan jasa}}{\\text{PDRB ADHK}} \\times 100\\%",
+      "keterangan": [
+        "Ekspor barang dan jasa = total ekspor barang dan jasa berdasarkan PDB sisi pengeluaran (miliar rupiah)",
+        "PDRB ADHK = Produk Domestik Regional Bruto atas dasar harga konstan (miliar rupiah)"
+      ],
+      "asal": "buku1",
+      "halaman": "79"
+    },
+    "IUP-038": {
+      "latex": "\\text{PHLTB} = \\dfrac{\\text{JRTHLTB}}{\\text{JRT}} \\times 100\\%",
+      "keterangan": [
+        "PHLTB = persentase rumah tangga dengan hunian layak, terjangkau, dan berkelanjutan",
+        "JRTHLTB = jumlah rumah tangga dengan hunian layak, terjangkau, dan berkelanjutan",
+        "JRT = jumlah rumah tangga seluruhnya",
+        "Rumus ini berlaku bagi kabupaten/kota yang telah menerapkan PBG dan SLF secara menyeluruh"
+      ],
+      "asal": "buku1",
+      "halaman": "81"
+    },
+    "IUP-039": {
+      "latex": "\\text{ID} = \\sqrt[6]{D_1 \\times D_2 \\times D_3 \\times D_4 \\times D_5 \\times D_6}",
+      "keterangan": [
+        "ID = Indeks Desa",
+        "D(1) ... D(6) = nilai masing-masing dimensi penyusun Indeks Desa",
+        "Desa mandiri ditetapkan dari ambang nilai Indeks Desa"
+      ],
+      "asal": "buku1",
+      "halaman": "82"
+    },
+    "IUP-040": {
+      "latex": "\\text{IRH} = 0{,}25\\,V_1 + 0{,}25\\,V_2 + 0{,}35\\,V_3 + 0{,}15\\,V_4",
+      "keterangan": [
+        "V(1) = tingkat koordinasi Kementerian Hukum dan HAM untuk harmonisasi regulasi (bobot 25%)",
+        "V(2) = penguatan kompetensi ASN sebagai perancang PUU yang berkualitas (bobot 25%)",
+        "V(3) = kualitas re-regulasi atau de-regulasi PUU berdasarkan hasil reviu (bobot 35%)",
+        "V(4) = penataan database PUU (bobot 15%)"
+      ],
+      "asal": "turunan",
+      "halaman": "84",
+      "catatan": "Buku 1 menyebut keempat variabel beserta bobotnya sebagai daftar, bukan sebagai rumus. Bentuk penjumlahan berbobot di sini menyusun ulang daftar itu."
+    },
+    "IUP-041": {
+      "latex": "\\text{Indeks SPBE} = \\sum_{j} \\text{ND}_j \\times \\text{BD}_j",
+      "keterangan": [
+        "ND(j) = nilai indeks domain ke-j",
+        "BD(j) = nilai bobot domain ke-j"
+      ],
+      "asal": "buku1",
+      "halaman": "85"
+    },
+    "IUP-042": {
+      "latex": null,
+      "keterangan": [],
+      "asal": "buku1",
+      "halaman": "86",
+      "catatan": "Buku 1 tidak memuat rumus tertutup. Nilai indeks ditentukan bertingkat: nilai tiap indikator, lalu nilai tiap aspek, lalu nilai indeks formulir, baru nilai Indeks Pelayanan Publik."
+    },
+    "IUP-044": {
+      "latex": "\\text{INI} = 0{,}305\\,\\text{Penilaian Internal} + 0{,}328\\,\\text{Penilaian Eksternal} + 0{,}367\\,\\text{Penilaian Eksper} - 0{,}2\\,\\text{Faktor Koreksi}",
+      "keterangan": [
+        "INI = Indeks Integritas Nasional",
+        "Bobot penilaian internal 0,305; eksternal 0,328; eksper 0,367; faktor koreksi 0,2"
+      ],
+      "asal": "buku1",
+      "halaman": "87"
+    },
+    "IUP-045": {
+      "latex": null,
+      "keterangan": [],
+      "asal": "buku1",
+      "halaman": "88",
+      "catatan": "Buku 1 menyerahkan indikator ini untuk disesuaikan dengan karakteristik daerah dalam rumpun arah pembangunan yang sama, tanpa memuat rumus baku."
+    },
+    "IUP-046": {
+      "latex": null,
+      "keterangan": [],
+      "asal": "buku1",
+      "halaman": "88",
+      "catatan": "Buku 1 tidak memuat metadata rumus untuk indikator turunan ini."
+    },
+    "IUP-047": {
+      "latex": null,
+      "keterangan": [],
+      "asal": "buku1",
+      "halaman": "89",
+      "catatan": "Rumus di Buku 1 tercetak sebagai gambar dan tidak ikut terekstrak. Definisinya menyebut cakupan rasa aman berjalan sendirian pada siang dan malam hari, tanpa menegaskan pembaginya, sehingga dikosongkan sampai diverifikasi."
+    },
+    "IUP-048": {
+      "latex": null,
+      "keterangan": [],
+      "asal": "buku1",
+      "halaman": "90",
+      "catatan": "Buku 1 tidak memuat rumus tertutup. IDI dihitung dengan triangulasi metode kuantitatif (analisis isi surat kabar, web scraping, reviu dokumen resmi) dan kualitatif (FGD ahli), pada skala 0-100, dengan bobot aspek/variabel/indikator dari AHP."
+    },
+    "IUP-049": {
+      "latex": "\\text{RPDRB}_t = \\dfrac{\\text{Penerimaan Pajak Daerah}_t}{\\text{PDRB}_t} \\times 100\\%",
+      "keterangan": [
+        "RPDRB(t) = rasio pajak daerah terhadap PDRB pada tahun t (%)",
+        "Penerimaan Pajak Daerah(t) = realisasi penerimaan pajak daerah tahun t",
+        "PDRB(t) = Produk Domestik Regional Bruto tahun t"
+      ],
+      "asal": "buku1",
+      "halaman": "91"
+    },
+    "IUP-050": {
+      "latex": "\\text{Tingkat Inflasi} = \\dfrac{\\text{IHK}_t - \\text{IHK}_{t-1}}{\\text{IHK}_{t-1}} \\times 100\\%",
+      "keterangan": [
+        "IHK(t) = Indeks Harga Konsumen pada periode t",
+        "IHK dihitung berdasarkan the Classification of Individual Consumption by Purpose (COICOP) 2018",
+        "Pengukuran IHK dilakukan melalui Survei Biaya Hidup (SBH) oleh BPS"
+      ],
+      "asal": "buku1",
+      "halaman": "92"
+    },
+    "IUP-052": {
+      "latex": "\\text{Total DPK}/\\text{PDRB} = \\dfrac{\\text{Total Dana Pihak Ketiga}}{\\text{PDRB}} \\times 100\\%",
+      "keterangan": [
+        "Total Dana Pihak Ketiga (DPK) = total DPK Bank Umum + total DPK BPR-BPRS di suatu provinsi",
+        "PDRB = Produk Domestik Regional Bruto atas dasar harga berlaku"
+      ],
+      "asal": "buku1",
+      "halaman": "93"
+    },
+    "IUP-053": {
+      "latex": "\\text{Aset Dana Pensiun}/\\text{PDRB} = \\dfrac{\\text{Aset dana pensiun per provinsi}}{\\text{PDRB}} \\times 100\\%",
+      "keterangan": [
+        "Aset Dana Pensiun = total aset DPPK-PPMP, DPPK-PPIP, dan DPLK yang tersedia di provinsi tersebut",
+        "PDRB = Produk Domestik Regional Bruto atas dasar harga berlaku"
+      ],
+      "asal": "buku1",
+      "halaman": "94"
+    },
+    "IUP-054": {
+      "latex": "\\text{Nilai transaksi saham rata-rata tahunan} = \\dfrac{\\text{Nilai transaksi investor saham per provinsi selama setahun}}{12}",
+      "keterangan": [
+        "Pembilang = akumulasi nilai transaksi saham investor di provinsi tersebut selama satu tahun",
+        "Pembagi 12 mengubahnya menjadi nilai rata-rata bulanan yang dilaporkan sebagai angka tahunan"
+      ],
+      "asal": "buku1",
+      "halaman": "95"
+    },
+    "IUP-055": {
+      "latex": "\\text{Total Kredit}/\\text{PDRB} = \\dfrac{\\text{Total kredit per provinsi}}{\\text{PDRB}} \\times 100\\%",
+      "keterangan": [
+        "Total kredit per provinsi = total penyaluran kredit Bank Umum + total penyaluran kredit BPR-BPRS di provinsi tersebut",
+        "PDRB = Produk Domestik Regional Bruto atas dasar harga berlaku"
+      ],
+      "asal": "buku1",
+      "halaman": "96"
+    },
+    "IUP-056": {
+      "latex": "\\text{Inklusi Keuangan} = \\dfrac{\\text{Jumlah responden yang menggunakan produk/layanan keuangan}}{\\text{Total sampel}} \\times 100\\%",
+      "keterangan": [
+        "Parameter yang dipakai adalah penggunaan (usage) produk dan layanan jasa keuangan dalam 12 bulan terakhir",
+        "Data dikumpulkan lewat survei tatap muka dengan sistem Computer Assisted Personal Interviewing (CAPI)"
+      ],
+      "asal": "buku1",
+      "halaman": "97"
+    },
+    "IUP-057": {
+      "latex": null,
+      "keterangan": [],
+      "asal": "buku1",
+      "halaman": "98",
+      "catatan": "Buku 1 menyerahkan indikator ini untuk disesuaikan dengan karakteristik daerah dalam rumpun arah pembangunan yang sama, tanpa memuat rumus baku."
+    },
+    "IUP-059": {
+      "latex": null,
+      "keterangan": [],
+      "asal": "buku1",
+      "halaman": "98",
+      "catatan": "Buku 1 menyerahkan indikator ini untuk disesuaikan dengan karakteristik daerah dalam rumpun arah pembangunan yang sama, tanpa memuat rumus baku."
+    },
+    "IUP-060": {
+      "latex": "\\text{IPK} = \\sum_{j=1}^{l} W_j \\times \\text{indeks } D_j \\qquad\\text{dengan}\\qquad \\text{indeks } D_j = \\left(\\dfrac{\\sum_{i=1}^{n_j} SX_{ji}}{n_j}\\right) \\times 100",
+      "keterangan": [
+        "IPK = Indeks Pembangunan Kebudayaan",
+        "W(j) = bobot dimensi ke-j",
+        "D(j) = dimensi ke-j",
+        "SX(ji) = nilai indikator i pada dimensi ke-j yang sudah dinormalisasi",
+        "n(j) = jumlah indikator dimensi ke-j"
+      ],
+      "asal": "buku1",
+      "halaman": "101"
+    },
+    "IUP-061": {
+      "latex": "\\text{IKUB} = \\dfrac{\\sum_{j=1}^{3} \\text{indeks } D_j}{3} \\qquad\\text{dengan}\\qquad \\text{indeks } D_j = \\dfrac{\\sum_{i=1}^{n_j} SX_{ji}}{n_j}",
+      "keterangan": [
+        "IKUB = Indeks Kerukunan Umat Beragama",
+        "D(j) = dimensi ke-j",
+        "SX(ji) = nilai indikator i pada dimensi ke-j",
+        "n(j) = jumlah indikator dimensi ke-j"
+      ],
+      "asal": "buku1",
+      "halaman": "102"
+    },
+    "IUP-062": {
+      "latex": "\\text{IPKK} = \\dfrac{D_{\\text{kesejahteraan}} + D_{\\text{ketahanan}} + D_{\\text{partisipasi}}}{3}",
+      "keterangan": [
+        "IPKK = Indeks Pembangunan Kualitas Keluarga",
+        "D = nilai indeks masing-masing dimensi pembentuknya"
+      ],
+      "asal": "turunan",
+      "halaman": "103",
+      "catatan": "Buku 1 menyatakannya sebagai kalimat - rata-rata nilai indeks dari dimensi kesejahteraan, ketahanan, dan partisipasi - bukan sebagai rumus."
+    },
+    "IUP-063": {
+      "latex": null,
+      "keterangan": [],
+      "asal": "buku1",
+      "halaman": "104-105",
+      "catatan": "Buku 1 memuat enam langkah penghitungan IKG (indeks perempuan dan laki-laki, agregasi rata-rata harmonik, indeks tiap dimensi, agregasi rata-rata geometrik, indeks kesetaraan gender, indeks ketimpangan gender) tetapi seluruh formulanya tercetak sebagai gambar dan tidak ikut terekstrak."
+    },
+    "IUP-064": {
+      "latex": null,
+      "keterangan": [],
+      "asal": "buku1",
+      "halaman": "106",
+      "catatan": "Buku 1 tidak memuat rumus untuk indikator ini."
+    },
+    "IUP-065": {
+      "latex": "\\text{IKLH} = 0{,}3400\\,\\text{IKA} + 0{,}4280\\,\\text{IKU} + 0{,}1040\\,\\text{IKTL} + 0{,}0209\\,\\text{IKEG} + 0{,}0990\\,\\text{IKAL}",
+      "keterangan": [
+        "IKU = Indeks Kualitas Udara, komponen IKLH dengan bobot terbesar yaitu 0,4280",
+        "IKA = Indeks Kualitas Air; IKTL = Indeks Kualitas Tutupan Lahan; IKEG = Indeks Kualitas Ekosistem Gambut; IKAL = Indeks Kualitas Air Laut"
+      ],
+      "asal": "buku1",
+      "halaman": "107",
+      "catatan": "Buku 1 hanya memuat formula agregat IKLH; IKU adalah salah satu komponennya dan tidak diberi rumus tersendiri."
+    },
+    "IUP-066": {
+      "latex": "\\text{IKLH} = 0{,}3400\\,\\text{IKA} + 0{,}4280\\,\\text{IKU} + 0{,}1040\\,\\text{IKTL} + 0{,}0209\\,\\text{IKEG} + 0{,}0990\\,\\text{IKAL}",
+      "keterangan": [
+        "IKA = Indeks Kualitas Air, komponen IKLH dengan bobot 0,3400",
+        "IKU = Indeks Kualitas Udara; IKTL = Indeks Kualitas Tutupan Lahan; IKEG = Indeks Kualitas Ekosistem Gambut; IKAL = Indeks Kualitas Air Laut"
+      ],
+      "asal": "buku1",
+      "halaman": "107",
+      "catatan": "Buku 1 hanya memuat formula agregat IKLH; IKA adalah salah satu komponennya dan tidak diberi rumus tersendiri."
+    },
+    "IUP-068": {
+      "latex": "\\text{IKLH} = 0{,}3400\\,\\text{IKA} + 0{,}4280\\,\\text{IKU} + 0{,}1040\\,\\text{IKTL} + 0{,}0209\\,\\text{IKEG} + 0{,}0990\\,\\text{IKAL}",
+      "keterangan": [
+        "IKTL = Indeks Kualitas Tutupan Lahan, komponen IKLH dengan bobot 0,1040",
+        "IKA = Indeks Kualitas Air; IKU = Indeks Kualitas Udara; IKEG = Indeks Kualitas Ekosistem Gambut; IKAL = Indeks Kualitas Air Laut"
+      ],
+      "asal": "buku1",
+      "halaman": "107",
+      "catatan": "Buku 1 hanya memuat formula agregat IKLH; indeks kualitas lahan/tutupan lahan adalah salah satu komponennya dan tidak diberi rumus tersendiri."
+    },
+    "IUP-069": {
+      "latex": "\\text{IKLH} = 0{,}3400\\,\\text{IKA} + 0{,}4280\\,\\text{IKU} + 0{,}1040\\,\\text{IKTL} + 0{,}0209\\,\\text{IKEG} + 0{,}0990\\,\\text{IKAL}",
+      "keterangan": [
+        "IKAL = Indeks Kualitas Air Laut, komponen IKLH dengan bobot 0,0990",
+        "IKA = Indeks Kualitas Air; IKU = Indeks Kualitas Udara; IKTL = Indeks Kualitas Tutupan Lahan; IKEG = Indeks Kualitas Ekosistem Gambut"
+      ],
+      "asal": "buku1",
+      "halaman": "107",
+      "catatan": "Buku 1 hanya memuat formula agregat IKLH; IKAL adalah salah satu komponennya dan tidak diberi rumus tersendiri."
+    },
+    "IUP-070": {
+      "latex": "\\text{PSA} = \\dfrac{\\text{JRTST} + \\text{JRTIPLT}}{\\text{JRTS}} \\times 100\\%",
+      "keterangan": [
+        "PSA = persentase rumah tangga yang memiliki akses sanitasi aman",
+        "JRTST = jumlah rumah tangga yang memiliki akses terhadap SPALD-T",
+        "JRTIPLT = jumlah rumah tangga dengan akses tangki septik yang disedot setidaknya sekali dalam lima tahun terakhir dan diolah di instalasi pengolahan lumpur tinja (IPLT)",
+        "JRTS = jumlah rumah tangga seluruhnya"
+      ],
+      "asal": "buku1",
+      "halaman": "109"
+    },
+    "IUP-071": {
+      "latex": "\\%SO = \\dfrac{SO}{TS} \\times 100\\% \\qquad\\text{dengan}\\qquad SO = ST - MFPA + RDP \\quad\\text{dan}\\quad TS = TP \\times (TPRT + TPNRT)",
+      "keterangan": [
+        "%SO = tingkat sampah terolah (%)",
+        "SO = sampah terolah (ton/hari); alternatif kedua: SO = MFPD + DPA - RPD",
+        "ST = sampah terkumpul (ton/hari)",
+        "MFPA = sampah yang masuk ke fasilitas pemrosesan akhir sampah (ton/hari)",
+        "RDP = residu dari fasilitas pengolahan-daur ulang sampah (ton/hari)",
+        "TS = timbulan sampah (kg/hari); TP = total populasi (orang)",
+        "TPRT = timbulan sampah per kapita dari rumah tangga (kg/orang/hari)",
+        "TPNRT = timbulan sampah per kapita dari non-rumah tangga (kg/hari)"
+      ],
+      "asal": "buku1",
+      "halaman": "110-112"
+    },
+    "IUP-072": {
+      "latex": "\\text{PRTLP} = \\dfrac{\\text{JRTLA}}{\\text{JRTS}} \\times 100\\%",
+      "keterangan": [
+        "PRTLP = proporsi rumah tangga dengan layanan penuh pengumpulan sampah",
+        "JRTLA = jumlah rumah tangga dengan akses terhadap layanan penuh pengumpulan sampah",
+        "JRTS = jumlah rumah tangga seluruhnya"
+      ],
+      "asal": "buku1",
+      "halaman": "113"
+    },
+    "IUP-073": {
+      "latex": "\\text{KLpk} = \\dfrac{\\text{KLpln} + \\text{KLnonpln}}{P}",
+      "keterangan": [
+        "KLpk = konsumsi listrik per kapita",
+        "KLpln = total konsumsi listrik yang disalurkan oleh PT PLN",
+        "KLnonpln = total konsumsi listrik yang disalurkan oleh non PT PLN",
+        "P = jumlah penduduk",
+        "Jumlah pemakaian tenaga listrik adalah total penjualan listrik PT PLN dan non PT PLN yang disalurkan ke pelanggan"
+      ],
+      "asal": "buku1",
+      "halaman": "114"
+    },
+    "IUP-074": {
+      "latex": "\\text{IEP} = \\dfrac{\\text{TEP}}{\\text{PDB}_{\\text{PPP}}}",
+      "keterangan": [
+        "IEP = intensitas energi primer",
+        "TEP = total pasokan energi primer",
+        "PDB(PPP) = produk domestik bruto berdasarkan paritas daya beli"
+      ],
+      "asal": "turunan",
+      "halaman": "115",
+      "catatan": "Rumusnya tidak ikut terekstrak, tetapi Buku 1 menyatakan secara utuh bahwa intensitas energi primer diperoleh dengan membagi total pasokan energi primer dengan PDB berdasarkan paritas daya beli, dan keterangannya menyebut ketiga notasi di atas."
+    },
+    "IUP-075": {
+      "latex": "\\text{PoU} = \\int_{x < \\text{MDER}} f(x)\\,dx",
+      "keterangan": [
+        "PoU = proporsi populasi yang mengalami ketidakcukupan konsumsi pangan di bawah kebutuhan minimum energi (MDER), diukur dengan kkal",
+        "MDER = Minimum Dietary Energy Requirement, kebutuhan minimum energi yang diukur dengan kkal",
+        "f(x) = fungsi kepadatan probabilitas tingkat konsumsi kalori sehari-hari rata-rata per kapita individu dalam suatu populasi"
+      ],
+      "asal": "turunan",
+      "halaman": "116",
+      "catatan": "Rumusnya tercetak sebagai gambar. Bentuk integral di sini menyusun ulang ketiga notasi yang keterangannya memang dimuat Buku 1 (PoU, MDER, f(x))."
+    },
+    "IUP-076": {
+      "latex": "\\text{Kapasitas Air Baku} = \\sum \\text{debit pengambilan air tiap sumber air}",
+      "keterangan": [
+        "Sumber air meliputi mata air, air tanah, air permukaan, air hujan, dan sumber air lainnya",
+        "Yang dihitung adalah debit yang dapat diolah dan/atau dimanfaatkan untuk keperluan domestik, perkotaan, industri, dan lain-lain"
+      ],
+      "asal": "turunan",
+      "halaman": "117",
+      "catatan": "Buku 1 menyatakannya sebagai kalimat - total kapasitas debit pengambilan air di setiap sumber air - bukan sebagai rumus."
+    },
+    "IUP-077": {
+      "latex": "\\text{PASMPP} = \\dfrac{\\text{JRTASMPP}}{\\text{JRT}} \\times 100\\%",
+      "keterangan": [
+        "PASMPP = persentase rumah tangga perkotaan yang memiliki akses terhadap air siap minum perpipaan",
+        "JRTASMPP = jumlah rumah tangga perkotaan yang memiliki akses terhadap air siap minum perpipaan",
+        "JRT = jumlah rumah tangga seluruhnya di perkotaan"
+      ],
+      "asal": "buku1",
+      "halaman": "118"
+    },
+    "IUP-078": {
+      "latex": null,
+      "keterangan": [],
+      "asal": "buku1",
+      "halaman": "119",
+      "catatan": "Rumus IRB di Buku 1 tercetak sebagai gambar. Keterangannya menyebut tiga komponen: hazard (probabilitas spasial, frekuensi, dan magnitude fenomena alam), vulnerability (parameter sosial budaya, ekonomi, fisik, lingkungan), dan capacity (tingkat ketahanan daerah atas tujuh prioritas). Cara ketiganya digabung tidak tertulis, jadi rumusnya dikosongkan sampai diverifikasi."
+    },
+    "IUP-079": {
+      "latex": "\\%\\text{PEK} = \\dfrac{\\sum_{i=\\text{base year}}^{t} \\text{PE}_t}{\\sum_{i=\\text{base year}}^{t} \\text{EB}_t}",
+      "keterangan": [
+        "%PEK = persentase penurunan emisi GRK daerah kumulatif",
+        "Pembilang = akumulasi penurunan emisi GRK total daerah selama periode base year hingga tahun t",
+        "Penyebut = akumulasi emisi GRK total baseline daerah selama periode base year hingga tahun t",
+        "t = titik tahun perhitungan"
+      ],
+      "asal": "buku1",
+      "halaman": "120-121"
+    },
+    "IUP-080": {
+      "latex": "\\%\\text{PE}_t = \\dfrac{\\text{PE}_t}{\\text{EB}_t}",
+      "keterangan": [
+        "%PE(t) = persentase penurunan emisi GRK total sektoral daerah pada tahun t",
+        "PE(t) = penurunan emisi GRK total sektoral tahun t",
+        "EB(t) = emisi GRK total sektoral baseline tahun t",
+        "t = titik tahun perhitungan"
+      ],
+      "asal": "buku1",
+      "halaman": "120"
+    }
+  }
+}

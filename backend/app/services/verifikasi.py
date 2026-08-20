@@ -16,6 +16,7 @@ from datetime import UTC, datetime
 from sqlalchemy.orm import Session
 
 from ..models import KODE_PROVINSI, JenisNilai, Peran, StatusVerifikasi, UsulanNilai
+from ..repositories import indikator as repo_indikator
 from ..repositories import nilai as repo_nilai
 from ..repositories import tata_kelola as repo_tata_kelola
 from . import Penolakan
@@ -55,17 +56,22 @@ def periksa_keputusan(
     """Semua aturan yang membatasi siapa boleh memutuskan apa."""
     if keputusan not in KEPUTUSAN_SAH:
         return Penolakan(422, "Keputusan tidak valid")
+    if peran_verifikator != Peran.VERIFIKATOR:
+        return Penolakan(403, "Keputusan hanya dapat dilakukan oleh verifikator")
     if verifikator_id is not None and pengusul_id == verifikator_id:
         return Penolakan(403, "Pengusul tidak boleh memverifikasi usulannya sendiri")
-    if peran_verifikator == Peran.VERIFIKATOR and wilayah_verifikator != KODE_PROVINSI:
+    if wilayah_verifikator != KODE_PROVINSI:
         return Penolakan(403, "Verifikator harus bertugas di tingkat provinsi")
     if keputusan == StatusVerifikasi.DITOLAK and not alasan:
         return Penolakan(422, "Alasan wajib untuk penolakan")
     return None
 
 
-def label_periode(periode: int | None) -> str | None:
-    return f"Semester {periode}" if periode else None
+def label_periode(periode: int | None, periode_data: str | None = None) -> str | None:
+    if not periode:
+        return None
+    jenis = "Triwulan" if periode_data and "triwulan" in periode_data.lower() else "Semester"
+    return f"{jenis} {periode}"
 
 
 def putuskan(
@@ -84,6 +90,7 @@ def putuskan(
     waktu = datetime.now(UTC)
 
     if keputusan == StatusVerifikasi.DISETUJUI:
+        indikator = repo_indikator.ambil(session, usulan.id_indikator)
         # Satu tabel, satu baris. Nilai semester dan nilai tahunan menempati
         # baris berbeda karena `periode` ikut dalam kunci alaminya.
         _, nilai_lama = repo_nilai.upsert(
@@ -94,7 +101,7 @@ def putuskan(
             jenis=usulan.jenis,
             periode=usulan.periode,
             nilai=float(usulan.nilai),
-            label_periode=label_periode(usulan.periode),
+            label_periode=label_periode(usulan.periode, indikator.periode_data if indikator else None),
             sumber=usulan.sumber,
             usulan_id=usulan.id,
             status_verifikasi=StatusVerifikasi.DISETUJUI,
@@ -135,7 +142,7 @@ def putuskan(
     session.commit()
 
 
-PERIODE_SAH = (None, 1, 2)
+PERIODE_SAH = (None, 1, 2, 3, 4)
 
 
 def periode_sah(periode: int | None) -> bool:

@@ -92,6 +92,9 @@ def detail(session: Session, indikator: Indikator, *, tahun: int | None) -> dict
                 "tahun": satu_tahun,
                 "realisasi": baris_realisasi.nilai if baris_realisasi else None,
                 "realisasi_teks": baris_realisasi.nilai_teks if baris_realisasi else None,
+                "label_periode": svc_nilai.label_periode_tampil(
+                    indikator.nama_indikator, baris_realisasi.label_periode, satu_tahun
+                ) if baris_realisasi else None,
                 "target": baris_target.nilai if baris_target else None,
                 "target_teks": baris_target.nilai_teks if baris_target else None,
                 "growth": svc_nilai.pertumbuhan(angka, sebelumnya),

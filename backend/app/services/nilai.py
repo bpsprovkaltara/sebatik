@@ -58,3 +58,17 @@ def arah_perubahan(sekarang: float | None, sebelumnya: float | None) -> str:
     if sekarang < sebelumnya:
         return "TURUN"
     return "TETAP"
+
+
+def label_periode_tampil(nama_indikator: str, label_periode: str | None, tahun: int) -> str | None:
+    """Label waktu yang lebih bermakna daripada sekadar nomor semester."""
+    if not label_periode:
+        return None
+    nama = nama_indikator.lower()
+    label = label_periode.lower()
+    nomor = next((angka for angka in (1, 2, 3, 4) if str(angka) in label), None)
+    if "kemiskinan" in nama and nomor in (1, 2):
+        return f"Maret {tahun}" if nomor == 1 else f"September {tahun}"
+    if "pengangguran" in nama and nomor in (1, 2):
+        return f"Februari {tahun}" if nomor == 1 else f"Agustus {tahun}"
+    return f"{label_periode} {tahun}"

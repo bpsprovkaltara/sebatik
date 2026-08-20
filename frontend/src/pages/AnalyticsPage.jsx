@@ -4,6 +4,7 @@ import {chartTheme, useTheme} from '../theme'
 import {capaianColor, seriesColor} from '../tokens'
 import {TooltipCard} from '../components/charts/TooltipCard'
 import {Panel, VizLegend} from '../ui'
+import {SmartSelect} from '../components/ui/SmartSelect'
 import {AlertTriangle} from 'lucide-react'
 import {useEffect, useState} from 'react'
 import {Bar, BarChart, CartesianGrid, Cell, ReferenceLine, ResponsiveContainer, Scatter, ScatterChart, Tooltip, XAxis, YAxis} from 'recharts'
@@ -42,13 +43,13 @@ export default function AnalyticsPage(){
     endpoints.korelasi(x,y).then(setCorr)
   },[x,y])
 
-  const opts=cards.map(i=><option key={i.id_indikator} value={i.id_indikator}>{i.id_indikator} · {i.nama_indikator}</option>)
+  const opts=cards.map(i=>({value:i.id_indikator,label:i.nama_indikator,code:i.id_indikator}))
   const upColor=capaianColor('TERCAPAI',theme),downColor=capaianColor('PERLU_PERHATIAN',theme)
 
   return <Shell
     active={RUTE.analitik}
     title="Dasbor Analitik"
-    subtitle="Tren, gap target, perbandingan antar-indikator, dan korelasi."
+    subtitle="Tren, gap target, perbandingan antar-indikator, dan korelasi"
   >
     <div className="notice warning">
       <AlertTriangle size={17}/> Required run-rate adalah ekstrapolasi linear sederhana, bukan proyeksi resmi.
@@ -58,7 +59,7 @@ export default function AnalyticsPage(){
       kicker="Tren tahunan"
       title="Tren dan selisih tahunan"
       desc="Warna menunjukkan perbaikan sesuai arah indikator."
-      actions={<select className="select" value={id} onChange={e=>setId(e.target.value)} aria-label="Pilih indikator">{opts}</select>}
+      actions={<SmartSelect value={id} onChange={setId} options={opts} ariaLabel="Pilih indikator" placeholder="Pilih indikator"/>}
     >
       <ResponsiveContainer width="100%" height={270}>
         <BarChart data={change?.data||[]} margin={{top:10,right:16,left:0,bottom:0}}>
@@ -103,8 +104,8 @@ export default function AnalyticsPage(){
       desc="Korelasi bukan sebab-akibat; seri pendek tidak layak ditafsirkan."
       actions={
         <div className="select-pair">
-          <select className="select" value={x} onChange={e=>setX(e.target.value)} aria-label="Indikator sumbu X">{opts}</select>
-          <select className="select" value={y} onChange={e=>setY(e.target.value)} aria-label="Indikator sumbu Y">{opts}</select>
+          <SmartSelect value={x} onChange={setX} options={opts} ariaLabel="Indikator sumbu X" placeholder="Sumbu X"/>
+          <SmartSelect value={y} onChange={setY} options={opts} ariaLabel="Indikator sumbu Y" placeholder="Sumbu Y"/>
         </div>
       }
     >

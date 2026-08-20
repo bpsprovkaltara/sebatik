@@ -1,6 +1,6 @@
 import {describe, expect, it} from 'vitest'
 
-import {dateText, growthTone, hasNumber, softNumber, valueLabel, valueTone} from './format'
+import {dateText, enumeratedParts, growthTone, hasNumber, softNumber, valueLabel, valueTone} from './format'
 
 describe('valueLabel', () => {
   it('menampilkan kalimat ketika nilai belum ada', () => {
@@ -62,5 +62,44 @@ describe('dateText', () => {
 
   it('mengembalikan apa adanya bila bukan tanggal', () => {
     expect(dateText('bukan tanggal')).toBe('bukan tanggal')
+  })
+})
+
+describe('enumeratedParts', () => {
+  it('memecah daftar bernomor yang ditulis memanjang', () => {
+    const hasil = enumeratedParts(
+      '1. Penurunan Emisi Gas Rumah Kaca (GRK): Laporan AKSARA, Kementerian PPN/Bappenas; ' +
+        '2. Produk Domestik Regional Bruto (Harga Konstan 2010): BPS.'
+    )
+    expect(hasil.items).toHaveLength(2)
+    expect(hasil.items[0].label).toBe('1')
+    expect(hasil.items[1].text).toContain('Produk Domestik Regional Bruto')
+    expect(hasil.lead).toBe('')
+  })
+
+  it('menyimpan kalimat pembuka sebelum penanda pertama', () => {
+    const hasil = enumeratedParts(
+      'Klasifikasi menurut Keputusan Menteri Kesehatan RI Nomor 1995/MENKES/SK/XII/2010. ' +
+        'a. Sangat pendek: Zscore < -3,0 b. Pendek: Zscore >= -3,0'
+    )
+    expect(hasil.items.map((x) => x.label)).toEqual(['a', 'b'])
+    expect(hasil.lead).toContain('1995/MENKES')
+  })
+
+  it('mengikuti rantai sampai butir terakhir', () => {
+    const hasil = enumeratedParts(
+      'Prevalensi tinggi menggambarkan beberapa masalah, termasuk: ' +
+        '1. Kekurangan gizi kronis. 2. Akses pelayanan kesehatan terbatas. ' +
+        '3. Kemiskinan rumah tangga. 4. Pendidikan orang tua. 5. Faktor lingkungan.'
+    )
+    expect(hasil.items.map((x) => x.label)).toEqual(['1', '2', '3', '4', '5'])
+    expect(hasil.items[4].text).toBe('Faktor lingkungan.')
+  })
+
+  it('membiarkan kalimat biasa apa adanya', () => {
+    expect(enumeratedParts('Badan Pusat Statistik')).toBeNull()
+    expect(enumeratedParts('Laporan tahun 2010. Data diolah kembali.')).toBeNull()
+    expect(enumeratedParts('')).toBeNull()
+    expect(enumeratedParts(null)).toBeNull()
   })
 })

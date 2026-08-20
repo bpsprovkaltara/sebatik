@@ -8,6 +8,7 @@
 
 import {useEffect,useMemo,useRef,useState} from 'react'
 import {Inbox} from 'lucide-react'
+import {enumeratedParts} from './lib/format'
 
 const reduceMotion = () =>
   typeof matchMedia !== 'undefined' && matchMedia('(prefers-reduced-motion: reduce)').matches
@@ -124,16 +125,56 @@ export function CountUp({value, duration = 900, decimals = 0, format}) {
 
 /* --- Kerangka panel ------------------------------------------------------- */
 
+/* Label kecil di atas judul. Bentuknya pil bertitik, bukan huruf kapital yang
+   melayang begitu saja: dengan latar setipis ini ia terbaca sebagai penanda
+   bagian — sesuatu yang menamai — dan berhenti bersaing dengan judul di
+   bawahnya. Titik di depannya ikut menandai kelompok warna nada. */
+export function Kicker({tone, children}) {
+  return (
+    <span className={`kicker${tone ? ` ${tone}` : ''}`}>
+      <i aria-hidden="true" />
+      {children}
+    </span>
+  )
+}
+
 export function SectionHead({kicker, kickerTone, title, desc, actions, level = 2}) {
   const Heading = `h${level}`
   return (
     <div className="section-head">
       <div className="section-head-text">
-        {kicker && <span className={`kicker${kickerTone ? ` ${kickerTone}` : ''}`}>{kicker}</span>}
+        {kicker && <Kicker tone={kickerTone}>{kicker}</Kicker>}
         <Heading>{title}</Heading>
         {desc && <p>{desc}</p>}
       </div>
       {actions && <div className="section-head-actions">{actions}</div>}
+    </div>
+  )
+}
+
+/* --- Teks panjang dari basis data ----------------------------------------- */
+/* Sebagian kolom metadata menyimpan daftar bernomor sebagai satu paragraf.
+   Di layar, daftar semacam itu perlu berdiri sebagai daftar — kalau tidak,
+   penomorannya tenggelam dan pembaca harus memburu angkanya sendiri. Bila
+   teksnya memang kalimat biasa, ia ditampilkan apa adanya. */
+export function ProseText({text, fallback = 'Belum tersedia', className = ''}) {
+  const value = (text || '').toString().trim()
+  if (!value) return <p className={`prose-text is-empty ${className}`.trim()}>{fallback}</p>
+
+  const parsed = enumeratedParts(value)
+  if (!parsed) return <p className={`prose-text ${className}`.trim()}>{value}</p>
+
+  return (
+    <div className={`prose-text ${className}`.trim()}>
+      {parsed.lead && <p>{parsed.lead}</p>}
+      <ol className="prose-list">
+        {parsed.items.map((item) => (
+          <li key={item.label}>
+            <b>{item.label}.</b>
+            <span>{item.text}</span>
+          </li>
+        ))}
+      </ol>
     </div>
   )
 }
@@ -252,12 +293,25 @@ export function Chip({tone = 'neutral', children, ...rest}) {
   )
 }
 
+/* Segitiga arah digambar sendiri, bukan dipinjam dari huruf ▲/▼. Glif itu
+   menempati kotak em yang sama dengan huruf tetapi tintanya hanya mengisi
+   sebagian kecil di tengahnya, sehingga pada ukuran keterangan ia menyusut
+   jadi noktah yang arahnya baru terbaca kalau diperhatikan. Bentuk SVG mengisi
+   penuh kotaknya dan ukurannya ditulis dalam `em`, jadi ia tumbuh dan menyusut
+   bersama tulisan yang mengikutinya. */
+const DELTA_SHAPE = {
+  up: 'M8 1.4 15.2 14H.8Z',
+  down: 'M8 14.6.8 2h14.4Z',
+  flat: 'M1.6 6h12.8v4H1.6Z'
+}
+
 export function DeltaPill({direction, children}) {
   const tone = direction === 'up' ? 'up' : direction === 'down' ? 'down' : 'flat'
-  const glyph = tone === 'up' ? '▲' : tone === 'down' ? '▼' : '■'
   return (
     <span className={`delta delta-${tone}`}>
-      <i aria-hidden="true">{glyph}</i>
+      <svg className="delta-glyph" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+        <path d={DELTA_SHAPE[tone]} />
+      </svg>
       {children}
     </span>
   )

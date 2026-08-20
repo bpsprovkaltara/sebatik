@@ -64,6 +64,7 @@ def test_beranda_provinsi(_json, client):
         "tahun_tersedia",
         "indikator_makro",
         "sasaran_visi",
+        "ketersediaan_tahunan",
         "ketersediaan_kelompok",
         "status_data",
     } <= body.keys()
@@ -89,8 +90,12 @@ def test_beranda_provinsi(_json, client):
         "slot_terisi",
         "slot_total",
         "persentase",
+        "kelompok",
     } == kelompok.keys()
     assert [item["jumlah_kelompok"] for item in body["ketersediaan_kelompok"]] == [5, 8, 17, 45]
+    tahunan = body["ketersediaan_tahunan"][0]
+    assert {"tahun", "terisi", "total", "persentase", "isv", "iup"} == tahunan.keys()
+    assert {"terisi", "total", "persentase"} == tahunan["isv"].keys()
 
 
 def test_beranda_wilayah_kabupaten(_json, client):
@@ -380,6 +385,15 @@ def test_admin_butuh_peran(_json, client, auth):
 def test_daftar_usulan(_json, client, auth):
     body = _json("/api/v1/admin/usulan", headers=auth)
     assert "data" in body
+
+
+def test_admin_tidak_boleh_memutuskan_usulan(client, auth):
+    response = client.post(
+        "/api/v1/admin/usulan/999/verifikasi",
+        headers=auth,
+        data={"keputusan": "DISETUJUI"},
+    )
+    assert response.status_code == 403
 
 
 def test_endpoint_ketersediaan_lama_sudah_hilang(_json, client):

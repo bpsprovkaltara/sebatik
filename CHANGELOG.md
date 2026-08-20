@@ -56,3 +56,25 @@
 - Mengganti Georgia dengan Plus Jakarta Sans dan JetBrains Mono yang dibundel lokal sehingga tampilan tetap benar tanpa akses internet.
 - Menambahkan mode terang/gelap dengan preferensi tersimpan, kerangka muat berkilau, dan penghormatan pada `prefers-reduced-motion`.
 - Menambahkan `docs/09-panduan-visual.md` sebagai acuan token warna, tipografi, dan struktur halaman.
+
+### Rumus metadata dalam bentuk LaTeX
+
+- Menambahkan `data/processed/rumus_latex_buku1.json`: bentuk LaTeX dan keterangan notasi rumus untuk 86 indikator, diturunkan dari Bagian 2.3 Buku 1. 68 indikator memperoleh rumus; 18 sisanya memang tidak memuat rumus tertutup di buku, dan 12 di antara yang berumus disusun dari kalimat definisi karena formula aslinya tercetak sebagai gambar sehingga ditandai perlu verifikasi manual.
+- Menambahkan `scripts/perbarui_rumus_latex.py` yang memasang berkas itu ke `metadata_indikator`. Teks hasil ekstraksi PDF tetap tersimpan di `rumus_mentah` sebagai jejak audit; kolom `rumus` kini menampung keterangan notasi.
+- Melepas daftar rumus bawaan yang ditulis langsung di `services/indikator.py` - ia hanya menutup lima indikator dan tidak punya rujukan halaman.
+- Menampilkan rumus di modal metadata sebagai rumus matematis KaTeX beserta keterangan notasi, rujukan halaman buku, dan penanda bagi rumus yang masih perlu diverifikasi.
+
+### Perapian beranda, insight, dan kartu tren
+
+- Angka realisasi pada kartu sasaran visi memakai perlakuan angka kartu makro — ukuran, tracking rapat, angka tabular — dengan berat diturunkan agar tidak menenggelamkan nama indikator; lebar lajurnya dikunci supaya desimal antarbaris sejajar, dan "Belum tersedia" tidak lagi tampil sebesar angka.
+- Menambahkan kartu target akhir 2045 pada tracker halaman Capaian, berdampingan dengan realisasi dan target 2029 sehingga cincin progres lima tahunan punya konteks tujuan akhirnya.
+- Mengganti label kelompok `indikator_induk` dari "Indikator Utama Induk" menjadi "Indikator Utama Pembangunan".
+- Rincian ISV/IUP pada tracker ketersediaan dibaca sebagai satu pernyataan: nama kelompok berdampingan dengan persentasenya yang ditebalkan, disusul "7 dari 10 indikator telah tersedia".
+- Insight otomatis memisahkan interpretasi indikator ke paragrafnya sendiri, bukan menyambungkannya ke cerita angka.
+- Satuan pada kartu tahun tren Insight turun ke barisnya sendiri dengan ukuran keterangan, sehingga lima kartu tahun muat tanpa perlu digeser mendatar.
+
+### Perapian kepala halaman dan label
+
+- Kalimat kepala halaman kini satu baris rata tengah dengan jarak antarkata normal, menggantikan blok sempit 44ch yang patah jadi dua-tiga baris di tengah bidang yang masih lapang. Ukurannya dikunci agar kalimat terpanjang di antara semua halaman tetap muat satu baris. Titik penutup dilepas dari kelima kalimatnya.
+- Halaman Insight: kalimat ajakan "Pilih kartu untuk melihat tren dan perbandingan wilayah" dilepas, dan keterangan sumber diringkas jadi "Sumber Data: ..." tanpa pengampu.
+- Judul cincin ketersediaan beranda menjadi "Ketersediaan Data Tahun ...".

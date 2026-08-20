@@ -137,6 +137,19 @@ def id_berklasifikasi(session: Session, kolom: str) -> list[str]:
     return list(session.scalars(stmt))
 
 
+def daftar_berklasifikasi(session: Session, kolom: str) -> list[Indikator]:
+    """Indikator terverifikasi yang memiliki klasifikasi pada ``kolom``."""
+    atribut = getattr(Indikator, kolom)
+    stmt = _terverifikasi(
+        select(Indikator).where(
+            atribut.is_not(None),
+            func.trim(atribut) != "",
+            atribut.not_like("-%"),
+        )
+    ).order_by(Indikator.kategori.desc(), Indikator.id_indikator)
+    return list(session.scalars(stmt))
+
+
 def daftar_arah_terverifikasi(session: Session) -> list[Indikator]:
     """Indikator yang arah baiknya sudah dikonfirmasi admin.
 

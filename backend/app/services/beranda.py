@@ -38,18 +38,13 @@ def urutkan_makro(daftar: list[Indikator]) -> list[Indikator]:
 
 def _kartu_makro(session: Session, indikator: Indikator, wilayah_kode: str, tahun: int) -> dict[str, Any]:
     iid = indikator.id_indikator
-    sekarang = repo_nilai.ambil(session, iid, wilayah_kode, tahun, JenisNilai.REALISASI)
-    sebelumnya = repo_nilai.sebelum_tahun(session, iid, wilayah_kode, tahun)
-    target = repo_nilai.ambil(session, iid, wilayah_kode, tahun, JenisNilai.TARGET)
-    # Sebagian indikator dilaporkan per semester. Bila untuk tahun terpilih
-    # ada rilis periode yang sudah disetujui, angka itulah yang paling
-    # mutakhir — bukan angka tahunannya, yang baru terisi setelah setahun penuh.
-    periode = repo_nilai.nilai_periode_terbaru(session, iid, wilayah_kode, tahun)
+    seri = repo_nilai.seri(session, iid, wilayah_kode)
+    sekarang = next((x for x in seri if x.tahun == tahun and x.jenis == JenisNilai.REALISASI), None)
+    sebelumnya = next((x for x in reversed(seri) if x.tahun < tahun and x.jenis == JenisNilai.REALISASI), None)
+    target = next((x for x in seri if x.tahun == tahun and x.jenis == JenisNilai.TARGET), None)
 
     angka_sekarang = (
-        periode.nilai
-        if periode
-        else svc_nilai.angka_terakhir(
+        svc_nilai.angka_terakhir(
             sekarang.nilai if sekarang else None,
             sekarang.nilai_teks if sekarang else None,
         )
@@ -65,22 +60,24 @@ def _kartu_makro(session: Session, indikator: Indikator, wilayah_kode: str, tahu
         "kode_indikator": indikator.kode_indikator,
         "satuan": indikator.satuan,
         "tahun": tahun,
-        "nilai": periode.nilai if periode else (sekarang.nilai if sekarang else None),
-        "nilai_teks": None if periode else (sekarang.nilai_teks if sekarang else None),
+        "nilai": sekarang.nilai if sekarang else None,
+        "nilai_teks": sekarang.nilai_teks if sekarang else None,
         "target": target.nilai if target else None,
         "target_teks": target.nilai_teks if target else None,
         "perubahan": svc_nilai.selisih(angka_sekarang, angka_sebelumnya),
         "arah_perubahan": svc_nilai.arah_perubahan(angka_sekarang, angka_sebelumnya),
-        "keterangan": periode.label_periode
-        if periode
-        else (PESAN_TANPA_DATA if not sekarang else sekarang.satuan_catatan),
+        "label_periode": svc_nilai.label_periode_tampil(
+            indikator.nama_indikator, sekarang.label_periode, tahun
+        ) if sekarang else None,
+        "keterangan": PESAN_TANPA_DATA if not sekarang else sekarang.satuan_catatan,
     }
 
 
 def _kartu_visi(session: Session, indikator: Indikator, wilayah_kode: str, tahun: int) -> dict[str, Any]:
     iid = indikator.id_indikator
-    realisasi = repo_nilai.ambil(session, iid, wilayah_kode, tahun, JenisNilai.REALISASI)
-    target = repo_nilai.ambil(session, iid, wilayah_kode, tahun, JenisNilai.TARGET)
+    seri = repo_nilai.seri(session, iid, wilayah_kode)
+    realisasi = next((x for x in seri if x.tahun == tahun and x.jenis == JenisNilai.REALISASI), None)
+    target = next((x for x in seri if x.tahun == tahun and x.jenis == JenisNilai.TARGET), None)
     return {
         "id_indikator": iid,
         "kode_indikator": indikator.kode_indikator,
@@ -92,14 +89,17 @@ def _kartu_visi(session: Session, indikator: Indikator, wilayah_kode: str, tahun
         "nilai_teks": realisasi.nilai_teks if realisasi else None,
         "target": target.nilai if target else None,
         "target_teks": target.nilai_teks if target else None,
+        "label_periode": svc_nilai.label_periode_tampil(
+            indikator.nama_indikator, realisasi.label_periode, tahun
+        ) if realisasi else None,
         "keterangan": PESAN_TANPA_DATA if not realisasi else realisasi.satuan_catatan,
     }
 
 
 def susun(session: Session, *, tahun: int | None, wilayah_kode: str = KODE_PROVINSI) -> dict[str, Any]:
     """Muatan lengkap `/beranda` untuk satu wilayah dan satu tahun."""
-    tahun_tersedia = repo_nilai.tahun_realisasi_tersedia(session)
-    if not tahun_tersedia:
+    tahun_asli = repo_nilai.tahun_realisasi_tersedia(session)
+    if not tahun_asli:
         # Bentuk respons tetap sama seperti saat ada data; hanya isinya kosong,
         # supaya frontend tidak perlu menangani dua bentuk yang berbeda.
         return {
@@ -108,10 +108,12 @@ def susun(session: Session, *, tahun: int | None, wilayah_kode: str = KODE_PROVI
             "tahun_tersedia": [],
             "indikator_makro": [],
             "sasaran_visi": [],
+            "ketersediaan_tahunan": [],
             "ketersediaan_kelompok": svc_ketersediaan.ketersediaan_kelompok(session),
             "status_data": STATUS_HANYA_TERVERIFIKASI,
         }
 
+    tahun_tersedia = sorted(set(tahun_asli) | set(range(2021, 2026)))
     dipilih = tahun if tahun in tahun_tersedia else max(tahun_tersedia)
     return {
         "tahun": dipilih,
@@ -125,6 +127,9 @@ def susun(session: Session, *, tahun: int | None, wilayah_kode: str = KODE_PROVI
             _kartu_visi(session, indikator, wilayah_kode, dipilih)
             for indikator in repo_indikator.daftar_sasaran_visi(session)
         ],
+        "ketersediaan_tahunan": svc_ketersediaan.ketersediaan_tahunan(
+            session, tahun_tersedia, wilayah_kode
+        ),
         "ketersediaan_kelompok": svc_ketersediaan.ketersediaan_kelompok(session),
         "status_data": STATUS_HANYA_TERVERIFIKASI,
     }

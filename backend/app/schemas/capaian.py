@@ -55,6 +55,7 @@ class TitikSeriCapaian(BaseModel):
     nilai_teks: str | None = None
     growth: float | None = None
     target: float | None = None
+    label_periode: str | None = None
 
 
 class TitikProyeksi(BaseModel):
@@ -74,11 +75,13 @@ class DetailCapaianResponse(IndikatorRingkas):
     projection: list[TitikProyeksi]
     nilai_tahun: float | None = None
     nilai_teks: str | None = None
+    label_periode: str | None = None
     target_2045: float | None = None
     target_2045_teks: str | None = None
     target_2029: float | None = None
     target_2029_teks: str | None = None
     arah_target: str | None = None
+    tahun_target_analisis: int
     progres_2045: float | None = None
     progres_2029: float | None = None
     gap_2045: float | None = None

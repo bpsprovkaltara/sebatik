@@ -36,6 +36,7 @@ class TitikLiniMasa(BaseModel):
     target: float | None = None
     target_teks: str | None = None
     growth: float | None = None
+    label_periode: str | None = None
 
 
 class NilaiWilayah(WilayahSingkat):

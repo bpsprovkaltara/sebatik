@@ -23,7 +23,7 @@ from .enums import JENIS_NILAI, STATUS_VERIFIKASI, StatusVerifikasi
 
 
 class UsulanNilai(Base):
-    """Antrean verifikasi: OPERATOR mengirim, VERIFIKATOR/ADMIN memutuskan."""
+    """Antrean verifikasi: OPERATOR/ADMIN mengirim, VERIFIKATOR memutuskan."""
 
     __tablename__ = "usulan_nilai"
 

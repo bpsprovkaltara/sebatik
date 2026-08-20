@@ -103,6 +103,7 @@ def kebutuhan_per_tahun(gap: float | None, tahun_sekarang: int | None, tahun_tar
 
 def kalimat_insight(
     *,
+    nama_indikator: str = "Indikator",
     nama_wilayah: str,
     tahun: int | None,
     ada_nilai: bool,
@@ -112,32 +113,86 @@ def kalimat_insight(
     target_2029: float | None,
     target_2045: float | None,
     sedang_membaik: bool | None,
+    nilai_sekarang: float | None = None,
+    nilai_baseline: float | None = None,
+    satuan: str | None = None,
+    interpretasi: str | None = None,
+    riwayat: list[tuple[int, float]] | None = None,
 ) -> str:
-    """Kalimat ringkas di halaman capaian.
-
-    Sengaja mengikuti angka yang digambar cincin tracker — target 2029 — supaya
-    angka yang dibaca dan angka yang dilihat tidak bercerita beda.
-    """
+    """Narasi capaian berbasis nilai, baseline, target 2029, dan metadata."""
     if not ada_nilai:
         return f"Data realisasi terverifikasi untuk {nama_wilayah} pada tahun yang dipilih belum tersedia."
     if target_2029 is None and target_2045 is None:
         return "Target 2029 dan 2045 belum tersedia sehingga progres belum dapat dihitung."
-
     tren = (
         "membaik"
         if sedang_membaik is True
         else "menjauh dari arah target"
         if sedang_membaik is False
-        else "belum dapat dibandingkan dengan tahun sebelumnya"
+        else "belum dapat dibandingkan"
     )
-    if progres_2029 is not None:
-        kalimat = (
-            f"Capaian {tahun} berada pada {progres_2029}% perjalanan dari baseline "
-            f"{tahun_baseline} menuju target 2029 dan trennya {tren}."
+
+    if (
+        progres_2029 is not None
+        and nilai_sekarang is not None
+        and nilai_baseline is not None
+        and target_2029 is not None
+    ):
+        unit = f" {satuan}" if satuan else ""
+        perubahan = nilai_sekarang - nilai_baseline
+        relatif = abs(perubahan) / abs(nilai_baseline) if nilai_baseline else abs(perubahan)
+        gerak = "bergerak tipis dari" if relatif <= 0.01 else "naik dari" if perubahan > 0 else "turun dari"
+
+        catatan = ""
+        riwayat = riwayat or []
+        delta = [(akhir[0], akhir[1] - awal[1]) for awal, akhir in zip(riwayat, riwayat[1:], strict=False)]
+        if delta and all(nilai > 0 for _, nilai in delta):
+            catatan = " dengan kenaikan yang konsisten tiap tahun"
+        elif delta and all(nilai < 0 for _, nilai in delta):
+            catatan = " dengan penurunan yang konsisten tiap tahun"
+        elif delta:
+            arah_total = 1 if perubahan >= 0 else -1
+            tertahan = [tahun_delta for tahun_delta, nilai in delta[:-1] if nilai * arah_total <= 0]
+            if tertahan:
+                catatan = f" meski sempat tertahan pada {tertahan[-1]}"
+
+        tercapai = (target_2029 >= nilai_baseline and nilai_sekarang >= target_2029) or (
+            target_2029 < nilai_baseline and nilai_sekarang <= target_2029
         )
-        if target_2045 is not None:
-            kalimat += f" Target akhir 2045 berada di {target_2045:g}."
-        return kalimat
+        rentang = abs(target_2029 - nilai_baseline)
+        jarak = abs(target_2029 - nilai_sekarang)
+        status = (
+            "sudah terlampaui"
+            if tercapai
+            else "tinggal sedikit"
+            if rentang and jarak / rentang <= 0.25
+            else "masih cukup lebar"
+        )
+
+        sisa_tahun = max(0, 2029 - (tahun or 2029))
+        tahun_lalu = max(1, len(riwayat))
+        laju_lalu = abs(perubahan) / max(1, (tahun or tahun_baseline or 0) - (tahun_baseline or 0))
+        laju_perlu = jarak / sisa_tahun if sisa_tahun else 0
+        laju = (
+            "dan laju sekarang sudah memadai untuk menutupnya"
+            if tercapai or laju_lalu >= laju_perlu
+            else f"sehingga {sisa_tahun} tahun tersisa menuntut laju lebih cepat daripada {tahun_lalu} tahun terakhir"
+        )
+
+        narasi = (
+            f"{nama_indikator} {nama_wilayah} pada {tahun} tercatat {_format_angka(nilai_sekarang)}{unit}, "
+            f"{gerak} {_format_angka(nilai_baseline)}{unit} pada {tahun_baseline}{catatan}. "
+            f"Jaraknya ke target 2029 sebesar {_format_angka(jarak)}{unit} {status}, {laju}."
+        )
+        if interpretasi:
+            ringkas = interpretasi.split(". ")[0].strip().rstrip(".")
+            # Baris baru, bukan spasi. Interpretasi adalah keterangan tentang
+            # ARTI indikatornya, bukan lanjutan cerita angka di kalimat
+            # sebelumnya; disambung dalam satu paragraf keduanya terbaca
+            # sebagai satu alur padahal berpindah pokok bahasan.
+            narasi += f"\nInterpretasi indikator: {ringkas[:320]}."
+
+        return narasi
     if progres_2045 is not None:
         return (
             f"Target 2029 belum tersedia. Terhadap target akhir 2045, capaian {tahun} "
@@ -145,6 +200,12 @@ def kalimat_insight(
             f"dan trennya {tren}."
         )
     return f"Capaian {tahun} tersedia, tetapi progres belum dapat dihitung lengkap."
+
+
+def _format_angka(nilai: float) -> str:
+    """Angka Indonesia tanpa nol desimal yang tidak bermakna."""
+    mentah = f"{nilai:,.4f}".rstrip("0").rstrip(".")
+    return mentah.replace(",", "#").replace(".", ",").replace("#", ".")
 
 
 # ---------------------------------------------------------------------------
@@ -265,6 +326,9 @@ def detail(session: Session, indikator: Indikator, wilayah: Wilayah, *, tahun: i
                 "nilai_teks": baris.nilai_teks,
                 "growth": svc_nilai.pertumbuhan(angka, sebelumnya),
                 "target": angka_target(baris.tahun),
+                "label_periode": svc_nilai.label_periode_tampil(
+                    indikator.nama_indikator, baris.label_periode, baris.tahun
+                ),
             }
         )
         sebelumnya = angka
@@ -273,7 +337,9 @@ def detail(session: Session, indikator: Indikator, wilayah: Wilayah, *, tahun: i
     baseline = seri[0] if seri else None
     tahun_sebelumnya = next((x for x in reversed(seri) if dipilih and x["tahun"] < dipilih), None)
 
-    arah = arah_target(baseline["nilai"] if baseline else None, target_2045)
+    tahun_target_analisis = TAHUN_TARGET_ANTARA if target_2029 is not None else TAHUN_TARGET_AKHIR
+    target_analisis = target_2029 if target_2029 is not None else target_2045
+    arah = arah_target(baseline["nilai"] if baseline else None, target_analisis)
     nilai_sekarang = sekarang["nilai"] if sekarang else None
     nilai_baseline = baseline["nilai"] if baseline else None
     progres_2045 = progres_menuju(nilai_sekarang, nilai_baseline, target_2045)
@@ -289,8 +355,10 @@ def detail(session: Session, indikator: Indikator, wilayah: Wilayah, *, tahun: i
         }
         for x in seri
     ]
-    if target_2045 is not None and not any(x["tahun"] == TAHUN_TARGET_AKHIR for x in proyeksi):
-        proyeksi.append({"tahun": TAHUN_TARGET_AKHIR, "realisasi": None, "jalur_target": target_2045})
+    if target_analisis is not None and not any(x["tahun"] == tahun_target_analisis for x in proyeksi):
+        proyeksi.append({"tahun": tahun_target_analisis, "realisasi": None, "jalur_target": target_analisis})
+
+    metadata = repo_indikator.ambil_metadata(session, indikator.id_indikator)
 
     return {
         "id_indikator": indikator.id_indikator,
@@ -310,17 +378,20 @@ def detail(session: Session, indikator: Indikator, wilayah: Wilayah, *, tahun: i
         "projection": proyeksi,
         "nilai_tahun": nilai_sekarang,
         "nilai_teks": sekarang["nilai_teks"] if sekarang else None,
+        "label_periode": sekarang["label_periode"] if sekarang else None,
         "target_2045": target_2045,
         "target_2045_teks": target[TAHUN_TARGET_AKHIR].nilai_teks if TAHUN_TARGET_AKHIR in target else None,
         "target_2029": target_2029,
         "target_2029_teks": target[TAHUN_TARGET_ANTARA].nilai_teks if TAHUN_TARGET_ANTARA in target else None,
         "arah_target": arah,
+        "tahun_target_analisis": tahun_target_analisis,
         "progres_2045": progres_2045,
         "progres_2029": progres_2029,
         "gap_2045": gap_2045,
         "gap_2029": gap_2029,
         "kebutuhan_per_tahun": kebutuhan_per_tahun(gap_2045, dipilih, TAHUN_TARGET_AKHIR),
         "insight": kalimat_insight(
+            nama_indikator=indikator.nama_indikator,
             nama_wilayah=wilayah.nama,
             tahun=dipilih,
             ada_nilai=sekarang is not None,
@@ -334,6 +405,13 @@ def detail(session: Session, indikator: Indikator, wilayah: Wilayah, *, tahun: i
                 tahun_sebelumnya["nilai"] if tahun_sebelumnya else None,
                 arah,
             ),
+            nilai_sekarang=nilai_sekarang,
+            nilai_baseline=nilai_baseline,
+            satuan=indikator.satuan,
+            interpretasi=metadata.interpretasi if metadata else None,
+            riwayat=[(x["tahun"], x["nilai"]) for x in seri if x["nilai"] is not None and x["tahun"] <= dipilih]
+            if dipilih
+            else [],
         ),
         "status_data": STATUS_HANYA_TERVERIFIKASI,
         "catatan_wilayah": None if wilayah.kode == KODE_PROVINSI else CATATAN_WILAYAH,
